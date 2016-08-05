@@ -18,7 +18,8 @@ class CreateTables extends Migration
 			$table->string('last_name');
 			$table->string('email')->unique();
 			$table->string('password');
-			$table->integer('class_id');
+			$table->integer('group_id');
+			$table->boolean('admin');
 			$table->rememberToken();
 			$table->timestamps();
 			$table->softDeletes();
@@ -30,24 +31,24 @@ class CreateTables extends Migration
 			$table->timestamp('created_at')->nullable();
 		});
 		
-		Schema::create('class_types', function (Blueprint $table) {
+		Schema::create('group_types', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
 			$table->timestamps();
 			$table->softDeletes();
 		});
 		
-		Schema::create('classes', function (Blueprint $table) {
+		Schema::create('groups', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('code')->unique();
-			$table->integer('class_type_id');
+			$table->integer('group_type_id');
 			$table->timestamps();
 			$table->softDeletes();
 		});
 		
 		Schema::create('permissions', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('class_id');
+			$table->integer('group_id');
 			$table->integer('product_id');
 			$table->timestamps();
 			$table->softDeletes();
@@ -96,8 +97,8 @@ class CreateTables extends Migration
 	{
 		Schema::drop('users');
 		Schema::drop('password_resets');
-		Schema::drop('class_types');
-		Schema::drop('classes');
+		Schema::drop('group_types');
+		Schema::drop('groups');
 		Schema::drop('permissions');
 		Schema::drop('product_types');
 		Schema::drop('products');
