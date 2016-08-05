@@ -1,17 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Group extends Model
+class Permission extends Model
 {
 	use SoftDeletes;
 	
-	protected $table = 'groups';
+	protected $table = 'permissions';
 	
 	protected $fillable = [
-		'code'
+		
 	];
 }

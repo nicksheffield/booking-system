@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\User as Model;
+use App\Models\User as Model;
 
 class User extends Controller
 {
@@ -26,6 +26,7 @@ class User extends Controller
 		$model->fill($request->all());
 
 		$model->password = bcrypt($request->password);
+		$model->group_id = $request->group_id;
 
 		$model->save();
 
@@ -55,6 +56,10 @@ class User extends Controller
 		$model = Model::find($id);
 		
 		$model->fill($request->except('password'));
+		
+		if($request->group_id) {
+			$model->group_id = $request->group_id;
+		}
 
 		if($request->password) {
 			$model->password = bcrypt($request->password);
