@@ -18,7 +18,7 @@ class CreateTables extends Migration
 			$table->string('last_name');
 			$table->string('email')->unique();
 			$table->string('password');
-			$table->integer('group_id');
+			$table->integer('group_id')->nullable();
 			$table->boolean('admin');
 			$table->rememberToken();
 			$table->timestamps();
