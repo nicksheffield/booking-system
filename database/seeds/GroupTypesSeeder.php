@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Models\Group_Type as Model;
+use App\Models\Group_Type;
 
 class GroupTypesSeeder extends Seeder
 {
@@ -15,7 +15,7 @@ class GroupTypesSeeder extends Seeder
 	{
 		DB::table('group_types')->delete();
 		
-		Model::create(['name' => 'Multimedia']);
-		Model::create(['name' => 'Graphic Design']);
+		Group_Type::create(['id' => 1, 'name' => 'Multimedia']);
+		Group_Type::create(['id' => 2, 'name' => 'Graphic Design']);
 	}
 }
