@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
 		$items = [
 			[
 				'id' => 1,
-				'username' => 'test',
+				'username' => 'bobross',
 				'first_name' => 'Bob',
 				'last_name' => 'Ross',
 				'email' => 'test@example.com',
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id' => 2,
-				'username' => 'henry.fox',
+				'username' => 'henryfox',
 				'first_name' => 'Henry',
 				'last_name' => 'Fox',
 				'email' => 'henry@example.com',
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id' => 3,
-				'username' => 'amanda.king',
+				'username' => 'amandaking',
 				'first_name' => 'Amanda',
 				'last_name' => 'King',
 				'email' => 'amanda@example.com',
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id' => 4,
-				'username' => 'theresa.martinez',
+				'username' => 'theresamartinez',
 				'first_name' => 'Theresa',
 				'last_name' => 'Martinez',
 				'email' => 'theresa@example.com',
@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id' => 5,
-				'username' => 'christopher.ferguson',
+				'username' => 'christopherferguson',
 				'first_name' => 'Christopher',
 				'last_name' => 'Ferguson',
 				'email' => 'chris@example.com',
@@ -61,7 +61,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id' => 6,
-				'username' => 'ryan.lynch',
+				'username' => 'ryanlynch',
 				'first_name' => 'Ryan',
 				'last_name' => 'Lynch',
 				'email' => 'ryan@example.com',
@@ -70,7 +70,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id' => 7,
-				'username' => 'megan.walters',
+				'username' => 'meganwalters',
 				'first_name' => 'Megan',
 				'last_name' => 'Walters',
 				'email' => 'megan@example.com',

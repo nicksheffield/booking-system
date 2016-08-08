@@ -12,14 +12,9 @@
 */
 
 use Illuminate\Http\Request;
-use App\Group;
 
 Route::resource('/api/user', 'User');
 
 Route::get('/', function() {
-	
-	$class = new Group();
-	
-	return $class;
 	return view('welcome');
 });

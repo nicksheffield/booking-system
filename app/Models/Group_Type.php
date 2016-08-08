@@ -16,10 +16,6 @@ class Group_Type extends Model
 	];
 	
 	public function groups() {
-		return $this->hasMany('Group');
-	}
-	
-	public function allowed_products() {
-		return $this->belongsToMany('Product', 'permissions');
+		return $this->hasMany('App\Models\Group', 'group_type_id');
 	}
 }

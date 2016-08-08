@@ -10,9 +10,14 @@ use App\Models\User as Model;
 
 class User extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
-		return Model::all();
+		if($request->with) {
+			$with = explode('|', $request->with);
+			return Model::with($with)->get();
+		} else {
+			return Model::all();
+		}
 	}
 
 	/**
@@ -39,9 +44,22 @@ class User extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id)
+	public function show(Request $request, $id)
 	{
-		return Model::find($id);
+		if(is_numeric($id)) {
+			$find = ['id' => $id];
+		} else {
+			$find = ['username' => $id];
+		}
+
+		$model = Model::where($find);
+
+		if($request->with) {
+			$model = $model->with(explode('|', $request->with));
+		}
+
+		return $model->first();
+		
 	}
 
 	/**

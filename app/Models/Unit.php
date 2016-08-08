@@ -16,10 +16,10 @@ class Unit extends Model
 	];
 	
 	public function bookings() {
-		return $this->hasMany('Booking');
+		return $this->hasMany('App\Models\Booking');
 	}
 	
 	public function product() {
-		return $this->belongsTo('Product');
+		return $this->belongsTo('App\Models\Product');
 	}
 }

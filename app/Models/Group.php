@@ -16,10 +16,14 @@ class Group extends Model
 	];
 	
 	public function type() {
-		return $this->belongsTo('Group_Type');
+		return $this->belongsTo('App\Models\Group_Type', 'group_type_id');
 	}
 	
 	public function users() {
-		return $this->hasMany('User');
+		return $this->hasMany('App\Models\User', 'group_id');
+	}
+	
+	public function allowed_products() {
+		return $this->belongsToMany('App\Models\Product', 'permissions');
 	}
 }

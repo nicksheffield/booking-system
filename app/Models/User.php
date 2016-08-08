@@ -30,10 +30,10 @@ class User extends Authenticatable
 	];
 	
 	public function group() {
-		return $this->belongsTo('Group');
+		return $this->belongsTo('App\Models\Group');
 	}
 	
 	public function bookings() {
-		return $this->hasMany('Booking');
+		return $this->hasMany('App\Models\Booking');
 	}
 }

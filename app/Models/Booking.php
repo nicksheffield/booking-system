@@ -16,10 +16,10 @@ class Booking extends Model
 	];
 	
 	public function unit() {
-		return $this->belongsTo('Unit');
+		return $this->belongsTo('App\Models\Unit');
 	}
 	
 	public function user() {
-		return $this->belongsTo('User');
+		return $this->belongsTo('App\Models\User');
 	}
 }

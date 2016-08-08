@@ -16,10 +16,10 @@ class Product extends Model
 	];
 	
 	public function type() {
-		return $this->belongsTo('Product_Type');
+		return $this->belongsTo('App\Models\Product_Type', 'product_type_id');
 	}
 	
-	public function groups_types() {
-		return $this->belongsToMany('Group', 'permissions');
+	public function groups_allowed() {
+		return $this->belongsToMany('App\Models\Group', 'permissions');
 	}
 }
