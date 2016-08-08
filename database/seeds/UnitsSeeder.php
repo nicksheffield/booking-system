@@ -17,7 +17,7 @@ class UnitsSeeder extends Seeder
 			[
 				'id' => 1,
 				'unit_number' => 'N10001',
-				'notes' => 'Loses battery fast',
+				'notes' => 'Drains battery fast',
 				'product_id' => 1
 			],
 			[
@@ -37,6 +37,24 @@ class UnitsSeeder extends Seeder
 				'unit_number' => 'N10010',
 				'notes' => '',
 				'product_id' => 2
+			],
+			[
+				'id' => 5,
+				'unit_number' => 'N10020',
+				'notes' => '',
+				'product_id' => 3
+			],
+			[
+				'id' => 6,
+				'unit_number' => 'N10021',
+				'notes' => '',
+				'product_id' => 3
+			],
+			[
+				'id' => 7,
+				'unit_number' => 'N10022',
+				'notes' => '',
+				'product_id' => 3
 			],
 		];
 

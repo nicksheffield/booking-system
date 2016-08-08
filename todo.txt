@@ -1,0 +1,2 @@
+quantity allowances for a class and a product (unit)
+	Each student may only be allowed to book 2 of one product

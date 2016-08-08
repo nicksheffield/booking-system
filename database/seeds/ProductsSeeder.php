@@ -24,6 +24,11 @@ class ProductsSeeder extends Seeder
 				'name' => 'MovieCamera2000',
 				'product_type_id' => 2
 			],
+			[
+				'id' => 3,
+				'name' => 'Camera Battery',
+				'product_type_id' => 4
+			],
 		];
 
 		foreach($items as $item) {

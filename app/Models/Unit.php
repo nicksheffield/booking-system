@@ -16,7 +16,7 @@ class Unit extends Model
 	];
 	
 	public function bookings() {
-		return $this->hasMany('App\Models\Booking');
+		return $this->belongsToMany('App\Models\Booking', 'booking_unit')->withTimestamps();
 	}
 	
 	public function product() {

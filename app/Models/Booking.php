@@ -15,8 +15,8 @@ class Booking extends Model
 		
 	];
 	
-	public function unit() {
-		return $this->belongsTo('App\Models\Unit');
+	public function units() {
+		return $this->belongsToMany('App\Models\Unit', 'booking_unit')->withTimestamps();
 	}
 	
 	public function user() {

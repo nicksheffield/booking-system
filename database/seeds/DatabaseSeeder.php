@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
 		$this->call(BookingsSeeder::class);
 		$this->call(GroupTypesSeeder::class);
 		$this->call(PermissionsSeeder::class);
+		$this->call(BookingUnitSeeder::class);
 		$this->call(ProductTypesSeeder::class);
 	}
 }

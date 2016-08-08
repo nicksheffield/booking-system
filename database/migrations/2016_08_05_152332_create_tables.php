@@ -14,9 +14,11 @@ class CreateTables extends Migration
 	{
 		Schema::create('users', function (Blueprint $table) {
 			$table->increments('id');
+			$table->string('username')->unique();
 			$table->string('first_name');
 			$table->string('last_name');
 			$table->string('email')->unique();
+			$table->string('phone');
 			$table->string('password');
 			$table->integer('group_id')->nullable();
 			$table->boolean('admin');
@@ -73,18 +75,26 @@ class CreateTables extends Migration
 			$table->increments('id');
 			$table->string('unit_number');
 			$table->integer('product_id');
+			$table->mediumText('notes');
 			$table->timestamps();
 			$table->softDeletes();
 		});
 		
 		Schema::create('bookings', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('student_id');
-			$table->integer('unit_id');
+			$table->integer('user_id');
 			$table->timestamp('delivered_at')->nullable();
+			$table->timestamp('due_at')->nullable();
 			$table->timestamp('returned_at')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
+		});
+		
+		Schema::create('booking_unit', function(Blueprint $table) {
+			$table->increments('id');
+			$table->integer('booking_id');
+			$table->integer('unit_id');
+			$table->timestamps();
 		});
 	}
 

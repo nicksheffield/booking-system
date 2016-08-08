@@ -16,14 +16,11 @@ class BookingsSeeder extends Seeder
 		$items = [
 			[
 				'id' => 1,
-				'user_id' => 5,
-				'unit_id' => 1,
-				'delivered_at' => date('Y-m-d H:i:s')
+				'user_id' => 2
 			],
 			[
 				'id' => 2,
-				'user_id' => 2,
-				'unit_id' => 2
+				'user_id' => 2
 			],
 		];
 

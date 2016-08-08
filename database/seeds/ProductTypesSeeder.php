@@ -26,6 +26,10 @@ class ProductTypesSeeder extends Seeder
 				'id' => 3,
 				'name' => 'Tripod',
 			],
+			[
+				'id' => 4,
+				'name' => 'Battery',
+			],
 		];
 
 		foreach($items as $item) {
