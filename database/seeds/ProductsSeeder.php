@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class GroupTypesSeeder extends Seeder
+class ProductsSeeder extends Seeder
 {
 	/**
 	 * Run the database seeds.
@@ -11,21 +11,23 @@ class GroupTypesSeeder extends Seeder
 	 */
 	public function run()
 	{
-		DB::table('group_types')->delete();
+		DB::table('products')->delete();
 
 		$items = [
 			[
 				'id' => 1,
-				'name' => 'Multimedia'
+				'name' => '700d',
+				'product_type_id' => 1
 			],
 			[
 				'id' => 2,
-				'name' => 'Graphic Design'
-			]
+				'name' => 'MovieCamera2000',
+				'product_type_id' => 2
+			],
 		];
-		
+
 		foreach($items as $item) {
-			App\Models\Group_Type::create($item);
+			App\Models\Product::create($item);
 		}
 	}
 }
