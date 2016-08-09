@@ -32,6 +32,10 @@ class Booking extends Model
 	public function scopeReturned($query) {
 		return $query->where('returned_at', '!=', null);
 	}
+
+	public function scopeActive($query) {
+		return $query->where('returned_at', null);
+	}
 	
 	public function units() {
 		return $this->belongsToMany('App\Models\Unit', 'booking_unit')->withTimestamps();

@@ -17,6 +17,7 @@ class Booking extends Controller
 		$q = $q->limit(($request->limit ?: 20));
 		$q = $q->offset(($request->offset ?: 0));
 
+		if(!$request->status)                 $q = $q->active();
 		if($request->status == 'overdue')     $q = $q->overdue();
 		if($request->status == 'delivered')   $q = $q->delivered();
 		if($request->status == 'undelivered') $q = $q->undelivered();

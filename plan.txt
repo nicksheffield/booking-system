@@ -1,0 +1,31 @@
+Two versions of the site, whether you are an admin or not.
+
+Guest
+	Can login, or register self with enrollment code
+
+Student (non-admin)
+	Can do three main things:
+		If no bookings already made, then you can make a booking.
+			Making a booking includes setting dates for pick up and drop off,
+			then choosing the individual products they want to get.
+		If a booking has been made, you can view this booking, in a mobile friendly fashion (also print friendly)
+		You can always view past bookings
+		
+Staff (admin)
+	Can do three main things
+		Can book out units against themself. These bookings do not have a due date.
+		Handle a return.
+			Units are marked off. You can put notes about damage etc.
+			It should also be possible to mark a partial return.
+		Handle site data.
+			This includes creating/modify/delete class_types, classes, product_types, products, units and permissions.
+			
+The site also automatically emails students every day that their equipment is overdue.
+
+Bookings not delivered by the end of the day are cancelled.
+
+There is a concept of late fees.
+	Students with due late fees are prevented from booking.
+	Staff can easily see which students have the due late fees.
+	Staff can also alter or waive a students fees.
+	"Late fees should be recorded and payment could perhaps produce a receipt?" - not sure

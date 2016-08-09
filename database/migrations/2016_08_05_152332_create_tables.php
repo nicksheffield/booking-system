@@ -19,6 +19,8 @@ class CreateTables extends Migration
 			$table->string('last_name');
 			$table->string('email')->unique();
 			$table->string('phone');
+			$table->string('id_number');
+			$table->date('dob');
 			$table->string('password');
 			$table->integer('group_id')->nullable();
 			$table->boolean('admin');
@@ -44,6 +46,7 @@ class CreateTables extends Migration
 			$table->increments('id');
 			$table->string('code')->unique();
 			$table->integer('group_type_id');
+			$table->string('enrollment_key');
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -53,6 +56,7 @@ class CreateTables extends Migration
 			$table->integer('group_id');
 			$table->integer('product_id');
 			$table->integer('quantity');
+			$table->integer('days_allowed');
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -74,6 +78,8 @@ class CreateTables extends Migration
 		
 		Schema::create('units', function(Blueprint $table) {
 			$table->increments('id');
+			$table->string('serial_number');
+			$table->string('asset_number');
 			$table->string('unit_number');
 			$table->integer('product_id');
 			$table->mediumText('notes');
@@ -95,6 +101,7 @@ class CreateTables extends Migration
 			$table->increments('id');
 			$table->integer('booking_id');
 			$table->integer('unit_id');
+			$table->string('notes');
 			$table->timestamps();
 		});
 	}
