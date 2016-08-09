@@ -14,10 +14,6 @@ class Unit extends Model
 	protected $fillable = [
 		'unit_number', 'product_id', 'notes'
 	];
-
-	public function scopeStart($query) {
-		return $query;
-	}
 	
 	public function bookings() {
 		return $this->belongsToMany('App\Models\Booking', 'booking_unit')->withTimestamps();

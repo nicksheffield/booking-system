@@ -24,10 +24,6 @@ class Booking extends Model
 	public function scopeUndelivered($query) {
 		return $query->where('delivered_at', '>', Carbon::now());
 	}
-
-	public function scopeStart($query) {
-		return $query;
-	}
 	
 	public function units() {
 		return $this->belongsToMany('App\Models\Unit', 'booking_unit')->withTimestamps();

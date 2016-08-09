@@ -27,11 +27,7 @@ class User extends Authenticatable
 	 */
 	protected $hidden = [
 		'password', 'remember_token',
-	];
-
-	public function scopeStart($query) {
-		return $query;
-	}
+	]; 
 	
 	public function group() {
 		return $this->belongsTo('App\Models\Group', 'group_id');

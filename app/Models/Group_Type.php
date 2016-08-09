@@ -14,10 +14,6 @@ class Group_Type extends Model
 	protected $fillable = [
 		'name', 'group_type_id'
 	];
-
-	public function scopeStart($query) {
-		return $query;
-	}
 	
 	public function groups() {
 		return $this->hasMany('App\Models\Group', 'group_type_id');

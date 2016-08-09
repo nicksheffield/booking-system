@@ -12,7 +12,7 @@ class Booking extends Controller
 {
 	public function index(Request $request)
 	{
-		$models = Model::start();
+		$models = Model::query();
 
 		$models = $models->limit(($request->limit ?: 20));
 		$models = $models->offset(($request->offset ?: 0));
