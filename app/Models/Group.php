@@ -12,7 +12,7 @@ class Group extends Model
 	protected $table = 'groups';
 	
 	protected $fillable = [
-		'code'
+		'code', 'group_type_id'
 	];
 	
 	public function type() {
@@ -24,6 +24,6 @@ class Group extends Model
 	}
 	
 	public function allowed_products() {
-		return $this->belongsToMany('App\Models\Product', 'permissions');
+		return $this->belongsToMany('App\Models\Product', 'permissions')->withPivot('quantity');
 	}
 }

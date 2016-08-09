@@ -17,17 +17,26 @@ class PermissionsSeeder extends Seeder
 			[
 				'id' => 1,
 				'group_id' => 1,
-				'product_id' => 1
+				'product_id' => 1,
+				'quantity' => 5
 			],
 			[
 				'id' => 2,
 				'group_id' => 1,
-				'product_id' => 2
+				'product_id' => 2,
+				'quantity' => 5
 			],
 			[
 				'id' => 3,
 				'group_id' => 2,
-				'product_id' => 1
+				'product_id' => 1,
+				'quantity' => 5
+			],
+			[
+				'id' => 4,
+				'group_id' => 1,
+				'product_id' => 3,
+				'quantity' => 5
 			],
 		];
 

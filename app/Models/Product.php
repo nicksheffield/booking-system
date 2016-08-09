@@ -20,6 +20,6 @@ class Product extends Model
 	}
 	
 	public function groups_allowed() {
-		return $this->belongsToMany('App\Models\Group', 'permissions');
+		return $this->belongsToMany('App\Models\Group', 'permissions')->withPivot('quantity');
 	}
 }

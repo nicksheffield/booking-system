@@ -52,6 +52,7 @@ class CreateTables extends Migration
 			$table->increments('id');
 			$table->integer('group_id');
 			$table->integer('product_id');
+			$table->integer('quantity');
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -114,5 +115,6 @@ class CreateTables extends Migration
 		Schema::drop('products');
 		Schema::drop('units');
 		Schema::drop('bookings');
+		Schema::drop('booking_unit');
 	}
 }
