@@ -17,16 +17,12 @@ class Booking extends Controller
 		$q = $q->limit(($request->limit ?: 20));
 		$q = $q->offset(($request->offset ?: 0));
 
-		if($request->status) {
-			if($request->status == 'late') {
-				$q = $q->late();
-			}
-		}
+		if($request->status == 'overdue')     $q = $q->overdue();
+		if($request->status == 'delivered')   $q = $q->delivered();
+		if($request->status == 'undelivered') $q = $q->undelivered();
+		if($request->status == 'returned')    $q = $q->returned();
 		
-		if($request->with) {
-			$with = explode('|', $request->with);
-			$q = $q->with($with);
-		}
+		if($request->with) $q = $q->with(explode('|', $request->with));
 
 		return $q->get();
 	}
@@ -54,13 +50,7 @@ class Booking extends Controller
 	 */
 	public function show(Request $request, $id)
 	{
-		if(is_numeric($id)) {
-			$find = ['id' => $id];
-		} else {
-			$find = ['code' => $id];
-		}
-
-		$model = Model::where($find);
+		$model = Model::find($id);
 
 		if($request->with) {
 			$model = $model->with(explode('|', $request->with));

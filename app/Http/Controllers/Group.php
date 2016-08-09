@@ -17,16 +17,7 @@ class Group extends Controller
 		$q = $q->limit(($request->limit ?: 20));
 		$q = $q->offset(($request->offset ?: 0));
 
-		if($request->status) {
-			if($request->status == 'late') {
-				$q = $q->late();
-			}
-		}
-		
-		if($request->with) {
-			$with = explode('|', $request->with);
-			$q = $q->with($with);
-		}
+		if($request->with) $q = $q->with(explode('|', $request->with));
 
 		return $q->get();
 	}

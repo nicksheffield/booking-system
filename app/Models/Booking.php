@@ -17,12 +17,20 @@ class Booking extends Model
 		'user_id'
 	];
 
-	public function scopeLate($query) {
+	public function scopeOverdue($query) {
 		return $query->where('due_at', '<', Carbon::now());
 	}
 
 	public function scopeUndelivered($query) {
-		return $query->where('delivered_at', '>', Carbon::now());
+		return $query->where('delivered_at', null);
+	}
+
+	public function scopeDelivered($query) {
+		return $query->where('delivered_at', '!=', null);
+	}
+
+	public function scopeReturned($query) {
+		return $query->where('returned_at', '!=', null);
 	}
 	
 	public function units() {
