@@ -18,11 +18,11 @@ class Booking extends Model
 	];
 
 	public function scopeLate($query) {
-		return $query->where('due_at', '<',Carbon::now());
+		return $query->where('due_at', '<', Carbon::now());
 	}
 
 	public function scopeUndelivered($query) {
-		return $query->where('delivered_at', '>',Carbon::now());
+		return $query->where('delivered_at', '>', Carbon::now());
 	}
 
 	public function scopeStart($query) {
