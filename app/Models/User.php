@@ -17,7 +17,7 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $fillable = [
-		'first_name', 'last_name', 'email',
+		'first_name', 'last_name', 'email', 'phone', 'group_id', 'admin'
 	];
 
 	/**
@@ -28,12 +28,16 @@ class User extends Authenticatable
 	protected $hidden = [
 		'password', 'remember_token',
 	];
+
+	public function scopeStart($query) {
+		return $query;
+	}
 	
 	public function group() {
-		return $this->belongsTo('App\Models\Group');
+		return $this->belongsTo('App\Models\Group', 'group_id');
 	}
 	
 	public function bookings() {
-		return $this->hasMany('App\Models\Booking');
+		return $this->hasMany('App\Models\Booking', 'user_id');
 	}
 }

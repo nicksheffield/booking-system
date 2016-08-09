@@ -14,8 +14,12 @@ class Product_Type extends Model
 	protected $fillable = [
 		'name'
 	];
+
+	public function scopeStart($query) {
+		return $query;
+	}
 	
 	public function products() {
-		return $this->hasMany('App\Models\Product');
+		return $this->hasMany('App\Models\Product', 'product_type_id');
 	}
 }

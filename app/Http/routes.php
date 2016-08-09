@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 Route::resource('/api/user', 'User');
 Route::resource('/api/group', 'Group');
+Route::resource('/api/booking', 'Booking');
 
 Route::get('/', function() {
 	return view('welcome');

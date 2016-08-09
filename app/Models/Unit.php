@@ -12,14 +12,18 @@ class Unit extends Model
 	protected $table = 'units';
 	
 	protected $fillable = [
-		'unit_number'
+		'unit_number', 'product_id', 'notes'
 	];
+
+	public function scopeStart($query) {
+		return $query;
+	}
 	
 	public function bookings() {
 		return $this->belongsToMany('App\Models\Booking', 'booking_unit')->withTimestamps();
 	}
 	
 	public function product() {
-		return $this->belongsTo('App\Models\Product');
+		return $this->belongsTo('App\Models\Product', 'product_id');
 	}
 }

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Carbon\Carbon;
+
 class Booking extends Model
 {
 	use SoftDeletes;
@@ -12,14 +14,26 @@ class Booking extends Model
 	protected $table = 'bookings';
 	
 	protected $fillable = [
-		
+		'user_id'
 	];
+
+	public function scopeLate($query) {
+		return $query->where('due_at', '<',Carbon::now());
+	}
+
+	public function scopeUndelivered($query) {
+		return $query->where('delivered_at', '>',Carbon::now());
+	}
+
+	public function scopeStart($query) {
+		return $query;
+	}
 	
 	public function units() {
 		return $this->belongsToMany('App\Models\Unit', 'booking_unit')->withTimestamps();
 	}
 	
 	public function user() {
-		return $this->belongsTo('App\Models\User');
+		return $this->belongsTo('App\Models\User', 'user_id');
 	}
 }

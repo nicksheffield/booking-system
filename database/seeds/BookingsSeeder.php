@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use Carbon\Carbon;
+
 class BookingsSeeder extends Seeder
 {
 	/**
@@ -16,11 +18,15 @@ class BookingsSeeder extends Seeder
 		$items = [
 			[
 				'id' => 1,
-				'user_id' => 2
+				'user_id' => 2,
+				'delivered_at' => Carbon::now()->subDays(1),
+				'due_at' => Carbon::now()->subDays(1)->addHours(1)
 			],
 			[
 				'id' => 2,
-				'user_id' => 2
+				'user_id' => 2,
+				'delivered_at' => Carbon::now()->addHours(1),
+				'due_at' => Carbon::now()->addDays(1)
 			],
 		];
 

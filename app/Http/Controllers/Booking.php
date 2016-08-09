@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\Models\User as Model;
+use App\Models\Booking as Model;
 
-class User extends Controller
+class Booking extends Controller
 {
 	public function index(Request $request)
 	{
@@ -17,6 +17,11 @@ class User extends Controller
 		$models = $models->limit(($request->limit ?: 20));
 		$models = $models->offset(($request->offset ?: 0));
 
+		if($request->status) {
+			if($request->status == 'late') {
+				$models = $models->late();
+			}
+		}
 		if($request->with) {
 			$with = explode('|', $request->with);
 			$models = $models->with($with);
@@ -35,9 +40,6 @@ class User extends Controller
 	{
 		$model->fill($request->all());
 
-		$model->password = bcrypt($request->password);
-		$model->group_id = $request->group_id;
-
 		$model->save();
 
 		return $model;
@@ -54,7 +56,7 @@ class User extends Controller
 		if(is_numeric($id)) {
 			$find = ['id' => $id];
 		} else {
-			$find = ['username' => $id];
+			$find = ['code' => $id];
 		}
 
 		$model = Model::where($find);
@@ -78,15 +80,7 @@ class User extends Controller
 	{
 		$model = Model::find($id);
 		
-		$model->fill($request->except('password'));
-		
-		if($request->group_id) {
-			$model->group_id = $request->group_id;
-		}
-
-		if($request->password) {
-			$model->password = bcrypt($request->password);
-		}
+		$model->fill($request->all());
 		
 		$model->save();
 

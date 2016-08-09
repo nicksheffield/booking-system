@@ -41,7 +41,10 @@ class PermissionsSeeder extends Seeder
 		];
 
 		foreach($items as $item) {
-			App\Models\Permission::create($item);
+			$item['created_at'] = date('Y-m-d H:i:s');
+			$item['updated_at'] = null;
+
+			DB::table('permissions')->insert($item);
 		}
 	}
 }

@@ -12,12 +12,22 @@ class Group extends Controller
 {
 	public function index(Request $request)
 	{
+		$models = Model::start();
+
+		$models = $models->limit(($request->limit ?: 20));
+		$models = $models->offset(($request->offset ?: 0));
+
+		if($request->status) {
+			if($request->status == 'late') {
+				$models = $models->late();
+			}
+		}
 		if($request->with) {
 			$with = explode('|', $request->with);
-			return Model::with($with)->get();
-		} else {
-			return Model::all();
+			$models = $models->with($with);
 		}
+
+		return $models->get();
 	}
 
 	/**

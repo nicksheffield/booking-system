@@ -12,8 +12,12 @@ class Product extends Model
 	protected $table = 'products';
 	
 	protected $fillable = [
-		'name'
+		'name', 'product_type_id'
 	];
+
+	public function scopeStart($query) {
+		return $query;
+	}
 	
 	public function type() {
 		return $this->belongsTo('App\Models\Product_Type', 'product_type_id');

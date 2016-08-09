@@ -14,6 +14,10 @@ class Group extends Model
 	protected $fillable = [
 		'code', 'group_type_id'
 	];
+
+	public function scopeStart($query) {
+		return $query;
+	}
 	
 	public function type() {
 		return $this->belongsTo('App\Models\Group_Type', 'group_type_id');
