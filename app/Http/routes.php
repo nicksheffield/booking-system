@@ -14,14 +14,17 @@
 use Illuminate\Http\Request;
 
 
-Route::group(['prefix' => '/api', function() {
+Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	Route::resource('/user', 'User');
 	Route::resource('/group', 'Group');
 	Route::resource('/booking', 'Booking');
+});
 
-	Route::get('/authenticate', 'AuthenticateController@index']);
-	Route::post('/authenticate', 'AuthenticateController@authenticate');
-}]);
+// get user if have token
+Route::get('/api/auth', 'AuthenticateController@index');
+
+// send credentials to get token
+Route::post('/api/auth', 'AuthenticateController@authenticate');
 
 
 Route::get('/', function() {
