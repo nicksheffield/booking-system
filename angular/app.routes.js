@@ -16,7 +16,10 @@ angular.module('app.routes')
 		.state('secret', {
 			url: '/secret',
 			templateUrl: 'views/secret.html',
-			controller: 'secretCtrl',
+			controller: function($scope, $title, User) {
+				$title('Secret!')
+				$scope.users = User.query()
+			},
 			data: {
 				requireLogin: true
 			}
