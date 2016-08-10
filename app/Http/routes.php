@@ -13,9 +13,16 @@
 
 use Illuminate\Http\Request;
 
-Route::resource('/api/user', 'User');
-Route::resource('/api/group', 'Group');
-Route::resource('/api/booking', 'Booking');
+
+Route::group(['prefix' => '/api', function() {
+	Route::resource('/user', 'User');
+	Route::resource('/group', 'Group');
+	Route::resource('/booking', 'Booking');
+
+	Route::get('/authenticate', 'AuthenticateController@index']);
+	Route::post('/authenticate', 'AuthenticateController@authenticate');
+}]);
+
 
 Route::get('/', function() {
 	return view('welcome');
