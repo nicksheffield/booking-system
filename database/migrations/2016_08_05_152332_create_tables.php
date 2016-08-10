@@ -72,6 +72,7 @@ class CreateTables extends Migration
 			$table->increments('id');
 			$table->string('name');
 			$table->integer('product_type_id');
+			$table->string('image');
 			$table->timestamps();
 			$table->softDeletes();
 		});
