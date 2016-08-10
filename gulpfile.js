@@ -100,6 +100,7 @@ gulp.task('libs', function() {
 		'public/components/angular-ui-router/release/angular-ui-router.min.js',
 		'public/components/angular-sanitize/angular-sanitize.min.js',
 		'public/components/lodash/lodash.min.js',
+		'public/components/satellizer/dist/satellizer.js',
 		'public/components/moment/moment.js',
 	]
 
