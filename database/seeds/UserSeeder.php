@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
 				'first_name' => 'Bob',
 				'last_name' => 'Ross',
 				'email' => 'test@example.com',
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'admin' => 1,
 				'password' => bcrypt('abcd')
 			],
@@ -29,7 +30,9 @@ class UserSeeder extends Seeder
 				'first_name' => 'Henry',
 				'last_name' => 'Fox',
 				'email' => 'henry@example.com',
-				'phone' => '02112354678',
+				'phone' => '021'.randInt(7),
+				'id_number' => randInt(5),
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'group_id' => 1,
 				'password' => bcrypt('abcd')
 			],
@@ -39,7 +42,9 @@ class UserSeeder extends Seeder
 				'first_name' => 'Amanda',
 				'last_name' => 'King',
 				'email' => 'amanda@example.com',
-				'phone' => '02111953259',
+				'phone' => '021'.randInt(7),
+				'id_number' => randInt(5),
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'group_id' => 1,
 				'password' => bcrypt('abcd')
 			],
@@ -49,7 +54,9 @@ class UserSeeder extends Seeder
 				'first_name' => 'Theresa',
 				'last_name' => 'Martinez',
 				'email' => 'theresa@example.com',
-				'phone' => '0219394725',
+				'phone' => '021'.randInt(7),
+				'id_number' => randInt(5),
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'group_id' => 1,
 				'password' => bcrypt('abcd')
 			],
@@ -59,7 +66,9 @@ class UserSeeder extends Seeder
 				'first_name' => 'Christopher',
 				'last_name' => 'Ferguson',
 				'email' => 'chris@example.com',
-				'phone' => '0215274321',
+				'phone' => '021'.randInt(7),
+				'id_number' => randInt(5),
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'group_id' => 2,
 				'password' => bcrypt('abcd')
 			],
@@ -69,7 +78,9 @@ class UserSeeder extends Seeder
 				'first_name' => 'Ryan',
 				'last_name' => 'Lynch',
 				'email' => 'ryan@example.com',
-				'phone' => '0215547732',
+				'phone' => '021'.randInt(7),
+				'id_number' => randInt(5),
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'group_id' => 2,
 				'password' => bcrypt('abcd')
 			],
@@ -79,7 +90,9 @@ class UserSeeder extends Seeder
 				'first_name' => 'Megan',
 				'last_name' => 'Walters',
 				'email' => 'megan@example.com',
-				'phone' => '02154692364',
+				'phone' => '021'.randInt(7),
+				'id_number' => randInt(5),
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'group_id' => 2,
 				'password' => bcrypt('abcd')
 			]

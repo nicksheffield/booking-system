@@ -16,43 +16,57 @@ class UnitsSeeder extends Seeder
 		$items = [
 			[
 				'id' => 1,
-				'unit_number' => 'N10001',
+				'unit_number' => 'N'.randInt(5),
+				'serial_number' => '',
+				'asset_number' => '',
 				'notes' => 'Drains battery fast',
 				'product_id' => 1
 			],
 			[
 				'id' => 2,
-				'unit_number' => 'N10002',
+				'unit_number' => 'N'.randInt(5),
+				'serial_number' => '',
+				'asset_number' => '',
 				'notes' => '',
 				'product_id' => 1
 			],
 			[
 				'id' => 3,
-				'unit_number' => 'N10004',
+				'unit_number' => 'N'.randInt(5),
+				'serial_number' => '',
+				'asset_number' => '',
 				'notes' => '',
 				'product_id' => 1
 			],
 			[
 				'id' => 4,
-				'unit_number' => 'N10010',
+				'unit_number' => 'N'.randInt(5),
+				'serial_number' => '',
+				'asset_number' => '',
 				'notes' => '',
 				'product_id' => 2
 			],
 			[
 				'id' => 5,
-				'unit_number' => 'N10020',
+				'unit_number' => 'N'.randInt(5),
+				'serial_number' => '',
+				'asset_number' => '',
 				'notes' => '',
 				'product_id' => 3
 			],
 			[
 				'id' => 6,
-				'unit_number' => 'N10021',
+				'unit_number' => 'N'.randInt(5),
+				'serial_number' => '',
+				'asset_number' => '',
 				'notes' => '',
 				'product_id' => 3
 			],
 			[
 				'id' => 7,
-				'unit_number' => 'N10022',
+				'unit_number' => 'N'.randInt(5),
+				'serial_number' => '',
+				'asset_number' => '',
 				'notes' => '',
 				'product_id' => 3
 			],

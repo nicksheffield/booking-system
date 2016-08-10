@@ -17,12 +17,14 @@ class GroupsSeeder extends Seeder
 			[
 				'id' => 1,
 				'code' => '16ADAV07',
-				'group_type_id' => 1
+				'group_type_id' => 1,
+				'enrollment_key' => 'blah'
 			],
 			[
 				'id' => 2,
 				'code' => '16ADGD02B',
-				'group_type_id' => 2
+				'group_type_id' => 2,
+				'enrollment_key' => 'blah'
 			]
 		];
 		
