@@ -1,0 +1,3 @@
+https://github.com/sahat/satellizer#api-reference
+https://scotch.io/tutorials/token-based-authentication-for-angularjs-and-laravel-apps
+https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication

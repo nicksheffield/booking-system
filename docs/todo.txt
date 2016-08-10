@@ -1,7 +1,3 @@
 Todo.txt
 
 	- Find a way to move standard index()/store()/update()/destroy() into a generic controller
-
-	- Add authentication
-		https://scotch.io/tutorials/token-based-authentication-for-angularjs-and-laravel-apps
-		https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication

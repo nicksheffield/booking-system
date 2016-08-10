@@ -1,25 +1,28 @@
-angular.module('app.controllers', []);
-angular.module('app.directives', []);
-angular.module('app.filters', []);
-angular.module('app.resources', []);
-angular.module('app.services', []);
-angular.module('app.routes', []);
-angular.module('app.templates', []);
+angular.module('app.controllers', [])
+angular.module('app.directives', [])
+angular.module('app.resources', [])
+angular.module('app.services', [])
+angular.module('app.filters', [])
+angular.module('app.routes', [])
+angular.module('app.views', [])
+angular.module('app.auth', [])
 
 angular.module('app', [
 	'ngResource',
 	'ngSanitize',
 	'ui.router',
+	'satellizer',
 
 	'app.controllers',
 	'app.directives',
-	'app.filters',
 	'app.resources',
 	'app.services',
+	'app.filters',
 	'app.routes',
-	'app.templates'
-]);
+	'app.views',
+	'app.auth'
+])
 
 angular.element(document).ready(function() {
-	angular.bootstrap(document, ['app']);
-});
+	angular.bootstrap(document, ['app'])
+})

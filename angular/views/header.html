@@ -1,0 +1,13 @@
+<header class="page-header" ng-controller="headerCtrl">
+	<div class="container" layout="row" justify="between" align="center">
+		<h1>Booking System</h1>
+		
+		<nav>
+			<ul layout="row">
+				<li><a href="/#secret">Secret</a></li>
+				<li ng-if="auth.isAuthenticated()"><a href="/#logout">Logout</a></li>
+				<li ng-if="!auth.isAuthenticated()"><a href="/#">Login</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
