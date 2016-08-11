@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('mainCtrl', function($scope, $title, $auth, $store, $state) {
+.controller('loginCtrl', function($scope, $title, $auth, $store, $state) {
 	$title('Login')
 	
 	$scope.$watch('username', reset)
