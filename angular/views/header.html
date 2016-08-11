@@ -4,9 +4,9 @@
 		
 		<nav>
 			<ul layout="row">
+				<li><a href="/#">Login</a></li>
 				<li><a href="/#secret">Secret</a></li>
 				<li ng-if="auth.isAuthenticated()"><a href="/#logout">Logout</a></li>
-				<li ng-if="!auth.isAuthenticated()"><a href="/#">Login</a></li>
 			</ul>
 		</nav>
 	</div>

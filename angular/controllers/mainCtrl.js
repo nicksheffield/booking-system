@@ -10,8 +10,14 @@ angular.module('app.controllers')
 			password: $scope.password
 		}
 		
-		$auth.login(credentials).then(function(data) {
-			$state.go('secret', {})
-		})
+		$auth
+			.login(credentials)
+			.then(function(res) {
+				$state.go('secret', {})
+			})
+			.catch(function(res) {
+				console.log(res)
+				$scope.error = 'Wrong username/password'
+			})
 	}
 })
