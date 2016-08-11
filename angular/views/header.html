@@ -1,11 +1,11 @@
 <header class="page-header" ng-controller="headerCtrl">
 	<div class="container" layout="row" justify="between" align="center">
-		<h1>Booking System</h1>
+		<h1>The Equippomatic 3000</h1>
 		
 		<nav>
 			<ul layout="row">
-				<li><a href="/#">Login</a></li>
-				<li><a href="/#secret">Secret</a></li>
+				<li><a href="/#">Home</a></li>
+				<li ng-if="!auth.isAuthenticated()"><a href="/#login">Login</a></li>
 				<li ng-if="auth.isAuthenticated()"><a href="/#logout">Logout</a></li>
 			</ul>
 		</nav>

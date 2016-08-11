@@ -1,9 +1,19 @@
 angular.module('app.controllers')
 
-.controller('mainCtrl', function($scope, $title, $auth, $state) {
+.controller('mainCtrl', function($scope, $title, $auth, $store, $state) {
 	$title('Login')
+	
+	$scope.$watch('username', reset)
+	$scope.$watch('password', reset)
+	
+	function reset() {
+		$scope.error = ''
+	}
 
 	$scope.login = function() {
+		if(!$scope.username || !$scope.password){
+			return false
+		}
 		
 		var credentials = {
 			username: $scope.username,
@@ -13,11 +23,16 @@ angular.module('app.controllers')
 		$auth
 			.login(credentials)
 			.then(function(res) {
-				$state.go('secret', {})
+				console.log('res', res)
+				$store.user = res.data.user
+				$state.go('home', {})
 			})
 			.catch(function(res) {
-				console.log(res)
-				$scope.error = 'Wrong username/password'
+				if(res.data.error == 'invalid_credentials') {
+					$scope.error = 'Username or password is invalid.'
+				} else {
+					$scope.error = 'Unknown error'
+				}
 			})
 	}
 })

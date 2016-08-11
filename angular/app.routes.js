@@ -5,34 +5,24 @@ angular.module('app.routes')
 	$urlRouterProvider.otherwise('/')
 
 	$stateProvider
-		.state('login', {
+		.state('home', {
 			url: '/',
-			templateUrl: 'views/login.html',
-			controller: 'mainCtrl',
-			data: {
-				requireLogin: false
-			}
+			templateUrl: 'views/home.html',
+			controller: 'homeCtrl',
+			data: {conditions: ['auth']}
 		})
-		.state('secret', {
-			url: '/secret',
-			templateUrl: 'views/secret.html',
-			controller: function($scope, $title, User) {
-				$title('Secret!')
-				$scope.users = User.query()
-			},
-			data: {
-				requireLogin: true
-			}
+		.state('login', {
+			url: '/login',
+			templateUrl: 'views/login.html',
+			controller: 'mainCtrl'
 		})
 		.state('logout', {
 			url: '/logout',
-			controller: function($auth, $state) {
+			controller: function($auth, $state, $store) {
 				$auth.logout().then(function() {
 					$state.go('login')
+					$store.user = {}
 				})
-			},
-			data: {
-				requireLogin: false
 			}
 		})
 })

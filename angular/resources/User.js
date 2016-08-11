@@ -10,6 +10,10 @@ angular.module('app.resources')
 	var methods = {
 		update: {
 			method: 'PUT'
+		},
+		getWithToken: {
+			method: 'GET',
+			url: '/api/auth'
 		}
 	}
 
