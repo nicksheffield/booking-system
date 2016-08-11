@@ -4,17 +4,6 @@ angular.module('app.auth')
 	$authProvider.loginUrl = '/api/auth'
 })
 
-/*
-resolve: {
-	security: function($q, $store, $auth){
-		if(!$auth.isAuthenticated() || !$store.user.admin){
-			console.log('fo')
-			return $q.reject("Not Authorized");
-		}
-	}
-}
-*/
-
 .run(function($rootScope, $state, $auth, $store) {
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
 		if(!toState.data) return
@@ -22,24 +11,32 @@ resolve: {
 			
 		var conditions = toState.data.conditions
 
-		var pass = true
-		var destination = ''
+		var destination = null
 		
 		conditions.forEach(function(c) {
 			if(c == 'auth') {
 				if(!$auth.isAuthenticated()) {
-					pass = false
 					destination = 'login'
 				}
 			}
 			
-			if(!pass) {
+			if(c == 'staff_only') {
+				if(!$auth.isAuthenticated() || !$store.user.admin) {
+					destination = '/'
+				}
+			}
+			
+			if(c == 'student_only') {
+				if(!$auth.isAuthenticated() || $store.user.admin) {
+					destination = '/'
+				}
+			}
+			
+			if(destination) {
 				console.log('kicked')
 				event.preventDefault()
 				
-				if(destination) {
-					$state.go(destination)
-				}
+				$state.go(destination)
 			}
 		})
 	})
