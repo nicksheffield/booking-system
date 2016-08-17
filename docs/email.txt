@@ -1,0 +1,19 @@
+A system that students can log into and book equipment.  Ideally students would be able to log in both on campus and remotely.
+In a perfect world we could hook into blackboard or the like to get all of the student’s information.  Otherwise I think the minimum amount of information would be their name, class, date of birth, ID number, phone number (cell) and email address.  If we had to build the user database ourselves it would either be a case of the students registering themselves (preferable) or a manager inputting all of the information.
+The equipment would be built into a database and the following information would be included as applicable:
+	- Serial number
+	- Asset number
+	- Unit number
+	- Eligible classes
+	- Notes
+The booking process would be as follows:
+Students log in and select a date range (pick-up - drop-off).  Once confirmed the students will be taken to a section that allows them to select the desired items (including quantity).  The items that are available to each student will be firstly determined by their course, then by the actual availability of the items in question.  Could perhaps use some kind of colour coding for items that are already booked or actually on loan, although that may make the interface too complicated.
+Booking periods should have a limit attached to them based on the course the student is in.  Booking within this period (i.e. one day for iCreate, three days for AFP/GDWEB, five days for DFM, etc.) would not require any special approval but anything outside of this or including weekends/holidays would require managerial approval.
+Once the student has finalised their booking, they should be able to log back in and alter it at any time up to the collection of the gear.
+The gear collection would require a staff member to input the specific unit of each item as they are checked out.  Once the list has been completed the booking would be marked as collected and a copy of the list would be provided to the student either digitally, physically, or both.  A copy of the list which includes all of the terms and conditions would also be printed out that the student would have to sign.
+It should be possible for a staff member to loan out gear without a booking.
+If a booking is made and not collected by the end of the stated day then the booking should automatically cancel to free up the gear for others.
+On the return the staff member would have to check off each item and there should be a field for any comments regarding damage, loss, or the like.  This would be attached to the student’s record rather than the item.  There should also be a facility to stagger returns (i.e. a student brings some of the gear back early, or some of it late).  Gear that is late should automatically produce an email to the student detailing what is yet to be returned, each day that it is late.
+If a late fee is due, a student will be prevented from booking equipment and it could be very useful if the staff interface prominently displayed students with outstanding fees.  A manager should be able to alter or completely waive a student’s fee.  Late fees should be recorded and payment could perhaps produce a receipt?
+
+Further down the line perhaps we could add a similar but separate section for the costume and props items, and maybe the green screen and sound booth.  Heck, we could even extend it to all rooms!
