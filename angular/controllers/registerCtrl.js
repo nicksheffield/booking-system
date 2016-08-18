@@ -11,7 +11,7 @@ angular.module('app.controllers')
 	$scope.last_name = 'Sheffield'
 	$scope.email = 'numbereft@gmail.com'
 	$scope.phone = '0211099442'
-	$scope.dob = '01-16-1990'
+	$scope.dob = new Date(632401200000)
 	$scope.id_number = '124567'
 	$scope.password = 'abcd'
 	$scope.confirm_password = 'abcd'
@@ -32,8 +32,10 @@ angular.module('app.controllers')
 		u.group_id = $scope.group.id
 		u.password = $scope.password
 		
-		u.$save(function(res) {
-			console.log(res)
+		u.$save().then(function(res) {
+			console.log('save', res)
+		}).catch(function(res) {
+			console.log('save err', res)
 		})
 	}
 })

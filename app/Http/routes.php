@@ -13,22 +13,24 @@
 
 use Illuminate\Http\Request;
 
-Route::post('/api/user', 'User@store');
 
-Route::resource('/api/user', 'User');
-Route::resource('/api/group', 'Group');
-Route::resource('/api/booking', 'Booking');
+// Route::resource('/api/user', 'User');
+// Route::resource('/api/group', 'Group');
+// Route::resource('/api/booking', 'Booking');
 
-Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
-	
+Route::group(['prefix' => '/api'], function() {
+	Route::get('auth', 'AuthenticateController@index');
+	Route::post('auth', 'AuthenticateController@authenticate');
+
+	Route::get('user', 'Group@index');
+	Route::post('user', 'User@store');
+
+	Route::get('group', 'Group@index');
 });
 
-// get user if have token
-Route::get('/api/auth', 'AuthenticateController@index');
-
-// send credentials to get token
-Route::post('/api/auth', 'AuthenticateController@authenticate');
-
+Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
+	Route::get('user/{id}', 'User@show');
+});
 
 Route::get('/', function() {
 	return view('welcome');
