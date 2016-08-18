@@ -1,0 +1,26 @@
+<div class="sidebar" ng-controller="sidebarCtrl" layout="col" ratio="1">
+	<header layout="col">
+		<img src="/images/logo.svg" alt="" width="200">
+	
+		<h1>Booking System</h1>
+	</header>
+	
+	<nav>
+		<ul layout="col" ng-if="!auth.isAuthenticated()">
+			<li ng-class="{current: isCurrent('/login')}"><a href="/#login">Login</a></li>
+			<li ng-if="!auth.isAuthenticated()" ng-class="{current: isCurrent('/register')}"><a href="/#register">Register</a></li>
+		</ul>
+		
+		<!-- staff -->
+		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin">
+			<li>Staff</li>
+			<li ng-if="auth.isAuthenticated()"><a href="/#logout">Logout</a></li>
+		</ul>
+		
+		<!-- student -->
+		<ul layout="col" ng-if="auth.isAuthenticated() && !user.admin">
+			<li>Student</li>
+			<li ng-if="auth.isAuthenticated()"><a href="/#logout">Logout</a></li>
+		</ul>
+	</nav>
+</div>

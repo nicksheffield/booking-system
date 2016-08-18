@@ -13,11 +13,14 @@
 
 use Illuminate\Http\Request;
 
+Route::post('/api/user', 'User@store');
+
+Route::resource('/api/user', 'User');
+Route::resource('/api/group', 'Group');
+Route::resource('/api/booking', 'Booking');
 
 Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
-	Route::resource('/user', 'User');
-	Route::resource('/group', 'Group');
-	Route::resource('/booking', 'Booking');
+	
 });
 
 // get user if have token

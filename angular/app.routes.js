@@ -11,6 +11,11 @@ angular.module('app.routes')
 			controller: 'homeCtrl',
 			data: {conditions: ['auth']}
 		})
+		.state('register', {
+			url: '/register',
+			templateUrl: 'views/register.html',
+			controller: 'registerCtrl'
+		})
 		.state('login', {
 			url: '/login',
 			templateUrl: 'views/login.html',

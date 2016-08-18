@@ -1,26 +1,23 @@
-<div ng-include="'views/header.html'"></div>
+<div class="sidebar-holder" ng-include="'views/sidebar.html'" layout="col"></div>
 
-<div class="container">
-	<div class="login">
-		<h1>Login</h1>
-		
-		<div class="alert alert-danger" ng-show="error">
-			<i class="fa fa-exclamation-circle"></i>{{ error }}
-		</div>
-		
-		<form ng-submit="login()">
-			<div class="form-group">
-				<label for="username">Username</label>
-				<input type="text" id="username" ng-model="username" class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="password">Password</label>
-				<input type="password" id="password" ng-model="password" class="form-control">
-			</div>
-			<div class="form-group">
-				<input type="submit" class="btn btn-primary" value="Login">
-			</div>
-		</form>
-		
+<div class="frame" ratio="1">
+	<h1 class="form-title">Login</h1>
+	
+	<div class="alert alert-danger" ng-show="error">
+		<i class="fa fa-exclamation-circle"></i>{{ error }}
 	</div>
+	
+	<form ng-submit="login()">
+		<div class="form-group">
+			<label for="username">Username</label>
+			<input type="text" id="username" ng-model="username" class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input type="password" id="password" ng-model="password" class="form-control">
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Login">
+		</div>
+	</form>
 </div>

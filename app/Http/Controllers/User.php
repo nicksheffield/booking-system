@@ -31,9 +31,12 @@ class User extends Controller
 	public function store(Model $model, Request $request)
 	{
 		$model->fill($request->all());
+		
+		$model->username = strtolower($model->first_name) . strtolower($model->last_name);
 
 		$model->password = bcrypt($request->password);
 		$model->group_id = $request->group_id;
+		$model->dob = date('Y-m-d H:i:s', strtotime($request->dob));
 
 		$model->save();
 
