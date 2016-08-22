@@ -12,7 +12,7 @@ use Auth;
 use JWTAuth;
 use Tymon\JWTAuthExceptions\JWTException;
 
-class AuthenticateController extends Controller
+class Logins extends Controller
 {
 	public function __construct()
 	{

@@ -13,25 +13,53 @@
 
 use Illuminate\Http\Request;
 
-
-// Route::resource('/api/user', 'User');
-// Route::resource('/api/group', 'Group');
-// Route::resource('/api/booking', 'Booking');
-
+/**
+*	Unprotected routes
+*/
 Route::group(['prefix' => '/api'], function() {
-	Route::get('auth', 'AuthenticateController@index');
-	Route::post('auth', 'AuthenticateController@authenticate');
+	/**
+	*	Login page and submission
+	*/
+	Route::get('auth', 'Logins@index');
+	Route::post('auth', 'Logins@authenticate');
 
-	Route::get('user', 'Group@index');
+	/**
+	*	Get all users
+	*/
+	Route::get('user', 'User@index');
+
+	/**
+	*	Create user
+	*/
 	Route::post('user', 'User@store');
 
+	/**
+	*	Get all groups
+	*/
 	Route::get('group', 'Group@index');
+
+	/**
+	*	Home page (angular)
+	*/
+	Route::get('/', function() { return view('welcome'); });
 });
 
+/**
+*	Protected routes
+*/
 Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
-	Route::get('user/{id}', 'User@show');
-});
+	/**
+	*	Get one user
+	*	Update user
+	*	Delete user
+	*/
+	Route::resource('user', 'User', ['except' => ['index', 'store']]);
 
-Route::get('/', function() {
-	return view('welcome');
+	/**
+	*	Get one group
+	*	Create a group
+	*	Update group
+	*	Delete group
+	*/
+	Route::resource('group', 'Group', ['except' => 'index']);
 });
