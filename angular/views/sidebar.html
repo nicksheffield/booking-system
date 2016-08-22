@@ -13,16 +13,16 @@
 		
 		<!-- staff -->
 		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin">
-			<li><a href="#/profile/{{ user.username }}">Your Profile</a></li>
-			<li><a href="#/book">Make booking</a></li>
-			<li><a href="#/manage">Manage site</a></li>
-			<li><a href="#/logout">Logout</a></li>
+			<li><a href="#/profile/{{ user.username }}">Your Profile <i class="fa fa-user"></i></a></li>
+			<li><a href="#/book">Make booking <i class="fa fa-book"></i></a></li>
+			<li><a href="#/manage">Manage site <i class="fa fa-pencil"></i></a></li>
+			<li><a href="#/logout">Logout <i class="fa fa-sign-out"></i></a></li>
 		</ul>
 		
 		<!-- student -->
 		<ul layout="col" ng-if="auth.isAuthenticated() && !user.admin">
-			<li><a href="#/profile/{{ user.username }}">Your Profile</a></li>
-			<li><a href="#/logout">Logout</a></li>
+			<li><a href="#/profile/{{ user.username }}">Your Profile <i class="fa fa-user"></i></a></li>
+			<li><a href="#/logout">Logout <i class="fa fa-sign-out"></i></a></li>
 		</ul>
 	</nav>
 </div>

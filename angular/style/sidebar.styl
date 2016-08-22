@@ -40,11 +40,21 @@
 		
 		i.fa
 			float right
+			line-height 1.5
+			transition transform 0.1s ease
+			
+		resize-scale = 1.5
 		
 		&:hover
 			background #fff
 			padding-left 2.5em
+			
+			i.fa
+				transform scale(resize-scale)
 	
 	.current a
 		background #fff
 		padding-left 2.5em
+		
+		i.fa
+			transform scale(resize-scale)
