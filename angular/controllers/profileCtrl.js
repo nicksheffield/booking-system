@@ -9,6 +9,11 @@ angular.module('app.controllers')
 			return user.username == $stateParams.username
 		})
 
-		$title($scope.user.first_name + ' ' + $scope.user.last_name)
+		if(!$scope.user) {
+			$scope.error = 'No user found with username: ' + $stateParams.username
+			$title($stateParams.username)
+		} else {
+			$title($scope.user.first_name + ' ' + $scope.user.last_name)
+		}
 	})
 })
