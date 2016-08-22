@@ -6,6 +6,7 @@
 	</header>
 	
 	<nav>
+		<!-- guest -->
 		<ul layout="col" ng-if="!auth.isAuthenticated()">
 			<li ng-class="{current: isCurrent('/login')}"><a href="#/login">Login <i class="fa fa-sign-in"></i></a></li>
 			<li ng-class="{current: isCurrent('/register')}"><a href="#/register">Register <i class="fa fa-user-plus"></i></a></li>
@@ -13,9 +14,11 @@
 		
 		<!-- staff -->
 		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin">
-			<li><a href="#/profile/{{ user.username }}">Your Profile <i class="fa fa-user"></i></a></li>
-			<li><a href="#/book">Make booking <i class="fa fa-book"></i></a></li>
-			<li><a href="#/manage">Manage site <i class="fa fa-pencil"></i></a></li>
+			<li ng-class="{current: isCurrent('/profile/'+user.username)}"><a href="#/profile/{{ user.username }}">Your Profile <i class="fa fa-user"></i></a></li>
+			<li ng-class="{current: isCurrent('/book')}"><a href="#/book">Book equipment <i class="fa fa-book"></i></a></li>
+			<li ng-class="{current: isCurrent('/book')}"><a href="#/book">Issue equipment <i class="fa fa-camera-retro"></i></a></li>
+			<li ng-class="{current: isCurrent('/book')}"><a href="#/book">Return equipment <i class="fa fa-hand-lizard-o"></i></a></li>
+			<li ng-class="{current: isCurrent('/manage')}"><a href="#/manage">Manage site <i class="fa fa-pencil"></i></a></li>
 			<li><a href="#/logout">Logout <i class="fa fa-sign-out"></i></a></li>
 		</ul>
 		
