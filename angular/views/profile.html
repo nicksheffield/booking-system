@@ -1,6 +1,11 @@
 <div class="sidebar-holder" ng-include="'views/sidebar.html'" layout="col"></div>
 
 <div class="frame profile" ratio="1">
+	
+	<div class="alert alert-danger" ng-if="error">
+		{{ error }}
+	</div>
+
 	<h1>{{ user.first_name }} {{ user.last_name }}</h1>
 	<h2 class="username">{{ user.username }}</h2>
 </div>
