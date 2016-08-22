@@ -14,6 +14,11 @@
 use Illuminate\Http\Request;
 
 /**
+*	Home page (angular)
+*/
+Route::get('/', function() { return view('welcome'); });
+
+/**
 *	Unprotected routes
 */
 Route::group(['prefix' => '/api'], function() {
@@ -37,11 +42,6 @@ Route::group(['prefix' => '/api'], function() {
 	*	Get all groups
 	*/
 	Route::get('group', 'Group@index');
-
-	/**
-	*	Home page (angular)
-	*/
-	Route::get('/', function() { return view('welcome'); });
 });
 
 /**

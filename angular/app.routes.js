@@ -30,4 +30,10 @@ angular.module('app.routes')
 				})
 			}
 		})
+		.state('profile', {
+			url: '/profile/:username',
+			templateUrl: 'views/profile.html',
+			controller: 'profileCtrl',
+			data: {conditions: ['auth']}
+		})
 })

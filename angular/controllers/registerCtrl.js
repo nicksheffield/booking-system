@@ -5,8 +5,6 @@ angular.module('app.controllers')
 	
 	$scope.groups = $store.groups
 	
-	console.log($scope.groups)
-	
 	$scope.first_name = 'Nick'
 	$scope.last_name = 'Sheffield'
 	$scope.email = 'numbereft@gmail.com'
@@ -34,6 +32,26 @@ angular.module('app.controllers')
 		
 		u.$save().then(function(res) {
 			console.log('save', res)
+
+			var credentials = {
+				username: res.username,
+				password: $scope.password
+			}
+
+			$auth
+				.login(credentials)
+				.then(function(res) {
+					console.log('res', res)
+					$store.user = res.data.user
+					$state.go('home', {})
+				})
+				.catch(function(res) {
+					if(res.data.error == 'invalid_credentials') {
+						$scope.error = 'Username or password is invalid.'
+					} else {
+						$scope.error = 'Unknown error'
+					}
+				})
 		}).catch(function(res) {
 			console.log('save err', res)
 		})

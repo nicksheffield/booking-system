@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 use App\Http\Requests;
 
@@ -76,6 +77,10 @@ class User extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
+		if(Auth::user()->id == $id && Auth::user()->admin != 1) {
+			return (new Response(['error' => 'Not allowed'], 500));
+		}
+
 		$model = Model::find($id);
 		
 		$model->fill($request->except('password'));
