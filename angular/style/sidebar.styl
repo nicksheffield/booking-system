@@ -4,26 +4,27 @@
 .sidebar
 	display flex
 	flex-direction column
-	box-shadow inset -5px 0 10px rgba(0, 0, 0, 0.1)
-	background #eee
-	color color-primary
+	background color-sidebar-background
+	color color-sidebar-text
+	-webkit-font-smoothing antialiased
 	
 	header
-		padding 2em
-		margin-bottom 1em
+		padding 1em
+		height 108px
 	
-	img
-		width 100px
-		align-self center
+	.logo
+		width 50px
+		height 50px
+		margin-right 0.5em
 	
 	h1
-		font-size 1.6em
+		font-size 1.5em
 		align-self center
-		font-weight 100
-		margin-top 0.5em
+		font-weight 500
+		margin 0
 		
 	nav
-		border-top 1px solid #ddd
+		border-bottom 1px solid color-sidebar-border
 	
 	ul
 		list-style none
@@ -34,27 +35,20 @@
 		color inherit
 		text-decoration none
 		display block
-		padding 0.5em 2em
+		padding 0.8em 1em
+		font-size 0.9em
 		transition padding 0.2s ease
-		border-bottom 1px solid #ddd
+		border-top 1px solid color-sidebar-border
 		
 		i.fa
 			float right
 			line-height 1.5
 			transition transform 0.1s ease
-			
-		resize-scale = 1.5
-		
-		&:hover
-			background #fff
-			padding-left 2.5em
-			
-			i.fa
-				transform scale(resize-scale)
+			display none
 	
-	.current a
-		background #fff
-		padding-left 2.5em
+	.current a, a:hover
+		background color-sidebar-highlight
+		border-top-color transparent
 		
 		i.fa
-			transform scale(resize-scale)
+			transform scale(1.5)

@@ -1,20 +1,26 @@
 <div class="sidebar-holder" ng-include="'views/sidebar.html'" layout="col"></div>
 
-<div class="frame profile" ratio="1">
+<div class="frame profile" ratio="1" ng-show="!error">
 	
-	<div class="alert alert-danger" ng-if="error">
-		{{ error }}
-	</div>
-
-	<header class="page-header" layout="row" justify="between" align="center">
+	<header class="page-header">
 		<h1>{{ user.first_name }} {{ user.last_name }}</h1>
-
-		<div>
-			<span class="label label-danger role" ng-show="role() == 'Staff'">{{ role() }}</span>
-			<span class="label label-primary role" ng-show="role() == 'Student'">{{ role() }}</span>
-			<span class="label label-info username">{{ user.username }}</span>
-		</div>
 	</header>
 	
+	<div class="page-content">
 	
+		<div ng-if="staff()">
+			<a href="#/book" class="btn btn-primary btn-large">Book Equipment</a>
+			<a href="#/book" class="btn btn-primary btn-large">Issue Equipment</a>
+			<a href="#/book" class="btn btn-primary btn-large">Return Equipment</a>
+			<a href="#/book" class="btn btn-primary btn-large">Manage Site</a>
+		</div>
+
+	</div>
+	
+</div>
+
+<div class="frame profile" ratio="1" layout="col" justify="center" align="center" ng-show="error">
+	<div class="alert alert-danger alert-inverted">
+		<i class="fa fa-exclamation-circle"></i> {{ error }}
+	</div>
 </div>

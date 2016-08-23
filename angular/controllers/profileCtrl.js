@@ -10,6 +10,14 @@ angular.module('app.controllers')
 		if($scope.user) return $scope.user.admin ? 'Staff' : 'Student'
 	}
 
+	$scope.staff = function() {
+		if($scope.user) return $scope.role() == 'Staff'
+	}
+
+	$scope.student = function() {
+		if($scope.user) return $scope.role() == 'Student'
+	}
+
 	// Get the user we asked for
 	$store.users.$promise.then(function() {
 		$scope.user = _.find($store.users, function(user) {
