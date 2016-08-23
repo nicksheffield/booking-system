@@ -16,19 +16,23 @@ class GroupTypesSeeder extends Seeder
 		$items = [
 			[
 				'id' => 1,
-				'name' => 'GD'
+				'code' => 'GD',
+				'name' => 'Graphic Design'
 			],
 			[
 				'id' => 2,
-				'name' => 'DMA'
+				'code' => 'DMA',
+				'name' => 'Digital Media Advanced'
 			],
 			[
 				'id' => 3,
-				'name' => 'DAV'
+				'code' => 'DAV',
+				'name' => 'Digital Audio & Video'
 			],
 			[
 				'id' => 4,
-				'name' => 'DFM'
+				'code' => 'DFM',
+				'name' => 'Digital Film Making'
 			]
 		];
 		

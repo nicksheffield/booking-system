@@ -12,7 +12,7 @@ class Group_Type extends Model
 	protected $table = 'group_types';
 	
 	protected $fillable = [
-		'name', 'group_type_id'
+		'code', 'name', 'group_type_id'
 	];
 	
 	public function groups() {

@@ -1,19 +1,15 @@
 angular.module('app.services')
 
-.factory('$store', function($auth, User, Group) {
+.factory('$store', function($auth, User, Group, Group_Type) {
 	var service = {
 		user: {},
 		users: {},
-		groups: {}
+		groups: {},
+		group_types: {}
 	}
 	
 	if($auth.isAuthenticated()) {
 		service.user = User.getWithToken()
-	}
-	
-	service.load = function() {
-		service.loadGroups()
-		service.loadUsers()
 	}
 	
 	service.loadUsers = function() {
@@ -24,7 +20,12 @@ angular.module('app.services')
 		service.groups = Group.query()
 	}
 	
-	service.load()
+	service.loadGroupTypes = function() {
+		service.group_types = Group_Type.query()
+	}
+	
+	service.loadUsers()
+	service.loadGroups()
 
 	return service
 })

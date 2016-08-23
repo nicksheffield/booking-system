@@ -10,6 +10,6 @@ angular.module('app.controllers')
 	$store.loadGroups()
 	
 	$scope.select = function(user) {
-		$location.path('/view_user/'+user.id)
+		$location.path(''+user.id)
 	}
 })

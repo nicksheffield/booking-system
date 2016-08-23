@@ -37,6 +37,7 @@ class CreateTables extends Migration
 		
 		Schema::create('group_types', function (Blueprint $table) {
 			$table->increments('id');
+			$table->string('code');
 			$table->string('name');
 			$table->timestamps();
 			$table->softDeletes();

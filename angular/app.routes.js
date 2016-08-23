@@ -45,7 +45,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumbs: [ 'manage' ],
-				crumb_name: 'Manage Users'
+				crumb_name: 'All Users'
 			}
 		},
 		'view_user': {
@@ -66,6 +66,16 @@ angular.module('app.routes')
 				conditions: ['auth', 'staff_only'],
 				crumbs: [ 'manage', 'manage_users', 'view_user'],
 				crumb_name: 'Update User'
+			}
+		},
+		'manage_class_types': {
+			url: '/manage/class_types',
+			templateUrl: 'views/manage_class_types.html',
+			controller: 'manageClassTypesCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumbs: [ 'manage'],
+				crumb_name: 'All Class Types'
 			}
 		}
 	}
