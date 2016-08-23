@@ -2,8 +2,9 @@
 
 <div class="frame manage" ratio="1" ng-show="!error">
 	
-	<header class="page-header">
+	<header class="page-header" layout="row" justify="between" align="center">
 		<h1>Manage Users</h1>
+		<a href="#/new_user" class="btn btn-info btn-icon"><i class="fa fa-plus"></i>New</a>
 	</header>
 	
 	<breadcrumbs></breadcrumbs>
@@ -26,7 +27,12 @@
 					<td>{{ user.username }}</td>
 					<td>{{ user.first_name }}</td>
 					<td>{{ user.last_name }}</td>
-					<td><button class="btn btn-primary btn-sm" ng-click="select(user)">View</button></td>
+					<td>
+						<button class="btn btn-primary btn-sm btn-icon-right" ng-click="select(user)">
+							View
+							<i class="fa fa-arrow-right"></i>
+						</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>

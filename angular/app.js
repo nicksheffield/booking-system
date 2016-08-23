@@ -10,9 +10,7 @@ angular.module('app.auth', [])
 angular.module('app', [
 	'ngResource',
 	'ngSanitize',
-	// 'ngAnimate',
 	'ui.router',
-	'ui.bootstrap',
 	'satellizer',
 
 	'app.controllers',
