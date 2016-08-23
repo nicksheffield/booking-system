@@ -23,12 +23,12 @@ angular.module('app.routes')
 		},
 		'logout': {
 			url: '/logout',
-			controller: function($auth, $state, $store) {
+			controller: ['$auth', '$state', '$store', function($auth, $state, $store) {
 				$auth.logout().then(function() {
 					$state.go('login')
 					$store.user = {}
 				})
-			}
+			}]
 		},
 		'manage': {
 			url: '/manage',
