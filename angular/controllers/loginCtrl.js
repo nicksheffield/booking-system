@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('loginCtrl', function($scope, $title, $auth, $store, $state) {
+.controller('loginCtrl', function($scope, $title, $auth, $store, $state, $location) {
 	$title('Login')
 	
 	$scope.$watch('username', reset)
@@ -25,7 +25,8 @@ angular.module('app.controllers')
 			.then(function(res) {
 				console.log('res', res)
 				$store.user = res.data.user
-				$state.go('home', {})
+				// $state.go('home', {})
+				$location.path('/profile/' + $store.user.username)
 			})
 			.catch(function(res) {
 				if(res.data.error == 'invalid_credentials') {

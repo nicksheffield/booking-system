@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('registerCtrl', function($scope, $title, $auth, $store, $state, User) {
+.controller('registerCtrl', function($scope, $title, $auth, $store, $state, $location, User) {
 	$title('Register')
 	
 	$scope.groups = $store.groups
@@ -43,7 +43,8 @@ angular.module('app.controllers')
 				.then(function(res) {
 					console.log('res', res)
 					$store.user = res.data.user
-					$state.go('home', {})
+					// $state.go('profile', {})
+					$location.path('/profile/' + $store.user.username)
 				})
 				.catch(function(res) {
 					if(res.data.error == 'invalid_credentials') {

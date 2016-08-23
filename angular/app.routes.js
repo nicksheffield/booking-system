@@ -7,9 +7,13 @@ angular.module('app.routes')
 	$stateProvider
 		.state('home', {
 			url: '/',
-			templateUrl: 'views/home.html',
-			controller: 'homeCtrl',
-			data: {conditions: ['auth']}
+			controller: function($auth, $store, $location) {
+				if($auth.isAuthenticated()) {
+					$location.path('/profile/' + $store.user.username)
+				} else {
+					$location.path('/login')
+				}
+			}
 		})
 		.state('register', {
 			url: '/register',
