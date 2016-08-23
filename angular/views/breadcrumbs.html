@@ -1,0 +1,10 @@
+<div class="breadcrumbs">
+	<ul layout="row">
+		<li ng-repeat="crumb in state.current.data.crumbs" layout="row">
+			<a href="#{{ fix(crumb.url) }}"> {{ crumb.data.crumb_name }}</a>
+		</li>
+		<li>
+			<a href="#{{ current_url }}">{{ state.current.data.crumb_name }}</a>
+		</li>
+	</ul>
+</div>

@@ -1,9 +1,17 @@
 angular.module('app.directives')
 
-.directive('navLink', function($location) {
+.directive('navLink', function($location, $state) {
 	function link(scope, el, attrs){
 		if($location.path() == scope.url.replace('#','')) {
 			el.addClass('current')
+		}
+		
+		if($state.current.data && $state.current.data.crumbs) {
+			_.forEach($state.current.data.crumbs, function(crumb) {
+				if(scope.url.replace('#', '') == crumb.url) {
+					el.addClass('current')
+				}
+			})
 		}
 	}
 

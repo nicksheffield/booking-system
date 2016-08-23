@@ -21,7 +21,7 @@ var templateCache = require('gulp-angular-templatecache')   // cache angular tem
 
 var paths = {
 	stylus: {
-		files: ['angular/style/*.styl'],
+		files: ['angular/style/*.styl', 'angular/style/**/*.styl'],
 		main: 'angular/style/main.styl'
 	},
 	views: ['angular/**/*.html'],
@@ -100,6 +100,8 @@ gulp.task('libs', function() {
 		'public/components/angular-ui-router/release/angular-ui-router.min.js',
 		'public/components/angular-sanitize/angular-sanitize.min.js',
 		'public/components/angular-animate/angular-animate.min.js',
+		'public/components/angular-touch/angular-touch.min.js',
+		'public/components/angular-bootstrap/ui-bootstrap.min.js',
 		'public/components/lodash/lodash.js',
 		'public/components/satellizer/dist/satellizer.js',
 		'public/components/moment/moment.js',

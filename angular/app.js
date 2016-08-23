@@ -12,6 +12,7 @@ angular.module('app', [
 	'ngSanitize',
 	// 'ngAnimate',
 	'ui.router',
+	'ui.bootstrap',
 	'satellizer',
 
 	'app.controllers',

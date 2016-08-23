@@ -1,0 +1,36 @@
+<div class="sidebar-holder" ng-include="'views/sidebar.html'" layout="col"></div>
+
+<div class="frame manage" ratio="1" ng-show="!error">
+	
+	<header class="page-header">
+		<h1>Manage Users</h1>
+	</header>
+	
+	<breadcrumbs></breadcrumbs>
+	
+	<div class="page-content">
+	
+		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
+	
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th class="table-col-username">Username</th>
+					<th class="table-col-firstname">First name</th>
+					<th class="table-col-lastname">Last name</th>
+					<th class="table-col-controls"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="user in users | filter: filter">
+					<td>{{ user.username }}</td>
+					<td>{{ user.first_name }}</td>
+					<td>{{ user.last_name }}</td>
+					<td><button class="btn btn-primary btn-sm" ng-click="select(user)">View</button></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	
+</div>

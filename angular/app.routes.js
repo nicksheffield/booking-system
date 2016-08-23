@@ -3,25 +3,25 @@ angular.module('app.routes')
 .config(function($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise('/')
-
-	$stateProvider
-		.state('home', {
+	
+	var states = {
+		'home': {
 			url: '/',
 			templateUrl: 'views/home.html',
 			controller: 'homeCtrl',
 			data: {conditions: ['auth']}
-		})
-		.state('register', {
+		},
+		'register': {
 			url: '/register',
 			templateUrl: 'views/register.html',
 			controller: 'registerCtrl'
-		})
-		.state('login', {
+		},
+		'login': {
 			url: '/login',
 			templateUrl: 'views/login.html',
 			controller: 'loginCtrl'
-		})
-		.state('logout', {
+		},
+		'logout': {
 			url: '/logout',
 			controller: function($auth, $state, $store) {
 				$auth.logout().then(function() {
@@ -29,11 +29,56 @@ angular.module('app.routes')
 					$store.user = {}
 				})
 			}
-		})
-		.state('manage', {
+		},
+		'manage': {
 			url: '/manage',
 			templateUrl: 'views/manage.html',
-			controller: 'manageCtrl',
-			data: {conditions: ['auth', 'staff_only']}
-		})
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_name: 'Manage'
+			}
+		},
+		'manage_users': {
+			url: '/manage/users',
+			templateUrl: 'views/manage_users.html',
+			controller: 'manageUsersCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumbs: [ 'manage' ],
+				crumb_name: 'Manage Users'
+			}
+		},
+		'view_user': {
+			url:'/view_user/:id',
+			templateUrl: 'views/view_user.html',
+			controller: 'viewUserCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumbs: [ 'manage', 'manage_users' ],
+				crumb_name: 'View User'
+			}
+		},
+		'edit_user': {
+			url: '/edit_user/:id',
+			templateUrl: 'views/edit_user.html',
+			controller: 'editUserCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumbs: [ 'manage', 'manage_users', 'view_user'],
+				crumb_name: 'Update User'
+			}
+		}
+	}
+	
+	for(var stateName in states) {
+		var state = states[stateName]
+		
+		if(state.data && state.data.crumbs) {
+			for(var i=0; i<state.data.crumbs.length; i++) {
+				state.data.crumbs[i] = states[state.data.crumbs[i]]
+			}
+		}
+		
+		$stateProvider.state(stateName, state)
+	}
 })

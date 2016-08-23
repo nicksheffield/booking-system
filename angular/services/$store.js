@@ -12,8 +12,16 @@ angular.module('app.services')
 	}
 	
 	service.load = function() {
+		service.loadGroups()
+		service.loadUsers()
+	}
+	
+	service.loadUsers = function() {
+		service.users = User.query({'with': 'group'})
+	}
+	
+	service.loadGroups = function() {
 		service.groups = Group.query()
-		service.users = User.query()
 	}
 	
 	service.load()

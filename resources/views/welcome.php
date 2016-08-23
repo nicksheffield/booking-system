@@ -11,5 +11,7 @@
 	<script src="dist/libs.min.js"></script>
 	<script src="dist/app.min.js"></script>
 </head>
-<body class="{{ bodyClass }}" layout="row" ui-view></body>
+<body class="{{ bodyClass }}" layout="full-col">
+	<div layout="row" ratio="1" ui-view></div>
+</body>
 </html>
