@@ -3,24 +3,20 @@
 <div class="frame profile" ratio="1" ng-show="!error">
 	
 	<header class="page-header">
-		<h1>{{ user.first_name }} {{ user.last_name }}</h1>
+		<h1>Welcome, {{ user.first_name }} {{ user.last_name }}</h1>
 	</header>
 	
 	<div class="page-content">
+
+		<p>Let's put some stuff here later.</p>
 	
-		<div ng-if="staff()">
+		<!-- <div ng-if="staff()">
 			<a href="#/book" class="btn btn-primary btn-large">Book Equipment</a>
 			<a href="#/book" class="btn btn-primary btn-large">Issue Equipment</a>
 			<a href="#/book" class="btn btn-primary btn-large">Return Equipment</a>
 			<a href="#/book" class="btn btn-primary btn-large">Manage Site</a>
-		</div>
+		</div> -->
 
 	</div>
 	
-</div>
-
-<div class="frame profile" ratio="1" layout="col" justify="center" align="center" ng-show="error">
-	<div class="alert alert-danger alert-inverted">
-		<i class="fa fa-exclamation-circle"></i> {{ error }}
-	</div>
 </div>

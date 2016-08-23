@@ -7,13 +7,9 @@ angular.module('app.routes')
 	$stateProvider
 		.state('home', {
 			url: '/',
-			controller: function($auth, $store, $location) {
-				if($auth.isAuthenticated()) {
-					$location.path('/profile/' + $store.user.username)
-				} else {
-					$location.path('/login')
-				}
-			}
+			templateUrl: 'views/home.html',
+			controller: 'homeCtrl',
+			data: {conditions: ['auth']}
 		})
 		.state('register', {
 			url: '/register',
@@ -34,10 +30,10 @@ angular.module('app.routes')
 				})
 			}
 		})
-		.state('profile', {
-			url: '/profile/:username',
-			templateUrl: 'views/profile.html',
-			controller: 'profileCtrl',
-			data: {conditions: ['auth']}
+		.state('manage', {
+			url: '/manage',
+			templateUrl: 'views/manage.html',
+			controller: 'manageCtrl',
+			data: {conditions: ['auth', 'staff_only']}
 		})
 })

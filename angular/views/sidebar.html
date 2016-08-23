@@ -2,7 +2,7 @@
 	<header layout="row" align="center">
 		<img src="/images/logo.svg" alt="" class="logo">
 	
-		<h1 ratio="1">Booking System</h1>
+		<h1>Booking System</h1>
 	</header>
 	
 	<nav>
@@ -14,17 +14,17 @@
 		
 		<!-- staff -->
 		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin">
-			<li nav-link="Your Profile" url="#/profile/{{ user.username }}" icon="user"></li>
+			<li nav-link="Home" url="#/" icon="home"></li>
 			<li nav-link="Book Equipment" url="#/book" icon="book"></li>
 			<li nav-link="Issue Equipment" url="#/book" icon="camera-retro"></li>
 			<li nav-link="Return Equipment" url="#/book" icon="hand-lizard-o"></li>
-			<li nav-link="Manage Site" url="#/manage" icon="pencil"></li>
+			<li nav-link="Manage Data" url="#/manage" icon="pencil"></li>
 			<li nav-link="Logout" url="#/logout" icon="sign-out"></li>
 		</ul>
 		
 		<!-- student -->
 		<ul layout="col" ng-if="auth.isAuthenticated() && !user.admin">
-			<li nav-link="Your Profile" url="#/profile/{{ user.username }}" icon="user"></li>
+			<li nav-link="Home" url="#/" icon="home"></li>
 			<li nav-link="Logout" url="#/logout" icon="sign-out"></li>
 		</ul>
 	</nav>

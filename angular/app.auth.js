@@ -23,24 +23,31 @@ angular.module('app.auth')
 			if(c == 'staff_only') {
 				if(!$auth.isAuthenticated()) {
 					destination = '/login'
-				} else if(!$store.user.admin) {
-					destination = '/profile/' + $store.user.username
+				} else{
+					$store.user.$promise.then(function() {
+						if(!$store.user.admin) {
+							destination = '/'
+						}
+					})
 				}
 			}
 			
 			if(c == 'student_only') {
 				if(!$auth.isAuthenticated()) {
 					destination = '/login'
-				} else if($store.user.admin) {
-					destination = '/profile/' + $store.user.username
+				} else{
+					$store.user.$promise.then(function() {
+						if($store.user.admin) {
+							destination = '/'
+						}
+					})
 				}
 			}
 			
 			if(destination) {
-				console.log('kicked')
+				console.log('kicked to', destination)
 				event.preventDefault()
 				
-				// $state.go(destination)
 				$location.path(destination)
 			}
 		})

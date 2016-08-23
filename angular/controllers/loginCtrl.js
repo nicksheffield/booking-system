@@ -25,8 +25,7 @@ angular.module('app.controllers')
 			.then(function(res) {
 				console.log('res', res)
 				$store.user = res.data.user
-				// $state.go('home', {})
-				$location.path('/profile/' + $store.user.username)
+				$location.path('/home')
 			})
 			.catch(function(res) {
 				if(res.data.error == 'invalid_credentials') {

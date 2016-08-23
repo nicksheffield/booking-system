@@ -15,7 +15,7 @@
 	.logo
 		width 50px
 		height 50px
-		margin-right 0.5em
+		margin-right 1em
 	
 	h1
 		font-size 1.5em
@@ -37,18 +37,20 @@
 		display block
 		padding 0.8em 1em
 		font-size 0.9em
-		transition padding 0.2s ease
+		font-weight bold
 		border-top 1px solid color-sidebar-border
+		transition background-color 0.1s ease
 		
 		i.fa
 			float right
 			line-height 1.5
 			transition transform 0.1s ease
 			display none
+		
+	a:hover
+		background darken(color-sidebar-highlight, 60%)
+		border-top-color transparent
 	
-	.current a, a:hover
+	.current a
 		background color-sidebar-highlight
 		border-top-color transparent
-		
-		i.fa
-			transform scale(1.5)
