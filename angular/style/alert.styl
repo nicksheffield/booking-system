@@ -1,21 +1,27 @@
 .alert
+	-webkit-font-smoothing antialiased
+	border 0
+	color #fff
+	background #000
+	
 	i.fa
 		margin-right 1em
 	
-	&.alert-danger
-		color #fff
-		border 0
-		background color-danger
-		-webkit-font-smoothing antialiased
+	&.alert-primary
+		background color-primary
+	
+	&.alert-secondary
+		color #000
+		background color-secondary
+	
+	&.alert-success
+		background color-success
 	
 	&.alert-info
-		color #fff
-		border 0
 		background color-info
-		-webkit-font-smoothing antialiased
 	
 	&.alert-warning
-		color #fff
-		border 0
 		background color-warning
-		-webkit-font-smoothing antialiased
+	
+	&.alert-danger
+		background color-danger

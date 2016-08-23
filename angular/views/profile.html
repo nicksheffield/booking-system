@@ -6,6 +6,15 @@
 		{{ error }}
 	</div>
 
-	<h1>{{ user.first_name }} {{ user.last_name }}</h1>
-	<h2 class="username">{{ user.username }}</h2>
+	<header class="page-header" layout="row" justify="between" align="center">
+		<h1>{{ user.first_name }} {{ user.last_name }}</h1>
+
+		<div>
+			<span class="label label-danger role" ng-show="role() == 'Staff'">{{ role() }}</span>
+			<span class="label label-primary role" ng-show="role() == 'Student'">{{ role() }}</span>
+			<span class="label label-info username">{{ user.username }}</span>
+		</div>
+	</header>
+	
+	
 </div>

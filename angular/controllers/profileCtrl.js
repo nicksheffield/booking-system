@@ -2,6 +2,13 @@ angular.module('app.controllers')
 
 .controller('profileCtrl', function($scope, $title, $store, $stateParams, User) {
 	
+	$scope.you = function() {
+		return $scope.user.username == $stateParams.username
+	}
+
+	$scope.role = function() {
+		if($scope.user) return $scope.user.admin ? 'Staff' : 'Student'
+	}
 
 	// Get the user we asked for
 	$store.users.$promise.then(function() {
