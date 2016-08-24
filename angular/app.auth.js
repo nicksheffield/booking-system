@@ -26,6 +26,12 @@ angular.module('app.auth')
 				}
 			}
 			
+			if(c == 'guest_only') {
+				if($auth.isAuthenticated()) {
+					destination = 'home'
+				}
+			}
+			
 			if(c == 'manager_only') {
 				if(!$auth.isAuthenticated()) {
 					destination = 'login'

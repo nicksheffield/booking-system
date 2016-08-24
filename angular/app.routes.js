@@ -14,12 +14,14 @@ angular.module('app.routes')
 		'register': {
 			url: '/register',
 			templateUrl: 'components/guest/views/register.html',
-			controller: 'registerCtrl'
+			controller: 'registerCtrl',
+			data: {conditions: ['guest_only']}
 		},
 		'login': {
 			url: '/login',
 			templateUrl: 'components/guest/views/login.html',
-			controller: 'loginCtrl'
+			controller: 'loginCtrl',
+			data: {conditions: ['guest_only']}
 		},
 		'logout': {
 			url: '/logout',
