@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('classTypeNew', function($scope, $stateParams, $store, $location, Group_Type) {
+.controller('classTypeNewCtrl', function($scope, $stateParams, $store, $location, Group_Type) {
 	$store.group_types.$promise.then(function() {
 		$scope.type = _.find($store.group_types, function(type) {
 			return type.id == $stateParams.id

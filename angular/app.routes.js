@@ -41,7 +41,7 @@ angular.module('app.routes')
 		'manage_users': {
 			url: '/manage/users',
 			templateUrl: 'components/manage/users/views/manage.html',
-			controller: 'userManage',
+			controller: 'userManageCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumbs: ['manage'],
@@ -51,7 +51,7 @@ angular.module('app.routes')
 		'view_user': {
 			url:'/view_user/:id',
 			templateUrl: 'components/manage/users/views/view.html',
-			controller: 'userView',
+			controller: 'userViewCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumbs: ['manage', 'manage_users'],
@@ -61,7 +61,7 @@ angular.module('app.routes')
 		'edit_user': {
 			url: '/edit_user/:id',
 			templateUrl: 'components/manage/users/views/edit.html',
-			controller: 'userEdit',
+			controller: 'userEditCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumbs: ['manage', 'manage_users', 'view_user'],
@@ -71,7 +71,7 @@ angular.module('app.routes')
 		'new_user': {
 			url: '/new_user',
 			templateUrl: 'components/manage/users/views/new.html',
-			controller: 'userNew',
+			controller: 'userNewCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumbs: ['manage', 'manage_users'],
@@ -81,7 +81,7 @@ angular.module('app.routes')
 		'manage_class_types': {
 			url: '/manage/class_types',
 			templateUrl: 'components/manage/class_types/views/manage.html',
-			controller: 'classTypeManage',
+			controller: 'classTypeManageCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumbs: ['manage'],
@@ -91,7 +91,7 @@ angular.module('app.routes')
 		'view_class_type': {
 			url: '/view_class_type/:id',
 			templateUrl: 'components/manage/class_types/views/view.html',
-			controller: 'classTypeView',
+			controller: 'classTypeViewCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumbs: ['manage', 'manage_class_types'],
@@ -101,7 +101,7 @@ angular.module('app.routes')
 		'edit_class_type': {
 			url: '/edit_class_type/:id',
 			templateUrl: 'components/manage/class_types/views/edit.html',
-			controller: 'classTypeEdit',
+			controller: 'classTypeEditCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumbs: ['manage', 'manage_class_types', 'view_class_type'],
@@ -111,7 +111,7 @@ angular.module('app.routes')
 		'new_class_type': {
 			url: '/new_class_type',
 			templateUrl: 'components/manage/class_types/views/new.html',
-			controller: 'classTypeNew',
+			controller: 'classTypeNewCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumbs: ['manage', 'manage_class_types'],

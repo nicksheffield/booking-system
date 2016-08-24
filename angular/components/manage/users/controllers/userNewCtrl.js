@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('userNew', function($scope, $stateParams, $store, $location, User) {
+.controller('userNewCtrl', function($scope, $stateParams, $store, $location, User) {
 
 	$scope.save = function() {
 		var u = new User()

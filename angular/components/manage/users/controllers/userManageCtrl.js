@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('userManage', function($scope, $title, $store, $location) {
+.controller('userManageCtrl', function($scope, $title, $store, $location) {
 	$title('Manage Users')
 	
 	$scope.users = $store.users
