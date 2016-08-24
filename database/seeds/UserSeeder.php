@@ -21,11 +21,20 @@ class UserSeeder extends Seeder
 				'last_name' => 'Ross',
 				'email' => 'test@example.com',
 				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'admin' => 2,
+				'password' => bcrypt('abcd')
+			],[
+				'id' => 2,
+				'username' => 'graemebibby',
+				'first_name' => 'Graeme',
+				'last_name' => 'Bibby',
+				'email' => 'graeme@example.com',
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'admin' => 1,
 				'password' => bcrypt('abcd')
 			],
 			[
-				'id' => 2,
+				'id' => 3,
 				'username' => 'henryfox',
 				'first_name' => 'Henry',
 				'last_name' => 'Fox',
@@ -37,7 +46,7 @@ class UserSeeder extends Seeder
 				'password' => bcrypt('abcd')
 			],
 			[
-				'id' => 3,
+				'id' => 4,
 				'username' => 'amandaking',
 				'first_name' => 'Amanda',
 				'last_name' => 'King',
@@ -49,7 +58,7 @@ class UserSeeder extends Seeder
 				'password' => bcrypt('abcd')
 			],
 			[
-				'id' => 4,
+				'id' => 5,
 				'username' => 'theresamartinez',
 				'first_name' => 'Theresa',
 				'last_name' => 'Martinez',
@@ -61,7 +70,7 @@ class UserSeeder extends Seeder
 				'password' => bcrypt('abcd')
 			],
 			[
-				'id' => 5,
+				'id' => 6,
 				'username' => 'christopherferguson',
 				'first_name' => 'Christopher',
 				'last_name' => 'Ferguson',
@@ -73,7 +82,7 @@ class UserSeeder extends Seeder
 				'password' => bcrypt('abcd')
 			],
 			[
-				'id' => 6,
+				'id' => 7,
 				'username' => 'ryanlynch',
 				'first_name' => 'Ryan',
 				'last_name' => 'Lynch',
@@ -85,7 +94,7 @@ class UserSeeder extends Seeder
 				'password' => bcrypt('abcd')
 			],
 			[
-				'id' => 7,
+				'id' => 8,
 				'username' => 'meganwalters',
 				'first_name' => 'Megan',
 				'last_name' => 'Walters',

@@ -34,7 +34,7 @@ angular.module('app.routes')
 			url: '/manage',
 			templateUrl: 'components/manage/manage.html',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth', 'manager_only'],
 				crumb_name: 'Manage'
 			}
 		},
@@ -43,7 +43,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/users/views/manage.html',
 			controller: 'userManageCtrl',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage',
 				crumb_name: 'All Users'
 			}
@@ -53,7 +53,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/users/views/view.html',
 			controller: 'userViewCtrl',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage_users',
 				crumb_name: 'View User'
 			}
@@ -63,7 +63,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/users/views/edit.html',
 			controller: 'userEditCtrl',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'view_user',
 				crumb_name: 'Update User'
 			}
@@ -73,7 +73,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/users/views/new.html',
 			controller: 'userNewCtrl',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage_users',
 				crumb_name: 'New User'
 			}
@@ -83,7 +83,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/class_types/views/manage.html',
 			controller: 'classTypeManageCtrl',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage',
 				crumb_name: 'All Class Types'
 			}
@@ -93,7 +93,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/class_types/views/view.html',
 			controller: 'classTypeViewCtrl',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage_class_types',
 				crumb_name: 'View Class Type'
 			}
@@ -103,7 +103,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/class_types/views/edit.html',
 			controller: 'classTypeEditCtrl',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'view_class_type',
 				crumb_name: 'Update Class Type'
 			}
@@ -113,7 +113,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/class_types/views/new.html',
 			controller: 'classTypeNewCtrl',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage_class_types',
 				crumb_name: 'New Class Type'
 			}
@@ -123,7 +123,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/class/views/manage.html',
 			controller: 'classManageCtrl',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage',
 				crumb_name: 'Classes'
 			}
@@ -133,7 +133,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/class/views/view.html',
 			controller: 'classViewCtrl',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage_class',
 				crumb_name: 'View Class'
 			}
@@ -143,7 +143,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/class/views/edit.html',
 			controller: 'classEditCtrl',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'view_class',
 				crumb_name: 'Update Class'
 			}
@@ -153,7 +153,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/class/views/new.html',
 			controller: 'classNewCtrl',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage_class',
 				crumb_name: 'New Class'
 			}

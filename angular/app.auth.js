@@ -26,12 +26,24 @@ angular.module('app.auth')
 				}
 			}
 			
+			if(c == 'manager_only') {
+				if(!$auth.isAuthenticated()) {
+					destination = 'login'
+				} else{
+					$store.user.$promise.then(function() {
+						if(!$store.user.staff == 2) {
+							destination = 'home'
+						}
+					})
+				}
+			}
+			
 			if(c == 'staff_only') {
 				if(!$auth.isAuthenticated()) {
 					destination = 'login'
 				} else{
 					$store.user.$promise.then(function() {
-						if(!$store.user.admin) {
+						if(!$store.user.staff == 1) {
 							destination = 'home'
 						}
 					})
@@ -43,7 +55,7 @@ angular.module('app.auth')
 					destination = 'login'
 				} else{
 					$store.user.$promise.then(function() {
-						if($store.user.admin) {
+						if($store.user.staff = 0) {
 							destination = 'home'
 						}
 					})

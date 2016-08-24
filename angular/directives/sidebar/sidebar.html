@@ -12,8 +12,8 @@
 			<li nav-link="Register" url="#/register" icon="user-plus"></li>
 		</ul>
 		
-		<!-- staff -->
-		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin">
+		<!-- manager -->
+		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin == 2">
 			<li nav-link="Home" url="#/" icon="home"></li>
 			<li nav-link="Book Equipment" url="#/book" icon="book"></li>
 			<li nav-link="Issue Equipment" url="#/book" icon="camera-retro"></li>
@@ -22,8 +22,17 @@
 			<li nav-link="Logout" url="#/logout" icon="sign-out"></li>
 		</ul>
 		
+		<!-- staff -->
+		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin == 1">
+			<li nav-link="Home" url="#/" icon="home"></li>
+			<li nav-link="Book Equipment" url="#/book" icon="book"></li>
+			<li nav-link="Issue Equipment" url="#/book" icon="camera-retro"></li>
+			<li nav-link="Return Equipment" url="#/book" icon="hand-lizard-o"></li>
+			<li nav-link="Logout" url="#/logout" icon="sign-out"></li>
+		</ul>
+		
 		<!-- student -->
-		<ul layout="col" ng-if="auth.isAuthenticated() && !user.admin">
+		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin == 0">
 			<li nav-link="Home" url="#/" icon="home"></li>
 			<li nav-link="Logout" url="#/logout" icon="sign-out"></li>
 		</ul>
