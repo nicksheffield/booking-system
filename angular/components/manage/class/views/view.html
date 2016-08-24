@@ -26,32 +26,32 @@
 			</tr>
 		</table>
 		
-		<hr>
-		
-		<h2>Students</h2>
-		
-		<table class="table" ng-show="group.users.length">
-			<tr>
-				<th>Username</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Phone</th>
-				<th>Email</th>
-				<th>Student ID</th>
-			</tr>
-			<tr ng-repeat="user in group.users">
-				<td><a href="#/view_user/{{ user.id }}">{{ user.username }}</a></td>
-				<td>{{ user.first_name }}</td>
-				<td>{{ user.last_name }}</td>
-				<td>{{ user.phone }}</td>
-				<td>{{ user.email }}</td>
-				<td>{{ user.id_number }}</td>
-			</tr>
-		</table>
-		
-		<div class="alert alert-info" ng-if="!group.users.length">
-			<p><i class="fa fa-exclamation-circle"></i> No students in this class</p>
-		</div>
+		<section>
+			<h2>Students</h2>
+			
+			<table class="table" ng-show="group.users.length">
+				<tr>
+					<th>Username</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th>Student ID</th>
+				</tr>
+				<tr ng-repeat="user in group.users">
+					<td><a href="#/view_user/{{ user.id }}">{{ user.username }}</a></td>
+					<td>{{ user.first_name }}</td>
+					<td>{{ user.last_name }}</td>
+					<td>{{ user.phone }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.id_number }}</td>
+				</tr>
+			</table>
+			
+			<div class="alert alert-info" ng-if="!group.users.length">
+				<p><i class="fa fa-exclamation-circle"></i> No students in this class</p>
+			</div>
+		</section>
 
 	</div>
 	

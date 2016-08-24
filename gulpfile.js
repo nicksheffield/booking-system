@@ -19,6 +19,9 @@ var sourcemap     = require('gulp-sourcemaps')              // create sourcemaps
 var autoprefix    = require('gulp-autoprefixer')            // prefix any css with low support
 var templateCache = require('gulp-angular-templatecache')   // cache angular template files
 
+var browserSync   = require('browser-sync')
+var php           = require('gulp-connect-php')
+
 var paths = {
 	stylus: {
 		files: ['angular/style/*.styl', 'angular/style/**/*.styl'],
@@ -48,6 +51,7 @@ gulp.task('css', function() {
 		.pipe(beautify())                             // make css really readable
 		.pipe(rename('style.css'))                    // rename file
 		.pipe(gulp.dest(paths.output))                // save it into the dist folder
+		.pipe(browserSync.stream())
 	
 	// make style.min.css
 	stream.pipe(clone())                              // make a copy of the stream up to autoprefix
@@ -55,6 +59,7 @@ gulp.task('css', function() {
 		.pipe(sourcemap.write())                      // write the sourcemap
 		.pipe(rename('style.min.css'))                // rename file
 		.pipe(gulp.dest(paths.output))                // save it into the dist folder
+		.pipe(browserSync.stream())
 	
 	return stream
 
@@ -82,6 +87,7 @@ gulp.task('angular', function() {
 		.pipe(uglify())                                     // minify the code
 		.pipe(concat('app.min.js'))                         // merge them all into the same file
 		.pipe(gulp.dest(paths.output))                      // save it into the dist folder
+		.pipe(browserSync.stream())
 		
 	return stream
 	
@@ -120,13 +126,22 @@ gulp.task('watch', ['angular', 'css'], function() {
 	gulp.watch(paths.stylus.files, ['css'])
 	gulp.watch(paths.angular,      ['angular'])
 	gulp.watch(paths.views,        ['angular'])
+
+	php.server({ base: 'public', port: 8010, keepalive: true})
+
+	browserSync({
+		proxy: '127.0.0.1:8010',
+		port: 8000,
+		open: true,
+		notify: false
+	});
 	
 })
 
 
+gulp.task('build', ['css', 'angular', 'libs'])
 
-gulp.task('default', ['css', 'angular', 'libs'], function(){
-	
+
+gulp.task('default', ['build'], function(){
 	console.log('Ready to go!')
-	
 })
