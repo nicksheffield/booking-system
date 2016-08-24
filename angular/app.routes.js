@@ -44,8 +44,8 @@ angular.module('app.routes')
 			controller: 'userManageCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				crumbs: ['manage'],
-				crumb_name: 'Users'
+				crumb_parent: 'manage',
+				crumb_name: 'All Users'
 			}
 		},
 		'view_user': {
@@ -54,7 +54,7 @@ angular.module('app.routes')
 			controller: 'userViewCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				crumbs: ['manage', 'manage_users'],
+				crumb_parent: 'manage_users',
 				crumb_name: 'View User'
 			}
 		},
@@ -64,7 +64,7 @@ angular.module('app.routes')
 			controller: 'userEditCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				crumbs: ['manage', 'manage_users', 'view_user'],
+				crumb_parent: 'view_user',
 				crumb_name: 'Update User'
 			}
 		},
@@ -74,7 +74,7 @@ angular.module('app.routes')
 			controller: 'userNewCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				crumbs: ['manage', 'manage_users'],
+				crumb_parent: 'manage_users',
 				crumb_name: 'New User'
 			}
 		},
@@ -84,8 +84,8 @@ angular.module('app.routes')
 			controller: 'classTypeManageCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				crumbs: ['manage'],
-				crumb_name: 'Class Types'
+				crumb_parent: 'manage',
+				crumb_name: 'All Class Types'
 			}
 		},
 		'view_class_type': {
@@ -94,7 +94,7 @@ angular.module('app.routes')
 			controller: 'classTypeViewCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				crumbs: ['manage', 'manage_class_types'],
+				crumb_parent: 'manage_class_types',
 				crumb_name: 'View Class Type'
 			}
 		},
@@ -104,7 +104,7 @@ angular.module('app.routes')
 			controller: 'classTypeEditCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				crumbs: ['manage', 'manage_class_types', 'view_class_type'],
+				crumb_parent: 'view_class_type',
 				crumb_name: 'Update Class Type'
 			}
 		},
@@ -114,7 +114,7 @@ angular.module('app.routes')
 			controller: 'classTypeNewCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				crumbs: ['manage', 'manage_class_types'],
+				crumb_parent: 'manage_class_types',
 				crumb_name: 'New Class Type'
 			}
 		},
@@ -143,10 +143,8 @@ angular.module('app.routes')
 	for(var stateName in states) {
 		var state = states[stateName]
 		
-		if(state.data && state.data.crumbs) {
-			for(var i=0; i<state.data.crumbs.length; i++) {
-				state.data.crumbs[i] = states[state.data.crumbs[i]]
-			}
+		if(state.data && state.data.crumb_parent) {
+			state.data.crumb_parent = states[state.data.crumb_parent]
 		}
 		
 		$stateProvider.state(stateName, state)
