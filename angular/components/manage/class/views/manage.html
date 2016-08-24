@@ -1,0 +1,40 @@
+<sidebar></sidebar>
+
+<div class="frame manage" ratio="1" ng-show="!error">
+	
+	<header class="page-header" layout="row" justify="between" align="center">
+		<h1>Manage Classes</h1>
+		<a href="#/new_class" class="btn btn-info btn-icon"><i class="fa fa-plus"></i>New</a>
+	</header>
+	
+	<breadcrumbs></breadcrumbs>
+	
+	<div class="page-content">
+		
+		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
+	
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th class="table-col-code">Code</th>
+					<th class="table-col-name">Type</th>
+					<th class="table-col-controls"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="group in groups | filter: filter">
+					<td>{{ group.code }}</td>
+					<td>{{ group.type.name }}</td>
+					<td>
+						<a href="#/view_class/{{ group.id }}" class="btn btn-primary btn-sm btn-icon-right">
+							View
+							<i class="fa fa-arrow-right"></i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	
+</div>

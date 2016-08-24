@@ -45,7 +45,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumbs: ['manage'],
-				crumb_name: 'All Users'
+				crumb_name: 'Users'
 			}
 		},
 		'view_user': {
@@ -85,7 +85,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumbs: ['manage'],
-				crumb_name: 'All Class Types'
+				crumb_name: 'Class Types'
 			}
 		},
 		'view_class_type': {
@@ -117,7 +117,27 @@ angular.module('app.routes')
 				crumbs: ['manage', 'manage_class_types'],
 				crumb_name: 'New Class Type'
 			}
-		}
+		},
+		'manage_class': {
+			url: '/manage/classes',
+			templateUrl: 'components/manage/class/views/manage.html',
+			controller: 'classManageCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumbs: ['manage'],
+				crumb_name: 'Classes'
+			}
+		},
+		'new_class': {
+			url: '/new_class',
+			templateUrl: 'components/manage/class/views/new.html',
+			controller: 'classNewCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumbs: ['manage', 'manage_class'],
+				crumb_name: 'New Class'
+			}
+		},
 	}
 	
 	for(var stateName in states) {
