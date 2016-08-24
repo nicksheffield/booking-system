@@ -27,7 +27,7 @@ angular.module('app.controllers')
 		u.phone = $scope.phone
 		u.dob = $scope.dob
 		u.id_number = $scope.id_number
-		u.group_id = $scope.group.id
+		u.group_id = $scope.group_id
 		u.password = $scope.password
 		
 		u.$save().then(function(res) {

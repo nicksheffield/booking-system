@@ -6,13 +6,23 @@ angular.module('app.directives')
 			el.addClass('current')
 		}
 		
-		if($state.current.data && $state.current.data.crumbs) {
-			_.forEach($state.current.data.crumbs, function(crumb) {
-				if(scope.url.replace('#', '') == crumb.url) {
-					el.addClass('current')
-				}
-			})
+		scope.crumbs = []
+		
+		getCrumbs($state.current)
+
+		function getCrumbs(state) {
+			if(state.data.crumb_parent) {
+				scope.crumbs.push(state.data.crumb_parent)
+
+				getCrumbs(state.data.crumb_parent)
+			}
 		}
+		
+		_.forEach(scope.crumbs, function(crumb) {
+			if(scope.url.replace('#', '') == crumb.url) {
+				el.addClass('current')
+			}
+		})
 	}
 
 	return {

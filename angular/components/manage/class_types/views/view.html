@@ -25,6 +25,23 @@
 				<td>{{ type.name }}</td>
 			</tr>
 		</table>
+		
+		<hr>
+		
+		<h2>Classes</h2>
+		
+		<table class="table" ng-show="type.groups.length">
+			<tr>
+				<th>Code</th>
+			</tr>
+			<tr ng-repeat="group in type.groups">
+				<td><a href="#/view_class/{{ group.id }}">{{ group.code }}</a></td>
+			</tr>
+		</table>
+		
+		<div class="alert alert-info" ng-if="!type.groups.length">
+			<p><i class="fa fa-exclamation-circle"></i> No classes with this type</p>
+		</div>
 
 	</div>
 	

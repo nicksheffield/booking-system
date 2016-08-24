@@ -15,7 +15,7 @@
 				<a href="#/" class="btn btn-primary">Reset password</a>
 				<a href="#/edit_user/{{ user.id }}" class="btn btn-primary">Update Info</a>
 			</div>
-			<button class="btn btn-danger" ng-click="delete()">Delete user</button>
+			<button class="btn btn-danger" ng-click="delete()">Delete User</button>
 		</div>
 	
 		<table class="table">
@@ -33,7 +33,7 @@
 				<td>{{ user.phone }}</td>
 				<td>{{ user.email }}</td>
 				<td>{{ user.id_number }}</td>
-				<td>{{ user.group.code }}</td>
+				<td><a href="#/view_class/{{ user.group.id }}">{{ user.group.code }}</a></td>
 			</tr>
 		</table>
 

@@ -117,7 +117,47 @@ angular.module('app.routes')
 				crumb_parent: 'manage_class_types',
 				crumb_name: 'New Class Type'
 			}
-		}
+		},
+		'manage_class': {
+			url: '/manage/classes',
+			templateUrl: 'components/manage/class/views/manage.html',
+			controller: 'classManageCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_parent: 'manage',
+				crumb_name: 'Classes'
+			}
+		},
+		'view_class': {
+			url: '/view_class/:id',
+			templateUrl: 'components/manage/class/views/view.html',
+			controller: 'classViewCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_parent: 'manage_class',
+				crumb_name: 'View Class'
+			}
+		},
+		'edit_class': {
+			url: '/edit_class/:id',
+			templateUrl: 'components/manage/class/views/edit.html',
+			controller: 'classEditCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_parent: 'view_class',
+				crumb_name: 'Update Class'
+			}
+		},
+		'new_class': {
+			url: '/new_class',
+			templateUrl: 'components/manage/class/views/new.html',
+			controller: 'classNewCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_parent: 'manage_class',
+				crumb_name: 'New Class'
+			}
+		},
 	}
 	
 	for(var stateName in states) {

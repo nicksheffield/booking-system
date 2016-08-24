@@ -62,7 +62,7 @@
 			<div layout="row">
 				<div class="form-group" ratio="1">
 					<label for="group">Your Class</label>
-					<select id="group" ng-model="group" ng-options="item as item.code for item in groups track by item.id" class="form-control"></select>
+					<select id="group" ng-model="group_id" ng-options="item.id as item.code for item in groups" class="form-control"></select>
 				</div>
 			</div>
 			<div class="form-group">

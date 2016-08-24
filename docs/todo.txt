@@ -6,3 +6,7 @@ Todo.txt
 	- Edit and Create users in angular from admin
 	- Figure out datefmt stuff for editing date inputs
 	- Make reference to class codes on view_user a link to manage class page
+	- Update for class type
+	- Manager/Staff/Student user levels
+	- List students on class page
+	- Students need to be confirmed
