@@ -4,3 +4,5 @@ Todo.txt
 	- Turn sidebar into a directive
 	- Organise views with their controllers
 	- Edit and Create users in angular from admin
+	- Figure out datefmt stuff for editing date inputs
+	- Make reference to class codes on view_user a link to manage class page
