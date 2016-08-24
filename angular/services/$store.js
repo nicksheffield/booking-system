@@ -13,11 +13,11 @@ angular.module('app.services')
 	}
 	
 	service.loadGroups = function() {
-		service.groups = Group.query({'with': 'type'})
+		service.groups = Group.query({'with': 'type|users'})
 	}
 	
 	service.loadGroupTypes = function() {
-		service.group_types = Group_Type.query()
+		service.group_types = Group_Type.query({'with': 'groups'})
 	}
 	
 	service.loadUsers()

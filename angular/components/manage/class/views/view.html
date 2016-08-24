@@ -3,7 +3,7 @@
 <div class="frame manage" ratio="1" ng-show="!error">
 	
 	<header class="page-header">
-		<h1>View User: {{ user.username }}</h1>
+		<h1>View Class: {{ group.code }}</h1>
 	</header>
 	
 	<breadcrumbs></breadcrumbs>
@@ -11,29 +11,41 @@
 	<div class="page-content">
 		
 		<div layout="row" justify="between" class="button-row">
-			<div>
-				<a href="#/" class="btn btn-primary">Reset password</a>
-				<a href="#/edit_user/{{ user.id }}" class="btn btn-primary">Update Info</a>
-			</div>
-			<button class="btn btn-danger" ng-click="delete()">Delete user</button>
+			<a href="#/edit_class/{{ group.id }}" class="btn btn-primary">Update Info</a>
+			<button class="btn btn-danger" ng-click="delete()">Delete Class Type</button>
 		</div>
 	
 		<table class="table">
 			<tr>
+				<th>Code</th>
+				<th>Type</th>
+			</tr>
+			<tr>
+				<td>{{ group.code }}</td>
+				<td><a href="#/view_class_type/{{ group.type.id }}">{{ group.type.name }}</a></td>
+			</tr>
+		</table>
+		
+		<hr>
+		
+		<h2>Students</h2>
+		
+		<table class="table">
+			<tr>
+				<th>Username</th>
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Phone</th>
 				<th>Email</th>
 				<th>Student ID</th>
-				<th>Class</th>
 			</tr>
-			<tr>
+			<tr ng-repeat="user in group.users">
+				<td><a href="#/view_user/{{ user.id }}">{{ user.username }}</a></td>
 				<td>{{ user.first_name }}</td>
 				<td>{{ user.last_name }}</td>
 				<td>{{ user.phone }}</td>
 				<td>{{ user.email }}</td>
 				<td>{{ user.id_number }}</td>
-				<td><a href="#/view_class/{{ user.group.id }}">{{ user.group.code }}</a></td>
 			</tr>
 		</table>
 

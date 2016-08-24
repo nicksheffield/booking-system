@@ -25,6 +25,19 @@
 				<td>{{ type.name }}</td>
 			</tr>
 		</table>
+		
+		<hr>
+		
+		<h2>Classes</h2>
+		
+		<table class="table">
+			<tr>
+				<th>Code</th>
+			</tr>
+			<tr ng-repeat="group in type.groups">
+				<td><a href="#/view_class/{{ group.id }}">{{ group.code }}</a></td>
+			</tr>
+		</table>
 
 	</div>
 	

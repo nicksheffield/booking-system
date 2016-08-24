@@ -124,8 +124,28 @@ angular.module('app.routes')
 			controller: 'classManageCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				crumbs: ['manage'],
+				crumb_parent: 'manage',
 				crumb_name: 'Classes'
+			}
+		},
+		'view_class': {
+			url: '/view_class/:id',
+			templateUrl: 'components/manage/class/views/view.html',
+			controller: 'classViewCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_parent: 'manage_class',
+				crumb_name: 'View Class'
+			}
+		},
+		'edit_class': {
+			url: '/edit_class/:id',
+			templateUrl: 'components/manage/class/views/edit.html',
+			controller: 'classEditCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_parent: 'view_class',
+				crumb_name: 'Update Class'
 			}
 		},
 		'new_class': {
@@ -134,7 +154,7 @@ angular.module('app.routes')
 			controller: 'classNewCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				crumbs: ['manage', 'manage_class'],
+				crumb_parent: 'manage_class',
 				crumb_name: 'New Class'
 			}
 		},

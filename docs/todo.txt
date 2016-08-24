@@ -5,3 +5,6 @@ Todo.txt
 	- Organise views with their controllers
 	- Edit and Create users in angular from admin
 	- Update for class type
+	- Manager/Staff/Student user levels
+	- List students on class page
+	- Students need to be confirmed
