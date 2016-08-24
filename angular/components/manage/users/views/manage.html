@@ -1,4 +1,4 @@
-<div class="sidebar-holder" ng-include="'views/sidebar.html'" layout="col"></div>
+<sidebar></sidebar>
 
 <div class="frame manage" ratio="1" ng-show="!error">
 	
@@ -23,7 +23,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="user in users | filter: filter">
+				<tr ng-repeat="user in users | filter: filter | filter: {admin: 0}">
 					<td>{{ user.username }}</td>
 					<td>{{ user.first_name }}</td>
 					<td>{{ user.last_name }}</td>

@@ -32,7 +32,7 @@ angular.module('app.directives')
 		replace: false,
 		transclude: false,
 		link: link,
-		templateUrl: 'views/breadcrumbs.html',
+		templateUrl: 'directives/breadcrumbs/breadcrumbs.html',
 		scope: {}
 	}
 })

@@ -8,10 +8,6 @@ angular.module('app.services')
 		group_types: {}
 	}
 	
-	if($auth.isAuthenticated()) {
-		service.user = User.getWithToken()
-	}
-	
 	service.loadUsers = function() {
 		service.users = User.query({'with': 'group'})
 	}
@@ -26,6 +22,11 @@ angular.module('app.services')
 	
 	service.loadUsers()
 	service.loadGroups()
+	
+	if($auth.isAuthenticated()) {
+		service.user = User.getWithToken()
+		service.loadGroupTypes()
+	}
 
 	return service
 })

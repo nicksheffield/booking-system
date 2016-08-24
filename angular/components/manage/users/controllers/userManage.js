@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('manageUsersCtrl', function($scope, $title, $store, $location) {
+.controller('userManage', function($scope, $title, $store, $location) {
 	$title('Manage Users')
 	
 	$scope.users = $store.users
@@ -9,7 +9,7 @@ angular.module('app.controllers')
 	$store.loadUsers()
 	$store.loadGroups()
 	
-	$scope.select = function(user) {
-		$location.path(''+user.id)
+	$scope.staff = function(user) {
+		return user.admin
 	}
 })
