@@ -11,8 +11,26 @@ angular.module('app.services')
 		unit: {}
 	}
 	
+	service.loadAuthUser = function() {
+		service.user = User.getWithToken()
+		
+		service.user.$promise.then(function(user) {
+			if(user.admin === 2) user._role = 'Manager'
+			if(user.admin === 1) user._role = 'Staff'
+			if(user.admin === 0) user._role = 'Student'
+		})
+	}
+	
 	service.loadUsers = function() {
 		service.users = User.query({'with': 'group'})
+		
+		service.users.$promise.then(function(users) {
+			_.forEach(users, function(user) {
+				if(user.admin === 2) user._role = 'Manager'
+				if(user.admin === 1) user._role = 'Staff'
+				if(user.admin === 0) user._role = 'Student'
+			})
+		})
 	}
 	
 	service.loadGroups = function() {
@@ -35,11 +53,11 @@ angular.module('app.services')
 		service.units = Unit.query({'with': 'product'})
 	}
 	
-	service.loadUsers()
 	service.loadGroups()
+	service.loadUsers()
 	
 	if($auth.isAuthenticated()) {
-		service.user = User.getWithToken()
+		service.loadAuthUser()
 		service.loadGroupTypes()
 		service.loadProductTypes()
 		service.loadProducts()

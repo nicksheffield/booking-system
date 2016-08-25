@@ -2,38 +2,56 @@
 
 <div class="frame manage" ratio="1" ng-show="!error">
 	
-	<header class="page-header">
-		<h1>View User: {{ user.username }}</h1>
+	<header class="page-header" layout="row" align="center" justify="between">
+		<h1>User: {{ user.username ? user.username : '[Not found]'}}</h1>
+		
+		<div class="button-row" ng-hide="!user">
+			<a href="#/" class="btn btn-primary btn-sm">Reset password</a>
+			<a href="#/edit_user/{{ user.id }}" class="btn btn-primary btn-sm">Edit</a>
+			<button class="btn btn-danger btn-sm" ng-click="delete()"><i class="fa fa-trash"></i></button>
+		</div>
 	</header>
 	
 	<breadcrumbs></breadcrumbs>
 	
 	<div class="page-content">
-		
-		<div layout="row" justify="between" class="button-row">
-			<div>
-				<a href="#/" class="btn btn-primary">Reset password</a>
-				<a href="#/edit_user/{{ user.id }}" class="btn btn-primary">Update Info</a>
-			</div>
-			<button class="btn btn-danger" ng-click="delete()">Delete User</button>
-		</div>
 	
-		<table class="table">
+		<div class="alert alert-danger" ng-hide="user">
+			<i class="fa fa-exclamation-circle"></i>
+			It looks like this user doesn't exist.
+		</div>
+		
+		<table class="table data-table" ng-hide="!user">
 			<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Phone</th>
-				<th>Email</th>
-				<th>Student ID</th>
-				<th>Class</th>
+				<td class="row-property">First Name</td>
+				<td class="row-value">{{ user.first_name }}</td>
 			</tr>
 			<tr>
-				<td>{{ user.first_name }}</td>
-				<td>{{ user.last_name }}</td>
-				<td>{{ user.phone }}</td>
-				<td>{{ user.email }}</td>
-				<td>{{ user.id_number }}</td>
-				<td><a href="#/view_class/{{ user.group.id }}">{{ user.group.code }}</a></td>
+				<td class="row-property">Last Name</td>
+				<td class="row-value">{{ user.last_name }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Phone</td>
+				<td class="row-value">{{ user.phone ? user.phone : '-' }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Email</td>
+				<td class="row-value">
+					<a href="mailto:{{ user.email }}" ng-show="user.email">{{ user.email }}</a>
+					<span ng-if="!user.email">-</span>
+				</td>
+			</tr>
+			<tr ng-hide="user.admin">
+				<td class="row-property">Student ID</td>
+				<td class="row-value">{{ user.id_number }}</td>
+			</tr>
+			<tr ng-if="!user.admin">
+				<td class="row-property">Class</td>
+				<td class="row-value"><a href="#/view_class/{{ user.group.id }}">{{ user.group.code }}</a></td>
+			</tr>
+			<tr>
+				<td class="row-property">Role</td>
+				<td class="row-value">{{ user._role }}</td>
 			</tr>
 		</table>
 

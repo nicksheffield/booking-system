@@ -2,44 +2,44 @@
 
 <div class="frame manage" ratio="1" ng-show="!error">
 	
-	<header class="page-header">
-		<h1>View Product Type: {{ type.name }}</h1>
+	<header class="page-header" layout="row" align="center" justify="between">
+		<h1>Product Type: {{ type.name ? type.name : '[Not found]' }}</h1>
+		
+		<div class="button-row" ng-hide="!type">
+			<a href="#/edit_product_type/{{ type.id }}" class="btn btn-primary btn-sm">Edit</a>
+			<button class="btn btn-danger btn-sm" ng-click="delete()"><i class="fa fa-trash"></i></button>
+		</div>
 	</header>
 	
 	<breadcrumbs></breadcrumbs>
 	
 	<div class="page-content">
-		
-		<div layout="row" justify="between" class="button-row">
-			<a href="#/edit_product_type/{{ type.id }}" class="btn btn-primary">Update Info</a>
-			<button class="btn btn-danger" ng-click="delete()">Delete Product Type</button>
-		</div>
 	
-		<table class="table">
+		<div class="alert alert-danger" ng-hide="type">
+			<i class="fa fa-exclamation-circle"></i>
+			It looks like this product type doesn't exist.
+		</div>
+		
+		<table class="table data-table" ng-hide="!type">
 			<tr>
-				<th>Name</th>
+				<td class="row-property">Name</td>
+				<td class="row-value">{{ type.name }}</td>
 			</tr>
 			<tr>
-				<td>{{ type.name }}</td>
+				<td class="row-property">Products</td>
+				<td class="row-value">
+					<ul ng-show="type.products.length">
+						<li ng-repeat="product in type.products">
+							<a href="#/view_product/{{ product.id }}">{{ product.name }}</a>
+						</li>
+					</ul>
+
+					<div class="alert alert-info" ng-if="!type.products.length">
+						<p><i class="fa fa-exclamation-circle"></i> No products with this type</p>
+					</div>
+				</td>
 			</tr>
 		</table>
-		
-		<section>
-			<h2>Products</h2>
-			
-			<table class="table" ng-show="type.products.length">
-				<tr>
-					<th>Name</th>
-				</tr>
-				<tr ng-repeat="product in type.products">
-					<td><a href="#/view_product/{{ product.id }}">{{ product.name }}</a></td>
-				</tr>
-			</table>
-			
-			<div class="alert alert-info" ng-if="!type.products.length">
-				<p><i class="fa fa-exclamation-circle"></i> No products with this type</p>
-			</div>
-		</section>
 
 	</div>
 	

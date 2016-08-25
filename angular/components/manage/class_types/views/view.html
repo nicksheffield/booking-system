@@ -2,46 +2,48 @@
 
 <div class="frame manage" ratio="1" ng-show="!error">
 	
-	<header class="page-header">
-		<h1>View Class Type: {{ type.name }}</h1>
+	<header class="page-header" layout="row" align="center" justify="between">
+		<h1>Class Type: {{ type.code ? type.code : '[Not found]'}}</h1>
+		
+		<div class="button-row" ng-hide="!type">
+			<a href="#/edit_class_type/{{ type.id }}" class="btn btn-primary btn-sm">Edit</a>
+			<button class="btn btn-danger btn-sm" ng-click="delete()"><i class="fa fa-trash"></i></button>
+		</div>
 	</header>
 	
 	<breadcrumbs></breadcrumbs>
 	
 	<div class="page-content">
-		
-		<div layout="row" justify="between" class="button-row">
-			<a href="#/edit_class_type/{{ type.id }}" class="btn btn-primary">Update Info</a>
-			<button class="btn btn-danger" ng-click="delete()">Delete Class Type</button>
-		</div>
 	
-		<table class="table">
+		<div class="alert alert-danger" ng-hide="type">
+			<i class="fa fa-exclamation-circle"></i>
+			It looks like this class type doesn't exist.
+		</div>
+		
+		<table class="table data-table" ng-hide="!type">
 			<tr>
-				<th>Code</th>
-				<th>Name</th>
+				<td class="row-property">Code</td>
+				<td class="row-value">{{ type.code }}</td>
 			</tr>
 			<tr>
-				<td>{{ type.code }}</td>
-				<td>{{ type.name }}</td>
+				<td class="row-property">Name</td>
+				<td class="row-value">{{ type.name }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Classes</td>
+				<td class="row-value">
+					<ul ng-show="type.groups.length">
+						<li ng-repeat="group in type.groups">
+							<a href="#/view_class/{{ group.id }}">{{ group.code }}</a>
+						</li>
+					</ul>
+					
+					<div class="alert alert-info" ng-if="!type.groups.length">
+						<p><i class="fa fa-exclamation-circle"></i> No classes with this type</p>
+					</div>
+				</td>
 			</tr>
 		</table>
-		
-		<section>
-			<h2>Classes</h2>
-			
-			<table class="table" ng-show="type.groups.length">
-				<tr>
-					<th>Code</th>
-				</tr>
-				<tr ng-repeat="group in type.groups">
-					<td><a href="#/view_class/{{ group.id }}">{{ group.code }}</a></td>
-				</tr>
-			</table>
-			
-			<div class="alert alert-info" ng-if="!type.groups.length">
-				<p><i class="fa fa-exclamation-circle"></i> No classes with this type</p>
-			</div>
-		</section>
 
 	</div>
 	

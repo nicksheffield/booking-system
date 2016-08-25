@@ -130,7 +130,12 @@ gulp.task('watch', ['angular', 'css'], function() {
 	gulp.watch(paths.views,        ['angular'])
 
 	if(argv.browserSync) {
-		php.server({ base: 'public', port: 8010, keepalive: true})
+		php.server({
+			base: 'public',
+			port: 8010,
+			keepalive: true,
+			stdio: 'ignore'
+		})
 
 		browserSync({
 			proxy: '127.0.0.1:8010',

@@ -4,7 +4,7 @@
 	
 	<header class="page-header" layout="row" justify="between" align="center">
 		<h1>Manage Classes</h1>
-		<a href="#/new_class" class="btn btn-info btn-icon"><i class="fa fa-plus"></i>New</a>
+		<a href="#/new_class" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New</a>
 	</header>
 	
 	<breadcrumbs></breadcrumbs>
@@ -13,7 +13,7 @@
 		
 		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
 	
-		<table class="table table-hover">
+		<table class="table table-hover table-striped">
 			<thead>
 				<tr>
 					<th class="table-col-code">Code</th>
@@ -26,7 +26,7 @@
 					<td><a href="#/view_class/{{ group.id }}">{{ group.code }}</a></td>
 					<td><a href="#/view_class_type/{{ group.type.id }}">{{ group.type.name }}</a></td>
 					<td>
-						<a href="#/view_class/{{ group.id }}" class="btn btn-primary btn-sm btn-icon-right">
+						<a href="#/view_class/{{ group.id }}" class="btn btn-info btn-sm btn-icon-right">
 							View
 							<i class="fa fa-arrow-right"></i>
 						</a>

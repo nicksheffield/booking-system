@@ -6,6 +6,8 @@ angular.module('app.controllers')
 	$scope.users = $store.users
 	$scope.groups = $store.groups
 	
+	console.log($scope.users)
+	
 	$store.loadUsers()
 	$store.loadGroups()
 	

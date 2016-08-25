@@ -2,34 +2,44 @@
 
 <div class="frame manage" ratio="1" ng-show="!error">
 	
-	<header class="page-header">
-		<h1>View Unit: {{ unit.unit_number }}</h1>
+	<header class="page-header" layout="row" align="center" justify="between">
+		<h1>Unit: {{ unit.unit_number ? unit.unit_number : '[Not found]' }}</h1>
+		
+		<div class="button-row" ng-hide="!unit">
+			<a href="#/edit_unit/{{ unit.id }}" class="btn btn-primary btn-sm">Edit</a>
+			<button class="btn btn-danger btn-sm" ng-click="delete()"><i class="fa fa-trash"></i></button>
+		</div>
 	</header>
 	
 	<breadcrumbs></breadcrumbs>
 	
 	<div class="page-content">
-		
-		<div layout="row" justify="between" class="button-row">
-			<a href="#/edit_unit/{{ unit.id }}" class="btn btn-primary">Update Info</a>
-			<button class="btn btn-danger" ng-click="delete()">Delete Product</button>
+	
+		<div class="alert alert-danger" ng-hide="unit">
+			<i class="fa fa-exclamation-circle"></i>
+			It looks like this unit doesn't exist.
 		</div>
 	
-		<table class="table">
+		<table class="table data-table" ng-hide="!unit">
 			<tr>
-				<th class="table-col-name">Unit No</th>
-				<th class="table-col-code">Serial No</th>
-				<th class="table-col-name">Asset No</th>
-				<th class="table-col-name">Product</th>
-				<th class="table-col-name">Notes</th>
-				<th class="table-col-controls"></th>
+				<td class="row-property">Unit No</td>
+				<td class="row-value">{{ unit.unit_number ? unit.unit_number : '-' }}</td>
 			</tr>
 			<tr>
-				<td>{{ unit.unit_number }}</td>
-				<td>{{ unit.serial_number }}</td>
-				<td>{{ unit.asset_number }}</td>
-				<td><a href="#/view_product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
-				<td>{{ unit.notes }}</td>
+				<td class="row-property">Serial No</td>
+				<td class="row-value">{{ unit.serial_number ? unit.serial_number : '-' }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Asset No</td>
+				<td class="row-value">{{ unit.asset_number ? unit.asset_number : '-' }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Product</td>
+				<td class="row-value"><a href="#/view_product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
+			</tr>
+			<tr>
+				<td class="row-property">Notes</td>
+				<td class="row-value">{{ unit.notes ? unit.notes : '-' }}</td>
 			</tr>
 		</table>
 
