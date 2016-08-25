@@ -1,3 +1,5 @@
+var php           = require('gulp-connect-php')             // run a local php server
+var argv          = require('yargs').argv                   // parse command line arguments
 var gulp          = require('gulp')                         // the main guy
 var jscs          = require('gulp-jscs')                    // javascript code style
 var clone         = require('gulp-clone')                   // used to fork a stream
@@ -16,12 +18,11 @@ var annotate      = require('gulp-ng-annotate')             // safely minify ang
 var beautify      = require('gulp-cssbeautify')             // make files human readable
 var minifycss     = require('gulp-minify-css')              // minify css code
 var sourcemap     = require('gulp-sourcemaps')              // create sourcemaps
+var browserSync   = require('browser-sync')                 // turn on a local server
 var autoprefix    = require('gulp-autoprefixer')            // prefix any css with low support
 var templateCache = require('gulp-angular-templatecache')   // cache angular template files
 
-var browserSync   = require('browser-sync')
-var php           = require('gulp-connect-php')
-var argv          = require('yargs').argv
+
 
 var paths = {
 	stylus: {
@@ -114,7 +115,7 @@ gulp.task('libs', function() {
 	var stream = gulp.src(libs)                             // get all the lib files
 		.pipe(concat('libs.min.js'))                        // merge them together
 		.pipe(uglify())                                     // minify the js
-		.pipe(gulp.dest(paths.output))                     // save it into the dist folder
+		.pipe(gulp.dest(paths.output))                      // save it into the dist folder
 	
 	return stream
 	
