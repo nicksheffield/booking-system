@@ -23,7 +23,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="group in groups | filter: filter">
-					<td>{{ group.code }}</td>
+					<td><a href="#/view_class/{{ group.id }}">{{ group.code }}</a></td>
 					<td><a href="#/view_class_type/{{ group.type.id }}">{{ group.type.name }}</a></td>
 					<td>
 						<a href="#/view_class/{{ group.id }}" class="btn btn-primary btn-sm btn-icon-right">

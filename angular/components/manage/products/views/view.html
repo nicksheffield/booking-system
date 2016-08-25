@@ -1,0 +1,54 @@
+<sidebar></sidebar>
+
+<div class="frame manage" ratio="1" ng-show="!error">
+	
+	<header class="page-header">
+		<h1>View Product: {{ product.name }}</h1>
+	</header>
+	
+	<breadcrumbs></breadcrumbs>
+	
+	<div class="page-content">
+		
+		<div layout="row" justify="between" class="button-row">
+			<a href="#/edit_product/{{ product.id }}" class="btn btn-primary">Update Info</a>
+			<button class="btn btn-danger" ng-click="delete()">Delete Product</button>
+		</div>
+	
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+			</tr>
+			<tr>
+				<td>{{ product.name }}</td>
+				<td><a href="#/view_product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
+			</tr>
+		</table>
+		
+		<section>
+			<h2>Units</h2>
+			
+			<table class="table" ng-show="product.units.length">
+				<tr>
+					<th>Unit No</th>
+					<th>Serial No</th>
+					<th>Asset No</th>
+					<th>Notes</th>
+				</tr>
+				<tr ng-repeat="unit in product.units">
+					<td><a href="#/view_unit/{{ unit.id }}">{{ unit.unit_number }}</a></td>
+					<td>{{ unit.asset_number }}</td>
+					<td>{{ unit.serial_number }}</td>
+					<td>{{ unit.notes }}</td>
+				</tr>
+			</table>
+			
+			<div class="alert alert-info" ng-if="!product.units.length">
+				<p><i class="fa fa-exclamation-circle"></i> No units for this product</p>
+			</div>
+		</section>
+
+	</div>
+	
+</div>

@@ -5,3 +5,13 @@ Todo.txt
 	- Figure out datefmt stuff for editing date inputs
 	- Update for class type
 	- Students need to be confirmed
+	- Add photos to products
+	- Manage page is some sort of two column layout
+			
+			Class Types       Product Types
+			     |                  |
+			     v                  v
+			  Classes            Products
+			     |                  |
+			     v                  v
+			   Users              Units

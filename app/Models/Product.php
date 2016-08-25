@@ -15,6 +15,10 @@ class Product extends Model
 		'name', 'product_type_id'
 	];
 	
+	public function units() {
+		return $this->hasMany('App\Models\Unit', 'product_id');
+	}
+	
 	public function type() {
 		return $this->belongsTo('App\Models\Product_Type', 'product_type_id');
 	}

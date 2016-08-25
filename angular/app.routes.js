@@ -40,6 +40,10 @@ angular.module('app.routes')
 				crumb_name: 'Manage'
 			}
 		},
+		
+		// ------------------------------------------------------------
+		// Manage Users
+		// ------------------------------------------------------------
 		'manage_users': {
 			url: '/manage/users',
 			templateUrl: 'components/manage/users/views/manage.html',
@@ -80,6 +84,10 @@ angular.module('app.routes')
 				crumb_name: 'New User'
 			}
 		},
+		
+		// ------------------------------------------------------------
+		// Manage Class Types
+		// ------------------------------------------------------------
 		'manage_class_types': {
 			url: '/manage/class_types',
 			templateUrl: 'components/manage/class_types/views/manage.html',
@@ -120,9 +128,13 @@ angular.module('app.routes')
 				crumb_name: 'New Class Type'
 			}
 		},
+		
+		// ------------------------------------------------------------
+		// Manage Classes
+		// ------------------------------------------------------------
 		'manage_class': {
 			url: '/manage/classes',
-			templateUrl: 'components/manage/class/views/manage.html',
+			templateUrl: 'components/manage/classes/views/manage.html',
 			controller: 'classManageCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -132,7 +144,7 @@ angular.module('app.routes')
 		},
 		'view_class': {
 			url: '/view_class/:id',
-			templateUrl: 'components/manage/class/views/view.html',
+			templateUrl: 'components/manage/classes/views/view.html',
 			controller: 'classViewCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -142,7 +154,7 @@ angular.module('app.routes')
 		},
 		'edit_class': {
 			url: '/edit_class/:id',
-			templateUrl: 'components/manage/class/views/edit.html',
+			templateUrl: 'components/manage/classes/views/edit.html',
 			controller: 'classEditCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -152,12 +164,144 @@ angular.module('app.routes')
 		},
 		'new_class': {
 			url: '/new_class',
-			templateUrl: 'components/manage/class/views/new.html',
+			templateUrl: 'components/manage/classes/views/new.html',
 			controller: 'classNewCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage_class',
 				crumb_name: 'New Class'
+			}
+		},
+		
+		// ------------------------------------------------------------
+		// Manage Product Types
+		// ------------------------------------------------------------
+		'manage_product_type': {
+			url: '/manage/product_types',
+			templateUrl: 'components/manage/product_types/views/manage.html',
+			controller: 'productTypeManageCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage',
+				crumb_name: 'Product Types'
+			}
+		},
+		'view_product_type': {
+			url: '/view_product_type/:id',
+			templateUrl: 'components/manage/product_types/views/view.html',
+			controller: 'productTypeViewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_product_type',
+				crumb_name: 'View Product Types'
+			}
+		},
+		'edit_product_type': {
+			url: '/edit_product_type/:id',
+			templateUrl: 'components/manage/product_types/views/edit.html',
+			controller: 'productTypeEditCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'view_product_type',
+				crumb_name: 'Update Product Types'
+			}
+		},
+		'new_product_type': {
+			url: '/new_product_type',
+			templateUrl: 'components/manage/product_types/views/new.html',
+			controller: 'productTypeNewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_product_type',
+				crumb_name: 'New Product Types'
+			}
+		},
+		
+		// ------------------------------------------------------------
+		// Manage Products
+		// ------------------------------------------------------------
+		'manage_product': {
+			url: '/manage/products',
+			templateUrl: 'components/manage/products/views/manage.html',
+			controller: 'productManageCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage',
+				crumb_name: 'Products'
+			}
+		},
+		'view_product': {
+			url: '/view_product/:id',
+			templateUrl: 'components/manage/products/views/view.html',
+			controller: 'productViewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_product',
+				crumb_name: 'View Products'
+			}
+		},
+		'edit_product': {
+			url: '/edit_product/:id',
+			templateUrl: 'components/manage/products/views/edit.html',
+			controller: 'productEditCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'view_product',
+				crumb_name: 'Update Product'
+			}
+		},
+		'new_product': {
+			url: '/new_product',
+			templateUrl: 'components/manage/products/views/new.html',
+			controller: 'productNewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_product',
+				crumb_name: 'New Product'
+			}
+		},
+		
+		// ------------------------------------------------------------
+		// Manage Units
+		// ------------------------------------------------------------
+		'manage_unit': {
+			url: '/manage/units',
+			templateUrl: 'components/manage/units/views/manage.html',
+			controller: 'unitManageCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage',
+				crumb_name: 'Units'
+			}
+		},
+		'view_unit': {
+			url: '/view_unit/:id',
+			templateUrl: 'components/manage/units/views/view.html',
+			controller: 'unitViewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_unit',
+				crumb_name: 'View Units'
+			}
+		},
+		'edit_unit': {
+			url: '/edit_unit/:id',
+			templateUrl: 'components/manage/units/views/edit.html',
+			controller: 'unitEditCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'view_unit',
+				crumb_name: 'Update Unit'
+			}
+		},
+		'new_unit': {
+			url: '/new_unit',
+			templateUrl: 'components/manage/units/views/new.html',
+			controller: 'unitNewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_unit',
+				crumb_name: 'New Unit'
 			}
 		},
 	}

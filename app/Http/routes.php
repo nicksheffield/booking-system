@@ -71,4 +71,31 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	*	Delete group type
 	*/
 	Route::resource('group_type', 'GroupType');
+	
+	/**
+	*	Get all product types
+	*	Get one product type
+	*	Create a product type
+	*	Update product type
+	*	Delete product type
+	*/
+	Route::resource('product_type', 'ProductType');
+	
+	/**
+	*	Get all product
+	*	Get one product
+	*	Create a product
+	*	Update product
+	*	Delete product
+	*/
+	Route::resource('product', 'Product');
+	
+	/**
+	*	Get all units
+	*	Get one units
+	*	Create a units
+	*	Update units
+	*	Delete units
+	*/
+	Route::resource('unit', 'Unit');
 });

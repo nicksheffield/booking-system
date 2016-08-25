@@ -1,0 +1,46 @@
+<sidebar></sidebar>
+
+<div class="frame manage" ratio="1" ng-show="!error">
+	
+	<header class="page-header">
+		<h1>View Product Type: {{ type.name }}</h1>
+	</header>
+	
+	<breadcrumbs></breadcrumbs>
+	
+	<div class="page-content">
+		
+		<div layout="row" justify="between" class="button-row">
+			<a href="#/edit_product_type/{{ type.id }}" class="btn btn-primary">Update Info</a>
+			<button class="btn btn-danger" ng-click="delete()">Delete Product Type</button>
+		</div>
+	
+		<table class="table">
+			<tr>
+				<th>Name</th>
+			</tr>
+			<tr>
+				<td>{{ type.name }}</td>
+			</tr>
+		</table>
+		
+		<section>
+			<h2>Products</h2>
+			
+			<table class="table" ng-show="type.products.length">
+				<tr>
+					<th>Name</th>
+				</tr>
+				<tr ng-repeat="product in type.products">
+					<td><a href="#/view_product/{{ product.id }}">{{ product.name }}</a></td>
+				</tr>
+			</table>
+			
+			<div class="alert alert-info" ng-if="!type.products.length">
+				<p><i class="fa fa-exclamation-circle"></i> No products with this type</p>
+			</div>
+		</section>
+
+	</div>
+	
+</div>

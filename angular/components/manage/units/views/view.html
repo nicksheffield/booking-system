@@ -1,0 +1,38 @@
+<sidebar></sidebar>
+
+<div class="frame manage" ratio="1" ng-show="!error">
+	
+	<header class="page-header">
+		<h1>View Unit: {{ unit.unit_number }}</h1>
+	</header>
+	
+	<breadcrumbs></breadcrumbs>
+	
+	<div class="page-content">
+		
+		<div layout="row" justify="between" class="button-row">
+			<a href="#/edit_unit/{{ unit.id }}" class="btn btn-primary">Update Info</a>
+			<button class="btn btn-danger" ng-click="delete()">Delete Product</button>
+		</div>
+	
+		<table class="table">
+			<tr>
+				<th class="table-col-name">Unit No</th>
+				<th class="table-col-code">Serial No</th>
+				<th class="table-col-name">Asset No</th>
+				<th class="table-col-name">Product</th>
+				<th class="table-col-name">Notes</th>
+				<th class="table-col-controls"></th>
+			</tr>
+			<tr>
+				<td>{{ unit.unit_number }}</td>
+				<td>{{ unit.serial_number }}</td>
+				<td>{{ unit.asset_number }}</td>
+				<td><a href="#/view_product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
+				<td>{{ unit.notes }}</td>
+			</tr>
+		</table>
+
+	</div>
+	
+</div>

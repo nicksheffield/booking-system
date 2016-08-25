@@ -3,32 +3,30 @@
 <div class="frame manage" ratio="1" ng-show="!error">
 	
 	<header class="page-header" layout="row" justify="between" align="center">
-		<h1>Manage Users</h1>
-		<a href="#/new_user" class="btn btn-info btn-icon"><i class="fa fa-plus"></i>New</a>
+		<h1>Manage Products</h1>
+		<a href="#/new_product" class="btn btn-info btn-icon"><i class="fa fa-plus"></i>New</a>
 	</header>
 	
 	<breadcrumbs></breadcrumbs>
 	
 	<div class="page-content">
-	
+		
 		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
 	
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th class="table-col-username">Username</th>
-					<th class="table-col-firstname">First name</th>
-					<th class="table-col-lastname">Last name</th>
+					<th class="table-col-code">Name</th>
+					<th class="table-col-name">Type</th>
 					<th class="table-col-controls"></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="user in users | filter: filter | filter: {admin: 0}">
-					<td><a href="#/view_user/{{ user.id }}">{{ user.username }}</a></td>
-					<td>{{ user.first_name }}</td>
-					<td>{{ user.last_name }}</td>
+				<tr ng-repeat="product in products | filter: filter">
+					<td><a href="#/view_product/{{ product.id }}">{{ product.name }}</a></td>
+					<td><a href="#/view_product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
 					<td>
-						<a href="#/view_user/{{ user.id }}" class="btn btn-primary btn-sm btn-icon-right">
+						<a href="#/view_product/{{ product.id }}" class="btn btn-primary btn-sm btn-icon-right">
 							View
 							<i class="fa fa-arrow-right"></i>
 						</a>

@@ -12,7 +12,7 @@ class Unit extends Model
 	protected $table = 'units';
 	
 	protected $fillable = [
-		'unit_number', 'product_id', 'notes'
+		'serial_number', 'asset_number', 'unit_number', 'product_id', 'notes'
 	];
 	
 	public function bookings() {

@@ -24,7 +24,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="type in group_types | filter: filter">
-					<td>{{ type.code }}</td>
+					<td><a href="#/view_class_type/{{ type.id }}">{{ type.code }}</a></td>
 					<td>{{ type.name }}</td>
 					<td>{{ type.groups.length }}</td>
 					<td>
