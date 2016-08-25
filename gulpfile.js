@@ -21,6 +21,7 @@ var templateCache = require('gulp-angular-templatecache')   // cache angular tem
 
 var browserSync   = require('browser-sync')
 var php           = require('gulp-connect-php')
+var argv          = require('yargs').argv
 
 var paths = {
 	stylus: {
@@ -127,14 +128,16 @@ gulp.task('watch', ['angular', 'css'], function() {
 	gulp.watch(paths.angular,      ['angular'])
 	gulp.watch(paths.views,        ['angular'])
 
-	php.server({ base: 'public', port: 8010, keepalive: true})
+	if(argv.browserSync) {
+		php.server({ base: 'public', port: 8010, keepalive: true})
 
-	browserSync({
-		proxy: '127.0.0.1:8010',
-		port: 8000,
-		open: true,
-		notify: false
-	});
+		browserSync({
+			proxy: '127.0.0.1:8010',
+			port: 8000,
+			open: true,
+			notify: false
+		})
+	}
 	
 })
 
