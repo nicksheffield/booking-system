@@ -53,7 +53,7 @@ gulp.task('css', function() {
 		.pipe(beautify())                             // make css really readable
 		.pipe(rename('style.css'))                    // rename file
 		.pipe(gulp.dest(paths.output))                // save it into the dist folder
-		.pipe(browserSync.stream())
+		.pipe(browserSync.stream())                   // inject the saved file into the browsersync server
 	
 	// make style.min.css
 	stream.pipe(clone())                              // make a copy of the stream up to autoprefix
@@ -61,7 +61,7 @@ gulp.task('css', function() {
 		.pipe(sourcemap.write())                      // write the sourcemap
 		.pipe(rename('style.min.css'))                // rename file
 		.pipe(gulp.dest(paths.output))                // save it into the dist folder
-		.pipe(browserSync.stream())
+		.pipe(browserSync.stream())                   // inject the saved file into the browsersync server
 	
 	return stream
 
@@ -85,11 +85,11 @@ gulp.task('angular', function() {
 		.pipe(jscs())                                       // check js code style
 		.on('error', function(){})                          // suppress jscs error reporting
 		.pipe(stylish())                                    // third-party jscs error reporting
-		.pipe(annotate())                                   // make angular callbacks minifyable
+		.pipe(annotate())                                   // make angular callbacks minifiable
 		.pipe(uglify())                                     // minify the code
 		.pipe(concat('app.min.js'))                         // merge them all into the same file
 		.pipe(gulp.dest(paths.output))                      // save it into the dist folder
-		.pipe(browserSync.stream())
+		.pipe(browserSync.stream())                         // inject the saved file into the browsersync server
 		
 	return stream
 	
