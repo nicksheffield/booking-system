@@ -4,7 +4,7 @@
 	
 	<header class="page-header" layout="row" justify="between" align="center">
 		<h1>All Classes</h1>
-		<a href="#/new_class" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New</a>
+		<a href="#/manage/class/new" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New</a>
 	</header>
 	
 	<breadcrumbs></breadcrumbs>
@@ -23,10 +23,10 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="group in groups | filter: filter">
-					<td><a href="#/view_class/{{ group.id }}">{{ group.code }}</a></td>
-					<td><a href="#/view_class_type/{{ group.type.id }}">{{ group.type.name }}</a></td>
+					<td><a href="#/manage/class/{{ group.id }}">{{ group.code }}</a></td>
+					<td><a href="#/manage/class_type/{{ group.type.id }}">{{ group.type.name }}</a></td>
 					<td>
-						<a href="#/view_class/{{ group.id }}" class="btn btn-info btn-sm btn-icon-right">
+						<a href="#/manage/class/{{ group.id }}" class="btn btn-info btn-sm btn-icon-right">
 							View
 							<i class="fa fa-arrow-right"></i>
 						</a>

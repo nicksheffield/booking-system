@@ -19,7 +19,7 @@
 			<li nav-link="Issue Equipment" url="#/book" icon="camera-retro"></li>
 			<li nav-link="Return Equipment" url="#/book" icon="hand-lizard-o"></li>
 			<li nav-link="Manage Data" url="#/manage" icon="pencil"></li>
-			<li nav-link="Logout" url="#/logout" icon="sign-out"></li>
+			<li nav-link="Logout ({{ user.username }})" url="#/logout" icon="sign-out"></li>
 		</ul>
 		
 		<!-- staff -->
@@ -28,7 +28,7 @@
 			<li nav-link="Book Equipment" url="#/book" icon="book"></li>
 			<li nav-link="Issue Equipment" url="#/book" icon="camera-retro"></li>
 			<li nav-link="Return Equipment" url="#/book" icon="hand-lizard-o"></li>
-			<li nav-link="Logout" url="#/logout" icon="sign-out"></li>
+			<li nav-link="Logout ({{ user.username }})" url="#/logout" icon="sign-out"></li>
 		</ul>
 		
 		<!-- student -->
@@ -36,7 +36,7 @@
 			<li nav-link="Home" url="#/" icon="home"></li>
 			<li nav-link="Book Equipment" url="#/book" icon="book"></li>
 			<li nav-link="Modify Booking" url="#/book" icon="book"></li>
-			<li nav-link="Logout" url="#/logout" icon="sign-out"></li>
+			<li nav-link="Logout ({{ user.username }})" url="#/logout" icon="sign-out"></li>
 		</ul>
 	</nav>
 </div>

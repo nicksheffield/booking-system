@@ -10,7 +10,7 @@ angular.module('app.controllers')
 	$scope.save = function() {
 		Product_Type.update({id: $scope.type.id}, $scope.type).$promise.then(function(res) {
 			$store.loadProductTypes()
-			$location.path('/view_product_type/' + $scope.type.id)
+			$location.path('/manage/product_type/' + $scope.type.id)
 		})
 	}
 })

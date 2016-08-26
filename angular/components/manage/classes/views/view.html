@@ -6,7 +6,7 @@
 		<h1>Class: {{ group.code }}</h1>
 		
 		<div class="button-row">
-			<a href="#/edit_class/{{ group.id }}" class="btn btn-primary btn-sm">Edit</a>
+			<a href="#/manage/class/{{ group.id }}/edit" class="btn btn-primary btn-sm">Edit</a>
 			<button class="btn btn-danger btn-sm" ng-click="delete()"><i class="fa fa-trash"></i></button>
 		</div>
 	</header>
@@ -22,14 +22,14 @@
 			</tr>
 			<tr>
 				<td class="row-property">Type</td>
-				<td class="row-value"><a href="#/view_class_type/{{ group.type.id }}">{{ group.type.name }}</a></td>
+				<td class="row-value"><a href="#/manage/class_type/{{ group.type.id }}">{{ group.type.name }}</a></td>
 			</tr>
 			<tr>
 				<td class="row-property">Students</td>
 				<td>
 					<ul ng-show="group.users.length">
 						<li ng-repeat="user in group.users">
-							<a href="#/view_user/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a>
+							<a href="#/manage/user/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a>
 						</li>
 					</ul>
 					

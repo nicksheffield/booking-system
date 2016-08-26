@@ -4,7 +4,7 @@
 	
 	<header class="page-header" layout="row" justify="between" align="center">
 		<h1>All Users</h1>
-		<a href="#/new_user" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New</a>
+		<a href="#/manage/user/new" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New</a>
 	</header>
 	
 	<breadcrumbs></breadcrumbs>
@@ -25,7 +25,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="user in users | filter: filter">
-					<td><a href="#/view_user/{{ user.id }}">{{ user.username }}</a></td>
+					<td><a href="#/manage/user/{{ user.id }}">{{ user.username }}</a></td>
 					<td>{{ user.first_name }}</td>
 					<td>{{ user.last_name }}</td>
 					<td>
@@ -34,7 +34,7 @@
 						<span ng-if="user.admin == 0">Student</span>
 					</td>
 					<td>
-						<a href="#/view_user/{{ user.id }}" class="btn btn-info btn-sm btn-icon-right">
+						<a href="#/manage/user/{{ user.id }}" class="btn btn-info btn-sm btn-icon-right">
 							View
 							<i class="fa fa-arrow-right"></i>
 						</a>

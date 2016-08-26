@@ -4,7 +4,7 @@
 	
 	<header class="page-header" layout="row" justify="between" align="center">
 		<h1>All Units</h1>
-		<a href="#/new_unit" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New</a>
+		<a href="#/manage/unit/new" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New</a>
 	</header>
 	
 	<breadcrumbs></breadcrumbs>
@@ -25,12 +25,12 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="unit in units | filter: filter">
-					<td><a href="#/view_unit/{{ unit.id }}">{{ unit.unit_number }}</a></td>
+					<td><a href="#/manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a></td>
 					<td>{{ unit.serial_number }}</td>
 					<td>{{ unit.asset_number }}</td>
-					<td><a href="#/view_product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
+					<td><a href="#/manage/product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
 					<td>
-						<a href="#/view_unit/{{ unit.id }}" class="btn btn-info btn-sm btn-icon-right">
+						<a href="#/manage/unit/{{ unit.id }}" class="btn btn-info btn-sm btn-icon-right">
 							View
 							<i class="fa fa-arrow-right"></i>
 						</a>

@@ -45,7 +45,7 @@ angular.module('app.routes')
 		// Manage Users
 		// ------------------------------------------------------------
 		'manage_users': {
-			url: '/manage/users',
+			url: '/manage/user',
 			templateUrl: 'components/manage/users/views/manage.html',
 			controller: 'userManageCtrl',
 			data: {
@@ -54,8 +54,18 @@ angular.module('app.routes')
 				crumb_name: 'All Users'
 			}
 		},
+		'new_user': {
+			url: '/manage/user/new',
+			templateUrl: 'components/manage/users/views/new.html',
+			controller: 'userNewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_users',
+				crumb_name: 'New User'
+			}
+		},
 		'view_user': {
-			url:'/view_user/:id',
+			url: '/manage/user/:id',
 			templateUrl: 'components/manage/users/views/view.html',
 			controller: 'userViewCtrl',
 			data: {
@@ -65,23 +75,13 @@ angular.module('app.routes')
 			}
 		},
 		'edit_user': {
-			url: '/edit_user/:id',
+			url: '/manage/user/:id/edit',
 			templateUrl: 'components/manage/users/views/edit.html',
 			controller: 'userEditCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'view_user',
-				crumb_name: 'Update User'
-			}
-		},
-		'new_user': {
-			url: '/new_user',
-			templateUrl: 'components/manage/users/views/new.html',
-			controller: 'userNewCtrl',
-			data: {
-				conditions: ['auth', 'manager_only'],
-				crumb_parent: 'manage_users',
-				crumb_name: 'New User'
+				crumb_name: 'Edit User'
 			}
 		},
 		
@@ -89,7 +89,7 @@ angular.module('app.routes')
 		// Manage Class Types
 		// ------------------------------------------------------------
 		'manage_class_types': {
-			url: '/manage/class_types',
+			url: '/manage/class_type',
 			templateUrl: 'components/manage/class_types/views/manage.html',
 			controller: 'classTypeManageCtrl',
 			data: {
@@ -98,8 +98,18 @@ angular.module('app.routes')
 				crumb_name: 'All Class Types'
 			}
 		},
+		'new_class_type': {
+			url: '/manage/class_type/new',
+			templateUrl: 'components/manage/class_types/views/new.html',
+			controller: 'classTypeNewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_class_types',
+				crumb_name: 'New Class Type'
+			}
+		},
 		'view_class_type': {
-			url: '/view_class_type/:id',
+			url: '/manage/class_type/:id',
 			templateUrl: 'components/manage/class_types/views/view.html',
 			controller: 'classTypeViewCtrl',
 			data: {
@@ -109,23 +119,13 @@ angular.module('app.routes')
 			}
 		},
 		'edit_class_type': {
-			url: '/edit_class_type/:id',
+			url: '/manage/class_type/:id/edit',
 			templateUrl: 'components/manage/class_types/views/edit.html',
 			controller: 'classTypeEditCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'view_class_type',
-				crumb_name: 'Update Class Type'
-			}
-		},
-		'new_class_type': {
-			url: '/new_class_type',
-			templateUrl: 'components/manage/class_types/views/new.html',
-			controller: 'classTypeNewCtrl',
-			data: {
-				conditions: ['auth', 'manager_only'],
-				crumb_parent: 'manage_class_types',
-				crumb_name: 'New Class Type'
+				crumb_name: 'Edit Class Type'
 			}
 		},
 		
@@ -133,7 +133,7 @@ angular.module('app.routes')
 		// Manage Classes
 		// ------------------------------------------------------------
 		'manage_class': {
-			url: '/manage/classes',
+			url: '/manage/class',
 			templateUrl: 'components/manage/classes/views/manage.html',
 			controller: 'classManageCtrl',
 			data: {
@@ -142,8 +142,18 @@ angular.module('app.routes')
 				crumb_name: 'All Classes'
 			}
 		},
+		'new_class': {
+			url: '/manage/class/new',
+			templateUrl: 'components/manage/classes/views/new.html',
+			controller: 'classNewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_class',
+				crumb_name: 'New Class'
+			}
+		},
 		'view_class': {
-			url: '/view_class/:id',
+			url: '/manage/class/:id',
 			templateUrl: 'components/manage/classes/views/view.html',
 			controller: 'classViewCtrl',
 			data: {
@@ -153,23 +163,13 @@ angular.module('app.routes')
 			}
 		},
 		'edit_class': {
-			url: '/edit_class/:id',
+			url: '/manage/class/:id/edit',
 			templateUrl: 'components/manage/classes/views/edit.html',
 			controller: 'classEditCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'view_class',
-				crumb_name: 'Update Class'
-			}
-		},
-		'new_class': {
-			url: '/new_class',
-			templateUrl: 'components/manage/classes/views/new.html',
-			controller: 'classNewCtrl',
-			data: {
-				conditions: ['auth', 'manager_only'],
-				crumb_parent: 'manage_class',
-				crumb_name: 'New Class'
+				crumb_name: 'Edit Class'
 			}
 		},
 		
@@ -177,7 +177,7 @@ angular.module('app.routes')
 		// Manage Product Types
 		// ------------------------------------------------------------
 		'manage_product_type': {
-			url: '/manage/product_types',
+			url: '/manage/product_type',
 			templateUrl: 'components/manage/product_types/views/manage.html',
 			controller: 'productTypeManageCtrl',
 			data: {
@@ -186,8 +186,18 @@ angular.module('app.routes')
 				crumb_name: 'All Product Types'
 			}
 		},
+		'new_product_type': {
+			url: '/manage/product_type/new',
+			templateUrl: 'components/manage/product_types/views/new.html',
+			controller: 'productTypeNewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_product_type',
+				crumb_name: 'New Product Type'
+			}
+		},
 		'view_product_type': {
-			url: '/view_product_type/:id',
+			url: '/manage/product_type/:id',
 			templateUrl: 'components/manage/product_types/views/view.html',
 			controller: 'productTypeViewCtrl',
 			data: {
@@ -197,23 +207,13 @@ angular.module('app.routes')
 			}
 		},
 		'edit_product_type': {
-			url: '/edit_product_type/:id',
+			url: '/manage/product_type/:id/edit',
 			templateUrl: 'components/manage/product_types/views/edit.html',
 			controller: 'productTypeEditCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'view_product_type',
-				crumb_name: 'Update Product Type'
-			}
-		},
-		'new_product_type': {
-			url: '/new_product_type',
-			templateUrl: 'components/manage/product_types/views/new.html',
-			controller: 'productTypeNewCtrl',
-			data: {
-				conditions: ['auth', 'manager_only'],
-				crumb_parent: 'manage_product_type',
-				crumb_name: 'New Product Type'
+				crumb_name: 'Edit Product Type'
 			}
 		},
 		
@@ -221,7 +221,7 @@ angular.module('app.routes')
 		// Manage Products
 		// ------------------------------------------------------------
 		'manage_product': {
-			url: '/manage/products',
+			url: '/manage/product',
 			templateUrl: 'components/manage/products/views/manage.html',
 			controller: 'productManageCtrl',
 			data: {
@@ -230,8 +230,18 @@ angular.module('app.routes')
 				crumb_name: 'All Products'
 			}
 		},
+		'new_product': {
+			url: '/manage/product/new',
+			templateUrl: 'components/manage/products/views/new.html',
+			controller: 'productNewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_product',
+				crumb_name: 'New Product'
+			}
+		},
 		'view_product': {
-			url: '/view_product/:id',
+			url: '/manage/product/:id',
 			templateUrl: 'components/manage/products/views/view.html',
 			controller: 'productViewCtrl',
 			data: {
@@ -241,23 +251,13 @@ angular.module('app.routes')
 			}
 		},
 		'edit_product': {
-			url: '/edit_product/:id',
+			url: '/manage/product/:id/edit',
 			templateUrl: 'components/manage/products/views/edit.html',
 			controller: 'productEditCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'view_product',
-				crumb_name: 'Update Product'
-			}
-		},
-		'new_product': {
-			url: '/new_product',
-			templateUrl: 'components/manage/products/views/new.html',
-			controller: 'productNewCtrl',
-			data: {
-				conditions: ['auth', 'manager_only'],
-				crumb_parent: 'manage_product',
-				crumb_name: 'New Product'
+				crumb_name: 'Edit Product'
 			}
 		},
 		
@@ -265,7 +265,7 @@ angular.module('app.routes')
 		// Manage Units
 		// ------------------------------------------------------------
 		'manage_unit': {
-			url: '/manage/units',
+			url: '/manage/unit',
 			templateUrl: 'components/manage/units/views/manage.html',
 			controller: 'unitManageCtrl',
 			data: {
@@ -274,8 +274,18 @@ angular.module('app.routes')
 				crumb_name: 'All Units'
 			}
 		},
+		'new_unit': {
+			url: '/manage/unit/new',
+			templateUrl: 'components/manage/units/views/new.html',
+			controller: 'unitNewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_unit',
+				crumb_name: 'New Unit'
+			}
+		},
 		'view_unit': {
-			url: '/view_unit/:id',
+			url: '/manage/unit/:id',
 			templateUrl: 'components/manage/units/views/view.html',
 			controller: 'unitViewCtrl',
 			data: {
@@ -285,23 +295,13 @@ angular.module('app.routes')
 			}
 		},
 		'edit_unit': {
-			url: '/edit_unit/:id',
+			url: '/manage/unit/:id/edit',
 			templateUrl: 'components/manage/units/views/edit.html',
 			controller: 'unitEditCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'view_unit',
-				crumb_name: 'Update Unit'
-			}
-		},
-		'new_unit': {
-			url: '/new_unit',
-			templateUrl: 'components/manage/units/views/new.html',
-			controller: 'unitNewCtrl',
-			data: {
-				conditions: ['auth', 'manager_only'],
-				crumb_parent: 'manage_unit',
-				crumb_name: 'New Unit'
+				crumb_name: 'Edit Unit'
 			}
 		},
 	}
