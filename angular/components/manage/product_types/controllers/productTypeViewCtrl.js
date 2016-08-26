@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('productTypeViewCtrl', function($scope, $stateParams, $state, $store, $location) {
+.controller('productTypeViewCtrl', function($scope, $stateParams, $state, $store, $location, $flash) {
 	$store.loadProductTypes()
 	
 	$store.product_types.$promise.then(function() {
@@ -9,13 +9,17 @@ angular.module('app.controllers')
 		})
 	})
 	
+	$scope.preNewProduct = function() {
+		$flash.set('product_type', $scope.type.id)
+	}
+	
 	$scope.delete = function() {
 		var confirmed = confirm('Are you sure you want to delete this?')
 		
 		if(confirmed) {
 			$scope.type.$delete().then(function() {
 				$store.loadProductTypes()
-				$location.path('/manage/product_types')
+				$location.path('/manage/product_type')
 			})
 		}
 	}

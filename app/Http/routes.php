@@ -91,6 +91,21 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	Route::resource('product', 'Product');
 	
 	/**
+	*	Give permission for a product to a group
+	*/
+	Route::post('/product/{product_id}/allow/{group_id}', 'Product@allow_product');
+	
+	/**
+	*	Revoke permission for a product to a group
+	*/
+	Route::post('/product/{product_id}/disallow/{group_id}', 'Product@disallow_product');
+	
+	/**
+	*	Revoke permission for a product to a group
+	*/
+	Route::put('/product/{product_id}/allow/{group_id}', 'Product@update_allow_product');
+	
+	/**
 	*	Get all units
 	*	Get one units
 	*	Create a units

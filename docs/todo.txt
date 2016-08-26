@@ -1,15 +1,11 @@
 Todo.txt
 
-	- Find a way to move standard index()/store()/update()/destroy() into a generic controller
 	- Edit/Create/Delete users in angular from admin
 	- Figure out datefmt stuff for editing date inputs
-	- Update for class type
 	- Students need to be confirmed
 	- Add photos to products
-	- Delete buttons have a confirmation dialog
 	- When you delete, have the server send back an undelete url
 		- then display this in a timed message that the user can use to undo
-	- Change update forms save buttons to say "Save changes"
 	- Dont reveal other users info in any requests when you are a student
 	- Handle page headers and their buttons more gracefully whenever the title is too long
-	- Unify crumb names "All Products"
+	- Replace select menus with combo boxes where applicable

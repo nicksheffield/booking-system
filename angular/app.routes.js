@@ -172,6 +172,16 @@ angular.module('app.routes')
 				crumb_name: 'Edit Class'
 			}
 		},
+		'allow_products_for_class': {
+			url: '/manage/class/:id/allowed_products',
+			templateUrl: 'components/manage/classes/views/allowed_products.html',
+			controller: 'classProductCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'view_class',
+				crumb_name: 'Allow Product'
+			}
+		},
 		
 		// ------------------------------------------------------------
 		// Manage Product Types

@@ -6,6 +6,7 @@
 		<h1>Class: {{ group.code }}</h1>
 		
 		<div class="button-row">
+			<a href="#/manage/class/{{ group.id }}/allowed_products" class="btn btn-primary btn-sm">Allowed Products</a>
 			<a href="#/manage/class/{{ group.id }}/edit" class="btn btn-primary btn-sm">Edit</a>
 			<button class="btn btn-danger btn-sm" ng-click="delete()"><i class="fa fa-trash"></i></button>
 		</div>
@@ -26,15 +27,46 @@
 			</tr>
 			<tr>
 				<td class="row-property">Students</td>
-				<td>
-					<ul ng-show="group.users.length">
-						<li ng-repeat="user in group.users">
-							<a href="#/manage/user/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a>
-						</li>
-					</ul>
+				<td class="row-value">
+					<div layout="row" align="start" justify="between" ng-show="group.users.length">
+						<ul>
+							<li ng-repeat="user in group.users">
+								<a href="#/manage/user/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a>
+							</li>
+						</ul>
+						
+						<a href="#/manage/user/new" ng-click="preNewUser()" class="btn btn-primary btn-sm" ng-show="group.users.length"><i class="fa fa-plus"></i></a>
+					</div>
 					
 					<div class="alert alert-info" ng-if="!group.users.length">
-						<p><i class="fa fa-exclamation-circle"></i> No students in this class</p>
+						<p layout="row" align="center" justify="between">
+							<span>
+								<i class="fa fa-exclamation-circle"></i>
+								No students in this class.
+							</span>
+							<a href="#/manage/user/new" ng-click="preNewUser()" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-plus"></i> Create one</a>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="row-property">Allowed Products</td>
+				<td class="row-value">
+					<div ng-show="group.allowed_products.length" layout="row" align="start" justify="between">
+						<ul>
+							<li ng-repeat="product in group.allowed_products">
+								<a href="#/manage/product/{{ product.id }}">{{ product.name }}</a>
+							</li>
+						</ul>
+					</div>
+					
+					<div class="alert alert-info" ng-if="!group.allowed_products.length">
+						<p layout="row" align="center" justify="between">
+							<span>
+								<i class="fa fa-exclamation-circle"></i>
+								No allowed products for this class
+							</span>
+						</p>
 					</div>
 				</td>
 			</tr>

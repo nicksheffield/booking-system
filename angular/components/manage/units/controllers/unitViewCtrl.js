@@ -15,7 +15,7 @@ angular.module('app.controllers')
 		if(confirmed) {
 			$scope.unit.$delete().then(function() {
 				$store.loadUnits()
-				$location.path('/manage/units')
+				$location.path('/manage/unit')
 			})
 		}
 	}

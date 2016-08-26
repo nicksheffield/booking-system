@@ -1,8 +1,10 @@
 angular.module('app.controllers')
 
-.controller('unitNewCtrl', function($scope, $stateParams, $store, $location, Unit) {
+.controller('unitNewCtrl', function($scope, $stateParams, $store, $location, $flash, Unit) {
 	$store.loadProducts()
 	$scope.products = $store.products
+	
+	$scope.product_id = $flash.use('product')
 
 	$scope.save = function() {
 		var u = new Unit()
@@ -16,7 +18,7 @@ angular.module('app.controllers')
 		u.$save().then(function(res) {
 			$store.loadUnits()
 
-			$location.path('/manage/units')
+			$location.path('/manage/unit')
 		})
 	}
 })

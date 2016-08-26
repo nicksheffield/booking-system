@@ -23,14 +23,24 @@
 			<tr>
 				<td class="row-property">Products</td>
 				<td class="row-value">
-					<ul ng-show="type.products.length">
-						<li ng-repeat="product in type.products">
-							<a href="#/manage/product/{{ product.id }}">{{ product.name }}</a>
-						</li>
-					</ul>
+					<div layout="row" align="start" justify="between" ng-show="type.products.length">
+						<ul>
+							<li ng-repeat="product in type.products">
+								<a href="#/manage/product/{{ product.id }}">{{ product.name }}</a>
+							</li>
+						</ul>
+						
+						<a href="#/manage/product/new" ng-click="preNewProduct()" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+					</div>
 
 					<div class="alert alert-info" ng-if="!type.products.length">
-						<p><i class="fa fa-exclamation-circle"></i> No products with this type</p>
+						<p layout="row" align="center" justify="between">
+							<span>
+								<i class="fa fa-exclamation-circle"></i>
+								No products with this type
+							</span>
+							<a href="#/manage/product/new" ng-click="preNewProduct()" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-plus"></i> Create one</a>
+						</p>
 					</div>
 				</td>
 			</tr>

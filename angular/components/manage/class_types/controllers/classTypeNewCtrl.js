@@ -16,7 +16,7 @@ angular.module('app.controllers')
 		gt.$save().then(function(res) {
 			$store.loadGroupTypes()
 
-			$location.path('/manage/class_types')
+			$location.path('/manage/class_type')
 		})
 	}
 })

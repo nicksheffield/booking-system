@@ -104,6 +104,78 @@ class UserSeeder extends Seeder
 				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'group_id' => 2,
 				'password' => bcrypt('abcd')
+			],
+			[
+				'id' => 9,
+				'username' => 'judithcarter',
+				'first_name' => 'Judith',
+				'last_name' => 'Carter',
+				'email' => 'judith@example.com',
+				'phone' => '021'.randInt(7),
+				'id_number' => randInt(5),
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'group_id' => 1,
+				'password' => bcrypt('abcd')
+			],
+			[
+				'id' => 10,
+				'username' => 'laurenhansen',
+				'first_name' => 'Lauren',
+				'last_name' => 'Hansen',
+				'email' => 'lauren@example.com',
+				'phone' => '021'.randInt(7),
+				'id_number' => randInt(5),
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'group_id' => 1,
+				'password' => bcrypt('abcd')
+			],
+			[
+				'id' => 11,
+				'username' => 'samuelbeck',
+				'first_name' => 'Samuel',
+				'last_name' => 'Beck',
+				'email' => 'samuel@example.com',
+				'phone' => '021'.randInt(7),
+				'id_number' => randInt(5),
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'group_id' => 1,
+				'password' => bcrypt('abcd')
+			],
+			[
+				'id' => 12,
+				'username' => 'kennethstanley',
+				'first_name' => 'Kenneth',
+				'last_name' => 'Stanley',
+				'email' => 'kenneth@example.com',
+				'phone' => '021'.randInt(7),
+				'id_number' => randInt(5),
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'group_id' => 1,
+				'password' => bcrypt('abcd')
+			],
+			[
+				'id' => 13,
+				'username' => 'cheryljackson',
+				'first_name' => 'Cheryl',
+				'last_name' => 'Jackson',
+				'email' => 'cheryl@example.com',
+				'phone' => '021'.randInt(7),
+				'id_number' => randInt(5),
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'group_id' => 1,
+				'password' => bcrypt('abcd')
+			],
+			[
+				'id' => 14,
+				'username' => 'emilyvasquez',
+				'first_name' => 'Emily',
+				'last_name' => 'Vasquez',
+				'email' => 'emily@example.com',
+				'phone' => '021'.randInt(7),
+				'id_number' => randInt(5),
+				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'group_id' => 1,
+				'password' => bcrypt('abcd')
 			]
 		];
 

@@ -38,7 +38,7 @@ angular.module('app.services')
 	}
 	
 	service.loadGroups = function() {
-		service.groups = Group.query({'with': 'type|users'})
+		service.groups = Group.query({'with': 'type|users|allowed_products'})
 	}
 	
 	service.loadGroupTypes = function() {
@@ -50,7 +50,7 @@ angular.module('app.services')
 	}
 	
 	service.loadProducts = function() {
-		service.products = Product.query({'with': 'units|type'})
+		service.products = Product.query({'with': 'units|type|groups_allowed'})
 	}
 	
 	service.loadUnits = function() {

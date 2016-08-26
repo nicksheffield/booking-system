@@ -24,6 +24,6 @@ class Product extends Model
 	}
 	
 	public function groups_allowed() {
-		return $this->belongsToMany('App\Models\Group', 'permissions')->withPivot('quantity');
+		return $this->belongsToMany('App\Models\Group', 'permissions')->withPivot('quantity', 'days_allowed');
 	}
 }

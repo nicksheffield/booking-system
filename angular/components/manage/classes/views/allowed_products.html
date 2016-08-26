@@ -1,0 +1,61 @@
+<sidebar></sidebar>
+
+<div class="frame manage" ratio="1" ng-show="!error">
+	
+	<header class="page-header">
+		<h1>Allow products for class: {{ group.code }}</h1>
+	</header>
+	
+	<breadcrumbs></breadcrumbs>
+	
+	<div class="page-content">
+	
+		<div class="status alert" ng-class="{'alert-success': saved, 'alert-info': !saved}">
+			
+			<span ng-if="saved === undefined">
+				<i class="fa fa-info-circle"></i>
+				Any changes you make here are saved <strong><em>immediately</em></strong>
+			</span>
+			
+			<span ng-if="!saved && saved !== undefined">
+				<i class="fa fa-cog fa-spin fa-fw"></i>
+				Saving...
+			</span>
+			
+			<span ng-if="saved">
+				<i class="fa fa-check"></i>
+				Changes saved!
+			</span>
+		</div>
+	
+		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
+		
+		<table class="table table-hover table-striped middle-table" ng-hide="!filtered.length">
+			<thead>
+				<tr>
+					<th class="table-col-checkbox"></th>
+					<th class="table-col-code">Name</th>
+					<th class="table-col-code">Type</th>
+					<th class="table-col-short-input">Quantity</th>
+					<th class="table-col-short-input">Days</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="product in products | filter: filter as filtered">
+					<td><input type="checkbox" ng-model="product._allowed" ng-change="allow(product)"></td>
+					<td><a href="#/manage/product/{{ product.id }}">{{ product.name }}</a></td>
+					<td><a href="#/manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
+					<td><input type="number" ng-model="product._quantity" ng-change="update(product)" max="{{ product.units.length }}" min="1" class="form-control"></td>
+					<td><input type="number" ng-model="product._days_allowed" ng-change="update(product)" min="1" class="form-control"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<div class="alert alert-danger bump-down" ng-if="!filtered.length">
+			<i class="fa fa-info-circle"></i>
+			There are no products that match <b>"{{ filter }}"</b>
+		</div>
+
+	</div>
+	
+</div>

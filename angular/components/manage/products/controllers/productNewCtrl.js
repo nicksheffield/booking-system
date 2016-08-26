@@ -1,8 +1,10 @@
 angular.module('app.controllers')
 
-.controller('productNewCtrl', function($scope, $stateParams, $store, $location, Product) {
+.controller('productNewCtrl', function($scope, $stateParams, $store, $location, $flash, Product) {
 	$store.loadProductTypes()
 	$scope.types = $store.product_types
+	
+	$scope.type_id = $flash.use('product_type')
 
 	$scope.save = function() {
 		var p = new Product()
@@ -14,7 +16,7 @@ angular.module('app.controllers')
 		p.$save().then(function(res) {
 			$store.loadProducts()
 
-			$location.path('/manage/products')
+			$location.path('/manage/product')
 		})
 	}
 })
