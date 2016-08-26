@@ -3,9 +3,9 @@
 <div class="frame manage" ratio="1" ng-show="!error">
 	
 	<header class="page-header" layout="row" align="center" justify="between">
-		<h1>Product Type: {{ type.name ? type.name : '[Not found]' }}</h1>
+		<h1>Product Type: {{ type.name }}</h1>
 		
-		<div class="button-row" ng-hide="!type">
+		<div class="button-row">
 			<a href="#/edit_product_type/{{ type.id }}" class="btn btn-primary btn-sm">Edit</a>
 			<button class="btn btn-danger btn-sm" ng-click="delete()"><i class="fa fa-trash"></i></button>
 		</div>
@@ -14,13 +14,8 @@
 	<breadcrumbs></breadcrumbs>
 	
 	<div class="page-content">
-	
-		<div class="alert alert-danger" ng-hide="type">
-			<i class="fa fa-exclamation-circle"></i>
-			It looks like this product type doesn't exist.
-		</div>
 		
-		<table class="table data-table" ng-hide="!type">
+		<table class="table data-table">
 			<tr>
 				<td class="row-property">Name</td>
 				<td class="row-value">{{ type.name }}</td>

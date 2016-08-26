@@ -12,7 +12,6 @@ angular.module('app.controllers')
 	
 	$scope.save = function() {
 		Product.update({id: $scope.product.id}, $scope.product).$promise.then(function(res) {
-			console.log(res)
 			$store.loadProducts()
 			$location.path('/view_product/' + $scope.product.id)
 		})

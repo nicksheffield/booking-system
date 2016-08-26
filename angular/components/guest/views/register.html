@@ -19,7 +19,7 @@
 		</div>
 		
 		<form ng-submit="register()">
-			<div layout="row">
+			<div layout="row sm-col">
 				<div class="form-group" ratio="1">
 					<label for="last_name">First Name</label>
 					<input type="text" id="first_name" ng-model="first_name" class="form-control">
@@ -29,7 +29,7 @@
 					<input type="text" id="last_name" ng-model="last_name" class="form-control">
 				</div>
 			</div>
-			<div layout="row">
+			<div layout="row sm-col">
 				<div class="form-group" ratio="1">
 					<label for="email">Email Address</label>
 					<input type="email" id="email" ng-model="email" class="form-control">
@@ -39,7 +39,7 @@
 					<input type="text" id="phone" ng-model="phone" class="form-control">
 				</div>
 			</div>
-			<div layout="row">
+			<div layout="row sm-col">
 				<div class="form-group" ratio="1">
 					<label for="dob">DOB</label>
 					<input type="date" id="dob" ng-model="dob" class="form-control">
@@ -49,7 +49,7 @@
 					<input type="text" id="id_number" ng-model="id_number" class="form-control">
 				</div>
 			</div>
-			<div layout="row">
+			<div layout="row sm-col">
 				<div class="form-group" ratio="1">
 					<label for="password">Password</label>
 					<input type="password" id="password" ng-model="password" class="form-control">
@@ -59,7 +59,7 @@
 					<input type="password" id="confirm_password" ng-model="confirm_password" class="form-control">
 				</div>
 			</div>
-			<div layout="row">
+			<div layout="row sm-col">
 				<div class="form-group" ratio="1">
 					<label for="group">Your Class</label>
 					<select id="group" ng-model="group_id" ng-options="item.id as item.code for item in groups" class="form-control"></select>

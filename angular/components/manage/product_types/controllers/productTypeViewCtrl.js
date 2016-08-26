@@ -10,9 +10,13 @@ angular.module('app.controllers')
 	})
 	
 	$scope.delete = function() {
-		$scope.type.$delete().then(function() {
-			$store.loadProductTypes()
-			$location.path('/manage/product_types')
-		})
+		var confirmed = confirm('Are you sure you want to delete this?')
+		
+		if(confirmed) {
+			$scope.type.$delete().then(function() {
+				$store.loadProductTypes()
+				$location.path('/manage/product_types')
+			})
+		}
 	}
 })

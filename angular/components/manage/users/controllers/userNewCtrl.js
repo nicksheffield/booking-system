@@ -15,7 +15,6 @@ angular.module('app.controllers')
 		u.password = $scope.password
 		
 		u.$save().then(function(res) {
-			console.log('save', res)
 
 			var credentials = {
 				username: res.username,
@@ -25,7 +24,6 @@ angular.module('app.controllers')
 			$auth
 				.login(credentials)
 				.then(function(res) {
-					console.log('res', res)
 					$store.user = res.data.user
 					$location.path('/home')
 				})

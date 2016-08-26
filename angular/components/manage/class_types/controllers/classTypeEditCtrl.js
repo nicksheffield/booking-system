@@ -9,7 +9,6 @@ angular.module('app.controllers')
 	
 	$scope.save = function() {
 		Group_Type.update({id: $scope.type.id}, $scope.type).$promise.then(function(res) {
-			console.log(res)
 			$store.loadGroupTypes()
 			$location.path('/view_class_type/' + $scope.type.id)
 		})

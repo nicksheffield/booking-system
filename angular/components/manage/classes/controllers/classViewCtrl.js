@@ -10,9 +10,13 @@ angular.module('app.controllers')
 	})
 	
 	$scope.delete = function() {
-		$scope.group.$delete().then(function() {
-			$store.loadGroups()
-			$location.path('/manage/classes')
-		})
+		var confirmed = confirm('Are you sure you want to delete this?')
+		
+		if(confirmed) {
+			$scope.group.$delete().then(function() {
+				$store.loadGroups()
+				$location.path('/manage/classes')
+			})
+		}
 	}
 })

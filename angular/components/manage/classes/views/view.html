@@ -3,9 +3,9 @@
 <div class="frame manage" ratio="1" ng-show="!error">
 	
 	<header class="page-header" layout="row" align="center" justify="between">
-		<h1>Class: {{ group.code ? group.code : '[Not found]' }}</h1>
+		<h1>Class: {{ group.code }}</h1>
 		
-		<div class="button-row" ng-hide="!group">
+		<div class="button-row">
 			<a href="#/edit_class/{{ group.id }}" class="btn btn-primary btn-sm">Edit</a>
 			<button class="btn btn-danger btn-sm" ng-click="delete()"><i class="fa fa-trash"></i></button>
 		</div>
@@ -15,12 +15,7 @@
 	
 	<div class="page-content">
 	
-		<div class="alert alert-danger" ng-hide="group">
-			<i class="fa fa-exclamation-circle"></i>
-			It looks like this class doesn't exist.
-		</div>
-	
-		<table class="table" ng-hide="!group">
+		<table class="table data-table">
 			<tr>
 				<td class="row-property">Code</td>
 				<td class="row-value">{{ group.code }}</td>

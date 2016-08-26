@@ -12,7 +12,6 @@ angular.module('app.controllers')
 	
 	$scope.save = function() {
 		Group.update({id: $scope.group.id}, $scope.group).$promise.then(function(res) {
-			console.log(res)
 			$store.loadGroups()
 			$location.path('/view_class/' + $scope.group.id)
 		})

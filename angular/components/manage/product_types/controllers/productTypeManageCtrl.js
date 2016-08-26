@@ -4,6 +4,4 @@ angular.module('app.controllers')
 	$store.loadProductTypes()
 	
 	$scope.product_types = $store.product_types
-	
-	console.log($scope.product_types)
 })

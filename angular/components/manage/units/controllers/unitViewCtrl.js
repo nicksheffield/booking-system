@@ -10,9 +10,13 @@ angular.module('app.controllers')
 	})
 	
 	$scope.delete = function() {
-		$scope.unit.$delete().then(function() {
-			$store.loadUnits()
-			$location.path('/manage/units')
-		})
+		var confirmed = confirm('Are you sure you want to delete this?')
+		
+		if(confirmed) {
+			$scope.unit.$delete().then(function() {
+				$store.loadUnits()
+				$location.path('/manage/units')
+			})
+		}
 	}
 })

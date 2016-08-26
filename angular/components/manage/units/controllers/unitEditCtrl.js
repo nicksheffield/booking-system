@@ -12,7 +12,6 @@ angular.module('app.controllers')
 	
 	$scope.save = function() {
 		Unit.update({id: $scope.unit.id}, $scope.unit).$promise.then(function(res) {
-			console.log(res)
 			$store.loadUnits()
 			$location.path('/view_unit/' + $scope.unit.id)
 		})

@@ -139,7 +139,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage',
-				crumb_name: 'Classes'
+				crumb_name: 'All Classes'
 			}
 		},
 		'view_class': {
@@ -183,7 +183,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage',
-				crumb_name: 'Product Types'
+				crumb_name: 'All Product Types'
 			}
 		},
 		'view_product_type': {
@@ -193,7 +193,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage_product_type',
-				crumb_name: 'View Product Types'
+				crumb_name: 'View Product Type'
 			}
 		},
 		'edit_product_type': {
@@ -203,7 +203,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'view_product_type',
-				crumb_name: 'Update Product Types'
+				crumb_name: 'Update Product Type'
 			}
 		},
 		'new_product_type': {
@@ -213,7 +213,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage_product_type',
-				crumb_name: 'New Product Types'
+				crumb_name: 'New Product Type'
 			}
 		},
 		
@@ -227,7 +227,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage',
-				crumb_name: 'Products'
+				crumb_name: 'All Products'
 			}
 		},
 		'view_product': {
@@ -237,7 +237,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage_product',
-				crumb_name: 'View Products'
+				crumb_name: 'View Product'
 			}
 		},
 		'edit_product': {
@@ -271,7 +271,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage',
-				crumb_name: 'Units'
+				crumb_name: 'All Units'
 			}
 		},
 		'view_unit': {
@@ -281,7 +281,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage_unit',
-				crumb_name: 'View Units'
+				crumb_name: 'View Unit'
 			}
 		},
 		'edit_unit': {

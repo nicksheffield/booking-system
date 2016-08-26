@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title ng-bind="pageTitle">Booking</title>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -12,6 +13,6 @@
 	<script src="dist/app.min.js"></script>
 </head>
 <body class="{{ bodyClass }}" layout="full-col">
-	<div layout="row" ratio="1" ui-view></div>
+	<div layout="row sm-col" ratio="1" ui-view></div>
 </body>
 </html>
