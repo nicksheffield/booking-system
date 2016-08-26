@@ -18,6 +18,8 @@ angular.module('app.services')
 			if(user.admin === 2) user._role = 'Manager'
 			if(user.admin === 1) user._role = 'Staff'
 			if(user.admin === 0) user._role = 'Student'
+				
+			user._fullname = user.first_name + ' ' + user.last_name
 		})
 	}
 	
@@ -29,6 +31,8 @@ angular.module('app.services')
 				if(user.admin === 2) user._role = 'Manager'
 				if(user.admin === 1) user._role = 'Staff'
 				if(user.admin === 0) user._role = 'Student'
+				
+				user._fullname = user.first_name + ' ' + user.last_name
 			})
 		})
 	}

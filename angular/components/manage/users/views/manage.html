@@ -13,7 +13,7 @@
 	
 		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
 	
-		<table class="table table-hover table-striped">
+		<table class="table table-hover table-striped" ng-hide="!filtered.length">
 			<thead>
 				<tr>
 					<th class="table-col-username">Username</th>
@@ -24,7 +24,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="user in users | filter: filter">
+				<tr ng-repeat="user in users | filter: filter as filtered">
 					<td><a href="#/manage/user/{{ user.id }}">{{ user.username }}</a></td>
 					<td>{{ user.first_name }}</td>
 					<td>{{ user.last_name }}</td>
@@ -42,6 +42,11 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<div class="alert alert-danger bump-down" ng-if="!filtered.length">
+			<i class="fa fa-info-circle"></i>
+			There are no users that match <b>"{{ filter }}"</b>
+		</div>
 
 	</div>
 	

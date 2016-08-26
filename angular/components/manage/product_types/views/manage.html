@@ -13,7 +13,7 @@
 		
 		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
 	
-		<table class="table table-hover table-striped">
+		<table class="table table-hover table-striped" ng-hide="!filtered.length">
 			<thead>
 				<tr>
 					<th class="table-col-name">Name</th>
@@ -22,7 +22,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="type in product_types | filter: filter">
+				<tr ng-repeat="type in product_types | filter: filter as filtered">
 					<td><a href="#/manage/product_type/{{ type.id }}">{{ type.name }}</a></td>
 					<td>{{ type.products.length }}</td>
 					<td>
@@ -34,6 +34,11 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<div class="alert alert-danger bump-down" ng-if="!filtered.length">
+			<i class="fa fa-info-circle"></i>
+			There are no product types that match <b>"{{ filter }}"</b>
+		</div>
 
 	</div>
 	

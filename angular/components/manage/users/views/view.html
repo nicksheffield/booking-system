@@ -7,7 +7,7 @@
 		
 		<div class="button-row">
 			<a href="#/" class="btn btn-primary btn-sm">Reset password</a>
-			<a href="#/edit_user/{{ user.id }}" class="btn btn-primary btn-sm">Edit</a>
+			<a href="#/manage/user/{{ user.id }}/edit" class="btn btn-primary btn-sm">Edit</a>
 			<button class="btn btn-danger btn-sm" ng-click="delete()"><i class="fa fa-trash"></i></button>
 		</div>
 	</header>
@@ -42,7 +42,7 @@
 			</tr>
 			<tr ng-if="!user.admin">
 				<td class="row-property">Class</td>
-				<td class="row-value"><a href="#/view_class/{{ user.group.id }}">{{ user.group.code }}</a></td>
+				<td class="row-value"><a href="#/manage/class/{{ user.group.id }}">{{ user.group.code }}</a></td>
 			</tr>
 			<tr>
 				<td class="row-property">Role</td>

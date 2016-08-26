@@ -13,7 +13,7 @@
 		
 		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
 	
-		<table class="table table-hover table-striped">
+		<table class="table table-hover table-striped" ng-hide="!filtered.length">
 			<thead>
 				<tr>
 					<th class="table-col-code">Code</th>
@@ -22,7 +22,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="group in groups | filter: filter">
+				<tr ng-repeat="group in groups | filter: filter as filtered">
 					<td><a href="#/manage/class/{{ group.id }}">{{ group.code }}</a></td>
 					<td><a href="#/manage/class_type/{{ group.type.id }}">{{ group.type.name }}</a></td>
 					<td>
@@ -34,6 +34,11 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<div class="alert alert-danger bump-down" ng-if="!filtered.length">
+			<i class="fa fa-info-circle"></i>
+			There are no classes that match <b>"{{ filter }}"</b>
+		</div>
 
 	</div>
 	

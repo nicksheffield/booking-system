@@ -13,7 +13,7 @@
 		
 		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
 	
-		<table class="table table-hover table-striped">
+		<table class="table table-hover table-striped" ng-hide="!filtered.length">
 			<thead>
 				<tr>
 					<th class="table-col-name">Unit No</th>
@@ -24,7 +24,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="unit in units | filter: filter">
+				<tr ng-repeat="unit in units | filter: filter as filtered">
 					<td><a href="#/manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a></td>
 					<td>{{ unit.serial_number }}</td>
 					<td>{{ unit.asset_number }}</td>
@@ -38,6 +38,11 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<div class="alert alert-danger bump-down" ng-if="!filtered.length">
+			<i class="fa fa-info-circle"></i>
+			There are no units that match <b>"{{ filter }}"</b>
+		</div>
 
 	</div>
 	
