@@ -14,8 +14,8 @@ class GroupType extends Controller
     {
         $q = Model::query();
 
-        $q = $q->limit(($request->limit ?: 20));
-        $q = $q->offset(($request->offset ?: 0));
+        // $q = $q->limit(($request->limit ?: 0));
+        // $q = $q->offset(($request->offset ?: 0));
 
         if($request->with) $q = $q->with(explode('|', $request->with));
 

@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('classProductCtrl', function($scope, $stateParams, $store, $location, $http) {
+.controller('classProductCtrl', function($scope, $stateParams, $store, $location, $http, $timeout) {
 	$store.groups.$promise.then(function() {
 		$scope.group = _.find($store.groups, function(group) {
 			return group.id == $stateParams.id
@@ -39,19 +39,21 @@ angular.module('app.controllers')
 		})
 	})
 	
-	$scope.update = function(product) {
-		if(product._allowed) {
-			$scope.saved = false
-			$http.put('/api/product/'+product.id+'/allow/'+$scope.group.id, {
-				quantity: product._quantity,
-				days_allowed: product._days_allowed
-			})
-				.then(function(res) {
-					console.log('res3', res)
-					$scope.saved = true
+	$timeout(function() {
+		$scope.update = function(product) {
+			if(product._allowed) {
+				$scope.saved = false
+				$http.put('/api/product/'+product.id+'/allow/'+$scope.group.id, {
+					quantity: product._quantity,
+					days_allowed: product._days_allowed
 				})
+					.then(function(res) {
+						console.log('res3', res)
+						$scope.saved = true
+					})
+			}
 		}
-	}
+	}, 1000)
 	
 	$scope.allow = function(product) {
 		$scope.saved = false

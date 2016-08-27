@@ -9,3 +9,9 @@ Todo.txt
 	- Dont reveal other users info in any requests when you are a student
 	- Handle page headers and their buttons more gracefully whenever the title is too long
 	- Replace select menus with combo boxes where applicable
+	- Reset users passwords
+	- Add some managerial features for staff where applicable
+	
+Bugs
+
+	- Sometimes the allowed_products page saves as soon as you load it, and wipes quantites
