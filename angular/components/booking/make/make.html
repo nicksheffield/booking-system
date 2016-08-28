@@ -21,7 +21,7 @@
 			</tr>
 			<tr ng-repeat="item in items">
 				<td>
-					<ui-select ng-model="item.value">
+					<ui-select ng-model="item.value" on-select="resetQuantity($index)">
 						<!-- placeholder has a zero-width space -->
 						<ui-select-match allow-clear="false" placeholder="​">
 							<span ng-bind="$select.selected.name"></span>
@@ -33,7 +33,7 @@
 				</td>
 				
 				<td>
-					<input type="number" ng-model="item.quantity" class="form-control booking-quantity-input">
+					<input type="number" ng-model="item.quantity" class="form-control booking-quantity-input" max="{{ max($index) }}" min="1">
 				</td>
 				
 				<td>

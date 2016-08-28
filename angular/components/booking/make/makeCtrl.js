@@ -2,11 +2,20 @@ angular.module('app.controllers')
 
 .controller('makeCtrl', function($scope, $store, $title) {
 	$title('Book Equipment')
-	$scope.user = $store.user	
+	$scope.user = $store.user
 	$store.loadAuthUser()
 
 	$scope.items = []
+	window.scope = $scope
 	
+	// Watch for when the select menu changes, and when it does, make sure
+
+	
+	$scope.resetQuantity = function(index) {
+		$scope.items[index].quantity = 1
+	}
+	
+	// add a row
 	$scope.addItem = function() {
 		$scope.items.push({
 			product: null,
@@ -14,6 +23,7 @@ angular.module('app.controllers')
 		})
 	}
 	
+	// remove a row
 	$scope.removeItem = function(index) {
 		$scope.items.splice(index, 1)
 		
@@ -22,8 +32,27 @@ angular.module('app.controllers')
 		}
 	}
 	
+	// auto add the first row
 	$scope.addItem()
 	
+	// calculate the max quantity allowed for a product
+	$scope.max = function(index) {
+		if(!$scope.group || !$scope.items.length || !$scope.products.length || !$scope.user || index === undefined) {
+			return ''
+		} else {
+			var product = $scope.items[index].value
+			
+			if(!product) return ''
+			var found_product = _.find($scope.group.allowed_products, function(allowed_product) {
+				return allowed_product.id == product.id
+			})
+			
+			return found_product.pivot.quantity
+		}
+	}
+	
+	// load all the products allowed based on the current users group.
+	// if the current user doesn't have a group, give them all the products
 	$store.user.$promise.then(function() {
 		$store.groups.$promise.then(function() {
 			$scope.group = _.find($store.groups, function(group) {
