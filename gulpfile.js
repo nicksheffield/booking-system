@@ -11,6 +11,7 @@ var concat        = require('gulp-concat')                  // merge files toget
 var stylus        = require('gulp-stylus')                  // turn stylus into css
 var addsrc        = require('gulp-add-src')                 // mid-stream gulp.src()
 var notify        = require('gulp-notify')                  // OS-level notifications
+var replace       = require('gulp-replace')                 // replace strings
 var stylish       = require('gulp-jscs-stylish')            // make jscs output nicer
 var filelog       = require('gulp-filelog')                 // list all files in the stream
 var plumber       = require('gulp-plumber')                 // handle errors without crashing
@@ -41,29 +42,29 @@ var plumberOpts = {
 gulp.task('css', function() {
 
 	// prepare css code
-	var stream = gulp.src(paths.stylus.main)          // grab our stylus file
+	var stream = gulp.src([
+		'public/components/angular-ui-select/dist/select.min.css',
+		'public/components/normalize-css/normalize.css',
+		paths.stylus.main
+	])                                                // grab our stylus file
+		.pipe(order(['select.min.css', 'normalize.css'])) // reorder files
 		.pipe(plumber(plumberOpts))                   // notify us if any errors appear
 		.pipe(sourcemap.init())                       // get ready to write a sourcemap
 		.pipe(stylus())                               // turn the stylus into css
 		.pipe(sourcemap.write())                      // write the sourcemap
-		.pipe(autoprefix('last 4 versions'))          // autoprefix the css code
-		.pipe(addsrc([
-			'public/components/angular-ui-select/dist/select.min.css',
-			'public/components/normalize-css/normalize.css'
-		]))
-		.pipe(concat('style.css'))
+		// .pipe(autoprefix('last 4 versions'))          // autoprefix the css code
+		.pipe(concat('style.css'))                    // merge the files together into one
 	
 	// make style.css
 	stream.pipe(clone())                              // make a copy of the stream up to autoprefix
 		.pipe(beautify())                             // make css really readable
-		.pipe(rename('style.css'))                    // rename file
 		.pipe(gulp.dest(paths.output))                // save it into the dist folder
 		.pipe(browserSync.stream())                   // inject the saved file into the browsersync server
 	
 	// make style.min.css
 	stream.pipe(clone())                              // make a copy of the stream up to autoprefix
 		.pipe(minifycss())                            // minify it (removes the sourcemap)
-		.pipe(sourcemap.write())                      // write the sourcemap
+		// .pipe(sourcemap.write())                      // write the sourcemap
 		.pipe(rename('style.min.css'))                // rename file
 		.pipe(gulp.dest(paths.output))                // save it into the dist folder
 		.pipe(browserSync.stream())                   // inject the saved file into the browsersync server
@@ -82,6 +83,8 @@ gulp.task('angular', function() {
 
 	var stream = gulp.src(paths.views)                      // grab all the html views
 		.pipe(plumber())                                    // stop any errors from breaking a watch
+		.pipe(replace(/\t/g, ''))                           // remove all tab characters
+		.pipe(replace(/\n/g, ''))                           // remove all new line characters
 		.pipe(templateCache('templates.js', tplCacheOpts))  // make a template cache from them
 		.pipe(insert.prepend('//jscs:disable\n'))           // disable jscs for the template cache
 		.pipe(addsrc(paths.angular))                        // add the rest of the angular app

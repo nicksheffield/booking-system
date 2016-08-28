@@ -27,7 +27,7 @@ class GroupTypesSeeder extends Seeder
 			[
 				'id' => 3,
 				'code' => 'DAV',
-				'name' => 'Digital Audio & Video'
+				'name' => 'Digital Animation & Video'
 			],
 			[
 				'id' => 4,

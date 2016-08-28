@@ -37,8 +37,13 @@ angular.module('app.controllers')
 	
 	// calculate the max quantity allowed for a product
 	$scope.max = function(index) {
-		if(!$scope.group || !$scope.items.length || !$scope.products.length || !$scope.user || index === undefined) {
-			return ''
+		if(index === undefined) return ''
+		if(!$scope.group) {
+			if($scope.items[index].value) {
+				return $scope.items[index].value.units.length
+			} else {
+				return ''
+			}
 		} else {
 			var product = $scope.items[index].value
 			

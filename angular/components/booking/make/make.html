@@ -27,7 +27,8 @@
 							<span ng-bind="$select.selected.name"></span>
 						</ui-select-match>
 						<ui-select-choices repeat="product in (products | filter: $select.search) track by product.id">
-							<span ng-bind="product.name"></span>
+							<div ng-bind-html="product.name | highlight: $select.search"></div>
+							<small ng-bind-html="product.type.name | highlight: $select.search"></small>
 						</ui-select-choices>
 					</ui-select>
 				</td>

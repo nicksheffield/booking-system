@@ -19,6 +19,7 @@ Todo.txt
 	- Maybe switch to using just email address for logging in, and refer to a user by their first name
 	- An idea: maybe "invalidate" the arrays in $store somehow, and reload them whenever they get accessed next. That way you don't need to re-request every time you go to like the units page or whatever and risk getting stale data
 	- Figure out how promises work ($q?) so I can remove those stupid _.find()'s within .$promise.then() blocks
+	- Add ngAnimate transition between changes to hide flash of content
 	
 Bugs
 
