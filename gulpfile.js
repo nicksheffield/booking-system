@@ -47,6 +47,11 @@ gulp.task('css', function() {
 		.pipe(stylus())                               // turn the stylus into css
 		.pipe(sourcemap.write())                      // write the sourcemap
 		.pipe(autoprefix('last 4 versions'))          // autoprefix the css code
+		.pipe(addsrc([
+			'public/components/angular-ui-select/dist/select.min.css',
+			'public/components/normalize-css/normalize.css'
+		]))
+		.pipe(concat('style.css'))
 	
 	// make style.css
 	stream.pipe(clone())                              // make a copy of the stream up to autoprefix
@@ -102,11 +107,12 @@ gulp.task('libs', function() {
 	// if you add more js bower components, add them to this list
 	// and they'll be included in libs.min.js
 	var libs = [
-		'public/components/jquery/dist/jquery.min.js',
-		'public/components/angular/angular.min.js',
-		'public/components/angular-resource/angular-resource.min.js',
-		'public/components/angular-ui-router/release/angular-ui-router.min.js',
-		'public/components/angular-sanitize/angular-sanitize.min.js',
+		'public/components/jquery/dist/jquery.js',
+		'public/components/angular/angular.js',
+		'public/components/angular-resource/angular-resource.js',
+		'public/components/angular-ui-router/release/angular-ui-router.js',
+		'public/components/angular-sanitize/angular-sanitize.js',
+		'public/components/angular-ui-select/dist/select.js',
 		'public/components/lodash/lodash.js',
 		'public/components/satellizer/dist/satellizer.js',
 		'public/components/moment/moment.js',

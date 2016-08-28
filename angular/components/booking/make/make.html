@@ -7,15 +7,40 @@
 	</header>
 	
 	<div class="page-content">
-
-		<p>Have a couple of date inputs, so gotta figure that out, and may as well finish the user stuff when I do that.</p>
 		
-		<p>Then have a row with a combobox that has a list of allowed products for this users group.</p>
+		<button class="btn btn-primary btn-icon" ng-click="addItem()">
+			<i class="fa fa-plus"></i>
+			Add Item
+		</button>
 		
-		<p>Next to the combobox you have a quantity input.</p>
+		<table class="table booking-table">
+			<tr>
+				<th class="booking-heading-product">Product</th>
+				<th class="booking-heading-quantity">Quantity</th>
+				<th class="booking-heading-control"></th>
+			</tr>
+			<tr ng-repeat="item in items">
+				<td>
+					<ui-select ng-model="item.value">
+						<!-- placeholder has a zero-width space -->
+						<ui-select-match allow-clear="false" placeholder="​">
+							<span ng-bind="$select.selected.name"></span>
+						</ui-select-match>
+						<ui-select-choices repeat="product in (products | filter: $select.search) track by product.id">
+							<span ng-bind="product.name"></span>
+						</ui-select-choices>
+					</ui-select>
+				</td>
+				
+				<td>
+					<input type="number" ng-model="item.quantity" class="form-control booking-quantity-input">
+				</td>
+				
+				<td>
+					<button class="btn btn-danger btn-small" ng-click="removeItem($index)"><i class="fa fa-times"></i></button>
+				</td>
+			</tr>
+		</table>
 		
-		<p>Somewhere there's a button to add another row of combobox and quantity rows.</p>
-
 	</div>
-	
 </div>

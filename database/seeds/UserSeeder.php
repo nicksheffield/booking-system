@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
 				'password' => bcrypt('abcd')
 			],[
 				'id' => 4,
-				'username' => 'henryf'.rand(10,99),
+				'username' => 'henryf',
 				'first_name' => 'Henry',
 				'last_name' => 'Fox',
 				'email' => 'henry@example.com',

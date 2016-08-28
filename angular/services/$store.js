@@ -14,33 +14,26 @@ angular.module('app.services')
 	service.loadAuthUser = function() {
 		service.user = User.getWithToken()
 		
-		service.user.$promise.then(function(user) {
-			if(user.admin === 2) user._role = 'Manager'
-			if(user.admin === 1) user._role = 'Staff'
-			if(user.admin === 0) user._role = 'Student'
-				
-			var duration = moment.duration(moment().diff(moment(user.dob)));
-				
-			user._fullname = user.first_name + ' ' + user.last_name
-			user._age = duration.asYears().toFixed(0)
-		})
+		service.user.$promise.then(userSetup)
 	}
 	
 	service.loadUsers = function() {
 		service.users = User.query({'with': 'group'})
 		
 		service.users.$promise.then(function(users) {
-			_.forEach(users, function(user) {
-				if(user.admin === 2) user._role = 'Manager'
-				if(user.admin === 1) user._role = 'Staff'
-				if(user.admin === 0) user._role = 'Student'
-					
-				var duration = moment.duration(moment().diff(moment(user.dob)));
-				
-				user._fullname = user.first_name + ' ' + user.last_name
-				user._age = duration.asYears().toFixed(0)
-			})
+			_.forEach(users, userSetup)
 		})
+	}
+	
+	function userSetup(user) {
+		if(user.admin === 2) user._role = 'Manager'
+		if(user.admin === 1) user._role = 'Staff'
+		if(user.admin === 0) user._role = 'Student'
+			
+		var duration = moment.duration(moment().diff(moment(user.dob)));
+		
+		user._fullname = user.first_name + ' ' + user.last_name
+		user._age = duration.asYears().toFixed(0)
 	}
 	
 	service.loadGroups = function() {

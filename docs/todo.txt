@@ -16,6 +16,7 @@ Todo.txt
 	- Users can edit themselves
 	- Maybe max quantity of a product PER GROUP
 	- Waiting list for students that want to book a certain product
+	- Maybe switch to using just email address for logging in, and refer to a user by their first name
 	
 Bugs
 

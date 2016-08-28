@@ -7,9 +7,45 @@
 .form-group
 	padding 0 1em 0 0
 	
+input[type=text].form-control,
+input[type=password].form-control,
+input[type=date].form-control,
+input[type=email].form-control,
+input[type=number].form-control,
+input[type=url].form-control,
+select.form-control
+	&:hover, &:focus
+		border-color color-form-border-highlight
+	
 input[type=date]
 	line-height normal !important
 	
-input[type=search]
+*:not(.ui-select-container) input[type=search]
 	width 100%
 	width calc(100% - 1.5em)
+	
+.ui-select-container
+	width 100%
+	
+	input[type=search]
+		width calc(100% - 1.6em) !important
+		
+	.btn
+		background color-select-background
+		color color-select-color
+		border 1px solid color-select-border
+		padding .375rem .75rem
+		cursor text
+		
+		&:hover
+			background color-select-background
+			color color-select-color
+			border-color color-select-border-highlight
+	
+.ui-select-bootstrap
+	.ui-select-match-text span
+		display block
+
+.select2 > .select2-choice.ui-select-match
+	/* Because of the inclusion of Bootstrap */
+	height 29px
