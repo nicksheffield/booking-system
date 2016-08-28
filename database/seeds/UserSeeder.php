@@ -78,12 +78,14 @@ class UserSeeder extends Seeder
 		foreach($body as $person) {
 			// echo $person->name;
 			
+			$username = strtolower($person->name).strtolower(substr($person->surname,0,1)).rand(10,99);
+			
 			App\Models\User::create([
 				'id' => ++$id,
-				'username' => strtolower($person->name).strtolower(substr($person->surname,0,1)).rand(10,99),
+				'username' => $username,
 				'first_name' => $person->name,
 				'last_name' => $person->surname,
-				'email' => strtolower($person->name).rand(0,99).'@example.com',
+				'email' => $username.'@example.com',
 				'phone' => '021'.randInt(7),
 				'id_number' => randInt(5),
 				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),

@@ -32,6 +32,22 @@ angular.module('app.routes')
 				})
 			}]
 		},
+		
+		// ------------------------------------------------------------
+		// Booking
+		// ------------------------------------------------------------
+		
+		'make_booking': {
+			url: '/book',
+			templateUrl: 'components/booking/make/make.html',
+			controller: 'makeCtrl',
+			data: {conditions: ['auth']}
+		},
+		
+		// ------------------------------------------------------------
+		// Manage
+		// ------------------------------------------------------------
+		
 		'manage': {
 			url: '/manage',
 			templateUrl: 'components/manage/manage.html',

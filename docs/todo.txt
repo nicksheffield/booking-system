@@ -11,7 +11,13 @@ Todo.txt
 	- Replace select menus with combo boxes where applicable
 	- Reset users passwords
 	- Add some managerial features for staff where applicable
+	- Make all id's randomly generated, not sequential (auto_increment)
+	- Remove all the \t and \n from the app.min.js
+	- Users can edit themselves
+	- Maybe max quantity of a product PER GROUP
+	- Waiting list for students that want to book a certain product
 	
 Bugs
 
 	- Sometimes the allowed_products page saves as soon as you load it, and wipes quantites
+		- Think this is solved

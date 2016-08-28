@@ -26,7 +26,7 @@
 				<td class="row-value"><a href="#/manage/class_type/{{ group.type.id }}">{{ group.type.name }}</a></td>
 			</tr>
 			<tr>
-				<td class="row-property">Students</td>
+				<td class="row-property">Students ({{ group.users.length }})</td>
 				<td class="row-value">
 					<div layout="row" align="start" justify="between" ng-show="group.users.length">
 						<ul>
@@ -50,7 +50,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="row-property">Allowed Products</td>
+				<td class="row-property">Allowed Products ({{ group.allowed_products.length }})</td>
 				<td class="row-value">
 					<div ng-show="group.allowed_products.length" layout="row" align="start" justify="between">
 						<ul>
