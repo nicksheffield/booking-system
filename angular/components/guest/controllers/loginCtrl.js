@@ -23,7 +23,8 @@ angular.module('app.controllers')
 		$auth
 			.login(credentials)
 			.then(function(res) {
-				$store.user = res.data.user
+				// $store.user = res.data.user
+				$store.loadAuthUser()
 				$location.path('/home')
 			})
 			.catch(function(res) {

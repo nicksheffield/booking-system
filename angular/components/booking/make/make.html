@@ -7,38 +7,25 @@
 	</header>
 	
 	<div class="page-content">
+
+		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
 		
-		<button class="btn btn-primary btn-icon" ng-click="addItem()">
-			<i class="fa fa-plus"></i>
-			Add Item
-		</button>
-		
-		<table class="table booking-table">
-			<tr>
-				<th class="booking-heading-product">Product</th>
-				<th class="booking-heading-quantity">Quantity</th>
-				<th class="booking-heading-control"></th>
-			</tr>
-			<tr ng-repeat="item in items">
-				<td>
-					<ui-select ng-model="item.value" on-select="resetQuantity($index)">
-						<!-- placeholder has a zero-width space -->
-						<ui-select-match allow-clear="false" placeholder="​">
-							<span ng-bind="$select.selected.name"></span>
-						</ui-select-match>
-						<ui-select-choices repeat="product in (products | filter: $select.search) track by product.id">
-							<div ng-bind-html="product.name | highlight: $select.search"></div>
-							<small ng-bind-html="product.type.name | highlight: $select.search"></small>
-						</ui-select-choices>
-					</ui-select>
-				</td>
+		<table class="table table-hover booking-table">
+			<thead>
+				<tr>
+					<th class="booking-heading-product">Product</th>
+					<th class="booking-heading-type">Type</th>
+					<th class="booking-heading-quantity">Available</th>
+					<th class="booking-heading-quantity">Quantity</th>
+				</tr>
+			</thead>
+			<tr ng-repeat="product in products | filter: filter">
+				<td>{{ product.name }}</td>
+				<td>{{ product.type.name }}</td>
+				<td>{{ max(product) }}</td>
 				
 				<td>
-					<input type="number" ng-model="item.quantity" class="form-control booking-quantity-input" max="{{ max($index) }}" ng-keyup="checkAgainstMax($index)" min="1">
-				</td>
-				
-				<td>
-					<button class="btn btn-danger btn-small" ng-click="removeItem($index)"><i class="fa fa-times"></i></button>
+					<input type="number" ng-model="product._quantity" class="form-control booking-quantity-input" max="{{ max(product) }}" ng-keyup="checkAgainstMax(product)" min="0">
 				</td>
 			</tr>
 		</table>

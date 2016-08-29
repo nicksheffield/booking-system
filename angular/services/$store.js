@@ -54,6 +54,12 @@ angular.module('app.services')
 	
 	service.loadProducts = function() {
 		service.products = Product.query({'with': 'units|type|groups_allowed'})
+		
+		service.products.$promise.then(function(products) {
+			_.forEach(products, function(product) {
+				product._quantity = ''
+			})
+		})
 	}
 	
 	service.loadUnits = function() {

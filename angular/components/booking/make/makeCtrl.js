@@ -5,73 +5,25 @@ angular.module('app.controllers')
 	$scope.user = $store.user
 	// $store.loadAuthUser()
 
-	$scope.items = $store.booking
 	window.scope = $scope
 	
-	// Watch for when the select menu changes, and when it does, make sure
+	$scope.checkAgainstMax = function(product) {
+		var max = $scope.max(product)
 
-	
-	$scope.resetQuantity = function(index) {
-		$scope.items[index].quantity = 1
-	}
-	
-	$scope.checkAgainstMax = function(index) {
-		var max = $scope.max(index)
-		
-		if($scope.items[index].quantity > max) {
-			
-			$scope.items[index].quantity = max
+		console.log('What', product)
+		console.log(product._quantity, product._max, product._quantity > product._max)
+
+		if(product._quantity > product._max) {
+			product._quantity = 1
 		}
-		
-		if($scope.items[index].quantity === undefined) {
-			$scope.items[index].quantity = 1
+		if(product._quantity === undefined) {
+			product._quantity = product._max
 		}
-	}
-	
-	// add a row
-	$scope.addItem = function() {
-		$scope.items.push({
-			product: null,
-			quantity: 1
-		})
-	}
-	
-	// remove a row
-	$scope.removeItem = function(index) {
-		$scope.items.splice(index, 1)
-		
-		if(!$scope.items.length) {
-			$scope.addItem()
-		}
-	}
-	
-	// auto add the first row
-	if(!$scope.items.length) {
-		$scope.addItem()
 	}
 	
 	// calculate the max quantity allowed for a product
-	$scope.max = function(index) {
-		if(index === undefined) return ''
-
-		if(!$scope.group) {
-			if($scope.items[index].value) {
-				return $scope.items[index].value.units.length
-			} else {
-				return 1
-			}
-		} else {
-			var product = $scope.items[index].value
-			
-			if(!product){
-				return 1
-			}
-			var found_product = _.find($scope.group.allowed_products, function(allowed_product) {
-				return allowed_product.id == product.id
-			})
-			
-			return found_product.pivot.quantity
-		}
+	$scope.max = function(product) {
+		return product._max
 	}
 	
 	// load all the products allowed based on the current users group.
@@ -83,9 +35,20 @@ angular.module('app.controllers')
 			})
 			
 			if(!$scope.group) {
+				$store.loadProducts()
 				$scope.products = $store.products
+
+				$scope.products.$promise.then(function() {
+					_.forEach($scope.products, function(product) {
+						product._max = product.units.length
+					})
+				})
 			} else {
 				$scope.products = $scope.group.allowed_products
+
+				_.forEach($scope.products, function(product) {
+					product._max = product.pivot.quantity
+				})
 			}
 		})
 	})
