@@ -11,23 +11,3 @@
 		background-color color-danger
 	100%
 		background-color color-primary
-
-
-[ui-view].ng-enter .frame, [ui-view].ng-leave .frame
-	transition all .5s ease-in-out
-
-[ui-view].ng-enter .frame
-	opacity 0
-	transform scale3d(0.5, 0.5, 0.5)
-
-[ui-view].ng-enter-active .frame
-	opacity 1
-	transform scale3d(1, 1, 1)
-
-[ui-view].ng-leave .frame
-	opacity 1 
-	transform translate3d(0, 0, 0)
-
-[ui-view].ng-leave-active .frame
-	opacity 0
-	transform translate3d(100px, 0, 0)

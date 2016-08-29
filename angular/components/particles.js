@@ -34,14 +34,14 @@ function explode(e) {
 	c.style.width = 200 + 'px'
 	c.style.height = 200 + 'px'
 	c.style.zIndex = 9999
-	c.width = 200 * ratio
-	c.height = 200 * ratio
+	c.width = 400 / ratio
+	c.height = 400 / ratio
 	
 	function Particle() {
 		return {
 			x: c.width / 2,
 			y: c.height / 2,
-			radius: r(30,50),
+			size: r(15,25) * ratio,
 			color: colors[parseInt(Math.random()*colors.length)],
 			rotation: r(0,360, true),
 			speed: r(8,12),
@@ -68,7 +68,7 @@ function explode(e) {
 			
 			p.opacity -= 0.0
 			p.speed *= p.friction
-			p.radius *= p.friction
+			p.size *= p.friction
 			
 			p.yVel += p.gravity
 			p.y += p.yVel
@@ -79,7 +79,8 @@ function explode(e) {
 			ctx.beginPath()
 			ctx.globalAlpha = p.opacity
 			ctx.fillStyle = p.color
-			ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, false)
+			// ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, false)
+			ctx.rect(p.x, p.y, p.size, p.size)
 			ctx.fill()
 		})
 	}
