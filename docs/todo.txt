@@ -26,3 +26,15 @@ Bugs
 
 	- Sometimes the allowed_products page saves as soon as you load it, and wipes quantites
 		- Think this is solved
+
+Old code
+	<ui-select ng-model="item.value" on-select="resetQuantity($index)">
+		<!-- placeholder has a zero-width space -->
+		<ui-select-match allow-clear="false" placeholder="​">
+			<span ng-bind="$select.selected.name"></span>
+		</ui-select-match>
+		<ui-select-choices repeat="product in (products | filter: $select.search) track by product.id">
+			<div ng-bind-html="product.name | highlight: $select.search"></div>
+			<small ng-bind-html="product.type.name | highlight: $select.search"></small>
+		</ui-select-choices>
+	</ui-select>
