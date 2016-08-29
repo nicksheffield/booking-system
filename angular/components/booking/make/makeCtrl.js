@@ -5,7 +5,7 @@ angular.module('app.controllers')
 	$scope.user = $store.user
 	$store.loadAuthUser()
 
-	$scope.items = []
+	$scope.items = $store.booking
 	window.scope = $scope
 	
 	// Watch for when the select menu changes, and when it does, make sure
@@ -33,21 +33,26 @@ angular.module('app.controllers')
 	}
 	
 	// auto add the first row
-	$scope.addItem()
+	if(!$scope.items.length) {
+		$scope.addItem()
+	}
 	
 	// calculate the max quantity allowed for a product
 	$scope.max = function(index) {
 		if(index === undefined) return ''
+
 		if(!$scope.group) {
 			if($scope.items[index].value) {
 				return $scope.items[index].value.units.length
 			} else {
-				return ''
+				return 1
 			}
 		} else {
 			var product = $scope.items[index].value
 			
-			if(!product) return ''
+			if(!product){
+				return 1
+			}
 			var found_product = _.find($scope.group.allowed_products, function(allowed_product) {
 				return allowed_product.id == product.id
 			})

@@ -8,7 +8,8 @@ angular.module('app.services')
 		group_types: {},
 		product_types: {},
 		products: {},
-		unit: {}
+		unit: {},
+		booking: []
 	}
 	
 	service.loadAuthUser = function() {
@@ -29,11 +30,14 @@ angular.module('app.services')
 		if(user.admin === 2) user._role = 'Manager'
 		if(user.admin === 1) user._role = 'Staff'
 		if(user.admin === 0) user._role = 'Student'
+
+		user._fullname = user.first_name + ' ' + user.last_name
 			
 		var duration = moment.duration(moment().diff(moment(user.dob)));
 		
-		user._fullname = user.first_name + ' ' + user.last_name
 		user._age = duration.asYears().toFixed(0)
+
+		if(user.dob) user.dob = new Date(user.dob)
 	}
 	
 	service.loadGroups = function() {
