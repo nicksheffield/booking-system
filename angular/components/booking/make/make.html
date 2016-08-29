@@ -34,7 +34,7 @@
 				</td>
 				
 				<td>
-					<input type="number" ng-model="item.quantity" class="form-control booking-quantity-input" max="{{ max($index) }}" min="1">
+					<input type="number" ng-model="item.quantity" class="form-control booking-quantity-input" max="{{ max($index) }}" ng-keyup="checkAgainstMax($index)" min="1">
 				</td>
 				
 				<td>

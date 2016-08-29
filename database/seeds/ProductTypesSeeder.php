@@ -16,11 +16,11 @@ class ProductTypesSeeder extends Seeder
 		$items = [
 			[
 				'id' => 1,
-				'name' => 'Photography Camera',
+				'name' => 'Camera',
 			],
 			[
 				'id' => 2,
-				'name' => 'Video Camera',
+				'name' => 'Lens',
 			],
 			[
 				'id' => 3,
@@ -28,7 +28,15 @@ class ProductTypesSeeder extends Seeder
 			],
 			[
 				'id' => 4,
-				'name' => 'Battery',
+				'name' => 'Sound',
+			],
+			[
+				'id' => 5,
+				'name' => 'Lighting',
+			],
+			[
+				'id' => 6,
+				'name' => 'Other',
 			],
 		];
 

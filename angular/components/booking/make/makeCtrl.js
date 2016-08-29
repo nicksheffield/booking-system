@@ -3,7 +3,7 @@ angular.module('app.controllers')
 .controller('makeCtrl', function($scope, $store, $title) {
 	$title('Book Equipment')
 	$scope.user = $store.user
-	$store.loadAuthUser()
+	// $store.loadAuthUser()
 
 	$scope.items = $store.booking
 	window.scope = $scope
@@ -13,6 +13,19 @@ angular.module('app.controllers')
 	
 	$scope.resetQuantity = function(index) {
 		$scope.items[index].quantity = 1
+	}
+	
+	$scope.checkAgainstMax = function(index) {
+		var max = $scope.max(index)
+		
+		if($scope.items[index].quantity > max) {
+			
+			$scope.items[index].quantity = max
+		}
+		
+		if($scope.items[index].quantity === undefined) {
+			$scope.items[index].quantity = 1
+		}
 	}
 	
 	// add a row

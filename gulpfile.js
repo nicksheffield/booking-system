@@ -115,8 +115,11 @@ gulp.task('libs', function() {
 		'public/components/angular-resource/angular-resource.js',
 		'public/components/angular-ui-router/release/angular-ui-router.js',
 		'public/components/angular-sanitize/angular-sanitize.js',
+		'public/components/angular-animate/angular-animate.js',
 		'public/components/angular-ui-select/dist/select.js',
 		'public/components/lodash/lodash.js',
+		'public/components/mousetrap/mousetrap.js',
+		'public/components/mousetrap/plugins/global-bind/mousetrap-global-bind.js',
 		'public/components/satellizer/dist/satellizer.js',
 		'public/components/moment/moment.js',
 	]
