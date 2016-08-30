@@ -90,8 +90,14 @@ angular.module('app.services')
 	
 	if(localStorage.booking) {
 		service.booking = JSON.parse(localStorage.booking)
-		service.booking.pickup_at = new Date(service.booking.pickup_at)
-		service.booking.due_at = new Date(service.booking.due_at)
+		
+		if(service.booking.pickup_at) {
+			service.booking.pickup_at = new Date(service.booking.pickup_at)
+		}
+		
+		if(service.booking.due_at) {
+			service.booking.due_at = new Date(service.booking.due_at)
+		}
 	}
 
 	return service
