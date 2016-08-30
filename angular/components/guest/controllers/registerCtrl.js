@@ -1,8 +1,6 @@
 angular.module('app.controllers')
 
-.controller('registerCtrl', function($scope, $title, $auth, $store, $state, $location, User) {
-	$title('Register')
-	
+.controller('registerCtrl', function($scope, $auth, $store, $state, $location, User) {
 	$scope.groups = $store.groups
 	
 	$scope.first_name = 'Nick'

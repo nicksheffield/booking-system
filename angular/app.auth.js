@@ -9,8 +9,8 @@ angular.module('app.auth')
 		
 		if(!toState.data) return
 		
-		if(toState.data.crumb_name) {
-			$title(toState.data.crumb_name)
+		if(toState.data.title) {
+			$title(toState.data.title)
 		}
 			
 		if(!toState.data.conditions) return

@@ -21,6 +21,7 @@ Todo.txt
 	- Figure out how promises work ($q?) so I can remove those stupid _.find()'s within .$promise.then() blocks
 	- Add ngAnimate transition between changes to hide flash of content
 	- Clear $store.booking on logout
+	- Maybe $store is getting too big. Maybe I should make a $booking service or a $setup service or something
 	
 Bugs
 

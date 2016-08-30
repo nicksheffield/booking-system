@@ -3,13 +3,24 @@ angular.module('app.services')
 .factory('$store', function($auth, User, Group, Group_Type, Product_Type, Product, Unit) {
 	var service = {
 		user: {},
+		units: {},
 		users: {},
 		groups: {},
+		booking: {},
+		products: {},
+		bookings: {},
 		group_types: {},
 		product_types: {},
-		products: {},
-		unit: {},
-		booking: []
+	}
+	
+	service.setBooking = function(booking) {
+		localStorage.booking = JSON.stringify(booking)
+		service.booking = booking
+	}
+	
+	service.resetBooking = function() {
+		localStorage.removeItem('booking')
+		service.booking = {}
 	}
 	
 	service.loadAuthUser = function() {
@@ -75,6 +86,12 @@ angular.module('app.services')
 		service.loadProductTypes()
 		service.loadProducts()
 		service.loadUnits()
+	}
+	
+	if(localStorage.booking) {
+		service.booking = JSON.parse(localStorage.booking)
+		service.booking.pickup_at = new Date(service.booking.pickup_at)
+		service.booking.due_at = new Date(service.booking.due_at)
 	}
 
 	return service

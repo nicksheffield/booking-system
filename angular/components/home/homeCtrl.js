@@ -1,7 +1,5 @@
 angular.module('app.controllers')
 
-.controller('homeCtrl', function($scope, $rootScope, $title, $store, $stateParams, User) {
-	$title('Home')
-
+.controller('homeCtrl', function($scope, $rootScope, $store, $stateParams, User) {
 	$scope.user = $store.user
 })

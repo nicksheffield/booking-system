@@ -6,7 +6,9 @@ Mousetrap.bindGlobal(['up up down down left right left right b a'], function() {
 
 $(document).on('click', function(event) {
 	if(window.konami) {
-		explode(event)
+		if(event.clientX && event.clientY) {
+			explode(event)
+		}
 	}
 })
 

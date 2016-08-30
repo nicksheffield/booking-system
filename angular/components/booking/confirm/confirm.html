@@ -1,0 +1,46 @@
+<sidebar></sidebar>
+
+<div class="frame profile" ratio="1" ng-show="!error">
+	
+	<header class="page-header" layout="row" align="center" justify="between">
+		<h1>Confirm booking</h1>
+	</header>
+	
+	<div class="page-content">
+	
+		<p>Does this look right?</p>
+		<p>If not, you can <a href="#/book">go back</a> and modify it first.</p>
+		
+		<table class="table data-table">
+			<tr>
+				<td class="row-property">Your Name</td>
+				<td class="row-value">{{ user._fullname }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Pick Up</td>
+				<td class="row-value">{{ booking.pickup_at | date }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Due</td>
+				<td class="row-value">{{ booking.due_at | date }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Products</td>
+				<td class="row-value">
+					<ul>
+						<li ng-repeat="item in booking.products">
+							{{ product(item.id).name }}
+							<b> x{{ item.quantity }}</b>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+		
+		<button class="btn btn-success btn-large btn-sm btn-icon" ng-click="book()">
+			<i class="fa fa-check"></i>
+			Yes
+		</button>
+		
+	</div>
+</div>
