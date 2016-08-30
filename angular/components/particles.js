@@ -43,7 +43,7 @@ function explode(e) {
 		return {
 			x: c.width / 2,
 			y: c.height / 2,
-			size: r(15,25) * ratio,
+			radius: r(15,25) * ratio,
 			color: colors[parseInt(Math.random()*colors.length)],
 			rotation: r(0,360, true),
 			speed: r(8,12),
@@ -70,7 +70,7 @@ function explode(e) {
 			
 			p.opacity -= 0.0
 			p.speed *= p.friction
-			p.size *= p.friction
+			p.radius *= p.friction
 			
 			p.yVel += p.gravity
 			p.y += p.yVel
@@ -81,8 +81,8 @@ function explode(e) {
 			ctx.beginPath()
 			ctx.globalAlpha = p.opacity
 			ctx.fillStyle = p.color
-			// ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, false)
-			ctx.rect(p.x, p.y, p.size, p.size)
+			ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, false)
+			// ctx.rect(p.x, p.y, p.size, p.size)
 			ctx.fill()
 		})
 	}

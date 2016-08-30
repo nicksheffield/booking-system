@@ -20,7 +20,7 @@
 	<div class="page-content">
 	
 		<section>
-			<div layout="row" class="space-row">
+			<div layout="row sm-col" class="space-row">
 				<div ratio="1">
 					<label for="pickup_at">Pickup date</label>
 					<input type="date" id="pickup_at" ng-model="booking.pickup_at" ng-change="createBooking()" class="form-control">
@@ -38,14 +38,14 @@
 			<thead>
 				<tr>
 					<th class="booking-heading-product">Product</th>
-					<th class="booking-heading-type">Type</th>
+					<th class="booking-heading-type sm-hide">Type</th>
 					<th class="booking-heading-quantity">Available</th>
 					<th class="booking-heading-quantity">Quantity</th>
 				</tr>
 			</thead>
 			<tr ng-repeat="product in products | filter: filter">
 				<td>{{ product.name }}</td>
-				<td>{{ product.type.name }}</td>
+				<td class="sm-hide">{{ product.type.name }}</td>
 				<td>{{ max(product) }}</td>
 				
 				<td>

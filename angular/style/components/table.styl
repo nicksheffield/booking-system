@@ -41,4 +41,14 @@
 			vertical-align middle
 			
 		.booking-heading-quantity
-			width 100px
+			width 50px
+			
+	td.sm-show, th.sm-show
+		display none
+	
+	@media (max-width bp-sm)
+		.sm-hide
+			display none
+		
+		td.sm-show, th.sm-show
+			display table-cell

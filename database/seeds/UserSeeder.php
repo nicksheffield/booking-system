@@ -17,10 +17,10 @@ class UserSeeder extends Seeder
 		$items = [
 			[
 				'id' => 1,
-				'username' => 'bobr',
-				'first_name' => 'Bob',
-				'last_name' => 'Ross',
-				'email' => 'test@example.com',
+				'username' => 'nicks',
+				'first_name' => 'Nick',
+				'last_name' => 'Sheffield',
+				'email' => 'numbereft@gmail.com',
 				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'admin' => 2,
 				'password' => bcrypt('abcd')
@@ -74,26 +74,25 @@ class UserSeeder extends Seeder
 		$res = $client->request('GET', 'http://uinames.com/api/?region=england&amount='.$user_count);
 		$body = json_decode((string)$res->getBody());
 		
-		
-		foreach($body as $person) {
-			// echo $person->name;
-			
-			$username = strtolower($person->name).strtolower(substr($person->surname,0,1)).rand(10,99);
-			
-			App\Models\User::create([
-				'id' => ++$id,
-				'username' => $username,
-				'first_name' => $person->name,
-				'last_name' => $person->surname,
-				'email' => $username.'@example.com',
-				'phone' => '021'.randInt(7),
-				'id_number' => randInt(5),
-				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
-				'group_id' => ($id % $group_count) + 1,
-				'password' => bcrypt('abcd')
-			]);
+		if($body) {
+			foreach($body as $person) {
+				// echo $person->name;
+				
+				$username = strtolower($person->name).strtolower(substr($person->surname,0,1)).rand(10,99);
+				
+				App\Models\User::create([
+					'id' => ++$id,
+					'username' => $username,
+					'first_name' => $person->name,
+					'last_name' => $person->surname,
+					'email' => $username.'@example.com',
+					'phone' => '021'.randInt(7),
+					'id_number' => randInt(5),
+					'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+					'group_id' => ($id % $group_count) + 1,
+					'password' => bcrypt('abcd')
+				]);
+			}
 		}
-
-		
 	}
 }

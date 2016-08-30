@@ -14,14 +14,13 @@ Todo.txt
 	- Make all id's randomly generated, not sequential (auto_increment)
 	- Remove all the \t and \n from the app.min.js
 	- Users can edit themselves
-	- Maybe max quantity of a product PER GROUP
 	- Waiting list for students that want to book a certain product
 	- Maybe switch to using just email address for logging in, and refer to a user by their first name
 	- An idea: maybe "invalidate" the arrays in $store somehow, and reload them whenever they get accessed next. That way you don't need to re-request every time you go to like the units page or whatever and risk getting stale data
 	- Figure out how promises work ($q?) so I can remove those stupid _.find()'s within .$promise.then() blocks
-	- Add ngAnimate transition between changes to hide flash of content
-	- Clear $store.booking on logout
 	- Maybe $store is getting too big. Maybe I should make a $booking service or a $setup service or something
+	
+	- Ask graeme if bookings should have times
 	
 Bugs
 

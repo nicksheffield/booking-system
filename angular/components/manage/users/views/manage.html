@@ -17,23 +17,17 @@
 			<thead>
 				<tr>
 					<th class="table-col-username">Username</th>
-					<th class="table-col-firstname">First name</th>
-					<th class="table-col-lastname">Last name</th>
-					<th class="table-col-lastname">Role</th>
-					<th class="table-col-controls"></th>
+					<th class="table-col-firstname">Name</th>
+					<th class="table-col-lastname sm-hide">Role</th>
+					<th class="table-col-controls sm-hide"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="user in users | filter: filter as filtered">
 					<td><a href="#/manage/user/{{ user.id }}">{{ user.username }}</a></td>
-					<td>{{ user.first_name }}</td>
-					<td>{{ user.last_name }}</td>
-					<td>
-						<span ng-if="user.admin == 2">Manager</span>
-						<span ng-if="user.admin == 1">Staff</span>
-						<span ng-if="user.admin == 0">Student</span>
-					</td>
-					<td>
+					<td>{{ user._fullname }}</td>
+					<td class="sm-hide">{{ user._role }}</td>
+					<td class="sm-hide">
 						<a href="#/manage/user/{{ user.id }}" class="btn btn-info btn-sm btn-icon-right">
 							View
 							<i class="fa fa-arrow-right"></i>

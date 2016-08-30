@@ -14,65 +14,23 @@ class UnitsSeeder extends Seeder
 		DB::table('units')->delete();
 
 		$items = [
-			[
-				'id' => 1,
-				'unit_number' => 'N'.randInt(5),
-				'serial_number' => '',
-				'asset_number' => '',
-				'notes' => 'Drains battery fast',
-				'product_id' => 1
-			],
-			[
-				'id' => 2,
-				'unit_number' => 'N'.randInt(5),
-				'serial_number' => '',
-				'asset_number' => '',
-				'notes' => '',
-				'product_id' => 1
-			],
-			[
-				'id' => 3,
-				'unit_number' => 'N'.randInt(5),
-				'serial_number' => '',
-				'asset_number' => '',
-				'notes' => '',
-				'product_id' => 1
-			],
-			[
-				'id' => 4,
-				'unit_number' => 'N'.randInt(5),
-				'serial_number' => '',
-				'asset_number' => '',
-				'notes' => '',
-				'product_id' => 2
-			],
-			[
-				'id' => 5,
-				'unit_number' => 'N'.randInt(5),
-				'serial_number' => '',
-				'asset_number' => '',
-				'notes' => '',
-				'product_id' => 3
-			],
-			[
-				'id' => 6,
-				'unit_number' => 'N'.randInt(5),
-				'serial_number' => '',
-				'asset_number' => '',
-				'notes' => '',
-				'product_id' => 3
-			],
-			[
-				'id' => 7,
-				'unit_number' => 'N'.randInt(5),
-				'serial_number' => '',
-				'asset_number' => '',
-				'notes' => '',
-				'product_id' => 3
-			],
+			1, 1, 1, 2, 3, 3, 3, 4, 5, 6, 7, 8, 9, 10, 11, 11,
+			12, 13, 14, 15, 16, 16, 17, 18, 19, 20, 21, 22, 23,
+			24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 
 		];
 
-		foreach($items as $item) {
+		$c = 1;
+
+		foreach($items as $product_id) {
+			$item = [
+				'id' => $c++,
+				'unit_number' => randInt(5),
+				'serial_number' => randInt(5),
+				'asset_number' => randInt(5),
+				'notes' => '',
+				'product_id' => $product_id
+			];
+
 			App\Models\Unit::create($item);
 		}
 	}
