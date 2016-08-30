@@ -6,8 +6,8 @@
 		<h1>Unit: {{ unit.unit_number }}</h1>
 		
 		<div class="button-row">
-			<a href="#/manage/unit/{{ unit.id }}/edit" class="btn btn-primary btn-sm">Edit</a>
-			<button class="btn btn-danger btn-sm" ng-click="delete()"><i class="fa fa-trash"></i></button>
+			<btn url="#/manage/unit/{{ unit.id }}/edit" icon="pencil" small>Edit</btn>
+			<btn ng-click="delete()" icon="trash" type="danger" small></btn>
 		</div>
 	</header>
 	

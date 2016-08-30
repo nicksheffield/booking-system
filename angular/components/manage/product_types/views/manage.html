@@ -4,7 +4,7 @@
 	
 	<header class="page-header" layout="row" justify="between" align="center">
 		<h1>All Product Types</h1>
-		<a href="#/manage/product_type/new" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New</a>
+		<btn icon="plus" small url="#/manage/product_type/new">New</btn>
 	</header>
 	
 	<breadcrumbs></breadcrumbs>
@@ -26,10 +26,7 @@
 					<td><a href="#/manage/product_type/{{ type.id }}">{{ type.name }}</a></td>
 					<td>{{ type.products.length }}</td>
 					<td>
-						<a href="#/manage/product_type/{{ type.id }}" class="btn btn-info btn-sm btn-icon-right">
-							View
-							<i class="fa fa-arrow-right"></i>
-						</a>
+						<btn url="#/manage/product_type/{{ type.id }}" type="info" icon="arrow-right" small>View</btn>
 					</td>
 				</tr>
 			</tbody>

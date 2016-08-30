@@ -1,0 +1,19 @@
+<span>
+	<button ng-show="!url" class="btn btn-{{ type }}" ng-class="{
+		'btn-sm': small,
+		'btn-large': large,
+		'btn-icon': icon && hasTranscluded
+	}" ng-disabled="disable">
+		<i class="fa fa-{{ icon }}" ng-show="icon"></i>
+		<ng-transclude></ng-transclude>
+	</button>
+	
+	<a href="{{ url }}" ng-show="url" class="btn btn-{{ type }}" ng-class="{
+		'btn-sm': small,
+		'btn-large': large,
+		'btn-icon': icon && hasTranscluded
+	}" ng-disabled="disable">
+		<i class="fa fa-{{ icon }}" ng-show="icon"></i>
+		<ng-transclude></ng-transclude>
+	</a>
+</span>

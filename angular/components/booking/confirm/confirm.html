@@ -64,10 +64,7 @@
 			</tr>
 		</table>
 		
-		<button class="btn btn-success btn-large btn-sm btn-icon" ng-click="book()" ng-disabled="!booking.due_at || !booking.pickup_at || !booking.products.length">
-			<i class="fa fa-check"></i>
-			Yes
-		</button>
+		<btn type="success" large icon="check" ng-click="confirm()" disable="!booking.due_at || !booking.pickup_at || !booking.products.length">Yes</btn>
 		
 	</div>
 </div>

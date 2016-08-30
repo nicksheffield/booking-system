@@ -6,9 +6,9 @@
 		<h1>User: {{ user.username }}</h1>
 		
 		<div class="button-row">
-			<a href="#/" class="btn btn-primary btn-sm">Reset password</a>
-			<a href="#/manage/user/{{ user.id }}/edit" class="btn btn-primary btn-sm">Edit</a>
-			<button class="btn btn-danger btn-sm" ng-click="delete()"><i class="fa fa-trash"></i></button>
+			<btn url="#/manage/user/{{ user.id }}/reset_pw" icon="unlock-alt" small>Reset Password</btn>
+			<btn url="#/manage/user/{{ user.id }}/edit" icon="pencil" small>Edit</btn>
+			<btn ng-click="delete()" icon="trash" type="danger" small></btn>
 		</div>
 	</header>
 	

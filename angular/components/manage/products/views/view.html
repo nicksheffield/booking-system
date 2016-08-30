@@ -6,8 +6,8 @@
 		<h1>Product: {{ product.name }}</h1>
 		
 		<div class="button-row">
-			<a href="#/manage/product/{{ product.id }}/edit" class="btn btn-primary btn-sm">Edit</a>
-			<button class="btn btn-danger btn-sm" ng-click="delete()"><i class="fa fa-trash"></i></button>
+			<btn url="#/manage/product/{{ product.id }}/edit" icon="pencil" small>Edit</btn>
+			<btn ng-click="delete()" icon="trash" type="danger" small></btn>
 		</div>
 	</header>
 	
@@ -34,7 +34,7 @@
 							</li>
 						</ul>
 						
-						<a href="#/manage/unit/new" ng-click="preNewUnit()" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+						<btn url="#/manage/unit/new" ng-click="preNewUnit()" small icon="plus"></btn>
 					</div>
 					
 					<div class="alert alert-info" ng-if="!product.units.length">
@@ -43,7 +43,7 @@
 								<i class="fa fa-exclamation-circle"></i>
 								No units for this product
 							</span>
-							<a href="#/manage/unit/new" ng-click="preNewUnit()" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-plus"></i> Create one</a>
+							<btn url="#/manage/unit/new" ng-click="preNewUnit()" small icon="plus">Create one</btn>
 						</p>
 					</div>
 				</td>

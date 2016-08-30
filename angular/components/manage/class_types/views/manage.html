@@ -4,7 +4,7 @@
 	
 	<header class="page-header" layout="row" justify="between" align="center">
 		<h1>All Class Types</h1>
-		<a href="#/manage/class_type/new" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New</a>
+		<btn icon="plus" small url="#/manage/class_type/new">New</btn>
 	</header>
 	
 	<breadcrumbs></breadcrumbs>
@@ -28,10 +28,7 @@
 					<td>{{ type.name }}</td>
 					<td>{{ type.groups.length }}</td>
 					<td>
-						<a href="#/manage/class_type/{{ type.id }}" class="btn btn-info btn-sm btn-icon-right">
-							View
-							<i class="fa fa-arrow-right"></i>
-						</a>
+						<btn url="#/manage/class_type/{{ type.id }}" type="info" icon="arrow-right" small>View</btn>
 					</td>
 				</tr>
 			</tbody>

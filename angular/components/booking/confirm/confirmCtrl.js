@@ -18,4 +18,8 @@ angular.module('app.controllers')
 			return product.id == id
 		})
 	}
+	
+	$scope.confirm = function() {
+		console.log('confirmed!')
+	}
 })
