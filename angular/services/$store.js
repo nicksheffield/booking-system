@@ -30,7 +30,7 @@ angular.module('app.services')
 	}
 	
 	service.loadUsers = function() {
-		service.users = User.query({'with': 'group'})
+		service.users = User.query({'with': 'group|tutors_group'})
 		
 		service.users.$promise.then(function(users) {
 			_.forEach(users, userSetup)
@@ -52,7 +52,7 @@ angular.module('app.services')
 	}
 	
 	service.loadGroups = function() {
-		service.groups = Group.query({'with': 'type|users|allowed_products'})
+		service.groups = Group.query({'with': 'type|users|allowed_products|tutor'})
 	}
 	
 	service.loadGroupTypes = function() {

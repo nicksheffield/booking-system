@@ -29,6 +29,13 @@ class CreateTables extends Migration
 			$table->softDeletes();
 		});
 		
+		Schema::create('tutor', function (Blueprint $table) {
+			$table->increments('id');
+			$table->integer('user_id');
+			$table->integer('group_id');
+			$table->timestamps();
+		});
+		
 		Schema::create('password_resets', function (Blueprint $table) {
 			$table->string('email')->index();
 			$table->string('token')->index();
@@ -59,7 +66,6 @@ class CreateTables extends Migration
 			$table->integer('quantity');
 			$table->integer('days_allowed');
 			$table->timestamps();
-			$table->softDeletes();
 		});
 		
 		Schema::create('product_types', function(Blueprint $table) {
@@ -125,5 +131,6 @@ class CreateTables extends Migration
 		Schema::drop('units');
 		Schema::drop('bookings');
 		Schema::drop('booking_unit');
+		Schema::drop('tutor');
 	}
 }

@@ -26,4 +26,8 @@ class User extends Authenticatable
 	public function bookings() {
 		return $this->hasMany('App\Models\Booking', 'user_id');
 	}
+	
+	public function tutors_group() {
+		return $this->belongsToMany('App\Models\Group', 'tutor');
+	}
 }
