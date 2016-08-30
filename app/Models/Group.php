@@ -27,7 +27,7 @@ class Group extends Model
 		return $this->belongsToMany('App\Models\Product', 'permissions')->withPivot('quantity', 'days_allowed');
 	}
 	
-	public function tutor() {
+	public function tutors() {
 		return $this->belongsToMany('App\Models\User', 'tutor');
 	}
 }

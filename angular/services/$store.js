@@ -52,7 +52,7 @@ angular.module('app.services')
 	}
 	
 	service.loadGroups = function() {
-		service.groups = Group.query({'with': 'type|users|allowed_products|tutor'})
+		service.groups = Group.query({'with': 'type|users|allowed_products|tutors'})
 	}
 	
 	service.loadGroupTypes = function() {
