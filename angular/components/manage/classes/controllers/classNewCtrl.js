@@ -12,7 +12,7 @@ angular.module('app.controllers')
 		g.group_type_id = $scope.type_id
 
 		g.$save().then(function(res) {
-			$store.invalidate('groups')
+			$store.invalidate('groups', 'group_types', 'users')
 
 			$location.path('/manage/class')
 		})

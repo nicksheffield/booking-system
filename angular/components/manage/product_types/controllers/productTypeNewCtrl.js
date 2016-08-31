@@ -8,7 +8,7 @@ angular.module('app.controllers')
 		pt.name = $scope.name
 
 		pt.$save().then(function(res) {
-			$store.invalidate('product_types')
+			$store.invalidate('product_types', 'products')
 
 			$location.path('/manage/product_type')
 		})

@@ -15,7 +15,7 @@ angular.module('app.controllers')
 		u.notes = $scope.notes
 
 		u.$save().then(function(res) {
-			$store.invalidate('units')
+			$store.invalidate('units', 'products')
 
 			$location.path('/manage/unit')
 		})
