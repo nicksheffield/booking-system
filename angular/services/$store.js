@@ -133,16 +133,16 @@ angular.module('app.services')
 		return service.units
 	}
 	
-	service.loadGroups()
-	service.loadUsers()
+	// service.loadGroups()
+	// service.loadUsers()
 	
-	if($auth.isAuthenticated()) {
-		service.loadAuthUser()
-		service.loadGroupTypes()
-		service.loadProductTypes()
-		service.loadProducts()
-		service.loadUnits()
-	}
+	// if($auth.isAuthenticated()) {
+	// 	service.loadAuthUser()
+	// 	service.loadGroupTypes()
+	// 	service.loadProductTypes()
+	// 	service.loadProducts()
+	// 	service.loadUnits()
+	// }
 	
 	if(localStorage.booking) {
 		service.booking = JSON.parse(localStorage.booking)
