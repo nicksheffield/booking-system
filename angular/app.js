@@ -23,7 +23,3 @@ angular.module('app', [
 	'app.views',
 	'app.auth'
 ])
-
-angular.element(document).ready(function() {
-	angular.bootstrap(document, ['app'])
-})
