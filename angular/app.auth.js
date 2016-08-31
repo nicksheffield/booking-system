@@ -77,6 +77,7 @@ angular.module('app.auth')
 				
 				if(!destination) {
 					
+					// https://github.com/angular-ui/ui-router/issues/1158
 					$state.go(toState.name, toParams, {notify: false}).then(function() {
 						$rootScope.$broadcast('$stateChangeSuccess', toState, toParams, fromState, fromParams);
 					})
