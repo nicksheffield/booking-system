@@ -15,7 +15,8 @@ use Illuminate\Http\Request;
 
 Route::get('/api/test', function() {
 	return [
-		'message' => 'success!'
+		'id' => '1',
+		'email' => 'bklah'
 	];
 });
 

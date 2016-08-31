@@ -2,9 +2,7 @@ angular.module('app.controllers')
 
 .controller('classProductCtrl', function($scope, $stateParams, $store, $location, $http, $timeout) {
 	$store.groups.$promise.then(function() {
-		$scope.group = _.find($store.groups, function(group) {
-			return group.id == $stateParams.id
-		})
+		$scope.group = _.find($store.groups, (g) => g.id == $stateParams.id)
 		
 		console.log('group', $scope.group)
 		
@@ -12,21 +10,15 @@ angular.module('app.controllers')
 		
 		$scope.products = $store.products
 		
-		// when all the products are ready
 		$scope.products.$promise.then(function() {
-			// for each of them
 			_.forEach($scope.products, function(product) {
-				// loop through every allowed product for this group
-				for(var i=0; i<$scope.group.allowed_products.length; i++) {
-					// if this allowed product is the same as this product
-					var allowed = $scope.group.allowed_products[i]
-					if(allowed.id == product.id) {
+				_.forEach($scope.group.allowed_products, function(a) {
+					if(a.id == product.id) {
 						product._allowed = true
-						
-						product._quantity = allowed.pivot.quantity
+						product._quantity = a.pivot.quantity
 						product._days_allowed = allowed.pivot.days_allowed
 					}
-				}
+				})
 				
 				if(!product._quantity) {
 					product._quantity = 1

@@ -1,12 +1,8 @@
 angular.module('app.controllers')
 
 .controller('classViewCtrl', function($scope, $stateParams, $state, $store, $location, $flash) {
-	$store.loadGroups()
-
 	$store.groups.$promise.then(function() {
-		$scope.group = _.find($store.groups, function(group) {
-			return group.id == $stateParams.id
-		})
+		$scope.group = _.find($store.groups, (g) => g.id == $stateParams.id)
 	})
 	
 	$scope.preNewUser = function() {
@@ -18,7 +14,8 @@ angular.module('app.controllers')
 		
 		if(confirmed) {
 			$scope.group.$delete().then(function() {
-				$store.loadGroups()
+				$store.invalidate('groups')
+
 				$location.path('/manage/class')
 			})
 		}

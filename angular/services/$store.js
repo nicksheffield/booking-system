@@ -11,6 +11,41 @@ angular.module('app.services')
 		bookings: {},
 		group_types: {},
 		product_types: {},
+		invalid: [
+			'user',
+			'users',
+			'units',
+			'groups',
+			'products',
+			'group_types',
+			'product_types',
+		]
+	}
+	
+	service.invalidate = function(type) {
+		if(!service.invalid.indexOf(type)) {
+			service.invalid.push(type)
+		}
+	}
+	
+	service.loadInvalids = function() {
+		var invalids = []
+		
+		_.forEach(service.invalid, function(i) {
+			switch(i) {
+				case 'user': invalids.push(service.loadAuthUser().$promise); break;
+				case 'users': invalids.push(service.loadUsers().$promise); break;
+				case 'units': invalids.push(service.loadUnits().$promise); break;
+				case 'groups': invalids.push(service.loadGroups().$promise); break;
+				case 'products': invalids.push(service.loadProducts().$promise); break;
+				case 'group_types': invalids.push(service.loadGroupTypes().$promise); break;
+				case 'product_types': invalids.push(service.loadProductTypes().$promise); break;
+			}
+		})
+		
+		service.invalid = []
+		
+		return invalids
 	}
 	
 	service.setBooking = function(booking) {
@@ -25,8 +60,15 @@ angular.module('app.services')
 	
 	service.loadAuthUser = function() {
 		service.user = User.getWithToken()
+		console.log('start loading user')
+		
+		service.user.$promise.then(function() {
+			console.log('finish loading user')
+		})
 		
 		service.user.$promise.then(userSetup)
+		
+		return service.user
 	}
 	
 	service.loadUsers = function() {
@@ -35,6 +77,8 @@ angular.module('app.services')
 		service.users.$promise.then(function(users) {
 			_.forEach(users, userSetup)
 		})
+		
+		return service.users
 	}
 	
 	function userSetup(user) {
@@ -53,14 +97,17 @@ angular.module('app.services')
 	
 	service.loadGroups = function() {
 		service.groups = Group.query({'with': 'type|users|allowed_products|tutors'})
+		return service.groups
 	}
 	
 	service.loadGroupTypes = function() {
 		service.group_types = Group_Type.query({'with': 'groups'})
+		return service.group_types
 	}
 	
 	service.loadProductTypes = function() {
 		service.product_types = Product_Type.query({'with': 'products'})
+		return service.product_types
 	}
 	
 	service.loadProducts = function() {
@@ -71,10 +118,14 @@ angular.module('app.services')
 				product._quantity = ''
 			})
 		})
+		
+		return service.products
 	}
 	
 	service.loadUnits = function() {
 		service.units = Unit.query({'with': 'product'})
+		
+		return service.units
 	}
 	
 	service.loadGroups()

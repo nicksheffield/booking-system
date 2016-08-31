@@ -1,7 +1,7 @@
 angular.module('app.controllers')
 
 .controller('registerCtrl', function($scope, $auth, $store, $state, $location, User) {
-	$scope.groups = $store.groups
+	$scope.groups = $store.loadGroups()
 	
 	$scope.first_name = 'Nick'
 	$scope.last_name = 'Sheffield'

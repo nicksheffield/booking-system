@@ -1,7 +1,6 @@
 angular.module('app.controllers')
 
 .controller('classNewCtrl', function($scope, $stateParams, $store, $location, $flash, Group) {
-	$store.loadGroupTypes()
 	$scope.types = $store.group_types
 	
 	$scope.type_id = $flash.use('class_type')
@@ -13,7 +12,7 @@ angular.module('app.controllers')
 		g.group_type_id = $scope.type_id
 
 		g.$save().then(function(res) {
-			$store.loadGroups()
+			$store.invalidate('groups')
 
 			$location.path('/manage/class')
 		})

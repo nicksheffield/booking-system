@@ -3,6 +3,7 @@ var argv          = require('yargs').argv                   // parse command lin
 var gulp          = require('gulp')                         // the main guy
 var jscs          = require('gulp-jscs')                    // javascript code style
 var clone         = require('gulp-clone')                   // used to fork a stream
+var babel         = require('gulp-babel')                   // process es2015 syntax
 var order         = require('gulp-order')                   // reorder files in stream
 var uglify        = require('gulp-uglify')                  // minify js
 var rename        = require('gulp-rename')                  // rename file
@@ -90,6 +91,7 @@ gulp.task('angular', function() {
 		.pipe(addsrc(paths.angular))                        // add the rest of the angular app
 		.pipe(order(['app.js']))                            // make sure app.js is first
 		//.pipe(filelog())                                  // log the files in the stream
+		.pipe(babel({ presets: ['es2015'] }))               // enable ES2015 support
 		.pipe(jscs())                                       // check js code style
 		.on('error', function(){})                          // suppress jscs error reporting
 		.pipe(stylish())                                    // third-party jscs error reporting

@@ -13,11 +13,7 @@ angular.module('app.controllers')
 	
 	console.log($scope.booking)
 	
-	$scope.product = function(id) {
-		return _.find($scope.products, function(product) {
-			return product.id == id
-		})
-	}
+	$scope.product = (id) => _.find($scope.products, (p) => id == p.id)
 	
 	$scope.confirm = function() {
 		console.log('confirmed!')

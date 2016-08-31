@@ -2,9 +2,7 @@ angular.module('app.controllers')
 
 .controller('classTypeNewCtrl', function($scope, $stateParams, $store, $location, Group_Type) {
 	$store.group_types.$promise.then(function() {
-		$scope.type = _.find($store.group_types, function(type) {
-			return type.id == $stateParams.id
-		})
+		$scope.type = _.find($store.group_types, (t) => t.id == $stateParams.id)
 	})
 
 	$scope.save = function() {
@@ -14,8 +12,8 @@ angular.module('app.controllers')
 		gt.name = $scope.name
 
 		gt.$save().then(function(res) {
-			$store.loadGroupTypes()
-
+			$store.invalidate('group_types')
+			
 			$location.path('/manage/class_type')
 		})
 	}

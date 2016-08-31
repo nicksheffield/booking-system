@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('makeCtrl', function($scope, $store, $location) {
+.controller('makeCtrl', function($scope, $store, $location, $q) {
 	$scope.user = $store.user
 	
 	$scope.booking = $store.booking
@@ -46,9 +46,6 @@ angular.module('app.controllers')
 	$scope.checkAgainstMax = function(product) {
 		var max = $scope.max(product)
 
-		console.log('What', product)
-		console.log(product._quantity, product._max, product._quantity > product._max)
-
 		if(product._quantity > product._max) {
 			product._quantity = 1
 		}
@@ -64,39 +61,32 @@ angular.module('app.controllers')
 	
 	// load all the products allowed based on the current users group.
 	// if the current user doesn't have a group, give them all the products
-	$store.user.$promise.then(function() {
-		$store.groups.$promise.then(function() {
-			$scope.group = _.find($store.groups, function(group) {
-				return $store.user.group_id == group.id
-			})
-			
-			if(!$scope.group) {
-				$store.loadProducts()
-				$scope.products = $store.products
+	
+	$q
+	.when([$store.user, $store.groups])
+	.then(function() {
+		$scope.group = _.find($store.groups, (g) => $store.user.group_id == g.id)
+		
+		if(!$scope.group) {
+			$scope.products = $store.loadProducts()
 
-				$scope.products.$promise.then(function() {
-					_.forEach($scope.products, function(product) {
-						product._max = product.units.length
-						
-						if($scope.booking.products && $scope.booking.products.length) {
-							var booking = _.find($scope.booking.products, function(p) {
-								return p.id == product.id
-							})
-							
-							if(booking) {
-								product._quantity = booking.quantity
-							}
-						}
-						
-					})
-				})
-			} else {
-				$scope.products = $scope.group.allowed_products
-
+			$scope.products.$promise.then(function() {
 				_.forEach($scope.products, function(product) {
-					product._max = product.pivot.quantity
+					product._max = product.units.length
+					
+					if($scope.booking.products && $scope.booking.products.length) {
+						var booking = _.find($scope.booking.products, (p) => p.id == product.id)
+						
+						if(booking) product._quantity = booking.quantity
+					}
 				})
-			}
-		})
+			})
+		} else {
+			$scope.products = $scope.group.allowed_products
+
+			_.forEach($scope.products, function(product) {
+				product._max = product.pivot.quantity
+			})
+		}
 	})
 })
