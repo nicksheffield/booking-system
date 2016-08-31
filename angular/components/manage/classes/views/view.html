@@ -51,15 +51,9 @@
 						<btn url="#/manage/user/new" ng-click="preNewUser()" small ng-if="group.users.length" icon="plus"></btn>
 					</div>
 					
-					<div class="alert alert-info" ng-if="!group.users.length">
-						<p layout="row" align="center" justify="between">
-							<span>
-								<i class="fa fa-exclamation-circle"></i>
-								No students in this class.
-							</span>
-							<btn url="#/manage/user/new" ng-click="preNewUser()" small icon="plus">Create one</btn>
-						</p>
-					</div>
+					<alert type="info" text="No students in this class" icon="exclamation-circle" ng-if="!group.users.length">
+						<btn url="#/manage/user/new" ng-click="preNewUser()" small icon="plus">Create one</btn>
+					</alert>
 				</td>
 			</tr>
 			<tr>
@@ -73,14 +67,7 @@
 						</ul>
 					</div>
 					
-					<div class="alert alert-info" ng-if="!group.allowed_products.length">
-						<p layout="row" align="center" justify="between">
-							<span>
-								<i class="fa fa-exclamation-circle"></i>
-								This class is not allowed to book anything
-							</span>
-						</p>
-					</div>
+					<alert type="info" text="This class is not allowed to book anything" icon="exclamation-circle" ng-if="!group.allowed_products.length"></alert>
 				</td>
 			</tr>
 		</table>

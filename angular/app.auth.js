@@ -12,8 +12,9 @@ angular.module('app.auth')
 			$title(toState.data.title)
 		}
 		
-		// here we check if there is any invalidated data, and reload those things if there are
-		var invalids = $store.loadInvalids()
+		var invalids = $store.loadInvalidated()
+		
+		$rootScope.loader = true
 		
 		$q.all(invalids)
 			.then(function() {
@@ -72,6 +73,7 @@ angular.module('app.auth')
 				if(destination) {
 					console.log('kicked to', destination)
 					
+					$rootScope.loader = false
 					$location.path(destination)
 				}
 				
@@ -79,6 +81,7 @@ angular.module('app.auth')
 					
 					// https://github.com/angular-ui/ui-router/issues/1158
 					$state.go(toState.name, toParams, {notify: false}).then(function() {
+						$rootScope.loader = false
 						$rootScope.$broadcast('$stateChangeSuccess', toState, toParams, fromState, fromParams);
 					})
 				}

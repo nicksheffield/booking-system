@@ -37,15 +37,9 @@
 						<btn url="#/manage/unit/new" ng-click="preNewUnit()" small icon="plus"></btn>
 					</div>
 					
-					<div class="alert alert-info" ng-if="!product.units.length">
-						<p layout="row" align="center" justify="between">
-							<span>
-								<i class="fa fa-exclamation-circle"></i>
-								No units for this product
-							</span>
-							<btn url="#/manage/unit/new" ng-click="preNewUnit()" small icon="plus">Create one</btn>
-						</p>
-					</div>
+					<alert type="info" text="No units for this product" icon="exclamation-circle" ng-if="!product.units.length">
+						<btn url="#/manage/unit/new" ng-click="preNewUnit()" small icon="plus">Create one</btn>
+					</alert>
 				</td>
 			</tr>
 			<tr>
@@ -67,6 +61,8 @@
 							</span>
 						</p>
 					</div>
+					
+					<alert type="info" text="No classes are allowed to book this product" icon="exclamation-circle" ng-if="!product.groups_allowed.length"></alert>
 				</td>
 			</tr>
 		</table>

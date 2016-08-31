@@ -17,5 +17,6 @@
 </head>
 <body class="{{ bodyClass }}" layout="full-col">
 	<div layout="row sm-col" ratio="1" ui-view></div>
+	<loader></loader>
 </body>
 </html>

@@ -4,10 +4,6 @@ angular.module('app.controllers')
 	$store.groups.$promise.then(function() {
 		$scope.group = $store.get('groups', $stateParams.id)
 		
-		console.log('group', $scope.group)
-		
-		$store.loadProducts()
-		
 		$scope.products = $store.products
 		
 		$scope.products.$promise.then(function() {
@@ -16,7 +12,7 @@ angular.module('app.controllers')
 					if(a.id == product.id) {
 						product._allowed = true
 						product._quantity = a.pivot.quantity
-						product._days_allowed = allowed.pivot.days_allowed
+						product._days_allowed = a.pivot.days_allowed
 					}
 				})
 				
@@ -40,8 +36,10 @@ angular.module('app.controllers')
 					days_allowed: product._days_allowed
 				})
 					.then(function(res) {
-						console.log('res3', res)
+						// console.log('res3', res)
 						$scope.saved = true
+						
+						$store.invalidate('groups', 'units')
 					})
 			}
 		}
@@ -55,14 +53,18 @@ angular.module('app.controllers')
 				days_allowed: product._days_allowed
 			})
 				.then(function(res) {
-					console.log('res1', res)
+					// console.log('res1', res)
 					$scope.saved = true
+					
+					$store.invalidate('groups', 'units')
 				})
 		} else {
 			$http.post('/api/product/'+product.id+'/disallow/'+$scope.group.id)
 				.then(function(res) {
-					console.log('res2', res)
+					// console.log('res2', res)
 					$scope.saved = true
+					
+					$store.invalidate('groups', 'units')
 				})
 		}
 	}

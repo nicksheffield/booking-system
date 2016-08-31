@@ -52,7 +52,7 @@ class CreateTables extends Migration
 		
 		Schema::create('groups', function (Blueprint $table) {
 			$table->increments('id');
-			$table->string('code')->unique();
+			$table->string('code');
 			$table->integer('group_type_id');
 			$table->string('enrollment_key');
 			$table->timestamps();

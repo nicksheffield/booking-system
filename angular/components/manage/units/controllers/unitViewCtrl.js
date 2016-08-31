@@ -1,8 +1,6 @@
 angular.module('app.controllers')
 
 .controller('unitViewCtrl', function($scope, $stateParams, $state, $store, $location) {
-	$store.loadUnits()
-
 	$scope.unit = $store.get('units', $stateParams.id)
 	
 	$scope.delete = function() {

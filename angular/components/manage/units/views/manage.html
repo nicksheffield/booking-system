@@ -36,10 +36,7 @@
 			</tbody>
 		</table>
 		
-		<div class="alert alert-danger bump-down" ng-if="!filtered.length">
-			<i class="fa fa-info-circle"></i>
-			There are no units that match <b>"{{ filter }}"</b>
-		</div>
+		<alert type="danger" class="bump-down" icon="info-circle" text='There are no units that match <b>"{{ filter }}"</b>' ng-if="!filtered.length"></alert>
 
 	</div>
 	

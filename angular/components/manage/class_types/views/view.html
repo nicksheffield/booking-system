@@ -37,15 +37,9 @@
 						<btn url="#/manage/class/new" ng-click="preNewClass()" small ng-if="type.groups.length" icon="plus"></btn>
 					</div>
 					
-					<div class="alert alert-info" ng-if="!type.groups.length">
-						<p layout="row" align="center" justify="between">
-							<span>
-								<i class="fa fa-exclamation-circle"></i>
-								No classes with this type.
-							</span>
-							<btn url="#/manage/class/new" ng-click="preNewClass()" small icon="plus">Create one</btn>
-						</p>
-					</div>
+					<alert type="info" text="No classes with this type" icon="exclamation-circle" ng-if="!type.groups.length">
+						<btn url="#/manage/class/new" ng-click="preNewClass()" small icon="plus">Create one</btn>
+					</alert>
 				</td>
 			</tr>
 		</table>

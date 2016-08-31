@@ -11,7 +11,7 @@ angular.module('app.services')
 		bookings: {},
 		group_types: {},
 		product_types: {},
-		invalid: [
+		invalidated: [
 			'user',
 			'users',
 			'units',
@@ -22,30 +22,36 @@ angular.module('app.services')
 		]
 	}
 	
-	service.invalidate = function(type) {
-		if(!service.invalid.indexOf(type)) {
-			service.invalid.push(type)
-		}
+	window.store = service
+	
+	service.invalidate = function() {
+		console.log(arguments)
+		_.forEach(arguments, function(type) {
+			console.log('type', type, service.invalidated.indexOf(type))
+			if(service.invalidated.indexOf(type) === -1){
+				service.invalidated.push(type)
+			}
+		})
 	}
 	
-	service.loadInvalids = function() {
-		var invalids = []
+	service.loadInvalidated = function() {
+		var invalid = []
 		
-		_.forEach(service.invalid, function(i) {
+		_.forEach(service.invalidated, function(i) {
 			switch(i) {
-				case 'user': invalids.push(service.loadAuthUser().$promise); break;
-				case 'users': invalids.push(service.loadUsers().$promise); break;
-				case 'units': invalids.push(service.loadUnits().$promise); break;
-				case 'groups': invalids.push(service.loadGroups().$promise); break;
-				case 'products': invalids.push(service.loadProducts().$promise); break;
-				case 'group_types': invalids.push(service.loadGroupTypes().$promise); break;
-				case 'product_types': invalids.push(service.loadProductTypes().$promise); break;
+				case 'user': invalid.push(service.loadAuthUser().$promise); break;
+				case 'users': invalid.push(service.loadUsers().$promise); break;
+				case 'units': invalid.push(service.loadUnits().$promise); break;
+				case 'groups': invalid.push(service.loadGroups().$promise); break;
+				case 'products': invalid.push(service.loadProducts().$promise); break;
+				case 'group_types': invalid.push(service.loadGroupTypes().$promise); break;
+				case 'product_types': invalid.push(service.loadProductTypes().$promise); break;
 			}
 		})
 		
-		service.invalid = []
+		service.invalidated = []
 		
-		return invalids
+		return invalid
 	}
 	
 	service.setBooking = function(booking) {
@@ -64,11 +70,6 @@ angular.module('app.services')
 	
 	service.loadAuthUser = function() {
 		service.user = User.getWithToken()
-		console.log('start loading user')
-		
-		service.user.$promise.then(function() {
-			console.log('finish loading user')
-		})
 		
 		service.user.$promise.then(userSetup)
 		

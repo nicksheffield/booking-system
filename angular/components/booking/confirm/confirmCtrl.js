@@ -6,14 +6,10 @@ angular.module('app.controllers')
 	}
 	
 	$scope.user = $store.user
-	
 	$scope.booking = $store.booking
-	
 	$scope.products = $store.products
 	
-	console.log($scope.booking)
-	
-	$scope.product = (id) => _.find($scope.products, (p) => id == p.id)
+	$scope.product = (id) => $store.get('products', id)
 	
 	$scope.confirm = function() {
 		console.log('confirmed!')

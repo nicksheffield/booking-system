@@ -32,16 +32,10 @@
 						
 						<btn url="#/manage/product/new" ng-click="preNewProduct()" small icon="plus"></btn>
 					</div>
-
-					<div class="alert alert-info" ng-if="!type.products.length">
-						<p layout="row" align="center" justify="between">
-							<span>
-								<i class="fa fa-exclamation-circle"></i>
-								No products with this type
-							</span>
-							<btn url="#/manage/product/new" ng-click="preNewProduct()" small icon="plus">Create one</btn>
-						</p>
-					</div>
+					
+					<alert type="info" text="No products with this type" icon="exclamation-circle" ng-if="!type.products.length">
+						<btn url="#/manage/product/new" ng-click="preNewProduct()" small icon="plus">Create one</btn>
+					</alert>
 				</td>
 			</tr>
 		</table>

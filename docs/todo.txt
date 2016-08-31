@@ -23,6 +23,7 @@ Todo.txt
 	- Maybe just have one "name" field for users
 	- Delay route change until resources have loaded. Maybe this means that we'll have to state which resources are used in the route
 		- http://stackoverflow.com/questions/20094273/stop-angular-ui-router-navigation-until-promise-is-resolved
+	- Tutor needs to be settable for new group and edit group
 	
 	- Ask graeme if bookings should have times
 		- he said sort of
