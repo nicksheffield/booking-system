@@ -19,8 +19,11 @@ Todo.txt
 	- An idea: maybe "invalidate" the arrays in $store somehow, and reload them whenever they get accessed next. That way you don't need to re-request every time you go to like the units page or whatever and risk getting stale data
 	- Figure out how promises work ($q?) so I can remove those stupid _.find()'s within .$promise.then() blocks
 	- Maybe $store is getting too big. Maybe I should make a $booking service or a $setup service or something
+	- Modify groups to add/remove tutors
+	- Maybe just have one "name" field for users
 	
 	- Ask graeme if bookings should have times
+		- he said sort of
 	
 Bugs
 

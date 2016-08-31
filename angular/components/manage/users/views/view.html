@@ -40,17 +40,27 @@
 				<td class="row-property">DOB</td>
 				<td class="row-value">{{ user.dob | date }} ({{ user._age }} years old)</td>
 			</tr>
-			<tr ng-hide="user.admin">
-				<td class="row-property">Student ID</td>
-				<td class="row-value">{{ user.id_number }}</td>
-			</tr>
-			<tr ng-if="!user.admin">
-				<td class="row-property">Class</td>
-				<td class="row-value"><a href="#/manage/class/{{ user.group.id }}">{{ user.group.code }}</a></td>
-			</tr>
 			<tr>
 				<td class="row-property">Role</td>
 				<td class="row-value">{{ user._role }}</td>
+			</tr>
+			<tr ng-show="!user.admin">
+				<td class="row-property">Student ID</td>
+				<td class="row-value">{{ user.id_number }}</td>
+			</tr>
+			<tr ng-show="!user.admin">
+				<td class="row-property">Class</td>
+				<td class="row-value"><a href="#/manage/class/{{ user.group.id }}">{{ user.group.code }}</a></td>
+			</tr>
+			<tr ng-show="user.admin && user.tutors_group.length">
+				<td class="row-property">Tutor of</td>
+				<td class="row-value">
+					<ul>
+						<li ng-repeat="group in user.tutors_group">
+							<a href="#/manage/class/{{ group.id }}">{{ group.code }}</a>
+						</li>
+					</ul>
+				</td>
 			</tr>
 		</table>
 
