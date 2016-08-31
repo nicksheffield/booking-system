@@ -23,7 +23,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="user in users | filter: filter as filtered">
+				<tr ng-repeat="user in users | orderBy: 'group.id' | orderBy: '-admin' | filter: filter as filtered">
 					<td><a href="#/manage/user/{{ user.id }}">{{ user.username }}</a></td>
 					<td>{{ user._fullname }}</td>
 					<td class="sm-hide">{{ user._role }}</td>

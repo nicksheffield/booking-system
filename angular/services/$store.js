@@ -1,6 +1,6 @@
 angular.module('app.services')
 
-.factory('$store', function($auth, User, Group, Group_Type, Product_Type, Product, Unit) {
+.factory('$store', function($q, $auth, User, Group, Group_Type, Product_Type, Product, Unit) {
 	var service = {
 		user: {},
 		units: {},

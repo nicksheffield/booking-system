@@ -13,6 +13,12 @@
 
 use Illuminate\Http\Request;
 
+Route::get('/api/test', function() {
+	return [
+		'message' => 'success!'
+	];
+});
+
 /**
 *	Home page (angular)
 */
