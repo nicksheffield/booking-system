@@ -1,9 +1,7 @@
 angular.module('app.controllers')
 
 .controller('productTypeEditCtrl', function($scope, $stateParams, $store, $location, Product_Type) {
-	$store.product_types.$promise.then(function() {
-		$scope.type = _.find($store.product_types, (t) => t.id == $stateParams.id)
-	})
+	$scope.type = $store.get('product_types', $stateParams.id)
 	
 	$scope.save = function() {
 		Product_Type.update({id: $scope.type.id}, $scope.type).$promise.then(function(res) {

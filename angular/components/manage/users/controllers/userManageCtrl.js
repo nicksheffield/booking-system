@@ -1,15 +1,5 @@
 angular.module('app.controllers')
 
-.controller('userManageCtrl', function($scope, $title, $store, $location) {
-	$title('Manage Users')
-	
+.controller('userManageCtrl', function($scope, $store, $location) {
 	$scope.users = $store.users
-	$scope.groups = $store.groups
-	
-	$store.loadUsers()
-	$store.loadGroups()
-	
-	$scope.staff = function(user) {
-		return user.admin
-	}
 })

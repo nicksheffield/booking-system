@@ -58,6 +58,10 @@ angular.module('app.services')
 		service.booking = {}
 	}
 	
+	service.get = function(type, id) {
+		return _.find(service[type], (t) => t.id == id)
+	}
+	
 	service.loadAuthUser = function() {
 		service.user = User.getWithToken()
 		console.log('start loading user')

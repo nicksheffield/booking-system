@@ -2,7 +2,7 @@ angular.module('app.controllers')
 
 .controller('classProductCtrl', function($scope, $stateParams, $store, $location, $http, $timeout) {
 	$store.groups.$promise.then(function() {
-		$scope.group = _.find($store.groups, (g) => g.id == $stateParams.id)
+		$scope.group = $store.get('groups', $stateParams.id)
 		
 		console.log('group', $scope.group)
 		

@@ -4,7 +4,6 @@ angular.module('app.controllers')
 	
 	$scope.group_id = $flash.use('class')
 	
-	$store.loadGroups()
 	$scope.groups = $store.groups
 
 	$scope.save = function() {

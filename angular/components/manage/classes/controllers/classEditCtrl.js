@@ -1,9 +1,7 @@
 angular.module('app.controllers')
 
 .controller('classEditCtrl', function($scope, $stateParams, $store, $location, Group) {
-	$store.groups.$promise.then(function() {
-		$scope.group = _.find($store.groups, (g) => g.id == $stateParams.id)
-	})
+	$scope.group = $store.get('groups', $stateParams.id)
 	
 	$scope.types = $store.group_types
 	

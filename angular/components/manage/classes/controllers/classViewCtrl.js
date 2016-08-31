@@ -1,9 +1,7 @@
 angular.module('app.controllers')
 
-.controller('classViewCtrl', function($scope, $stateParams, $state, $store, $location, $flash) {
-	$store.groups.$promise.then(function() {
-		$scope.group = _.find($store.groups, (g) => g.id == $stateParams.id)
-	})
+.controller('classViewCtrl', function($scope, $stateParams, $store, $location, $flash) {
+	$scope.group = $store.get('groups', $stateParams.id)
 	
 	$scope.preNewUser = function() {
 		$flash.set('class', $scope.group.id)

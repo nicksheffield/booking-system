@@ -1,7 +1,6 @@
 angular.module('app.controllers')
 
 .controller('productNewCtrl', function($scope, $stateParams, $store, $location, $flash, Product) {
-	$store.loadProductTypes()
 	$scope.types = $store.product_types
 	
 	$scope.type_id = $flash.use('product_type')

@@ -1,9 +1,7 @@
 angular.module('app.controllers')
 
-.controller('classTypeViewCtrl', function($scope, $stateParams, $state, $store, $location, $flash) {
-	$store.group_types.$promise.then(function() {
-		$scope.type = _.find($store.group_types, (t) => t.id == $stateParams.id)
-	})
+.controller('classTypeViewCtrl', function($scope, $stateParams, $store, $location, $flash) {
+	$scope.type = $store.get('group_types', $stateParams.id)
 	
 	$scope.preNewClass = function() {
 		$flash.set('class_type', $scope.type.id)

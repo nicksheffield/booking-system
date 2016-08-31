@@ -1,9 +1,7 @@
 angular.module('app.controllers')
 
-.controller('productTypeViewCtrl', function($scope, $stateParams, $state, $store, $location, $flash) {
-	$store.product_types.$promise.then(function() {
-		$scope.type = _.find($store.product_types, (t) => t.id == $stateParams.id)
-	})
+.controller('productTypeViewCtrl', function($scope, $stateParams, $store, $location, $flash) {
+	$scope.type = $store.get('product_types', $stateParams.id)
 	
 	$scope.preNewProduct = function() {
 		$flash.set('product_type', $scope.type.id)

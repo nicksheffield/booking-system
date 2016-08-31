@@ -1,9 +1,7 @@
 angular.module('app.controllers')
 
 .controller('classTypeEditCtrl', function($scope, $stateParams, $store, $location, Group_Type) {
-	$store.group_types.$promise.then(function() {
-		$scope.type = _.find($store.group_types, (t) => t.id == $stateParams.id)
-	})
+	$scope.type = $store.get('group_types', $stateParams.id)
 	
 	$scope.save = function() {
 		Group_Type.update({id: $scope.type.id}, $scope.type).$promise.then(function(res) {

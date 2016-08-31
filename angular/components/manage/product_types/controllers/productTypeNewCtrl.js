@@ -1,10 +1,6 @@
 angular.module('app.controllers')
 
 .controller('productTypeNewCtrl', function($scope, $stateParams, $store, $location, Product_Type) {
-	$store.product_types.$promise.then(function() {
-		$scope.type = _.find($store.product_types, (t) => t.id == $stateParams.id)
-	})
-
 	$scope.save = function() {
 		var pt = new Product_Type();
 
