@@ -1,6 +1,6 @@
 angular.module('app.services')
 
-.factory('$store', function($q, $auth, User, Group, Group_Type, Product_Type, Product, Unit) {
+.factory('$store', function($q, $auth, $interval, User, Group, Group_Type, Product_Type, Product, Unit) {
 	var service = {
 		user: {},
 		units: {},
@@ -189,6 +189,12 @@ angular.module('app.services')
 			}
 		})
 	}
+	
+	// invalidate everything every 5 minutes
+	$interval(function() {
+		service.invalidate('user', 'users', 'groups', 'group_types', 'product_types', 'products', 'units')
+	}, 5 * 60 * 1000)
+	// }, 1000)
 
 	return service
 })
