@@ -8,7 +8,7 @@ angular.module('app.auth')
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 		event.preventDefault()
 		
-		if(toState.data.title) {
+		if(toState.data && toState.data.title) {
 			$title(toState.data.title)
 		}
 		
@@ -18,7 +18,7 @@ angular.module('app.auth')
 		
 		$q.all(invalids)
 			.then(function() {
-				var conditions = toState.data.conditions
+				var conditions = toState.data && toState.data.conditions ? toState.data.conditions : []
 
 				var destination = null
 				

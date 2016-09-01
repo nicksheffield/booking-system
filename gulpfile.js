@@ -127,7 +127,7 @@ gulp.task('libs', function() {
 
 	var stream = gulp.src(libs)                             // get all the lib files
 		.pipe(concat('libs.min.js'))                        // merge them together
-		.pipe(uglify())                                     // minify the js
+		// .pipe(uglify())                                     // minify the js
 		.pipe(gulp.dest(paths.output))                      // save it into the dist folder
 	
 	return stream

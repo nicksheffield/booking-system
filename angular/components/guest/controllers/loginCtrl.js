@@ -9,7 +9,7 @@ angular.module('app.controllers')
 	}
 
 	$scope.login = function() {
-		if(!$scope.username || !$scope.password){
+		if(!$scope.username || !$scope.password) {
 			return false
 		}
 		
@@ -22,7 +22,14 @@ angular.module('app.controllers')
 			.login(credentials)
 			.then(function(res) {
 				// $store.user = res.data.user
-				$store.loadAuthUser()
+				$store.invalidate('user')
+				$store.invalidate('users')
+				$store.invalidate('units')
+				$store.invalidate('groups')
+				$store.invalidate('products')
+				$store.invalidate('group_types')
+				$store.invalidate('product_types')
+
 				$location.path('/home')
 			})
 			.catch(function(res) {

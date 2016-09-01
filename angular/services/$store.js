@@ -11,23 +11,13 @@ angular.module('app.services')
 		bookings: {},
 		group_types: {},
 		product_types: {},
-		invalidated: [
-			'user',
-			'users',
-			'units',
-			'groups',
-			'products',
-			'group_types',
-			'product_types',
-		]
+		invalidated: []
 	}
 	
 	window.store = service
 	
 	service.invalidate = function() {
-		console.log(arguments)
 		_.forEach(arguments, function(type) {
-			console.log('type', type, service.invalidated.indexOf(type))
 			if(service.invalidated.indexOf(type) === -1){
 				service.invalidated.push(type)
 			}
@@ -48,6 +38,8 @@ angular.module('app.services')
 				case 'product_types': invalid.push(service.loadProductTypes().$promise); break;
 			}
 		})
+
+		console.log('invalidated', invalid.length)
 		
 		service.invalidated = []
 		
@@ -135,14 +127,16 @@ angular.module('app.services')
 	
 	// service.loadGroups()
 	// service.loadUsers()
+	service.invalidate('groups', 'users')
 	
-	// if($auth.isAuthenticated()) {
+	if($auth.isAuthenticated()) {
+		service.invalidate('user', 'group_types', 'product_types', 'products', 'units')
 	// 	service.loadAuthUser()
 	// 	service.loadGroupTypes()
 	// 	service.loadProductTypes()
 	// 	service.loadProducts()
 	// 	service.loadUnits()
-	// }
+	}
 	
 	if(localStorage.booking) {
 		service.booking = JSON.parse(localStorage.booking)

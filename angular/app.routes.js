@@ -46,11 +46,11 @@ angular.module('app.routes')
 		
 		'logout': {
 			url: '/logout',
-			controller: ['$auth', '$state', '$store', function($auth, $state, $store) {
+			controller: ['$auth', '$location', '$store', function($auth, $location, $store) {
 				$auth.logout().then(function() {
 					$store.user = {}
 					$store.resetBooking()
-					$state.go('login')
+					$location.path('login')
 				})
 			}]
 		},
