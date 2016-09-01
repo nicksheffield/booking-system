@@ -1,72 +1,66 @@
-<sidebar></sidebar>
-
-<div class="frame manage" ratio="1" ng-show="!error">
+<header class="page-header" layout="row" justify="between" align="center">
+	<h1>Product: {{ product.name }}</h1>
 	
-	<header class="page-header" layout="row" justify="between" align="center">
-		<h1>Product: {{ product.name }}</h1>
-		
-		<div class="button-row">
-			<btn url="#/manage/product/{{ product.id }}/edit" icon="pencil" small>Edit</btn>
-			<btn ng-click="delete()" icon="trash" type="danger" small></btn>
-		</div>
-	</header>
-	
-	<breadcrumbs></breadcrumbs>
-	
-	<div class="page-content">
-		
-		<table class="table data-table">
-			<tr>
-				<td class="row-property">Name</td>
-				<td class="row-value">{{ product.name }}</td>
-			</tr>
-			<tr>
-				<td class="row-property">Type</td>
-				<td class="row-value"><a href="#/manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
-			</tr>
-			<tr>
-				<td class="row-property">Units ({{ product.units.length }})</td>
-				<td class="row-value">
-					<div layout="row" align="start" justify="between" ng-show="product.units.length">
-						<ul>
-							<li ng-repeat="unit in product.units">
-								<a href="#/manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a>
-							</li>
-						</ul>
-						
-						<btn url="#/manage/unit/new" ng-click="preNewUnit()" small icon="plus"></btn>
-					</div>
-					
-					<alert type="info" text="No units for this product" icon="exclamation-circle" ng-if="!product.units.length">
-						<btn url="#/manage/unit/new" ng-click="preNewUnit()" small icon="plus">Create one</btn>
-					</alert>
-				</td>
-			</tr>
-			<tr>
-				<td class="row-property">Groups ({{ product.groups_allowed.length }})</td>
-				<td class="row-value">
-					<div layout="row" align="start" justify="between" ng-show="product.groups_allowed.length">
-						<ul>
-							<li ng-repeat="group in product.groups_allowed">
-								<a href="#/manage/class/{{ group.id }}">{{ group.code }}</a>
-							</li>
-						</ul>
-					</div>
-					
-					<div class="alert alert-info" ng-if="!product.groups_allowed.length">
-						<p layout="row" align="center" justify="between">
-							<span>
-								<i class="fa fa-exclamation-circle"></i>
-								No classes are allowed to book this product
-							</span>
-						</p>
-					</div>
-					
-					<alert type="info" text="No classes are allowed to book this product" icon="exclamation-circle" ng-if="!product.groups_allowed.length"></alert>
-				</td>
-			</tr>
-		</table>
-
+	<div class="button-row">
+		<btn url="#/manage/product/{{ product.id }}/edit" icon="pencil" small>Edit</btn>
+		<btn ng-click="delete()" icon="trash" type="danger" small></btn>
 	</div>
+</header>
+
+<breadcrumbs></breadcrumbs>
+
+<div class="page-content">
 	
+	<table class="table data-table">
+		<tr>
+			<td class="row-property">Name</td>
+			<td class="row-value">{{ product.name }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">Type</td>
+			<td class="row-value"><a href="#/manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
+		</tr>
+		<tr>
+			<td class="row-property">Units ({{ product.units.length }})</td>
+			<td class="row-value">
+				<div layout="row" align="start" justify="between" ng-show="product.units.length">
+					<ul>
+						<li ng-repeat="unit in product.units">
+							<a href="#/manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a>
+						</li>
+					</ul>
+					
+					<btn url="#/manage/unit/new" ng-click="preNewUnit()" small icon="plus"></btn>
+				</div>
+				
+				<alert type="info" text="No units for this product" icon="exclamation-circle" ng-if="!product.units.length">
+					<btn url="#/manage/unit/new" ng-click="preNewUnit()" small icon="plus">Create one</btn>
+				</alert>
+			</td>
+		</tr>
+		<tr>
+			<td class="row-property">Groups ({{ product.groups_allowed.length }})</td>
+			<td class="row-value">
+				<div layout="row" align="start" justify="between" ng-show="product.groups_allowed.length">
+					<ul>
+						<li ng-repeat="group in product.groups_allowed">
+							<a href="#/manage/class/{{ group.id }}">{{ group.code }}</a>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="alert alert-info" ng-if="!product.groups_allowed.length">
+					<p layout="row" align="center" justify="between">
+						<span>
+							<i class="fa fa-exclamation-circle"></i>
+							No classes are allowed to book this product
+						</span>
+					</p>
+				</div>
+				
+				<alert type="info" text="No classes are allowed to book this product" icon="exclamation-circle" ng-if="!product.groups_allowed.length"></alert>
+			</td>
+		</tr>
+	</table>
+
 </div>

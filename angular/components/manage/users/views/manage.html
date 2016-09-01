@@ -1,41 +1,35 @@
-<sidebar></sidebar>
+<header class="page-header" layout="row" justify="between" align="center">
+	<h1>All Users</h1>
+	<a href="#/manage/user/new" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New</a>
+</header>
 
-<div class="frame manage" ratio="1" ng-show="!error">
-	
-	<header class="page-header" layout="row" justify="between" align="center">
-		<h1>All Users</h1>
-		<a href="#/manage/user/new" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New</a>
-	</header>
-	
-	<breadcrumbs></breadcrumbs>
-	
-	<div class="page-content">
-	
-		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
-	
-		<table class="table table-hover" ng-hide="!filtered.length">
-			<thead>
-				<tr>
-					<th class="table-col-username">Username</th>
-					<th class="table-col-firstname">Name</th>
-					<th class="table-col-lastname sm-hide">Role</th>
-					<th class="table-col-controls sm-hide"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="user in users | orderBy: 'group.id' | orderBy: '-admin' | filter: filter as filtered">
-					<td><a href="#/manage/user/{{ user.id }}">{{ user.username }}</a></td>
-					<td>{{ user._fullname }}</td>
-					<td class="sm-hide">{{ user._role }}</td>
-					<td class="sm-hide">
-						<btn url="#/manage/user/{{ user.id }}" type="info" icon="arrow-right" small>View</btn>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		
-		<alert type="danger" class="bump-down" icon="info-circle" text='There are no users that match <b>"{{ filter }}"</b>' ng-if="!filtered.length"></alert>
+<breadcrumbs></breadcrumbs>
 
-	</div>
+<div class="page-content">
+
+	<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
+
+	<table class="table table-hover" ng-hide="!filtered.length">
+		<thead>
+			<tr>
+				<th class="table-col-username">Username</th>
+				<th class="table-col-firstname">Name</th>
+				<th class="table-col-lastname sm-hide">Role</th>
+				<th class="table-col-controls sm-hide"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="user in users | orderBy: 'group.id' | orderBy: '-admin' | filter: filter as filtered">
+				<td><a href="#/manage/user/{{ user.id }}">{{ user.username }}</a></td>
+				<td>{{ user._fullname }}</td>
+				<td class="sm-hide">{{ user._role }}</td>
+				<td class="sm-hide">
+					<btn url="#/manage/user/{{ user.id }}" type="info" icon="arrow-right" small>View</btn>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 	
+	<alert type="danger" class="bump-down" icon="info-circle" text='There are no users that match <b>"{{ filter }}"</b>' ng-if="!filtered.length"></alert>
+
 </div>

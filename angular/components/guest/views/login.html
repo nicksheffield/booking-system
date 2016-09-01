@@ -1,27 +1,23 @@
-<sidebar></sidebar>
+<header class="page-header">
+	<h1>Login</h1>
+</header>
 
-<div class="frame" ratio="1">
-	<header class="page-header">
-		<h1>Login</h1>
-	</header>
-	
-	<div class="page-content">
-		<div class="alert alert-danger" ng-show="error">
-			<i class="fa fa-exclamation-circle"></i>{{ error }}
-		</div>
-		
-		<form ng-submit="login()">
-			<div class="form-group">
-				<label for="username">Username</label>
-				<input type="text" id="username" ng-model="username" class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="password">Password</label>
-				<input type="password" id="password" ng-model="password" class="form-control">
-			</div>
-			<div class="form-group">
-				<input type="submit" class="btn btn-primary" value="Login">
-			</div>
-		</form>
+<div class="page-content">
+	<div class="alert alert-danger" ng-show="error">
+		<i class="fa fa-exclamation-circle"></i>{{ error }}
 	</div>
+	
+	<form ng-submit="login()">
+		<div class="form-group">
+			<label for="username">Username</label>
+			<input type="text" id="username" ng-model="username" class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input type="password" id="password" ng-model="password" class="form-control">
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Login">
+		</div>
+	</form>
 </div>

@@ -1,49 +1,43 @@
-<sidebar></sidebar>
-
-<div class="frame manage" ratio="1" ng-show="!error">
+<header class="page-header" layout="row" align="center" justify="between">
+	<h1>Class Type: {{ type.code }}</h1>
 	
-	<header class="page-header" layout="row" align="center" justify="between">
-		<h1>Class Type: {{ type.code }}</h1>
-		
-		<div class="button-row">
-			<btn url="#/manage/class_type/{{ type.id }}/edit" icon="pencil" small>Edit</btn>
-			<btn ng-click="delete()" icon="trash" type="danger" small></btn>
-		</div>
-	</header>
-	
-	<breadcrumbs></breadcrumbs>
-	
-	<div class="page-content">
-	
-		<table class="table data-table">
-			<tr>
-				<td class="row-property">Code</td>
-				<td class="row-value">{{ type.code }}</td>
-			</tr>
-			<tr>
-				<td class="row-property">Name</td>
-				<td class="row-value">{{ type.name }}</td>
-			</tr>
-			<tr>
-				<td class="row-property">Classes ({{ type.groups.length }})</td>
-				<td class="row-value">
-					<div layout="row" justify="between" align="start">
-						<ul ng-show="type.groups.length">
-							<li ng-repeat="group in type.groups">
-								<a href="#/manage/class/{{ group.id }}">{{ group.code }}</a>
-							</li>
-						</ul>
-						
-						<btn url="#/manage/class/new" ng-click="preNewClass()" small ng-if="type.groups.length" icon="plus"></btn>
-					</div>
-					
-					<alert type="info" text="No classes with this type" icon="exclamation-circle" ng-if="!type.groups.length">
-						<btn url="#/manage/class/new" ng-click="preNewClass()" small icon="plus">Create one</btn>
-					</alert>
-				</td>
-			</tr>
-		</table>
-
+	<div class="button-row">
+		<btn url="#/manage/class_type/{{ type.id }}/edit" icon="pencil" small>Edit</btn>
+		<btn ng-click="delete()" icon="trash" type="danger" small></btn>
 	</div>
-	
+</header>
+
+<breadcrumbs></breadcrumbs>
+
+<div class="page-content">
+
+	<table class="table data-table">
+		<tr>
+			<td class="row-property">Code</td>
+			<td class="row-value">{{ type.code }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">Name</td>
+			<td class="row-value">{{ type.name }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">Classes ({{ type.groups.length }})</td>
+			<td class="row-value">
+				<div layout="row" justify="between" align="start">
+					<ul ng-show="type.groups.length">
+						<li ng-repeat="group in type.groups">
+							<a href="#/manage/class/{{ group.id }}">{{ group.code }}</a>
+						</li>
+					</ul>
+					
+					<btn url="#/manage/class/new" ng-click="preNewClass()" small ng-if="type.groups.length" icon="plus"></btn>
+				</div>
+				
+				<alert type="info" text="No classes with this type" icon="exclamation-circle" ng-if="!type.groups.length">
+					<btn url="#/manage/class/new" ng-click="preNewClass()" small icon="plus">Create one</btn>
+				</alert>
+			</td>
+		</tr>
+	</table>
+
 </div>

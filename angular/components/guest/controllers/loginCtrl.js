@@ -22,13 +22,7 @@ angular.module('app.controllers')
 			.login(credentials)
 			.then(function(res) {
 				// $store.user = res.data.user
-				$store.invalidate('user')
-				$store.invalidate('users')
-				$store.invalidate('units')
-				$store.invalidate('groups')
-				$store.invalidate('products')
-				$store.invalidate('group_types')
-				$store.invalidate('product_types')
+				$store.invalidate('user', 'users', 'units', 'groups', 'products', 'group_types', 'product_types')
 
 				$location.path('/home')
 			})

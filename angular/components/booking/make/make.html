@@ -1,52 +1,47 @@
-<sidebar></sidebar>
-
-<div class="frame profile" ratio="1" ng-show="!error">
+<header class="page-header" layout="row" align="center" justify="between">
+	<h1>Book equipment</h1>
 	
-	<header class="page-header" layout="row" align="center" justify="between">
-		<h1>Book equipment</h1>
-		
-		<div class="button-row">
-			<btn type="danger" icon="undo" small ng-click="reset()">Reset</btn>
-			<btn icon="book" small ng-click="book()">Make booking</btn>
-		</div>
-	</header>
-	
-	<div class="page-content">
-	
-		<section>
-			<div layout="row sm-col" class="space-row">
-				<div ratio="1">
-					<label for="pickup_at">Pickup date</label>
-					<input type="date" id="pickup_at" ng-model="booking.pickup_at" ng-change="createBooking()" class="form-control">
-				</div>
-				<div ratio="1">
-					<label for="due_at">Return date</label>
-					<input type="date" id="due_at" ng-model="booking.due_at" ng-change="createBooking()" class="form-control">
-				</div>
-			</div>
-		</section>
-
-		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
-		
-		<table class="table table-hover booking-table">
-			<thead>
-				<tr>
-					<th class="booking-heading-product">Product</th>
-					<th class="booking-heading-type sm-hide">Type</th>
-					<th class="booking-heading-quantity">Available</th>
-					<th class="booking-heading-quantity">Quantity</th>
-				</tr>
-			</thead>
-			<tr ng-repeat="product in products | filter: filter">
-				<td>{{ product.name }}</td>
-				<td class="sm-hide">{{ product.type.name }}</td>
-				<td>{{ max(product) }}</td>
-				
-				<td>
-					<input type="number" ng-model="product._quantity" class="form-control booking-quantity-input" max="{{ max(product) }}" ng-keyup="checkAgainstMax(product)" min="0" ng-change="createBooking()">
-				</td>
-			</tr>
-		</table>
-		
+	<div class="button-row">
+		<btn type="danger" icon="undo" small ng-click="reset()">Reset</btn>
+		<btn icon="book" small ng-click="book()">Make booking</btn>
 	</div>
+</header>
+
+<div class="page-content">
+
+	<section>
+		<div layout="row sm-col" class="space-row">
+			<div ratio="1">
+				<label for="pickup_at">Pickup date</label>
+				<input type="date" id="pickup_at" ng-model="booking.pickup_at" ng-change="createBooking()" class="form-control">
+			</div>
+			<div ratio="1">
+				<label for="due_at">Return date</label>
+				<input type="date" id="due_at" ng-model="booking.due_at" ng-change="createBooking()" class="form-control">
+			</div>
+		</div>
+	</section>
+
+	<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
+	
+	<table class="table table-hover booking-table">
+		<thead>
+			<tr>
+				<th class="booking-heading-product">Product</th>
+				<th class="booking-heading-type sm-hide">Type</th>
+				<th class="booking-heading-quantity">Available</th>
+				<th class="booking-heading-quantity">Quantity</th>
+			</tr>
+		</thead>
+		<tr ng-repeat="product in products | filter: filter">
+			<td>{{ product.name }}</td>
+			<td class="sm-hide">{{ product.type.name }}</td>
+			<td>{{ max(product) }}</td>
+			
+			<td>
+				<input type="number" ng-model="product._quantity" class="form-control booking-quantity-input" max="{{ max(product) }}" ng-keyup="checkAgainstMax(product)" min="0" ng-change="createBooking()">
+			</td>
+		</tr>
+	</table>
+	
 </div>

@@ -1,43 +1,37 @@
-<sidebar></sidebar>
-
-<div class="frame manage" ratio="1" ng-show="!error">
+<header class="page-header" layout="row" align="center" justify="between">
+	<h1>Unit: {{ unit.unit_number }}</h1>
 	
-	<header class="page-header" layout="row" align="center" justify="between">
-		<h1>Unit: {{ unit.unit_number }}</h1>
-		
-		<div class="button-row">
-			<btn url="#/manage/unit/{{ unit.id }}/edit" icon="pencil" small>Edit</btn>
-			<btn ng-click="delete()" icon="trash" type="danger" small></btn>
-		</div>
-	</header>
-	
-	<breadcrumbs></breadcrumbs>
-	
-	<div class="page-content">
-	
-		<table class="table data-table">
-			<tr>
-				<td class="row-property">Unit No</td>
-				<td class="row-value">{{ unit.unit_number ? unit.unit_number : '-' }}</td>
-			</tr>
-			<tr>
-				<td class="row-property">Serial No</td>
-				<td class="row-value">{{ unit.serial_number ? unit.serial_number : '-' }}</td>
-			</tr>
-			<tr>
-				<td class="row-property">Asset No</td>
-				<td class="row-value">{{ unit.asset_number ? unit.asset_number : '-' }}</td>
-			</tr>
-			<tr>
-				<td class="row-property">Product</td>
-				<td class="row-value"><a href="#/manage/product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
-			</tr>
-			<tr>
-				<td class="row-property">Notes</td>
-				<td class="row-value">{{ unit.notes ? unit.notes : '-' }}</td>
-			</tr>
-		</table>
-
+	<div class="button-row">
+		<btn url="#/manage/unit/{{ unit.id }}/edit" icon="pencil" small>Edit</btn>
+		<btn ng-click="delete()" icon="trash" type="danger" small></btn>
 	</div>
-	
+</header>
+
+<breadcrumbs></breadcrumbs>
+
+<div class="page-content">
+
+	<table class="table data-table">
+		<tr>
+			<td class="row-property">Unit No</td>
+			<td class="row-value">{{ unit.unit_number ? unit.unit_number : '-' }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">Serial No</td>
+			<td class="row-value">{{ unit.serial_number ? unit.serial_number : '-' }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">Asset No</td>
+			<td class="row-value">{{ unit.asset_number ? unit.asset_number : '-' }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">Product</td>
+			<td class="row-value"><a href="#/manage/product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
+		</tr>
+		<tr>
+			<td class="row-property">Notes</td>
+			<td class="row-value">{{ unit.notes ? unit.notes : '-' }}</td>
+		</tr>
+	</table>
+
 </div>

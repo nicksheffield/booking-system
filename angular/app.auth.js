@@ -4,7 +4,7 @@ angular.module('app.auth')
 	$authProvider.loginUrl = '/api/auth'
 })
 
-.run(function($rootScope, $urlRouter, $q, $state, $auth, $store, $location, $title, $timeout) {
+.run(function($rootScope, $q, $state, $auth, $store, $location, $title, $pretend) {
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 		event.preventDefault()
 		
@@ -14,44 +14,47 @@ angular.module('app.auth')
 		
 		var invalids = $store.loadInvalidated()
 		
+		// invalids.push($pretend.wait(1000))
+		
 		$rootScope.loader = true
 		
 		$q.all(invalids)
 			.then(function() {
+				console.log('all invalidated reloaded')
 				var conditions = toState.data && toState.data.conditions ? toState.data.conditions : []
 
-				var destination = null
+				var redirectTo = null
 				
 				conditions.forEach(function(c) {
 					if(c == 'auth') {
 						if(!$auth.isAuthenticated()) {
-							destination = 'login'
+							redirectTo = 'login'
 						}
 					}
 					
 					if(c == 'guest_only') {
 						if($auth.isAuthenticated()) {
-							destination = 'home'
+							redirectTo = 'home'
 						}
 					}
 					
 					if(c == 'manager_only') {
 						if(!$auth.isAuthenticated()) {
-							destination = 'login'
+							redirectTo = 'login'
 						} else{
 							if($store.user._role !== 'Manager') {
-								destination = 'home'
+								redirectTo = 'home'
 							}
 						}
 					}
 					
 					if(c == 'staff_only') {
 						if(!$auth.isAuthenticated()) {
-							destination = 'login'
+							redirectTo = 'login'
 						} else{
 							$store.user.$promise.then(function() {
 								if($store.user._role !== 'Staff') {
-									destination = 'home'
+									redirectTo = 'home'
 								}
 							})
 						}
@@ -59,25 +62,25 @@ angular.module('app.auth')
 					
 					if(c == 'student_only') {
 						if(!$auth.isAuthenticated()) {
-							destination = 'login'
+							redirectTo = 'login'
 						} else{
 							$store.user.$promise.then(function() {
 								if($store.user._role !== 'Student') {
-									destination = 'home'
+									redirectTo = 'home'
 								}
 							})
 						}
 					}
 				})
 				
-				if(destination) {
-					console.log('kicked to', destination)
+				if(redirectTo) {
+					console.log('kicked to', redirectTo)
 					
 					$rootScope.loader = false
-					$location.path(destination)
+					$location.path(redirectTo)
 				}
 				
-				if(!destination) {
+				if(!redirectTo) {
 					
 					// https://github.com/angular-ui/ui-router/issues/1158
 					$state.go(toState.name, toParams, {notify: false}).then(function() {

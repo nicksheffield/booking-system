@@ -11,9 +11,11 @@ angular.module('app.services')
 		bookings: {},
 		group_types: {},
 		product_types: {},
-		invalidated: []
+		invalidated: [],
+		events: [],
 	}
 	
+	// good for debugging, remove this later
 	window.store = service
 	
 	service.invalidate = function() {
@@ -63,7 +65,9 @@ angular.module('app.services')
 	service.loadAuthUser = function() {
 		service.user = User.getWithToken()
 		
-		service.user.$promise.then(userSetup)
+		service.user.$promise.then(userSetup).then(function() {
+			service.notify('user', service.user)
+		})
 		
 		return service.user
 	}
@@ -71,9 +75,13 @@ angular.module('app.services')
 	service.loadUsers = function() {
 		service.users = User.query({'with': 'group|tutors_group'})
 		
-		service.users.$promise.then(function(users) {
-			_.forEach(users, userSetup)
-		})
+		service.users.$promise
+			.then(function(users) {
+				_.forEach(users, userSetup)
+			})
+			.then(function() {
+				service.notify('users', service.users)
+			})
 		
 		return service.users
 	}
@@ -94,16 +102,31 @@ angular.module('app.services')
 	
 	service.loadGroups = function() {
 		service.groups = Group.query({'with': 'type|users|allowed_products|tutors'})
+		
+		service.groups.$promise.then(function() {
+			service.notify('groups', service.groups)
+		})
+		
 		return service.groups
 	}
 	
 	service.loadGroupTypes = function() {
 		service.group_types = Group_Type.query({'with': 'groups'})
+		
+		service.group_types.$promise.then(function() {
+			service.notify('group_types', service.group_types)
+		})
+		
 		return service.group_types
 	}
 	
 	service.loadProductTypes = function() {
 		service.product_types = Product_Type.query({'with': 'products'})
+		
+		service.product_types.$promise.then(function() {
+			service.notify('product_types', service.product_types)
+		})
+		
 		return service.product_types
 	}
 	
@@ -116,26 +139,27 @@ angular.module('app.services')
 			})
 		})
 		
+		service.products.$promise.then(function() {
+			service.notify('products', service.products)
+		})
+		
 		return service.products
 	}
 	
 	service.loadUnits = function() {
 		service.units = Unit.query({'with': 'product'})
 		
+		service.units.$promise.then(function() {
+			service.notify('units', service.units)
+		})
+		
 		return service.units
 	}
 	
-	// service.loadGroups()
-	// service.loadUsers()
 	service.invalidate('groups', 'users')
 	
 	if($auth.isAuthenticated()) {
 		service.invalidate('user', 'group_types', 'product_types', 'products', 'units')
-	// 	service.loadAuthUser()
-	// 	service.loadGroupTypes()
-	// 	service.loadProductTypes()
-	// 	service.loadProducts()
-	// 	service.loadUnits()
 	}
 	
 	if(localStorage.booking) {
@@ -148,6 +172,22 @@ angular.module('app.services')
 		if(service.booking.due_at) {
 			service.booking.due_at = new Date(service.booking.due_at)
 		}
+	}
+	
+	
+	service.listen = function(event, callback) {
+		service.events.push({
+			name: event,
+			callback: callback
+		})
+	}
+	
+	service.notify = function(eventName, things) {
+		_.forEach(service.events, function(event) {
+			if(event.name == eventName) {
+				event.callback(things)
+			}
+		})
 	}
 
 	return service

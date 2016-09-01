@@ -1,45 +1,39 @@
-<sidebar></sidebar>
-
-<div class="frame manage" ratio="1" ng-show="!error">
+<header class="page-header" layout="row" align="center" justify="between">
+	<h1>Product Type: {{ type.name }}</h1>
 	
-	<header class="page-header" layout="row" align="center" justify="between">
-		<h1>Product Type: {{ type.name }}</h1>
-		
-		<div class="button-row">
-			<btn url="#/manage/product_type/{{ type.id }}/edit" icon="pencil" small>Edit</btn>
-			<btn ng-click="delete()" icon="trash" type="danger" small></btn>
-		</div>
-	</header>
-	
-	<breadcrumbs></breadcrumbs>
-	
-	<div class="page-content">
-		
-		<table class="table data-table">
-			<tr>
-				<td class="row-property">Name</td>
-				<td class="row-value">{{ type.name }}</td>
-			</tr>
-			<tr>
-				<td class="row-property">Products ({{ type.products.length }})</td>
-				<td class="row-value">
-					<div layout="row" align="start" justify="between" ng-show="type.products.length">
-						<ul>
-							<li ng-repeat="product in type.products">
-								<a href="#/manage/product/{{ product.id }}">{{ product.name }}</a>
-							</li>
-						</ul>
-						
-						<btn url="#/manage/product/new" ng-click="preNewProduct()" small icon="plus"></btn>
-					</div>
-					
-					<alert type="info" text="No products with this type" icon="exclamation-circle" ng-if="!type.products.length">
-						<btn url="#/manage/product/new" ng-click="preNewProduct()" small icon="plus">Create one</btn>
-					</alert>
-				</td>
-			</tr>
-		</table>
-
+	<div class="button-row">
+		<btn url="#/manage/product_type/{{ type.id }}/edit" icon="pencil" small>Edit</btn>
+		<btn ng-click="delete()" icon="trash" type="danger" small></btn>
 	</div>
+</header>
+
+<breadcrumbs></breadcrumbs>
+
+<div class="page-content">
 	
+	<table class="table data-table">
+		<tr>
+			<td class="row-property">Name</td>
+			<td class="row-value">{{ type.name }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">Products ({{ type.products.length }})</td>
+			<td class="row-value">
+				<div layout="row" align="start" justify="between" ng-show="type.products.length">
+					<ul>
+						<li ng-repeat="product in type.products">
+							<a href="#/manage/product/{{ product.id }}">{{ product.name }}</a>
+						</li>
+					</ul>
+					
+					<btn url="#/manage/product/new" ng-click="preNewProduct()" small icon="plus"></btn>
+				</div>
+				
+				<alert type="info" text="No products with this type" icon="exclamation-circle" ng-if="!type.products.length">
+					<btn url="#/manage/product/new" ng-click="preNewProduct()" small icon="plus">Create one</btn>
+				</alert>
+			</td>
+		</tr>
+	</table>
+
 </div>

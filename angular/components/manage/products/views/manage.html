@@ -1,39 +1,33 @@
-<sidebar></sidebar>
+<header class="page-header" layout="row" justify="between" align="center">
+	<h1>All Products</h1>
+	<btn icon="plus" small url="#/manage/product/new">New</btn>
+</header>
 
-<div class="frame manage" ratio="1" ng-show="!error">
-	
-	<header class="page-header" layout="row" justify="between" align="center">
-		<h1>All Products</h1>
-		<btn icon="plus" small url="#/manage/product/new">New</btn>
-	</header>
-	
-	<breadcrumbs></breadcrumbs>
-	
-	<div class="page-content">
-		
-		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
-	
-		<table class="table table-hover" ng-hide="!filtered.length">
-			<thead>
-				<tr>
-					<th class="table-col-code">Name</th>
-					<th class="table-col-name">Type</th>
-					<th class="table-col-controls"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="product in products | filter: filter as filtered">
-					<td><a href="#/manage/product/{{ product.id }}">{{ product.name }}</a></td>
-					<td><a href="#/manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
-					<td>
-						<btn url="#/manage/product/{{ product.id }}" type="info" icon="arrow-right" small>View</btn>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		
-		<alert type="danger" class="bump-down" icon="info-circle" text='There are no products that match <b>"{{ filter }}"</b>' ng-if="!filtered.length"></alert>
+<breadcrumbs></breadcrumbs>
 
-	</div>
+<div class="page-content">
 	
+	<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
+
+	<table class="table table-hover" ng-hide="!filtered.length">
+		<thead>
+			<tr>
+				<th class="table-col-code">Name</th>
+				<th class="table-col-name">Type</th>
+				<th class="table-col-controls"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="product in products | filter: filter as filtered">
+				<td><a href="#/manage/product/{{ product.id }}">{{ product.name }}</a></td>
+				<td><a href="#/manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
+				<td>
+					<btn url="#/manage/product/{{ product.id }}" type="info" icon="arrow-right" small>View</btn>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<alert type="danger" class="bump-down" icon="info-circle" text='There are no products that match <b>"{{ filter }}"</b>' ng-if="!filtered.length"></alert>
+
 </div>

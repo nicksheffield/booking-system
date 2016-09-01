@@ -1,69 +1,63 @@
-<sidebar></sidebar>
-
-<div class="frame manage" ratio="1" ng-show="!error">
+<header class="page-header" layout="row" align="center" justify="between">
+	<h1>User: {{ user.username }}</h1>
 	
-	<header class="page-header" layout="row" align="center" justify="between">
-		<h1>User: {{ user.username }}</h1>
-		
-		<div class="button-row">
-			<btn url="#/manage/user/{{ user.id }}/reset_pw" icon="unlock-alt" small>Reset Password</btn>
-			<btn url="#/manage/user/{{ user.id }}/edit" icon="pencil" small>Edit</btn>
-			<btn ng-click="delete()" icon="trash" type="danger" small></btn>
-		</div>
-	</header>
-	
-	<breadcrumbs></breadcrumbs>
-	
-	<div class="page-content">
-		
-		<table class="table data-table">
-			<tr>
-				<td class="row-property">First Name</td>
-				<td class="row-value">{{ user.first_name }}</td>
-			</tr>
-			<tr>
-				<td class="row-property">Last Name</td>
-				<td class="row-value">{{ user.last_name }}</td>
-			</tr>
-			<tr>
-				<td class="row-property">Phone</td>
-				<td class="row-value">{{ user.phone ? user.phone : '-' }}</td>
-			</tr>
-			<tr>
-				<td class="row-property">Email</td>
-				<td class="row-value">
-					<a href="mailto:{{ user.email }}" ng-show="user.email">{{ user.email }}</a>
-					<span ng-if="!user.email">-</span>
-				</td>
-			</tr>
-			<tr>
-				<td class="row-property">DOB</td>
-				<td class="row-value">{{ user.dob | date }} ({{ user._age }} years old)</td>
-			</tr>
-			<tr>
-				<td class="row-property">Role</td>
-				<td class="row-value">{{ user._role }}</td>
-			</tr>
-			<tr ng-show="!user.admin">
-				<td class="row-property">Student ID</td>
-				<td class="row-value">{{ user.id_number }}</td>
-			</tr>
-			<tr ng-show="!user.admin">
-				<td class="row-property">Class</td>
-				<td class="row-value"><a href="#/manage/class/{{ user.group.id }}">{{ user.group.code }}</a></td>
-			</tr>
-			<tr ng-show="user.admin && user.tutors_group.length">
-				<td class="row-property">Tutor of</td>
-				<td class="row-value">
-					<ul>
-						<li ng-repeat="group in user.tutors_group">
-							<a href="#/manage/class/{{ group.id }}">{{ group.code }}</a>
-						</li>
-					</ul>
-				</td>
-			</tr>
-		</table>
-
+	<div class="button-row">
+		<btn url="#/manage/user/{{ user.id }}/reset_pw" icon="unlock-alt" small>Reset Password</btn>
+		<btn url="#/manage/user/{{ user.id }}/edit" icon="pencil" small>Edit</btn>
+		<btn ng-click="delete()" icon="trash" type="danger" small></btn>
 	</div>
+</header>
+
+<breadcrumbs></breadcrumbs>
+
+<div class="page-content">
 	
+	<table class="table data-table">
+		<tr>
+			<td class="row-property">First Name</td>
+			<td class="row-value">{{ user.first_name }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">Last Name</td>
+			<td class="row-value">{{ user.last_name }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">Phone</td>
+			<td class="row-value">{{ user.phone ? user.phone : '-' }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">Email</td>
+			<td class="row-value">
+				<a href="mailto:{{ user.email }}" ng-show="user.email">{{ user.email }}</a>
+				<span ng-if="!user.email">-</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="row-property">DOB</td>
+			<td class="row-value">{{ user.dob | date }} ({{ user._age }} years old)</td>
+		</tr>
+		<tr>
+			<td class="row-property">Role</td>
+			<td class="row-value">{{ user._role }}</td>
+		</tr>
+		<tr ng-show="!user.admin">
+			<td class="row-property">Student ID</td>
+			<td class="row-value">{{ user.id_number }}</td>
+		</tr>
+		<tr ng-show="!user.admin">
+			<td class="row-property">Class</td>
+			<td class="row-value"><a href="#/manage/class/{{ user.group.id }}">{{ user.group.code }}</a></td>
+		</tr>
+		<tr ng-show="user.admin && user.tutors_group.length">
+			<td class="row-property">Tutor of</td>
+			<td class="row-value">
+				<ul>
+					<li ng-repeat="group in user.tutors_group">
+						<a href="#/manage/class/{{ group.id }}">{{ group.code }}</a>
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+
 </div>

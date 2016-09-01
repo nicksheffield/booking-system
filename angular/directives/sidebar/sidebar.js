@@ -1,9 +1,13 @@
 angular.module('app.directives')
 
-.directive('sidebar', function($state, $store, $auth) {
+.directive('sidebar', function($store, $auth, $rootScope) {
 	function link(scope, el, attrs) {
 		scope.auth = $auth
 		scope.user = $store.user
+		
+		$store.listen('user', function() {
+			scope.user = $store.user
+		})
 	}
 
 	return {

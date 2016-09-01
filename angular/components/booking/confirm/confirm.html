@@ -1,70 +1,65 @@
-<sidebar></sidebar>
+<header class="page-header" layout="row" align="center" justify="between">
+	<h1>Confirm booking</h1>
+</header>
 
-<div class="frame profile" ratio="1" ng-show="!error">
+<div class="page-content">
+
+	<p>Does this look right?</p>
+	<p>If not, you can <a href="#/book">go back</a> and modify it first.</p>
 	
-	<header class="page-header" layout="row" align="center" justify="between">
-		<h1>Confirm booking</h1>
-	</header>
+	<table class="table data-table">
+		<tr>
+			<td class="row-property">Your Name</td>
+			<td class="row-value">{{ user._fullname }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">Pick Up</td>
+			<td class="row-value">
+				<span ng-show="booking.pickup_at">
+					{{ booking.pickup_at | date }}
+				</span>
+				<div ng-show="!booking.pickup_at" class="alert alert-danger">
+					<p>
+						<i class="fa fa-exclamation-circle"></i>
+						You don't have a pickup date
+					</p>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="row-property">Due</td>
+			<td class="row-value">
+				<span ng-show="booking.due_at">
+					{{ booking.due_at | date }}
+				</span>
+				<div ng-show="!booking.due_at" class="alert alert-danger">
+					<p>
+						<i class="fa fa-exclamation-circle"></i>
+						You don't have a return date
+					</p>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="row-property">Products</td>
+			<td class="row-value">
+				<ul ng-show="booking.products.length">
+					<li ng-repeat="item in booking.products">
+						{{ product(item.id).name }}
+						<b> x{{ item.quantity }}</b>
+					</li>
+				</ul>
+				
+				<div ng-show="!booking.products.length" class="alert alert-danger">
+					<p>
+						<i class="fa fa-exclamation-circle"></i>
+						You aren't booking any products
+					</p>
+				</div>
+			</td>
+		</tr>
+	</table>
 	
-	<div class="page-content">
+	<btn type="success" large icon="check" ng-click="confirm()" disable="!booking.due_at || !booking.pickup_at || !booking.products.length">Yes</btn>
 	
-		<p>Does this look right?</p>
-		<p>If not, you can <a href="#/book">go back</a> and modify it first.</p>
-		
-		<table class="table data-table">
-			<tr>
-				<td class="row-property">Your Name</td>
-				<td class="row-value">{{ user._fullname }}</td>
-			</tr>
-			<tr>
-				<td class="row-property">Pick Up</td>
-				<td class="row-value">
-					<span ng-show="booking.pickup_at">
-						{{ booking.pickup_at | date }}
-					</span>
-					<div ng-show="!booking.pickup_at" class="alert alert-danger">
-						<p>
-							<i class="fa fa-exclamation-circle"></i>
-							You don't have a pickup date
-						</p>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td class="row-property">Due</td>
-				<td class="row-value">
-					<span ng-show="booking.due_at">
-						{{ booking.due_at | date }}
-					</span>
-					<div ng-show="!booking.due_at" class="alert alert-danger">
-						<p>
-							<i class="fa fa-exclamation-circle"></i>
-							You don't have a return date
-						</p>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td class="row-property">Products</td>
-				<td class="row-value">
-					<ul ng-show="booking.products.length">
-						<li ng-repeat="item in booking.products">
-							{{ product(item.id).name }}
-							<b> x{{ item.quantity }}</b>
-						</li>
-					</ul>
-					
-					<div ng-show="!booking.products.length" class="alert alert-danger">
-						<p>
-							<i class="fa fa-exclamation-circle"></i>
-							You aren't booking any products
-						</p>
-					</div>
-				</td>
-			</tr>
-		</table>
-		
-		<btn type="success" large icon="check" ng-click="confirm()" disable="!booking.due_at || !booking.pickup_at || !booking.products.length">Yes</btn>
-		
-	</div>
 </div>

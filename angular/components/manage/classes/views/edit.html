@@ -1,31 +1,25 @@
-<sidebar></sidebar>
+<header class="page-header">
+	<h1>Edit Class: {{ group.code }}</h1>
+</header>
 
-<div class="frame manage" ratio="1" ng-show="!error">
-	
-	<header class="page-header">
-		<h1>Edit Class: {{ group.code }}</h1>
-	</header>
-	
-	<breadcrumbs></breadcrumbs>
-	
-	<div class="page-content">
-	
-		<form ng-submit="save()">
-			<div class="form-group">
-				<label for="code">Code</label>
-				<input type="text" id="code" ng-model="group.code" class="form-control">
-			</div>
+<breadcrumbs></breadcrumbs>
 
-			<div class="form-group">
-				<label for="type">Type</label>
-				<select id="type" class="form-control" ng-model="group.group_type_id" ng-options="item.id as item.name for item in types"></select>
-			</div>
+<div class="page-content">
 
-			<div class="form-group">
-				<input type="submit" class="btn btn-primary" value="Save">
-			</div>
-		</form>
+	<form ng-submit="save()">
+		<div class="form-group">
+			<label for="code">Code</label>
+			<input type="text" id="code" ng-model="group.code" class="form-control">
+		</div>
 
-	</div>
-	
+		<div class="form-group">
+			<label for="type">Type</label>
+			<select id="type" class="form-control" ng-model="group.group_type_id" ng-options="item.id as item.name for item in types"></select>
+		</div>
+
+		<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Save">
+		</div>
+	</form>
+
 </div>
