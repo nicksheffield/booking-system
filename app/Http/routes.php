@@ -89,7 +89,7 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	Route::resource('product_type', 'ProductType');
 	
 	/**
-	*	Get all product
+	*	Get all products
 	*	Get one product
 	*	Create a product
 	*	Update product
@@ -114,10 +114,19 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	
 	/**
 	*	Get all units
-	*	Get one units
-	*	Create a units
-	*	Update units
-	*	Delete units
+	*	Get one unit
+	*	Create a unit
+	*	Update unit
+	*	Delete unit
 	*/
 	Route::resource('unit', 'Unit');
+	
+	/**
+	*	Get all bookings
+	*	Get one booking
+	*	Create a booking
+	*	Update booking
+	*	Delete booking
+	*/
+	Route::resource('booking', 'Booking');
 });

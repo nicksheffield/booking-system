@@ -1,6 +1,6 @@
 angular.module('app.services')
 
-.factory('$store', function($q, $auth, $interval, User, Group, Group_Type, Product_Type, Product, Unit) {
+.factory('$store', function($q, $auth, $interval, User, Group, Group_Type, Product_Type, Product, Unit, Booking) {
 	var service = {
 		user: {},
 		units: {},
@@ -36,12 +36,13 @@ angular.module('app.services')
 				case 'units': invalid.push(service.loadUnits().$promise); break;
 				case 'groups': invalid.push(service.loadGroups().$promise); break;
 				case 'products': invalid.push(service.loadProducts().$promise); break;
+				case 'bookings': invalid.push(service.loadBookings().$promise); break;
 				case 'group_types': invalid.push(service.loadGroupTypes().$promise); break;
 				case 'product_types': invalid.push(service.loadProductTypes().$promise); break;
 			}
 		})
 
-		console.log('invalidated', invalid.length)
+		// console.log('invalidated', invalid.length)
 		
 		service.invalidated = []
 		
@@ -156,10 +157,27 @@ angular.module('app.services')
 		return service.units
 	}
 	
+	service.loadBookings = function() {
+		service.bookings = Booking.query({'with': 'products|user'})
+		
+		service.bookings.$promise
+			.then(function(bookings) {
+				_.forEach(bookings, function(booking) {
+					booking.due_at = new Date(booking.due_at)
+					booking.pickup_at = new Date(booking.pickup_at)
+				})
+			})
+			.then(function() {
+				service.notify('bookings', service.bookings)
+			})
+		
+		return service.bookings
+	}
+	
 	service.invalidate('groups', 'users')
 	
 	if($auth.isAuthenticated()) {
-		service.invalidate('user', 'group_types', 'product_types', 'products', 'units')
+		service.invalidate('user', 'group_types', 'product_types', 'products', 'units', 'bookings')
 	}
 	
 	if(localStorage.booking) {
@@ -191,7 +209,7 @@ angular.module('app.services')
 	
 	// invalidate everything every 5 minutes
 	$interval(function() {
-		service.invalidate('user', 'users', 'groups', 'group_types', 'product_types', 'products', 'units')
+		service.invalidate('user', 'users', 'groups', 'group_types', 'product_types', 'products', 'units', 'bookings')
 	}, 5 * 60 * 1000)
 
 	return service

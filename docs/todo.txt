@@ -3,36 +3,25 @@ Todo.txt
 	- Edit/Create/Delete users in angular from admin
 	- Figure out datefmt stuff for editing date inputs
 	- Students need to be confirmed
-	- Add photos to products
 	- When you delete, have the server send back an undelete url
 		- then display this in a timed message that the user can use to undo
 	- Dont reveal other users info in any requests when you are a student
 	- Handle page headers and their buttons more gracefully whenever the title is too long
-	- Replace select menus with combo boxes where applicable
+	- Replace select menus with ui.select where applicable
 	- Reset users passwords
 	- Add some managerial features for staff where applicable
 	- Make all id's randomly generated, not sequential (auto_increment)
 	- Users can edit themselves
 	- Waiting list for students that want to book a certain product
 	- Maybe switch to using just email address for logging in, and refer to a user by their first name
-	- An idea: maybe "invalidate" the arrays in $store somehow, and reload them whenever they get accessed next. That way you don't need to re-request every time you go to like the units page or whatever and risk getting stale data
-	- Figure out how promises work ($q?) so I can remove those stupid _.find()'s within .$promise.then() blocks
-	- Maybe $store is getting too big. Maybe I should make a $booking service or a $setup service or something
-		- for setup maybe look into resources transformResponse property
+	- The $store service is getting too big, think of how to break it up
 	- Modify groups to add/remove tutors
 	- Maybe just have one "name" field for users
-	- Delay route change until resources have loaded. Maybe this means that we'll have to state which resources are used in the route
-		- http://stackoverflow.com/questions/20094273/stop-angular-ui-router-navigation-until-promise-is-resolved
 	- Tutor needs to be settable for new group and edit group
-	- Fix login weird delay
+	- Change $store.invalidate() so it either takes 1 string or 1 array of strings, instead of this weird arguments thing I've got at the moment.
 	
 	- Ask graeme if bookings should have times
 		- he said sort of
-	
-Bugs
-
-	- Sometimes the allowed_products page saves as soon as you load it, and wipes quantites
-		- Think this is solved
 
 Old code
 	<ui-select ng-model="item.value" on-select="resetQuantity($index)">

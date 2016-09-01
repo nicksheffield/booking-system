@@ -1,6 +1,8 @@
 <?php
 
-# Remember to use $ composer dump-autoload
+# Remember to use the following command when you update this file:
+#
+# > composer dump-autoload
 
 use Illuminate\Database\Seeder;
 
@@ -21,7 +23,7 @@ class DatabaseSeeder extends Seeder
 		$this->call(BookingsSeeder::class);
 		$this->call(GroupTypesSeeder::class);
 		$this->call(PermissionsSeeder::class);
-		$this->call(BookingUnitSeeder::class);
 		$this->call(ProductTypesSeeder::class);
+		$this->call(BookingProductSeeder::class);
 	}
 }

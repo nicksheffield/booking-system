@@ -6,24 +6,22 @@ angular.module('app.controllers')
 		
 		$scope.products = $store.products
 		
-		$scope.products.$promise.then(function() {
-			_.forEach($scope.products, function(product) {
-				_.forEach($scope.group.allowed_products, function(a) {
-					if(a.id == product.id) {
-						product._allowed = true
-						product._quantity = a.pivot.quantity
-						product._days_allowed = a.pivot.days_allowed
-					}
-				})
-				
-				if(!product._quantity) {
-					product._quantity = 1
-				}
-				
-				if(!product._days_allowed) {
-					product._days_allowed = 1
+		_.forEach($scope.products, function(product) {
+			_.forEach($scope.group.allowed_products, function(a) {
+				if(a.id == product.id) {
+					product._allowed = true
+					product._quantity = a.pivot.quantity
+					product._days_allowed = a.pivot.days_allowed
 				}
 			})
+			
+			if(!product._quantity) {
+				product._quantity = 1
+			}
+			
+			if(!product._days_allowed) {
+				product._days_allowed = 1
+			}
 		})
 	})
 	

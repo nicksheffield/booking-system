@@ -26,4 +26,8 @@ class Product extends Model
 	public function groups_allowed() {
 		return $this->belongsToMany('App\Models\Group', 'permissions')->withPivot('quantity', 'days_allowed');
 	}
+	
+	public function bookings() {
+		return $this->belongsToMany('App\Models\Booking', 'booking_product')->withPivot('unit_id', 'notes');
+	}
 }

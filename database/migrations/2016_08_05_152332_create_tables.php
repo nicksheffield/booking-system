@@ -105,11 +105,13 @@ class CreateTables extends Migration
 			$table->softDeletes();
 		});
 		
-		Schema::create('booking_unit', function(Blueprint $table) {
+		Schema::create('booking_product', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('booking_id');
+			$table->integer('product_id');
 			$table->integer('unit_id');
 			$table->string('notes');
+			$table->timestamp('returned_at')->nullable();
 			$table->timestamps();
 		});
 	}
@@ -121,16 +123,16 @@ class CreateTables extends Migration
 	 */
 	public function down()
 	{
+		Schema::drop('tutor');
 		Schema::drop('users');
-		Schema::drop('password_resets');
-		Schema::drop('group_types');
+		Schema::drop('units');
 		Schema::drop('groups');
+		Schema::drop('products');
+		Schema::drop('bookings');
+		Schema::drop('group_types');
 		Schema::drop('permissions');
 		Schema::drop('product_types');
-		Schema::drop('products');
-		Schema::drop('units');
-		Schema::drop('bookings');
-		Schema::drop('booking_unit');
-		Schema::drop('tutor');
+		Schema::drop('password_resets');
+		Schema::drop('booking_product');
 	}
 }

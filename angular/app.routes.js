@@ -79,6 +79,26 @@ angular.module('app.routes')
 			}
 		},
 		
+		'success_booking': {
+			url: '/book/success',
+			templateUrl: 'components/booking/success/success.html',
+			controller: 'successCtrl',
+			data: {
+				conditions: ['auth'],
+				title: 'Booking Made'
+			}
+		},
+		
+		'view_bookings': {
+			url: '/bookings',
+			templateUrl: 'components/booking/view/view.html',
+			controller: 'viewBookingsCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				title: 'All Current Bookings'
+			}
+		},
+		
 		// ------------------------------------------------------------
 		// Manage
 		// ------------------------------------------------------------

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class BookingUnitSeeder extends Seeder
+class BookingProductSeeder extends Seeder
 {
 	/**
 	 * Run the database seeds.
@@ -11,7 +11,7 @@ class BookingUnitSeeder extends Seeder
 	 */
 	public function run()
 	{
-		DB::table('booking_unit')->delete();
+		DB::table('booking_product')->delete();
 		
 		$items = [
 			[
@@ -48,6 +48,6 @@ class BookingUnitSeeder extends Seeder
 			],
 		];
 		
-		DB::table('booking_unit')->insert($items);
+		// DB::table('booking_unit')->insert($items);
 	}
 }

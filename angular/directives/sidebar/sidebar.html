@@ -12,31 +12,31 @@
 			<li nav-link="Register" url="#/register" icon="user-plus"></li>
 		</ul>
 		
-		<!-- manager -->
-		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin == 2">
+		<!-- student -->
+		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin == 0">
 			<li nav-link="Home" url="#/" icon="home"></li>
-			<li nav-link="Book Equipment" url="#/book" icon="book"></li>
-			<li nav-link="Issue Equipment" url="#/book/issue" icon="camera-retro"></li>
-			<li nav-link="Return Equipment" url="#/book/return" icon="hand-lizard-o"></li>
-			<li nav-link="Manage Data" url="#/manage" icon="pencil"></li>
+			<li nav-link="Make booking" url="#/book" icon="book"></li>
+			<li nav-link="Modify booking" url="#/book/edit" icon="book"></li>
 			<li nav-link="Logout ({{ user.username }})" url="#/logout" icon="sign-out"></li>
 		</ul>
 		
 		<!-- staff -->
 		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin == 1">
 			<li nav-link="Home" url="#/" icon="home"></li>
-			<li nav-link="Book Equipment" url="#/book" icon="book"></li>
-			<li nav-link="Issue Equipment" url="#/book/issue" icon="camera-retro"></li>
-			<li nav-link="Return Equipment" url="#/book/return" icon="hand-lizard-o"></li>
+			<li nav-link="Make booking" url="#/book" icon="book"></li>
+			<li nav-link="View bookings" url="#/bookings" icon="camera-retro"></li>
+			<li nav-link="Manage Data" url="#/manage" icon="pencil"></li>
 			<li nav-link="Logout ({{ user.username }})" url="#/logout" icon="sign-out"></li>
 		</ul>
 		
-		<!-- student -->
-		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin == 0">
+		<!-- manager -->
+		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin == 2">
 			<li nav-link="Home" url="#/" icon="home"></li>
-			<li nav-link="Book Equipment" url="#/book" icon="book"></li>
-			<li nav-link="Modify Booking" url="#/book/edit" icon="book"></li>
+			<li nav-link="Make booking" url="#/book" icon="book"></li>
+			<li nav-link="View bookings" url="#/bookings" icon="camera-retro"></li>
+			<li nav-link="Manage Data" url="#/manage" icon="pencil"></li>
 			<li nav-link="Logout ({{ user.username }})" url="#/logout" icon="sign-out"></li>
 		</ul>
+		
 	</nav>
 </div>

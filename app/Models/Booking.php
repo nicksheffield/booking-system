@@ -14,7 +14,7 @@ class Booking extends Model
 	protected $table = 'bookings';
 	
 	protected $fillable = [
-		'user_id'
+		'user_id', 'due_at', 'pickup_at'
 	];
 
 	public function scopeOverdue($query) {
@@ -37,8 +37,8 @@ class Booking extends Model
 		return $query->where('returned_at', null);
 	}
 	
-	public function units() {
-		return $this->belongsToMany('App\Models\Unit', 'booking_unit')->withTimestamps();
+	public function products() {
+		return $this->belongsToMany('App\Models\Product', 'booking_product')->withPivot('unit_id', 'notes')->withTimestamps();
 	}
 	
 	public function user() {

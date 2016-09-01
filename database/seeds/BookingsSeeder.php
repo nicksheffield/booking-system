@@ -31,7 +31,7 @@ class BookingsSeeder extends Seeder
 		];
 
 		foreach($items as $item) {
-			App\Models\Booking::create($item);
+			//App\Models\Booking::create($item);
 		}
 	}
 }

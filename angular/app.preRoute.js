@@ -20,7 +20,7 @@ angular.module('app.auth')
 		
 		$q.all(invalids)
 			.then(function() {
-				console.log('all invalidated reloaded')
+				// console.log('all invalidated reloaded')
 				var conditions = toState.data && toState.data.conditions ? toState.data.conditions : []
 
 				var redirectTo = null
@@ -41,8 +41,8 @@ angular.module('app.auth')
 					if(c == 'manager_only') {
 						if(!$auth.isAuthenticated()) {
 							redirectTo = 'login'
-						} else{
-							if($store.user._role !== 'Manager') {
+						} else {
+							if($store.user.admin !== 2) {
 								redirectTo = 'home'
 							}
 						}
@@ -51,24 +51,20 @@ angular.module('app.auth')
 					if(c == 'staff_only') {
 						if(!$auth.isAuthenticated()) {
 							redirectTo = 'login'
-						} else{
-							$store.user.$promise.then(function() {
-								if($store.user._role !== 'Staff') {
-									redirectTo = 'home'
-								}
-							})
+						} else {
+							if(!$store.user.admin) {
+								redirectTo = 'home'
+							}
 						}
 					}
 					
 					if(c == 'student_only') {
 						if(!$auth.isAuthenticated()) {
 							redirectTo = 'login'
-						} else{
-							$store.user.$promise.then(function() {
-								if($store.user._role !== 'Student') {
-									redirectTo = 'home'
-								}
-							})
+						} else {
+							if($store.user.admin) {
+								redirectTo = 'home'
+							}
 						}
 					}
 				})

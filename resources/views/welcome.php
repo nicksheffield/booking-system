@@ -19,7 +19,7 @@
 	<div class="wrapper" layout="row sm-col" ratio="1">
 		<sidebar></sidebar>
 
-		<div class="frame" ratio="1" ui-view></div>
+		<div class="frame" ratio="1" layout="col" ui-view></div>
 		
 		<loader></loader>
 	</div>

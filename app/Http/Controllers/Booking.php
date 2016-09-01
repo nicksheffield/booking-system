@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Auth;
 
 use App\Models\Booking as Model;
 
@@ -37,8 +38,16 @@ class Booking extends Controller
 	public function store(Model $model, Request $request)
 	{
 		$model->fill($request->all());
+		
+		$model->user_id = Auth::user()->id;
 
 		$model->save();
+		
+		foreach($request->products as $product) {
+			for($i=0; $i<$product['quantity']; $i++) {
+				$model->products()->attach($product['id']);
+			}
+		}
 
 		return $model;
 	}
