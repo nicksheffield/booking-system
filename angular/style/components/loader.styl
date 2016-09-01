@@ -8,9 +8,15 @@
 	background color-loader-bg
 	color color-loader-icon
 	border-radius body-rad
+	pointer-events none
+	opacity 0
+	transition opacity 0.2s linear
 	
 	display flex
 	justify-content center
 	
 	.icon
 		margin-top calc((100vh / 2) - 50px)
+		
+	&.loader-show
+		opacity 1

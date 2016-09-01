@@ -174,7 +174,6 @@ angular.module('app.services')
 		}
 	}
 	
-	
 	service.listen = function(event, callback) {
 		service.events.push({
 			name: event,
@@ -194,7 +193,6 @@ angular.module('app.services')
 	$interval(function() {
 		service.invalidate('user', 'users', 'groups', 'group_types', 'product_types', 'products', 'units')
 	}, 5 * 60 * 1000)
-	// }, 1000)
 
 	return service
 })
