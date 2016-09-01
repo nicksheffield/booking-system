@@ -20,7 +20,8 @@
 		<sidebar></sidebar>
 
 		<div class="frame" ratio="1" ui-view></div>
+		
+		<loader></loader>
 	</div>
-	<loader></loader>
 </body>
 </html>

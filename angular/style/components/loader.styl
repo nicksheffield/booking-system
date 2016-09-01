@@ -1,14 +1,16 @@
 .loader
 	position absolute
-	top 3em
-	left 3em
-	width calc(100% - 6em)
-	height calc(100% - 6em)
-	z-index 999
+	top 0
+	left 250px
+	width calc(100% - 250px)
+	height 100%
+	z-index 9999999
 	background color-loader-bg
 	color color-loader-icon
 	border-radius body-rad
 	
 	display flex
-	align-items center
 	justify-content center
+	
+	.icon
+		margin-top calc((100vh / 2) - 50px)
