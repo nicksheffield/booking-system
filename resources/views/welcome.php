@@ -16,7 +16,7 @@
 	<script src="dist/app.min.js"></script>
 </head>
 <body class="{{ bodyClass }}" layout="full-col">
-	<div class="wrapper" layout="row sm-col" ratio="1">
+	<div class="wrapper" layout="row sm-col md-col" ratio="1">
 		<sidebar></sidebar>
 
 		<div class="frame" ratio="1" layout="col" ui-view></div>

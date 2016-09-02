@@ -1,4 +1,4 @@
-<div class="sidebar" layout="col">
+<div class="sidebar" layout="col md-row" align="md-center">
 	<header layout="row" align="center">
 		<img src="/images/logo.svg" alt="" class="logo">
 	
@@ -7,13 +7,13 @@
 	
 	<nav>
 		<!-- guest -->
-		<ul layout="col" ng-if="!auth.isAuthenticated()">
+		<ul layout="col md-row" align="md-center" ng-if="!auth.isAuthenticated()">
 			<li nav-link="Login" url="#/login" icon="sign-in"></li>
 			<li nav-link="Register" url="#/register" icon="user-plus"></li>
 		</ul>
 		
 		<!-- student -->
-		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin == 0">
+		<ul layout="col md-row" align="md-center" ng-if="auth.isAuthenticated() && user.admin == 0">
 			<li nav-link="Home" url="#/" icon="home"></li>
 			<li nav-link="Make booking" url="#/book" icon="book"></li>
 			<li nav-link="Modify booking" url="#/book/edit" icon="book"></li>
@@ -21,7 +21,7 @@
 		</ul>
 		
 		<!-- staff -->
-		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin == 1">
+		<ul layout="col md-row" align="md-center" ng-if="auth.isAuthenticated() && user.admin == 1">
 			<li nav-link="Home" url="#/" icon="home"></li>
 			<li nav-link="Make booking" url="#/book" icon="book"></li>
 			<li nav-link="View bookings" url="#/bookings" icon="camera-retro"></li>
@@ -30,7 +30,7 @@
 		</ul>
 		
 		<!-- manager -->
-		<ul layout="col" ng-if="auth.isAuthenticated() && user.admin == 2">
+		<ul layout="col md-row" align="md-center" ng-if="auth.isAuthenticated() && user.admin == 2">
 			<li nav-link="Home" url="#/" icon="home"></li>
 			<li nav-link="Make booking" url="#/book" icon="book"></li>
 			<li nav-link="View bookings" url="#/bookings" icon="camera-retro"></li>

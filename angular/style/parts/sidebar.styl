@@ -1,13 +1,20 @@
 .sidebar
 	width 250px
-	display flex
-	flex-direction column
+	min-width 250px
+	max-width 250px
 	background color-sidebar-background
 	color color-sidebar-text
 	-webkit-font-smoothing antialiased
 	
 	@media (max-width bp-sm)
 		width auto
+		max-width initial
+		min-width initial
+		
+	@media (max-width bp-md)
+		width 100%
+		max-width initial
+		min-width initial
 	
 	header
 		padding 1em
@@ -26,6 +33,9 @@
 		
 	nav
 		border-bottom 1px solid color-sidebar-border
+		
+		@media (max-width bp-md)
+			border-bottom 0
 	
 	ul
 		list-style none
@@ -40,6 +50,11 @@
 		font-size 0.9em
 		border-top 1px solid color-sidebar-border
 		transition background-color transition-time ease
+		
+		@media (max-width bp-md)
+			border-top 0
+			height 99px
+			display flex
 		
 		i.fa
 			float right

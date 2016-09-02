@@ -41,7 +41,7 @@ angular.module('app.directives')
 		replace: false,
 		transclude: false,
 		link: link,
-		template: '<a href="{{ url }}">{{ navLink }} <i ng-show="icon" class="fa fa-{{ icon }}"></i></a>',
+		template: '<a href="{{ url }}" layout="row" align="center"><span>{{ navLink }} <i ng-show="icon" class="fa fa-{{ icon }}"></i></span></a>',
 		scope: {
 			'navLink': '@',
 			'url': '@',

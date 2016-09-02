@@ -24,7 +24,7 @@
 
 	<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
 	
-	<table class="table table-hover booking-table">
+	<table class="table table-hover booking-table table-filtered">
 		<thead>
 			<tr>
 				<th class="booking-heading-product">Product</th>
@@ -33,7 +33,7 @@
 				<th class="booking-heading-quantity">Quantity</th>
 			</tr>
 		</thead>
-		<tr ng-repeat="product in products | filter: filter">
+		<tr ng-repeat="product in products | filter: filter as filtered">
 			<td>{{ product.name }}</td>
 			<td class="sm-hide">{{ product.type.name }}</td>
 			<td>{{ max(product) }}</td>
@@ -44,4 +44,5 @@
 		</tr>
 	</table>
 	
+	<alert type="danger" text='There are no products that match <b>"{{ filter }}"</b>' icon="info-circle" ng-if="!filtered.length"></alert>
 </div>
