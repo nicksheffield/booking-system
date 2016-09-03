@@ -1,4 +1,4 @@
-<div class="sidebar" layout="col md-row" align="md-center">
+<div class="sidebar" layout="col md-row" align="md-center" justify="md-between">
 	<header layout="row" align="center">
 		<img src="/images/logo.svg" alt="" class="logo">
 	
@@ -17,7 +17,7 @@
 			<li nav-link="Home" url="#/" icon="home"></li>
 			<li nav-link="Make booking" url="#/book" icon="book"></li>
 			<li nav-link="Modify booking" url="#/book/edit" icon="book"></li>
-			<li nav-link="Logout ({{ user.username }})" url="#/logout" icon="sign-out"></li>
+			<li nav-link="Logout ({{ user.name }})" url="#/logout" icon="sign-out"></li>
 		</ul>
 		
 		<!-- staff -->
@@ -26,7 +26,7 @@
 			<li nav-link="Make booking" url="#/book" icon="book"></li>
 			<li nav-link="View bookings" url="#/bookings" icon="camera-retro"></li>
 			<li nav-link="Manage Data" url="#/manage" icon="pencil"></li>
-			<li nav-link="Logout ({{ user.username }})" url="#/logout" icon="sign-out"></li>
+			<li nav-link="Logout ({{ user.name }})" url="#/logout" icon="sign-out"></li>
 		</ul>
 		
 		<!-- manager -->
@@ -35,7 +35,7 @@
 			<li nav-link="Make booking" url="#/book" icon="book"></li>
 			<li nav-link="View bookings" url="#/bookings" icon="camera-retro"></li>
 			<li nav-link="Manage Data" url="#/manage" icon="pencil"></li>
-			<li nav-link="Logout ({{ user.username }})" url="#/logout" icon="sign-out"></li>
+			<li nav-link="Logout ({{ user.name }})" url="#/logout" icon="sign-out"></li>
 		</ul>
 		
 	</nav>

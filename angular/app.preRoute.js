@@ -20,7 +20,7 @@ angular.module('app.auth')
 		
 		$q.all(invalids)
 			.then(function() {
-				// console.log('all invalidated reloaded')
+				console.log('all invalidated reloaded', invalids.length)
 				var conditions = toState.data && toState.data.conditions ? toState.data.conditions : []
 
 				var redirectTo = null

@@ -17,36 +17,28 @@ class UserSeeder extends Seeder
 		$items = [
 			[
 				'id' => 1,
-				'username' => 'nicks',
-				'first_name' => 'Nick',
-				'last_name' => 'Sheffield',
+				'name' => 'Nick Sheffield',
 				'email' => 'numbereft@gmail.com',
 				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'admin' => 2,
 				'password' => bcrypt('abcd')
 			],[
 				'id' => 2,
-				'username' => 'graemeb',
-				'first_name' => 'Graeme',
-				'last_name' => 'Bibby',
+				'name' => 'Graeme Bibby',
 				'email' => 'graeme@example.com',
 				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'admin' => 1,
 				'password' => bcrypt('abcd')
 			],[
 				'id' => 3,
-				'username' => 'meganh',
-				'first_name' => 'Megan',
-				'last_name' => 'Harper',
+				'name' => 'Megan Harper',
 				'email' => 'megan@example.com',
 				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'admin' => 1,
 				'password' => bcrypt('abcd')
 			],[
 				'id' => 4,
-				'username' => 'henryf',
-				'first_name' => 'Henry',
-				'last_name' => 'Fox',
+				'name' => 'Henry Fox',
 				'email' => 'henry@example.com',
 				'phone' => '021'.randInt(7),
 				'id_number' => randInt(5),
@@ -82,9 +74,7 @@ class UserSeeder extends Seeder
 				
 				App\Models\User::create([
 					'id' => ++$id,
-					'username' => $username,
-					'first_name' => $person->name,
-					'last_name' => $person->surname,
+					'name' => $person->name . ' ' . $person->surname,
 					'email' => $username.'@example.com',
 					'phone' => '021'.randInt(7),
 					'id_number' => randInt(5),

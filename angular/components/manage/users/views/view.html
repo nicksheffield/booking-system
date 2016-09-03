@@ -1,5 +1,5 @@
 <header class="page-header" layout="row" align="center" justify="between">
-	<h1>User: {{ user.username }}</h1>
+	<h1>User: {{ user.name }}</h1>
 	
 	<div class="button-row">
 		<btn url="#/manage/user/{{ user.id }}/reset_pw" icon="unlock-alt" small>Reset Password</btn>
@@ -14,12 +14,8 @@
 	
 	<table class="table data-table">
 		<tr>
-			<td class="row-property">First Name</td>
-			<td class="row-value">{{ user.first_name }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">Last Name</td>
-			<td class="row-value">{{ user.last_name }}</td>
+			<td class="row-property">Name</td>
+			<td class="row-value">{{ user.name }}</td>
 		</tr>
 		<tr>
 			<td class="row-property">Phone</td>

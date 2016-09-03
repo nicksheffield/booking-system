@@ -27,7 +27,7 @@ class Logins extends Controller
 	}
 
 	public function authenticate(Request $request) {
-		$credentials = $request->only('username', 'password');
+		$credentials = $request->only('email', 'password');
 
 		try {
 			// verify the credentials and create a token for the user

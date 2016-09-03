@@ -12,7 +12,7 @@ angular.module('app.controllers')
 		
 		if(confirmed) {
 			$scope.type.$delete().then(function() {
-				$store.invalidate('group_types')
+				$store.invalidate(['group_types', 'groups'])
 				
 				$location.path('/manage/class_type')
 			})

@@ -18,12 +18,16 @@ angular.module('app.services')
 	// good for debugging, remove this later
 	window.store = service
 	
-	service.invalidate = function() {
-		_.forEach(arguments, function(type) {
-			if(service.invalidated.indexOf(type) === -1){
-				service.invalidated.push(type)
-			}
-		})
+	service.invalidate = function(type) {
+		if(type instanceof Array) {
+			_.forEach(type, function(t) {
+				if(service.invalidated.indexOf(t) === -1){
+					service.invalidated.push(t)
+				}
+			})
+		} else {
+			service.invalidated.push(type)
+		}
 	}
 	
 	service.loadInvalidated = function() {
@@ -91,8 +95,6 @@ angular.module('app.services')
 		if(user.admin === 2) user._role = 'Manager'
 		if(user.admin === 1) user._role = 'Staff'
 		if(user.admin === 0) user._role = 'Student'
-
-		user._fullname = user.first_name + ' ' + user.last_name
 			
 		var duration = moment.duration(moment().diff(moment(user.dob)));
 		
@@ -174,10 +176,10 @@ angular.module('app.services')
 		return service.bookings
 	}
 	
-	service.invalidate('groups', 'users')
+	service.invalidate(['groups', 'users'])
 	
 	if($auth.isAuthenticated()) {
-		service.invalidate('user', 'group_types', 'product_types', 'products', 'units', 'bookings')
+		service.invalidate(['user', 'group_types', 'product_types', 'products', 'units', 'bookings'])
 	}
 	
 	if(localStorage.booking) {
@@ -209,7 +211,7 @@ angular.module('app.services')
 	
 	// invalidate everything every 5 minutes
 	$interval(function() {
-		service.invalidate('user', 'users', 'groups', 'group_types', 'product_types', 'products', 'units', 'bookings')
+		service.invalidate(['user', 'users', 'groups', 'group_types', 'product_types', 'products', 'units', 'bookings'])
 	}, 5 * 60 * 1000)
 
 	return service

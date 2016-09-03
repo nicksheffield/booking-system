@@ -2,26 +2,31 @@ angular.module('app.controllers')
 
 .controller('userNewCtrl', function($scope, $stateParams, $store, $location, $flash, User) {
 	
-	$scope.group_id = $flash.use('class')
+	var group_id = $flash.use('class')
 	
 	$scope.groups = $store.groups
+	$scope.selected = { group: {} }
+	
+	if(group_id) {
+		$scope.selected.group = _.find($scope.groups, (g) => g.id == group_id)
+	}
+	
 
 	$scope.save = function() {
 		var u = new User()
 		
-		u.first_name = $scope.first_name
-		u.last_name = $scope.last_name
-		u.email = $scope.email
-		u.phone = $scope.phone
-		u.dob = $scope.dob
-		u.id_number = $scope.id_number
-		u.group_id = $scope.group_id
-		u.password = $scope.password
+		u.dob        = $scope.dob
+		u.name       = $scope.name
+		u.email      = $scope.email
+		u.phone      = $scope.phone
+		u.group_id   = $scope.selected.group.id
+		u.password   = $scope.password
+		u.id_number  = $scope.id_number
 		
 		u.$save().then(function(res) {
 
 			var credentials = {
-				username: res.username,
+				name: res.name,
 				password: $scope.password
 			}
 

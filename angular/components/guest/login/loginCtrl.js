@@ -1,7 +1,7 @@
 angular.module('app.controllers')
 
 .controller('loginCtrl', function($scope, $auth, $store, $state, $location) {
-	$scope.$watch('username', reset)
+	$scope.$watch('email', reset)
 	$scope.$watch('password', reset)
 	
 	function reset() {
@@ -9,12 +9,12 @@ angular.module('app.controllers')
 	}
 
 	$scope.login = function() {
-		if(!$scope.username || !$scope.password) {
+		if(!$scope.email || !$scope.password) {
 			return false
 		}
 		
 		var credentials = {
-			username: $scope.username,
+			email: $scope.email,
 			password: $scope.password
 		}
 		

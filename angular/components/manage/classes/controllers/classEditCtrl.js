@@ -7,7 +7,7 @@ angular.module('app.controllers')
 	
 	$scope.save = function() {
 		Group.update({id: $scope.group.id}, $scope.group).$promise.then(function(res) {
-			$store.invalidate('groups', 'group_types', 'users')
+			$store.invalidate(['groups', 'group_types', 'users'])
 			
 			$location.path('/manage/class/' + $scope.group.id)
 		})

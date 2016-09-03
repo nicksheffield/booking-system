@@ -10,7 +10,7 @@
 	<table class="table data-table">
 		<tr>
 			<td class="row-property">Your Name</td>
-			<td class="row-value">{{ user._fullname }}</td>
+			<td class="row-value">{{ user.name }}</td>
 		</tr>
 		<tr>
 			<td class="row-property">Pick Up</td>
@@ -18,12 +18,7 @@
 				<span ng-show="booking.pickup_at">
 					{{ booking.pickup_at | date }}
 				</span>
-				<div ng-show="!booking.pickup_at" class="alert alert-danger">
-					<p>
-						<i class="fa fa-exclamation-circle"></i>
-						You don't have a pickup date
-					</p>
-				</div>
+				<alert type="danger" text="You don't have a pickup date" icon="exclamation-circle" ng-show="!booking.pickup_at"></alert>
 			</td>
 		</tr>
 		<tr>
@@ -32,12 +27,7 @@
 				<span ng-show="booking.due_at">
 					{{ booking.due_at | date }}
 				</span>
-				<div ng-show="!booking.due_at" class="alert alert-danger">
-					<p>
-						<i class="fa fa-exclamation-circle"></i>
-						You don't have a return date
-					</p>
-				</div>
+				<alert type="danger" text="You don't have a return date" icon="exclamation-circle" ng-show="!booking.due_at"></alert>
 			</td>
 		</tr>
 		<tr>
@@ -49,13 +39,7 @@
 						<b> x{{ item.quantity }}</b>
 					</li>
 				</ul>
-				
-				<div ng-show="!booking.products.length" class="alert alert-danger">
-					<p>
-						<i class="fa fa-exclamation-circle"></i>
-						You aren't booking any products
-					</p>
-				</div>
+				<alert type="danger" text="You aren't booking any products" icon="exclamation-circle" ng-show="!booking.products.length"></alert>
 			</td>
 		</tr>
 	</table>

@@ -13,7 +13,7 @@ angular.module('app.controllers')
 		p.product_type_id = $scope.type_id
 
 		p.$save().then(function(res) {
-			$store.invalidate('products', 'product_types', 'units')
+			$store.invalidate(['products', 'product_types', 'units'])
 
 			$location.path('/manage/product')
 		})

@@ -7,40 +7,56 @@
 <div class="page-content">
 
 	<form ng-submit="save()">
-		<div layout="row">
+		<div layout="row sm-col">
 			<div class="form-group" ratio="1">
-				<label for="last_name">First Name</label>
-				<input type="text" id="first_name" ng-model="first_name" class="form-control">
+				<label for="name">Name</label>
+				<input type="text" id="name" ng-model="name" class="form-control">
 			</div>
-			<div class="form-group" ratio="1">
-				<label for="last_name">Last Name</label>
-				<input type="text" id="last_name" ng-model="last_name" class="form-control">
-			</div>
-		</div>
-		<div layout="row">
 			<div class="form-group" ratio="1">
 				<label for="email">Email Address</label>
 				<input type="email" id="email" ng-model="email" class="form-control">
 			</div>
+		</div>
+		<div layout="row sm-col">
 			<div class="form-group" ratio="1">
 				<label for="phone">Phone Number</label>
 				<input type="text" id="phone" ng-model="phone" class="form-control">
 			</div>
-		</div>
-		<div layout="row">
 			<div class="form-group" ratio="1">
 				<label for="dob">DOB</label>
 				<input type="date" id="dob" ng-model="dob" class="form-control">
 			</div>
+		</div>
+		<div layout="row sm-col">
 			<div class="form-group" ratio="1">
 				<label for="id_number">Student ID Number</label>
 				<input type="text" id="id_number" ng-model="id_number" class="form-control">
 			</div>
-		</div>
-		<div layout="row">
-			<div class="form-group" ratio="1">
-				<label for="group">Class</label>
+			<!-- <div class="form-group" ratio="1">
+				<label for="group">Your Class</label>
 				<select id="group" ng-model="group_id" ng-options="item.id as item.code for item in groups" class="form-control"></select>
+			</div> -->
+			<div class="form-group" ratio="1">
+				<label for="group">Your Class</label>
+				<ui-select ng-model="selected.group" id="group">
+					<ui-select-match allow-clear="false" placeholder="​">
+						<span ng-bind="$select.selected.code" class="setheight"></span>
+					</ui-select-match>
+					<ui-select-choices repeat="group in (groups | filter: $select.search) track by group.id">
+						<div ng-bind-html="group.code | highlight: $select.search"></div>
+						<small ng-bind-html="group.type.name | highlight: $select.search"></small>
+					</ui-select-choices>
+				</ui-select>
+			</div>
+		</div>
+		<div layout="row sm-col">
+			<div class="form-group" ratio="1">
+				<label for="password">Password</label>
+				<input type="password" id="password" ng-model="password" class="form-control">
+			</div>
+			<div class="form-group" ratio="1">
+				<label for="confirm_password">Confirm Password</label>
+				<input type="password" id="confirm_password" ng-model="confirm_password" class="form-control">
 			</div>
 		</div>
 		<div class="form-group">

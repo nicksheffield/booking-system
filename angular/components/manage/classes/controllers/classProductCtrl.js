@@ -37,7 +37,7 @@ angular.module('app.controllers')
 						// console.log('res3', res)
 						$scope.saved = true
 						
-						$store.invalidate('groups', 'units')
+						$store.invalidate(['groups', 'units'])
 					})
 			}
 		}
@@ -54,7 +54,7 @@ angular.module('app.controllers')
 					// console.log('res1', res)
 					$scope.saved = true
 					
-					$store.invalidate('groups', 'units')
+					$store.invalidate(['groups', 'units'])
 				})
 		} else {
 			$http.post('/api/product/'+product.id+'/disallow/'+$scope.group.id)
@@ -62,7 +62,7 @@ angular.module('app.controllers')
 					// console.log('res2', res)
 					$scope.saved = true
 					
-					$store.invalidate('groups', 'units')
+					$store.invalidate(['groups', 'units'])
 				})
 		}
 	}

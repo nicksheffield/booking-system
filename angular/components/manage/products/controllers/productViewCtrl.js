@@ -12,7 +12,8 @@ angular.module('app.controllers')
 		
 		if(confirmed) {
 			$scope.product.$delete().then(function() {
-				$store.loadProducts()
+				$store.invalidate(['products', 'product_types', 'units'])
+				
 				$location.path('/manage/product')
 			})
 		}

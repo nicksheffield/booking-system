@@ -26,11 +26,11 @@
 			<td class="row-value">
 				<ul ng-show="group.tutors.length > 1">
 					<li ng-repeat="user in group.tutors">
-						<a href="#/manage/user/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a>
+						<a href="#/manage/user/{{ user.id }}">{{ user.name }}</a>
 					</li>
 				</ul>
 				<a href="#/manage/user/{{ group.tutors[0].id }}" ng-show="group.tutors.length == 1">
-					{{ group.tutors[0].first_name }} {{ group.tutors[0].last_name }}
+					{{ group.tutors[0].name }}
 				</a>
 			</td>
 		</tr>
@@ -40,7 +40,7 @@
 				<div layout="row" align="start" justify="between" ng-show="group.users.length">
 					<ul>
 						<li ng-repeat="user in group.users">
-							<a href="#/manage/user/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a>
+							<a href="#/manage/user/{{ user.id }}">{{ user.name }}</a>
 						</li>
 					</ul>
 					

@@ -8,7 +8,7 @@ angular.module('app.controllers')
 		gt.name = $scope.name
 
 		gt.$save().then(function(res) {
-			$store.invalidate('group_types', 'groups')
+			$store.invalidate(['group_types', 'groups'])
 			
 			$location.path('/manage/class_type')
 		})

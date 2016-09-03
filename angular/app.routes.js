@@ -26,7 +26,7 @@ angular.module('app.routes')
 		
 		'register': {
 			url: '/register',
-			templateUrl: 'components/guest/views/register.html',
+			templateUrl: 'components/guest/register/register.html',
 			controller: 'registerCtrl',
 			data: {
 				conditions: ['guest_only'],
@@ -36,7 +36,7 @@ angular.module('app.routes')
 		
 		'login': {
 			url: '/login',
-			templateUrl: 'components/guest/views/login.html',
+			templateUrl: 'components/guest/login/login.html',
 			controller: 'loginCtrl',
 			data: {
 				conditions: ['guest_only'],

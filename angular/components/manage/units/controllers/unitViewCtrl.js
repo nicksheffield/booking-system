@@ -8,7 +8,7 @@ angular.module('app.controllers')
 		
 		if(confirmed) {
 			$scope.unit.$delete().then(function() {
-				$store.invalidate('units')
+				$store.invalidate(['units', 'products'])
 				
 				$location.path('/manage/unit')
 			})
