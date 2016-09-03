@@ -2,8 +2,13 @@ angular.module('app.controllers')
 
 .controller('unitNewCtrl', function($scope, $stateParams, $store, $location, $flash, Unit) {
 	$scope.products = $store.products
+	var product_id = $flash.use('product')
 	
-	$scope.product_id = $flash.use('product')
+	$scope.selected = { product: {} }
+	
+	if(product_id) {
+		$scope.selected.product = $store.get('products', product_id)
+	}
 
 	$scope.save = function() {
 		var u = new Unit()

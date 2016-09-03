@@ -6,7 +6,6 @@ Todo.txt
 		- then display this in a timed message that the user can use to undo
 	- Dont reveal other users info in any requests when you are a student
 	- Handle page headers and their buttons more gracefully whenever the title is too long
-	- Replace select menus with ui.select where applicable
 	- Reset users passwords
 	- Add some managerial features for staff where applicable
 	- Make all id's randomly generated, not sequential (auto_increment)
@@ -16,7 +15,6 @@ Todo.txt
 	- Modify groups to add/remove tutors
 	- Tutor needs to be settable for new group and edit group
 	- Change $store.invalidate() so it either takes 1 string or 1 array of strings, instead of this weird arguments thing I've got at the moment.
-	- Add a chevron to ui.select
 	
 	- Ask graeme if bookings should have times
 		- he said sort of

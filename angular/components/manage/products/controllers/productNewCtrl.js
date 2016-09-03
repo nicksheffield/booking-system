@@ -1,9 +1,14 @@
 angular.module('app.controllers')
 
 .controller('productNewCtrl', function($scope, $stateParams, $store, $location, $flash, Product) {
+	var type_id = $flash.use('product_type')
+	
+	$scope.selected = { type: {} }
 	$scope.types = $store.product_types
 	
-	$scope.type_id = $flash.use('product_type')
+	if(type_id) {
+		$scope.selected.type = $store.get('product_types', type_id)
+	}
 
 	$scope.save = function() {
 		var p = new Product()
