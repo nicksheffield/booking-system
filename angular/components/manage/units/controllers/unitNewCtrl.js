@@ -16,7 +16,7 @@ angular.module('app.controllers')
 		u.serial_number = $scope.serial_number
 		u.asset_number = $scope.asset_number
 		u.unit_number = $scope.unit_number
-		u.product_id = $scope.product_id
+		u.product_id = $scope.selected.product.id
 		u.notes = $scope.notes
 
 		u.$save().then(function(res) {

@@ -4,8 +4,13 @@ angular.module('app.controllers')
 	$scope.product = $store.get('products', $stateParams.id)
 	
 	$scope.types = $store.product_types
+	$scope.selected = {
+		type: $store.get('product_types', $scope.product.type.id)
+	}
 	
 	$scope.save = function() {
+		$scope.product.type_id = $scope.selected.type.id
+		
 		Product.update({id: $scope.product.id}, $scope.product).$promise.then(function(res) {
 			$store.invalidate(['products', 'product_types', 'units'])
 			

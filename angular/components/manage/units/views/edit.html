@@ -24,7 +24,14 @@
 
 		<div class="form-group">
 			<label for="product">Product</label>
-			<select id="product" class="form-control" ng-model="unit.product_id" ng-options="item.id as item.name for item in products"></select>
+			<ui-select ng-model="selected.product" id="product">
+				<ui-select-match allow-clear="false" placeholder="​">
+					<span ng-bind="$select.selected.name" class="setheight"></span>
+				</ui-select-match>
+				<ui-select-choices repeat="product in (products | filter: $select.search) track by product.id">
+					<div ng-bind-html="product.name | highlight: $select.search"></div>
+				</ui-select-choices>
+			</ui-select>
 		</div>
 		
 		<div class="form-group">

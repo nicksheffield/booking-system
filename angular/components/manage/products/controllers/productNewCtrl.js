@@ -15,7 +15,7 @@ angular.module('app.controllers')
 
 		p.name = $scope.name
 		// p.image = $scope.image
-		p.product_type_id = $scope.type_id
+		p.product_type_id = $scope.selected.type.id
 
 		p.$save().then(function(res) {
 			$store.invalidate(['products', 'product_types', 'units'])

@@ -24,10 +24,7 @@
 
 		<div class="form-group">
 			<label for="product">Product</label>
-			<!-- <select id="product" class="form-control" ng-model="product_id" ng-options="item.id as item.name for item in products"></select> -->
-			
 			<ui-select ng-model="selected.product" id="product">
-				<!-- placeholder has a zero-width space -->
 				<ui-select-match allow-clear="false" placeholder="​">
 					<span ng-bind="$select.selected.name" class="setheight"></span>
 				</ui-select-match>

@@ -14,7 +14,7 @@ angular.module('app.controllers')
 		var g = new Group()
 
 		g.code = $scope.code
-		g.group_type_id = $scope.type_id
+		g.group_type_id = $scope.selected.type.id
 
 		g.$save().then(function(res) {
 			$store.invalidate(['groups', 'group_types', 'users'])

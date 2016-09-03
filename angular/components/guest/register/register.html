@@ -41,14 +41,9 @@
 				<label for="id_number">Student ID Number</label>
 				<input type="text" id="id_number" ng-model="id_number" class="form-control">
 			</div>
-			<!-- <div class="form-group" ratio="1">
-				<label for="group">Your Class</label>
-				<select id="group" ng-model="group_id" ng-options="item.id as item.code for item in groups" class="form-control"></select>
-			</div> -->
 			<div class="form-group" ratio="1">
 				<label for="group">Your Class</label>
 				<ui-select ng-model="selected.group" id="group">
-					<!-- placeholder has a zero-width space -->
 					<ui-select-match allow-clear="false" placeholder="​">
 						<span ng-bind="$select.selected.code" class="setheight"></span>
 					</ui-select-match>
