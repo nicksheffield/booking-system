@@ -19,6 +19,17 @@ angular.module('app.routes')
 				title: 'Home'
 			}
 		},
+
+		'edit_profile': {
+			url: '/home/edit_profile',
+			templateUrl: 'components/manage/users/views/edit.html',
+			controller: 'userEditCtrl',
+			data: {
+				conditions: ['auth'],
+				title: 'Edit Profile',
+				edit_profile: true
+			}
+		},
 		
 		// ------------------------------------------------------------
 		// Guest
