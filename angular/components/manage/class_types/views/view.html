@@ -30,11 +30,11 @@
 						</li>
 					</ul>
 					
-					<btn url="#/manage/class/new" ng-click="preNewClass()" small ng-if="type.groups.length" icon="plus"></btn>
+					<btn url="#/manage/class/new?type={{ type.code }}" small ng-if="type.groups.length" icon="plus"></btn>
 				</div>
 				
 				<alert type="info" text="No classes with this type" icon="exclamation-circle" ng-if="!type.groups.length">
-					<btn url="#/manage/class/new" ng-click="preNewClass()" small icon="plus">Create one</btn>
+					<btn url="#/manage/class/new?type={{ type.code }}" small icon="plus">Create one</btn>
 				</alert>
 			</td>
 		</tr>

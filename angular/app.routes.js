@@ -40,7 +40,7 @@ angular.module('app.routes')
 			controller: 'loginCtrl',
 			data: {
 				conditions: ['guest_only'],
-				title: 'Logins'
+				title: 'Login'
 			}
 		},
 		
@@ -225,7 +225,7 @@ angular.module('app.routes')
 		},
 		
 		'new_class': {
-			url: '/manage/class/new',
+			url: '/manage/class/new?type',
 			templateUrl: 'components/manage/classes/views/new.html',
 			controller: 'classNewCtrl',
 			data: {
@@ -332,7 +332,7 @@ angular.module('app.routes')
 		},
 		
 		'new_product': {
-			url: '/manage/product/new',
+			url: '/manage/product/new?type',
 			templateUrl: 'components/manage/products/views/new.html',
 			controller: 'productNewCtrl',
 			data: {
@@ -380,7 +380,7 @@ angular.module('app.routes')
 		},
 		
 		'new_unit': {
-			url: '/manage/unit/new',
+			url: '/manage/unit/new?product',
 			templateUrl: 'components/manage/units/views/new.html',
 			controller: 'unitNewCtrl',
 			data: {

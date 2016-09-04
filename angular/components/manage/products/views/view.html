@@ -30,11 +30,11 @@
 						</li>
 					</ul>
 					
-					<btn url="#/manage/unit/new" ng-click="preNewUnit()" small icon="plus"></btn>
+					<btn url="#/manage/unit/new?product={{ product.id }}" small icon="plus"></btn>
 				</div>
 				
 				<alert type="info" text="No units for this product" icon="exclamation-circle" ng-if="!product.units.length">
-					<btn url="#/manage/unit/new" ng-click="preNewUnit()" small icon="plus">Create one</btn>
+					<btn url="#/manage/unit/new?product={{ product.id }}" small icon="plus">Create one</btn>
 				</alert>
 			</td>
 		</tr>

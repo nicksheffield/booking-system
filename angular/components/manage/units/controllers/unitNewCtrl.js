@@ -2,7 +2,7 @@ angular.module('app.controllers')
 
 .controller('unitNewCtrl', function($scope, $stateParams, $store, $location, $flash, Unit) {
 	$scope.products = $store.products
-	var product_id = $flash.use('product')
+	var product_id = $stateParams.product
 	
 	$scope.selected = { product: {} }
 	

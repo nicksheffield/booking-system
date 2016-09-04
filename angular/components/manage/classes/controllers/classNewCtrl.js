@@ -1,7 +1,7 @@
 angular.module('app.controllers')
 
 .controller('classNewCtrl', function($scope, $stateParams, $store, $location, $flash, Group) {
-	var type_id = $flash.use('class_type')
+	var type = $stateParams.type
 
 	$scope.users = $store.users
 	$scope.types = $store.group_types
@@ -10,8 +10,9 @@ angular.module('app.controllers')
 		tutors: [{}]
 	}
 	
-	if(type_id) {
-		$scope.selected.type = $store.get('group_types', type_id)
+	if(type) {
+		$scope.selected.type = $store.get('group_types', {code: type})
+		console.log($scope.selected.type)
 	}
 	
 	$scope.tutorRole = function(value, index, array) {

@@ -1,11 +1,7 @@
 angular.module('app.controllers')
 
-.controller('classTypeViewCtrl', function($scope, $stateParams, $store, $location, $flash) {
+.controller('classTypeViewCtrl', function($scope, $stateParams, $store, $location) {
 	$scope.type = $store.get('group_types', $stateParams.id)
-	
-	$scope.preNewClass = function() {
-		$flash.set('class_type', $scope.type.id)
-	}
 	
 	$scope.delete = function() {
 		var confirmed = confirm('Are you sure you want to delete this?')

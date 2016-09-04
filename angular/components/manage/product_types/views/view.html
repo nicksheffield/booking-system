@@ -26,11 +26,11 @@
 						</li>
 					</ul>
 					
-					<btn url="#/manage/product/new" ng-click="preNewProduct()" small icon="plus"></btn>
+					<btn url="#/manage/product/new?type={{ type.name }}" small icon="plus"></btn>
 				</div>
 				
 				<alert type="info" text="No products with this type" icon="exclamation-circle" ng-if="!type.products.length">
-					<btn url="#/manage/product/new" ng-click="preNewProduct()" small icon="plus">Create one</btn>
+					<btn url="#/manage/product/new?type={{ type.name }}" small icon="plus">Create one</btn>
 				</alert>
 			</td>
 		</tr>
