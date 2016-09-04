@@ -14,9 +14,28 @@
 	
 	display flex
 	justify-content center
-	
+		
 	.icon
 		margin-top calc((100vh / 2) - 50px)
 		
 	&.loader-show
 		opacity 1
+		
+	@media (max-width bp-md)
+		top 82px
+		left 0
+		width 100%
+		height calc(100% - 82px)
+		
+		.icon
+			margin-top 200px
+	
+	@media (max-width bp-sm)
+		top 0
+		left 0
+		width 100%
+		height 100%
+		align-items center
+		
+		.icon
+			margin-top 0

@@ -12,9 +12,15 @@ angular.module('app.auth')
 			$title(toState.data.title)
 		}
 		
+		$rootScope.bodyClass = 'page-' + toState.name
+		
 		var invalids = $store.loadInvalidated()
 		
 		// invalids.push($pretend.wait(1000))
+		
+		if(invalids.length) {
+			invalids.push($pretend.wait(1000))
+		}
 		
 		$rootScope.loader = true
 		
