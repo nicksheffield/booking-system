@@ -1,12 +1,15 @@
 angular.module('app.services')
 
-.factory('$flash', function() {
+.factory('$message', function() {
 	var service = {
 		data: {},
 		set: function(name, val) {
 			service.data[name] = val
 		},
-		use: function(name) {
+		get: function(name) {
+			return service.data[name]
+		},
+		flash: function(name) {
 			var val = service.data[name]
 			
 			if(val) {

@@ -129,7 +129,7 @@ angular.module('app.routes')
 		},
 		
 		'new_user': {
-			url: '/manage/user/new',
+			url: '/manage/user/new?class',
 			templateUrl: 'components/manage/users/views/new.html',
 			controller: 'userNewCtrl',
 			data: {

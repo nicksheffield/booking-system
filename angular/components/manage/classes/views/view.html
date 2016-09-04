@@ -44,11 +44,11 @@
 						</li>
 					</ul>
 					
-					<btn url="#/manage/user/new" ng-click="preNewUser()" small ng-if="group.users.length" icon="plus"></btn>
+					<btn url="#/manage/user/new?class={{ group.code }}" small ng-if="group.users.length" icon="plus"></btn>
 				</div>
 				
 				<alert type="info" text="No students in this class" icon="exclamation-circle" ng-if="!group.users.length">
-					<btn url="#/manage/user/new" ng-click="preNewUser()" small icon="plus">Create one</btn>
+					<btn url="#/manage/user/new?class={{ group.code }}" small icon="plus">Create one</btn>
 				</alert>
 			</td>
 		</tr>

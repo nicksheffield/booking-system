@@ -1,14 +1,14 @@
 angular.module('app.controllers')
 
-.controller('userNewCtrl', function($scope, $stateParams, $store, $location, $flash, User) {
+.controller('userNewCtrl', function($scope, $stateParams, $store, $location, User) {
 	
-	var group_id = $flash.use('class')
+	var group = $stateParams['class']
 	
 	$scope.groups = $store.groups
 	$scope.selected = { group: {} }
 	
-	if(group_id) {
-		$scope.selected.group = _.find($scope.groups, (g) => g.id == group_id)
+	if(group) {
+		$scope.selected.group = $store.get('groups', {code: group})
 	}
 	
 

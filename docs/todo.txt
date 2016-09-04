@@ -8,7 +8,6 @@ Todo.txt
 	- Users can edit themselves
 	- Waiting list for students that want to book a certain product
 	- Make all the "with" stuff in $store based on $store.user.admin level
-	- give the ui.select and /manage/user/new?class treatment to creating users from the class view page
 	
 Late stuff
 	- Reset users passwords
