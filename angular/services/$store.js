@@ -68,7 +68,7 @@ angular.module('app.services')
 	}
 	
 	service.get = function(type, id) {
-		return _.find(service[type], typeof id == 'object' ? id : (t) => t.id == id)
+		return _.find(service[type], typeof id == 'object' && id !== null ? id : (t) => t.id == id)
 	}
 	
 	service.loadAuthUser = function() {
