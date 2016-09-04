@@ -52,7 +52,7 @@ angular.module('app.services')
 	
 	// invalidate everything every 5 minutes
 	$interval(function() {
-		service.invalidateAll()
+		service.all()
 	}, 5 * 60 * 1000)
 
 	return service
