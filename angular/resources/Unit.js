@@ -14,4 +14,4 @@ angular.module('app.resources')
 	}
 
 	return $resource(url, defaults, methods)
-});
+})
