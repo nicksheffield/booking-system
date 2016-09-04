@@ -4,29 +4,13 @@ Todo.txt
 	- Students need to be confirmed
 	- When you delete, have the server send back an undelete url
 		- then display this in a timed message that the user can use to undo
-	- Dont reveal other users info in any requests when you are a student
 	- Handle page headers and their buttons more gracefully whenever the title is too long
-	- Reset users passwords
 	- Add some managerial features for staff where applicable
-	- Make all id's randomly generated, not sequential (auto_increment)
 	- Users can edit themselves
 	- Waiting list for students that want to book a certain product
 	- The $store service is getting too big, think of how to break it up
-	- Modify groups to add/remove tutors
-	- Tutor needs to be settable for new group and edit group
-	- Change $store.invalidate() so it either takes 1 string or 1 array of strings, instead of this weird arguments thing I've got at the moment.
+	- Make all the "with" stuff in $store based on $store.user.admin level
 	
-	- Ask graeme if bookings should have times
-		- he said sort of
-
-Old code
-	<ui-select ng-model="item.value" on-select="resetQuantity($index)">
-		<!-- placeholder has a zero-width space -->
-		<ui-select-match allow-clear="false" placeholder="​">
-			<span ng-bind="$select.selected.name" class="setheight"></span>
-		</ui-select-match>
-		<ui-select-choices repeat="product in (products | filter: $select.search) track by product.id">
-			<div ng-bind-html="product.name | highlight: $select.search"></div>
-			<small ng-bind-html="product.type.name | highlight: $select.search"></small>
-		</ui-select-choices>
-	</ui-select>
+Late stuff
+	- Reset users passwords
+	- Dont reveal other users info in any requests when you are a student

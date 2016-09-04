@@ -24,6 +24,29 @@
 			</ui-select>
 		</div>
 		
+		<section>
+			<div class="form-group">
+				<div layout="row" align="start" class="pad-down spaced-row">
+					<label>Tutors</label>
+					<btn type="info" small icon="plus" ng-click="addTutor()"></btn>
+				</div>
+				
+				<ul class="no-bullets">
+					<li layout="row" class="spaced-row pad-down" ng-repeat="tutor in selected.tutors">
+						<ui-select ng-model="selected.tutors[$index]" ratio="1">
+							<ui-select-match allow-clear="false" placeholder="​">
+								<span ng-bind="$select.selected.name" class="setheight"></span>
+							</ui-select-match>
+							<ui-select-choices repeat="user in (users | filter: tutorRole | filter: $select.search) track by user.id">
+								<div ng-bind-html="user.name | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+						<btn type="danger" icon="times" ng-click="removeTutor(tutor)"></btn>
+					</li>
+				</ul>
+			</div>
+		</section>
+		
 		<div class="form-group">
 			<input type="submit" class="btn btn-primary" value="Create">
 		</div>

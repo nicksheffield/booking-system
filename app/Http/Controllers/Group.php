@@ -33,6 +33,10 @@ class Group extends Controller
 		$model->fill($request->all());
 
 		$model->save();
+		
+		foreach($request->tutors as $tutor) {
+			$model->tutors()->attach($tutor);
+		}
 
 		return $model;
 	}
@@ -75,6 +79,18 @@ class Group extends Controller
 		$model->fill($request->all());
 		
 		$model->save();
+		
+		// dd($model);
+		
+		foreach($model->tutors as $tutor) {
+			$model->tutors()->detach($tutor->id);
+		}
+		
+		foreach($request->tutors as $tutor) {
+			$model->tutors()->attach($tutor);
+		}
+		
+		// dd($request->tutors);
 
 		return $model;
 	}
