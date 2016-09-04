@@ -2,7 +2,6 @@ Todo.txt
 
 	- Edit/Create/Delete users in angular from admin
 	- Students need to be confirmed
-		- then display this in a timed message that the user can use to undo
 	- Handle page headers and their buttons more gracefully whenever the title is too long
 	- Add some managerial features for staff where applicable
 	- Users can edit themselves
