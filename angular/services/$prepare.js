@@ -19,10 +19,26 @@ angular.module('app.services')
 		if(user.dob) user.dob = new Date(user.dob)
 	}
 
+	service.groups = function(groups) {
+		
+	}
+	
+	service.group_types = function(group_types) {
+		
+	}
+
 	service.products = function(products) {
 		_.forEach(products, function(product) {
 			product._quantity = ''
 		})
+	}
+	
+	service.product_types = function(product_types) {
+		
+	}
+	
+	service.units = function(units) {
+		
 	}
 	
 	service.bookings = function(bookings) {

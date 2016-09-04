@@ -39,9 +39,11 @@ angular.module('app.services')
 		
 		$store.group_types = resource
 		
-		resource.$promise.then(function() {
-			service.notify('group_types', resource)
-		})
+		resource.$promise
+			.then($prepare.group_types)
+			.then(function() {
+				service.notify('group_types', resource)
+			})
 		
 		return resource
 	}
@@ -51,9 +53,11 @@ angular.module('app.services')
 		
 		$store.groups = resource
 		
-		resource.$promise.then(function() {
-			service.notify('groups', resource)
-		})
+		resource.$promise
+			.then($prepare.groups)
+			.then(function() {
+				service.notify('groups', resource)
+			})
 		
 		return resource
 	}
@@ -63,9 +67,11 @@ angular.module('app.services')
 		
 		$store.product_types = resource
 		
-		resource.$promise.then(function() {
-			service.notify('product_types', resource)
-		})
+		resource.$promise
+			.then($prepare.product_types)
+			.then(function() {
+				service.notify('product_types', resource)
+			})
 		
 		return resource
 	}
@@ -89,9 +95,11 @@ angular.module('app.services')
 		
 		$store.units = resource
 		
-		resource.$promise.then(function() {
-			service.notify('units', resource)
-		})
+		resource.$promise
+			.then($prepare.units)
+			.then(function() {
+				service.notify('units', resource)
+			})
 		
 		return resource
 	}
