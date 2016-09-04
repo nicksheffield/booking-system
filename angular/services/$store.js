@@ -30,6 +30,10 @@ angular.module('app.services')
 		}
 	}
 	
+	service.invalidateAll = function() {
+		service.invalidate(['user', 'users', 'groups', 'group_types', 'product_types', 'products', 'units', 'bookings'])
+	}
+	
 	service.loadInvalidated = function() {
 		var invalid = []
 		
@@ -179,7 +183,7 @@ angular.module('app.services')
 	service.invalidate(['groups', 'users'])
 	
 	if($auth.isAuthenticated()) {
-		service.invalidate(['user', 'group_types', 'product_types', 'products', 'units', 'bookings'])
+		service.invalidateAll()
 	}
 	
 	if(localStorage.booking) {
@@ -211,7 +215,7 @@ angular.module('app.services')
 	
 	// invalidate everything every 5 minutes
 	$interval(function() {
-		service.invalidate(['user', 'users', 'groups', 'group_types', 'product_types', 'products', 'units', 'bookings'])
+		service.invalidateAll()
 	}, 5 * 60 * 1000)
 
 	return service
