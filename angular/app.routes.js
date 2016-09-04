@@ -50,7 +50,7 @@ angular.module('app.routes')
 				$auth.logout().then(function() {
 					$store.user = {}
 					$store.resetBooking()
-					$store.invalidateAll()
+					// $store.invalidateAll()
 					$location.path('login')
 				})
 			}]
