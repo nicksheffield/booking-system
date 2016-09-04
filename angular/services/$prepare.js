@@ -20,11 +20,15 @@ angular.module('app.services')
 	}
 
 	service.groups = function(groups) {
-		
+		_.forEach(groups, function(group) {
+
+		})
 	}
 	
 	service.group_types = function(group_types) {
-		
+		_.forEach(group_types, function(type) {
+			
+		})
 	}
 
 	service.products = function(products) {
@@ -34,11 +38,15 @@ angular.module('app.services')
 	}
 	
 	service.product_types = function(product_types) {
-		
+		_.forEach(product_types, function(type) {
+			
+		})
 	}
 	
 	service.units = function(units) {
-		
+		_.forEach(units, function(unit) {
+			
+		})
 	}
 	
 	service.bookings = function(bookings) {

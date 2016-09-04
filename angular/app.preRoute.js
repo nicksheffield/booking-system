@@ -18,9 +18,7 @@ angular.module('app.auth')
 		
 		// invalids.push($pretend.wait(1000))
 		
-		if(invalids.length) {
-			invalids.push($pretend.wait(1000))
-		}
+		if(invalids.length) invalids.push($pretend.wait(1000))
 		
 		$rootScope.loader = true
 		
