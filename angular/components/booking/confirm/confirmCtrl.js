@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('confirmCtrl', function($scope, $store, $location, $http) {
+.controller('confirmCtrl', function($scope, $store, $location, $http, $invalidate) {
 	if(!$store.booking.pickup_at) {
 		$location.path('/book')
 	}
@@ -16,7 +16,7 @@ angular.module('app.controllers')
 		$http.post('/api/booking', $store.booking).then(function(res) {
 			$store.resetBooking()
 			
-			$store.invalidate('bookings')
+			$invalidate.add('bookings')
 			
 			$location.path('/book/success')
 		})

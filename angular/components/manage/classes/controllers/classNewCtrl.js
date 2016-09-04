@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('classNewCtrl', function($scope, $stateParams, $store, $location, $flash, Group) {
+.controller('classNewCtrl', function($scope, $stateParams, $store, $location, $invalidate, Group) {
 	var type = $stateParams.type
 
 	$scope.users = $store.users
@@ -46,7 +46,7 @@ angular.module('app.controllers')
 		})
 
 		g.$save().then(function(res) {
-			$store.invalidate(['groups', 'group_types', 'users'])
+			$invalidate.add(['groups', 'group_types', 'users'])
 
 			$location.path('/manage/class')
 		})

@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('classTypeViewCtrl', function($scope, $stateParams, $store, $location) {
+.controller('classTypeViewCtrl', function($scope, $stateParams, $store, $location, $invalidate) {
 	$scope.type = $store.get('group_types', $stateParams.id)
 	
 	$scope.delete = function() {
@@ -8,7 +8,7 @@ angular.module('app.controllers')
 		
 		if(confirmed) {
 			$scope.type.$delete().then(function() {
-				$store.invalidate(['group_types', 'groups'])
+				$invalidate.add(['group_types', 'groups'])
 				
 				$location.path('/manage/class_type')
 			})

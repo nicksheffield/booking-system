@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('classTypeNewCtrl', function($scope, $stateParams, $store, $location, Group_Type) {
+.controller('classTypeNewCtrl', function($scope, $stateParams, $store, $location, $invalidate, Group_Type) {
 	$scope.save = function() {
 		var gt = new Group_Type();
 
@@ -8,7 +8,7 @@ angular.module('app.controllers')
 		gt.name = $scope.name
 
 		gt.$save().then(function(res) {
-			$store.invalidate(['group_types', 'groups'])
+			$invalidate.add(['group_types', 'groups'])
 			
 			$location.path('/manage/class_type')
 		})

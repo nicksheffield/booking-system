@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('classProductCtrl', function($scope, $stateParams, $store, $location, $http, $timeout) {
+.controller('classProductCtrl', function($scope, $stateParams, $store, $location, $http, $timeout, $invalidate) {
 	$store.groups.$promise.then(function() {
 		$scope.group = $store.get('groups', $stateParams.id)
 		
@@ -37,7 +37,7 @@ angular.module('app.controllers')
 						// console.log('res3', res)
 						$scope.saved = true
 						
-						$store.invalidate(['groups', 'units'])
+						$invalidate.add(['groups', 'units'])
 					})
 			}
 		}
@@ -54,7 +54,7 @@ angular.module('app.controllers')
 					// console.log('res1', res)
 					$scope.saved = true
 					
-					$store.invalidate(['groups', 'units'])
+					$invalidate.add(['groups', 'units'])
 				})
 		} else {
 			$http.post('/api/product/'+product.id+'/disallow/'+$scope.group.id)
@@ -62,7 +62,7 @@ angular.module('app.controllers')
 					// console.log('res2', res)
 					$scope.saved = true
 					
-					$store.invalidate(['groups', 'units'])
+					$invalidate.add(['groups', 'units'])
 				})
 		}
 	}

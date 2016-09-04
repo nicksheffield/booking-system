@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('productTypeNewCtrl', function($scope, $stateParams, $store, $location, Product_Type) {
+.controller('productTypeNewCtrl', function($scope, $stateParams, $store, $location, $invalidate, Product_Type) {
 	$scope.save = function() {
 		var pt = new Product_Type();
 
@@ -8,7 +8,7 @@ angular.module('app.controllers')
 		pt.name = $scope.name
 
 		pt.$save().then(function(res) {
-			$store.invalidate(['product_types', 'products'])
+			$invalidate.add(['product_types', 'products'])
 
 			$location.path('/manage/product_type')
 		})

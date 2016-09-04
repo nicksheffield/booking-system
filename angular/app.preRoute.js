@@ -4,7 +4,7 @@ angular.module('app.auth')
 	$authProvider.loginUrl = '/api/auth'
 })
 
-.run(function($rootScope, $q, $state, $auth, $store, $location, $title, $pretend) {
+.run(function($rootScope, $q, $state, $auth, $store, $load, $invalidate, $location, $title, $pretend) {
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 		event.preventDefault()
 		
@@ -14,7 +14,7 @@ angular.module('app.auth')
 		
 		$rootScope.bodyClass = 'page-' + toState.name
 		
-		var invalids = $store.loadInvalidated()
+		var invalids = $invalidate.load()
 		
 		// invalids.push($pretend.wait(1000))
 		

@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('unitNewCtrl', function($scope, $stateParams, $store, $location, $flash, Unit) {
+.controller('unitNewCtrl', function($scope, $stateParams, $store, $location, $invalidate, Unit) {
 	$scope.products = $store.products
 	var product_id = $stateParams.product
 	
@@ -20,7 +20,7 @@ angular.module('app.controllers')
 		u.notes = $scope.notes
 
 		u.$save().then(function(res) {
-			$store.invalidate(['units', 'products'])
+			$invalidate.add(['units', 'products'])
 
 			$location.path('/manage/unit')
 		})

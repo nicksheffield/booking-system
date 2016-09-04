@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('productViewCtrl', function($scope, $stateParams, $state, $store, $location) {
+.controller('productViewCtrl', function($scope, $stateParams, $state, $store, $location, $invalidate) {
 	$scope.product = $store.get('products', $stateParams.id)
 	
 	$scope.delete = function() {
@@ -8,7 +8,7 @@ angular.module('app.controllers')
 		
 		if(confirmed) {
 			$scope.product.$delete().then(function() {
-				$store.invalidate(['products', 'product_types', 'units'])
+				$invalidate.add(['products', 'product_types', 'units'])
 				
 				$location.path('/manage/product')
 			})

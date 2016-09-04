@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('loginCtrl', function($scope, $auth, $store, $state, $location) {
+.controller('loginCtrl', function($scope, $auth, $store, $state, $location, $invalidate) {
 	$scope.$watch('email', reset)
 	$scope.$watch('password', reset)
 	
@@ -22,7 +22,7 @@ angular.module('app.controllers')
 			.login(credentials)
 			.then(function(res) {
 				// $store.user = res.data.user
-				$store.invalidate(['user', 'users', 'units', 'groups', 'products', 'group_types', 'product_types'])
+				$invalidate.add(['user', 'users', 'units', 'groups', 'products', 'group_types', 'product_types'])
 
 				$location.path('/home')
 			})

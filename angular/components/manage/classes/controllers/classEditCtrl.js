@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('classEditCtrl', function($scope, $stateParams, $store, $location, Group) {
+.controller('classEditCtrl', function($scope, $stateParams, $store, $location, $invalidate, Group) {
 	$scope.group = $store.get('groups', $stateParams.id)
 	$scope.users = $store.users
 	
@@ -37,7 +37,7 @@ angular.module('app.controllers')
 		})
 		
 		Group.update({id: $scope.group.id}, $scope.group).$promise.then(function(res) {
-			$store.invalidate(['groups', 'group_types', 'users'])
+			$invalidate.add(['groups', 'group_types', 'users'])
 			
 			$location.path('/manage/class/' + $scope.group.id)
 		})

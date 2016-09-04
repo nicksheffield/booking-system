@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('classViewCtrl', function($scope, $stateParams, $store, $location, $flash) {
+.controller('classViewCtrl', function($scope, $stateParams, $store, $location, $invalidate, $flash) {
 	$scope.group = $store.get('groups', $stateParams.id)
 	
 	$scope.preNewUser = function() {
@@ -12,7 +12,7 @@ angular.module('app.controllers')
 		
 		if(confirmed) {
 			$scope.group.$delete().then(function() {
-				$store.invalidate('groups')
+				$invalidate.add('groups')
 
 				$location.path('/manage/class')
 			})

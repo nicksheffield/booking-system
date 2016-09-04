@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('productNewCtrl', function($scope, $stateParams, $store, $location, $flash, Product) {
+.controller('productNewCtrl', function($scope, $stateParams, $store, $location, $invalidate, Product) {
 	var type = $stateParams.type
 	
 	$scope.selected = { type: {} }
@@ -18,7 +18,7 @@ angular.module('app.controllers')
 		p.product_type_id = $scope.selected.type.id
 
 		p.$save().then(function(res) {
-			$store.invalidate(['products', 'product_types', 'units'])
+			$invalidate.add(['products', 'product_types', 'units'])
 
 			$location.path('/manage/product')
 		})
