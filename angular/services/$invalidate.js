@@ -40,8 +40,6 @@ angular.module('app.services')
 				case 'product_types': invalid.push($load.product_types().$promise); break;
 			}
 		})
-
-		// console.log('invalidated', invalid.length)
 		
 		service.invalidated = []
 		
@@ -51,10 +49,9 @@ angular.module('app.services')
 	service.add(['groups'])
 	
 	if($auth.isAuthenticated()) {
-		$load.user().$promise.then(function() {
+		if($auth.getPayload().admin) {
 			service.all()
-			service.load()
-		})
+		}
 	}
 	
 	// invalidate everything every 5 minutes

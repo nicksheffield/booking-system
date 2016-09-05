@@ -15,16 +15,15 @@ angular.module('app.auth')
 		$rootScope.bodyClass = 'page-' + toState.name
 		
 		var invalids = $invalidate.load()
-		
 		// invalids.push($pretend.wait(1000))
 		
 		if(invalids.length) invalids.push($pretend.wait(1000))
+			
 		
 		$rootScope.loader = true
 		
 		$q.all(invalids)
 			.then(function() {
-				console.log('all invalidated reloaded', invalids.length)
 				var conditions = toState.data && toState.data.conditions ? toState.data.conditions : []
 
 				var redirectTo = null
@@ -46,7 +45,7 @@ angular.module('app.auth')
 						if(!$auth.isAuthenticated()) {
 							redirectTo = 'login'
 						} else {
-							if($store.user.admin !== 2) {
+							if($auth.getPayload().admin !== 2) {
 								redirectTo = 'home'
 							}
 						}
@@ -56,7 +55,7 @@ angular.module('app.auth')
 						if(!$auth.isAuthenticated()) {
 							redirectTo = 'login'
 						} else {
-							if(!$store.user.admin) {
+							if(!$auth.getPayload().admin) {
 								redirectTo = 'home'
 							}
 						}
@@ -66,7 +65,7 @@ angular.module('app.auth')
 						if(!$auth.isAuthenticated()) {
 							redirectTo = 'login'
 						} else {
-							if($store.user.admin) {
+							if($auth.getPayload().admin) {
 								redirectTo = 'home'
 							}
 						}
