@@ -119,7 +119,7 @@ angular.module('app.routes')
 			url: '/manage',
 			templateUrl: 'components/manage/manage.html',
 			data: {
-				conditions: ['auth', 'manager_only'],
+				conditions: ['auth', 'staff_only'],
 				title: 'Manage'
 			}
 		},

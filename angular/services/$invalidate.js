@@ -18,7 +18,11 @@ angular.module('app.services')
 	}
 	
 	service.all = function() {
-		service.add(['user', 'users', 'groups', 'group_types', 'product_types', 'products', 'units', 'bookings'])
+		if($store.user.admin) {
+			service.add(['user', 'users', 'groups', 'group_types', 'product_types', 'products', 'units', 'bookings'])
+		} else {
+			service.add(['user', 'groups'])
+		}
 	}
 	
 	service.load = function() {
@@ -44,10 +48,13 @@ angular.module('app.services')
 		return invalid
 	}
 	
-	service.add(['groups', 'users'])
+	service.add(['groups'])
 	
 	if($auth.isAuthenticated()) {
-		service.all()
+		$load.user().$promise.then(function() {
+			service.all()
+			service.load()
+		})
 	}
 	
 	// invalidate everything every 5 minutes

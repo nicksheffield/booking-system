@@ -6,8 +6,6 @@ Todo.txt
 	- Add some managerial features for staff where applicable
 	- Users can edit themselves
 	- Waiting list for students that want to book a certain product
-	- Make all the "with" stuff in $store based on $store.user.admin level
 	
 Late stuff
 	- Reset users passwords
-	- Dont reveal other users info in any requests when you are a student

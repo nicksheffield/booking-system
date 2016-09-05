@@ -12,6 +12,8 @@ use Auth;
 use JWTAuth;
 use Tymon\JWTAuthExceptions\JWTException;
 
+use App\Models\User as Model;
+
 class Logins extends Controller
 {
 	public function __construct()
@@ -22,8 +24,17 @@ class Logins extends Controller
 		$this->middleware('jwt.auth', ['except' => ['authenticate']]);
 	}
 
-	public function index() {
-		return Auth::user();
+	public function index(Request $request) {
+		
+		// return Auth::user();
+		
+		$model = Model::where(['id' => Auth::user()->id]);
+
+		if($request->with) {
+			$model = $model->with(explode('|', $request->with));
+		}
+
+		return $model->first();
 	}
 
 	public function authenticate(Request $request) {

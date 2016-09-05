@@ -1,10 +1,8 @@
 angular.module('app.services')
 
-.factory('$load', function($rootScope, $store, $prepare, $q, $timeout, User, Group, Group_Type, Product_Type, Product, Unit, Booking) {
+.factory('$load', function($rootScope, $store, $prepare, $q, $auth, $timeout, User, Group, Group_Type, Product_Type, Product, Unit, Booking) {
 	var service = {}
 	var events = []
-	
-	service.all = function() {}
 	
 	service.user = function() {
 		var resource = User.getWithToken()
@@ -13,9 +11,7 @@ angular.module('app.services')
 		
 		resource.$promise
 			.then($prepare.user)
-			.then(function() {
-				service.notify('user', resource)
-			})
+			.then(service.notify('user'))
 		
 		return resource
 	}
@@ -27,9 +23,7 @@ angular.module('app.services')
 		
 		resource.$promise
 			.then($prepare.users)
-			.then(function() {
-				service.notify('users', resource)
-			})
+			.then(service.notify('users'))
 		
 		return resource
 	}
@@ -41,23 +35,27 @@ angular.module('app.services')
 		
 		resource.$promise
 			.then($prepare.group_types)
-			.then(function() {
-				service.notify('group_types', resource)
-			})
+			.then(service.notify('group_types'))
 		
 		return resource
 	}
 	
 	service.groups = function() {
-		var resource = Group.query({'with': 'type|users|allowed_products|tutors'})
+		var query = {}
+		
+		if($store.user.admin) {
+			query = {'with': 'type|users|allowed_products|tutors'}
+		} else {
+			query = {'with': 'allowed_products'}
+		}
+		
+		var resource = Group.query(query)
 		
 		$store.groups = resource
 		
 		resource.$promise
 			.then($prepare.groups)
-			.then(function() {
-				service.notify('groups', resource)
-			})
+			.then(service.notify('groups'))
 		
 		return resource
 	}
@@ -69,9 +67,7 @@ angular.module('app.services')
 		
 		resource.$promise
 			.then($prepare.product_types)
-			.then(function() {
-				service.notify('product_types', resource)
-			})
+			.then(service.notify('product_types'))
 		
 		return resource
 	}
@@ -83,9 +79,7 @@ angular.module('app.services')
 		
 		resource.$promise
 			.then($prepare.products)
-			.then(function() {
-				service.notify('products', resource)
-			})
+			.then(service.notify('products'))
 		
 		return resource
 	}
@@ -97,9 +91,7 @@ angular.module('app.services')
 		
 		resource.$promise
 			.then($prepare.units)
-			.then(function() {
-				service.notify('units', resource)
-			})
+			.then(service.notify('units'))
 		
 		return resource
 	}
@@ -111,9 +103,7 @@ angular.module('app.services')
 		
 		resource.$promise
 			.then($prepare.bookings)
-			.then(function() {
-				service.notify('bookings', resource)
-			})
+			.then(service.notify('bookings'))
 		
 		return resource
 	}
@@ -125,15 +115,17 @@ angular.module('app.services')
 		})
 	}
 	
-	service.notify = function(eventName, things) {
+	service.notify = function(eventName) {
+		return (resource) => service.trigger(eventName, resource)
+	}
+	
+	service.trigger = function(eventName, data) {
 		_.forEach(events, function(event) {
 			if(event.name == eventName) {
-				event.callback(things)
+				event.callback(data)
 			}
 		})
 	}
-	
-	
 	
 	return service
 })
