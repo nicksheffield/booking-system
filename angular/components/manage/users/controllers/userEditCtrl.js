@@ -11,6 +11,7 @@ angular.module('app.controllers')
 
 	if($state.current.data.edit_profile) {
 		$scope.user = $store.user
+		$scope.profileMode = true
 	} else {
 		$scope.user = $store.get('users', $stateParams.id)
 	}

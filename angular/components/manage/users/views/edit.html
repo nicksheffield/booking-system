@@ -28,7 +28,7 @@
 				<input type="date" id="dob" ng-model="user.dob" class="form-control">
 			</div>
 		</div>
-		<div layout="row sm-col" class="spaced-row" ng-show="selected.role.level === 0">
+		<div layout="row sm-col" class="spaced-row" ng-show="selected.role.level === 0" ng-hide="profileMode">
 			<div class="form-group" ratio="1">
 				<label for="id_number">Student ID Number</label>
 				<input type="text" id="id_number" ng-model="user.id_number" class="form-control">
@@ -46,7 +46,7 @@
 				</ui-select>
 			</div>
 		</div>
-		<div layout="row sm-col" class="spaced-row">
+		<div layout="row sm-col" class="spaced-row" ng-hide="profileMode">
 			<div class="form-group" ratio="1">
 				<label for="group">Role</label>
 				<ui-select ng-model="selected.role" id="role">

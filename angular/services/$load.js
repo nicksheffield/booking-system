@@ -46,7 +46,7 @@ angular.module('app.services')
 		if($auth.getPayload() && $auth.getPayload().admin) {
 			query = {'with': 'type|users|allowed_products|tutors'}
 		} else {
-			query = {'with': 'allowed_products|type'}
+			query = {'with': 'allowed_products.type|type'}
 		}
 		
 		var resource = Group.query(query)

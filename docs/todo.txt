@@ -8,7 +8,6 @@ Todo.txt
 	- Move all form submit buttons on new/edit pages into the page-header
 	- Get a date dropdown
 	- Should be not able to edit role on profile edit
-	- register page broke?
 	
 	- Late fee restricts booking and that shows on user data
 	
