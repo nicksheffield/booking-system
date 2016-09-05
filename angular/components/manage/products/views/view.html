@@ -49,16 +49,7 @@
 					</ul>
 				</div>
 				
-				<div class="alert alert-info" ng-if="!product.groups_allowed.length">
-					<p layout="row" align="center" justify="between">
-						<span>
-							<i class="fa fa-exclamation-circle"></i>
-							No classes are allowed to book this product
-						</span>
-					</p>
-				</div>
-				
-				<alert type="info" text="No classes are allowed to book this product" icon="exclamation-circle" ng-if="!product.groups_allowed.length"></alert>
+				<alert type="info" text="No classes are allowed to book this product. Go to a class to allow this product." icon="exclamation-circle" ng-if="!product.groups_allowed.length"></alert>
 			</td>
 		</tr>
 	</table>

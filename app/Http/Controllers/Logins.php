@@ -39,10 +39,14 @@ class Logins extends Controller
 
 	public function authenticate(Request $request) {
 		$credentials = $request->only('email', 'password');
+		
+		JWTAuth::attempt($credentials);
+		
+		$user = Auth::user();
 
 		try {
 			// verify the credentials and create a token for the user
-			if (!$token = JWTAuth::attempt($credentials)) {
+			if (!$token = JWTAuth::attempt($credentials, ['admin' => $user->admin])) {
 				return response()->json(['error' => 'invalid_credentials'], 401);
 			}
 		} catch (JWTException $e) {
