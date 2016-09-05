@@ -6,6 +6,8 @@ Todo.txt
 	- Add some managerial features for staff where applicable
 	- Users can edit themselves
 	- Waiting list for students that want to book a certain product
+	- Move all form submit buttons on new/edit pages into the page-header
+	- Get a date dropdown
 	
 Late stuff
 	- Reset users passwords

@@ -1,11 +1,21 @@
 angular.module('app.controllers')
 
-.controller('userNewCtrl', function($scope, $stateParams, $store, $location, User) {
+.controller('userNewCtrl', function($scope, $stateParams, $store, $location, $auth, $invalidate, User) {
 	
 	var group = $stateParams['class']
+	window.scope = $scope
+	
+	$scope.roles = [
+		{ level: 0, text: 'Student'},
+		{ level: 1, text: 'Staff'},
+		{ level: 2, text: 'Manager'},
+	]
 	
 	$scope.groups = $store.groups
-	$scope.selected = { group: {} }
+	$scope.selected = {
+		group: {},
+		role: $scope.roles[0],
+	}
 	
 	if(group) {
 		$scope.selected.group = $store.get('groups', {code: group})
@@ -22,27 +32,12 @@ angular.module('app.controllers')
 		u.group_id   = $scope.selected.group.id
 		u.password   = $scope.password
 		u.id_number  = $scope.id_number
+		u.admin      = $scope.selected.role.level
 		
 		u.$save().then(function(res) {
-
-			var credentials = {
-				name: res.name,
-				password: $scope.password
-			}
-
-			$auth
-				.login(credentials)
-				.then(function(res) {
-					$store.user = res.data.user
-					$location.path('/home')
-				})
-				.catch(function(res) {
-					if(res.data.error == 'invalid_credentials') {
-						$scope.error = 'Username or password is invalid.'
-					} else {
-						$scope.error = 'Unknown error'
-					}
-				})
+			$invalidate.add(['users', 'groups', 'bookings'])
+			
+			$location.path('/manage/user')
 		}).catch(function(res) {
 			console.log('save err', res)
 		})

@@ -1,5 +1,6 @@
-<header class="page-header">
+<header class="page-header" layout="row" align="center" justify="between">
 	<h1>Edit User: {{ user.name }}</h1>
+	<btn type="primary" small icon="floppy-o" ng-click="save()">Save</btn>
 </header>
 
 <breadcrumbs></breadcrumbs>
@@ -27,13 +28,13 @@
 				<input type="date" id="dob" ng-model="user.dob" class="form-control">
 			</div>
 		</div>
-		<div layout="row sm-col" class="spaced-row">
+		<div layout="row sm-col" class="spaced-row" ng-show="selected.role.level === 0">
 			<div class="form-group" ratio="1">
 				<label for="id_number">Student ID Number</label>
 				<input type="text" id="id_number" ng-model="user.id_number" class="form-control">
 			</div>
 			<div class="form-group" ratio="1">
-				<label for="group">Your Class</label>
+				<label for="group">Class</label>
 				<ui-select ng-model="selected.group" id="group">
 					<ui-select-match allow-clear="false" placeholder="​">
 						<span ng-bind="$select.selected.code" class="setheight"></span>
@@ -47,16 +48,16 @@
 		</div>
 		<div layout="row sm-col" class="spaced-row">
 			<div class="form-group" ratio="1">
-				<label for="password">Password</label>
-				<input type="password" id="password" ng-model="password" class="form-control">
+				<label for="group">Role</label>
+				<ui-select ng-model="selected.role" id="role">
+					<ui-select-match allow-clear="false" placeholder="​">
+						<span ng-bind="$select.selected.text" class="setheight"></span>
+					</ui-select-match>
+					<ui-select-choices repeat="role in (roles | filter: $select.search) track by role.level">
+						<div ng-bind-html="role.text | highlight: $select.search"></div>
+					</ui-select-choices>
+				</ui-select>
 			</div>
-			<div class="form-group" ratio="1">
-				<label for="confirm_password">Confirm Password</label>
-				<input type="password" id="confirm_password" ng-model="confirm_password" class="form-control">
-			</div>
-		</div>
-		<div class="form-group">
-			<input type="submit" class="btn btn-primary" value="Update">
 		</div>
 	</form>
 
