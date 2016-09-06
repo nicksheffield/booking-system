@@ -1,5 +1,6 @@
-<header class="page-header">
+<header class="page-header" layout="row" justify="between" align="center">
 	<h1>Edit Product Type: {{ type.name }}</h1>
+	<btn type="primary" small icon="floppy-o" ng-click="save()">Save</btn>
 </header>
 
 <breadcrumbs></breadcrumbs>
@@ -10,10 +11,6 @@
 		<div class="form-group">
 			<label for="name">Name</label>
 			<input type="text" id="name" ng-model="type.name" class="form-control">
-		</div>
-
-		<div class="form-group">
-			<input type="submit" class="btn btn-primary" value="Save">
 		</div>
 	</form>
 

@@ -5,6 +5,8 @@ angular.module('app.auth')
 })
 
 .run(function($rootScope, $q, $state, $auth, $store, $load, $invalidate, $location, $title, $pretend) {
+	// $auth.setStorageType('sessionStorage')
+	
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 		event.preventDefault()
 		

@@ -3,7 +3,6 @@ angular.module('app.controllers')
 .controller('userNewCtrl', function($scope, $stateParams, $store, $location, $auth, $invalidate, User) {
 	
 	var group = $stateParams['class']
-	window.scope = $scope
 	
 	$scope.roles = [
 		{ level: 0, text: 'Student'},

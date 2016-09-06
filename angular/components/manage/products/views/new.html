@@ -1,5 +1,6 @@
-<header class="page-header">
+<header class="page-header" layout="row" justify="between" align="center">
 	<h1>New Product</h1>
+	<btn type="primary" small icon="floppy-o" ng-click="save()">Save</btn>
 </header>
 
 <breadcrumbs></breadcrumbs>
@@ -22,10 +23,6 @@
 					<div ng-bind-html="type.name | highlight: $select.search"></div>
 				</ui-select-choices>
 			</ui-select>
-		</div>
-		
-		<div class="form-group">
-			<input type="submit" class="btn btn-primary" value="Create">
 		</div>
 	</form>
 

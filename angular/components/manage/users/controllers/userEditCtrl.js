@@ -7,7 +7,6 @@ angular.module('app.controllers')
 		{ level: 1, text: 'Staff'},
 		{ level: 2, text: 'Manager'},
 	]
-	window.scope = $scope
 
 	if($state.current.data.edit_profile) {
 		$scope.user = $store.user

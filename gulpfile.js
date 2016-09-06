@@ -46,6 +46,8 @@ gulp.task('css', function() {
 	var stream = gulp.src([
 		'public/components/angular-ui-select/dist/select.min.css',
 		'public/components/normalize-css/normalize.css',
+		'public/components/flexy/flexy.min.css',
+		'angular/style/3rdparty/bootstrap-v4-alpha.min.css',
 		paths.stylus.main
 	])                                                // grab our stylus file
 		.pipe(order(['select.min.css', 'normalize.css'])) // reorder files

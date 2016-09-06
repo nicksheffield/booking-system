@@ -13,8 +13,7 @@ angular.module('app.resources')
 		},
 		getWithToken: {
 			method: 'GET',
-			url: '/api/auth',
-			params: {'with': 'group'}
+			url: '/api/auth'
 		}
 	}
 

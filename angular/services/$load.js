@@ -17,7 +17,7 @@ angular.module('app.services')
 	}
 	
 	service.users = function() {
-		var resource = User.query({'with': 'group|tutors_group'})
+		var resource = User.query({'with': 'tutors_group'})
 		
 		$store.users = resource
 		
@@ -29,7 +29,7 @@ angular.module('app.services')
 	}
 	
 	service.group_types = function() {
-		var resource = Group_Type.query({'with': 'groups'})
+		var resource = Group_Type.query()
 		
 		$store.group_types = resource
 		
@@ -44,9 +44,9 @@ angular.module('app.services')
 		var query = {}
 		
 		if($auth.getPayload() && $auth.getPayload().admin) {
-			query = {'with': 'type|users|allowed_products|tutors'}
+			query = {'with': 'allowed_products|tutors'}
 		} else {
-			query = {'with': 'allowed_products.type|type'}
+			query = {'with': 'allowed_products.type'}
 		}
 		
 		var resource = Group.query(query)
@@ -61,7 +61,7 @@ angular.module('app.services')
 	}
 	
 	service.product_types = function() {
-		var resource = Product_Type.query({'with': 'products'})
+		var resource = Product_Type.query()
 		
 		$store.product_types = resource
 		
@@ -73,7 +73,7 @@ angular.module('app.services')
 	}
 	
 	service.products = function() {
-		var resource = Product.query({'with': 'units|type|groups_allowed'})
+		var resource = Product.query({'with': 'groups_allowed'})
 		
 		$store.products = resource
 		
@@ -85,7 +85,7 @@ angular.module('app.services')
 	}
 	
 	service.units = function() {
-		var resource = Unit.query({'with': 'product'})
+		var resource = Unit.query()
 		
 		$store.units = resource
 		
@@ -97,7 +97,7 @@ angular.module('app.services')
 	}
 	
 	service.bookings = function() {
-		var resource = Booking.query({'with': 'products|user'})
+		var resource = Booking.query({'with': 'products'})
 		
 		$store.bookings = resource
 		

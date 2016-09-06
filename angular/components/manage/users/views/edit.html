@@ -1,9 +1,12 @@
 <header class="page-header" layout="row" align="center" justify="between">
-	<h1>Edit User: {{ user.name }}</h1>
+	<h1>
+		<span ng-show="!profileMode">Edit User: {{ user.name }}</span>
+		<span ng-show="profileMode">Edit Profile</span>
+	</h1>
 	<btn type="primary" small icon="floppy-o" ng-click="save()">Save</btn>
 </header>
 
-<breadcrumbs></breadcrumbs>
+<breadcrumbs ng-hide="profileMode"></breadcrumbs>
 
 <div class="page-content">
 
@@ -28,7 +31,20 @@
 				<input type="date" id="dob" ng-model="user.dob" class="form-control">
 			</div>
 		</div>
-		<div layout="row sm-col" class="spaced-row" ng-show="selected.role.level === 0" ng-hide="profileMode">
+		<div layout="row sm-col" class="spaced-row" ng-hide="profileMode">
+			<div class="form-group" ratio="1">
+				<label for="group">Role</label>
+				<ui-select ng-model="selected.role" id="role">
+					<ui-select-match allow-clear="false" placeholder="​">
+						<span ng-bind="$select.selected.text" class="setheight"></span>
+					</ui-select-match>
+					<ui-select-choices repeat="role in (roles | filter: $select.search) track by role.level">
+						<div ng-bind-html="role.text | highlight: $select.search"></div>
+					</ui-select-choices>
+				</ui-select>
+			</div>
+		</div>
+		<div layout="row sm-col" class="spaced-row" ng-show="selected.role.level === 0 && !profileMode">
 			<div class="form-group" ratio="1">
 				<label for="id_number">Student ID Number</label>
 				<input type="text" id="id_number" ng-model="user.id_number" class="form-control">
@@ -42,19 +58,6 @@
 					<ui-select-choices repeat="group in (groups | filter: $select.search) track by group.id">
 						<div ng-bind-html="group.code | highlight: $select.search"></div>
 						<small ng-bind-html="group.type.name | highlight: $select.search"></small>
-					</ui-select-choices>
-				</ui-select>
-			</div>
-		</div>
-		<div layout="row sm-col" class="spaced-row" ng-hide="profileMode">
-			<div class="form-group" ratio="1">
-				<label for="group">Role</label>
-				<ui-select ng-model="selected.role" id="role">
-					<ui-select-match allow-clear="false" placeholder="​">
-						<span ng-bind="$select.selected.text" class="setheight"></span>
-					</ui-select-match>
-					<ui-select-choices repeat="role in (roles | filter: $select.search) track by role.level">
-						<div ng-bind-html="role.text | highlight: $select.search"></div>
 					</ui-select-choices>
 				</ui-select>
 			</div>
