@@ -11,8 +11,14 @@ angular.module('app.controllers')
 	]
 	
 	$scope.groups = $store.groups
+	$scope.user = $store.user
+	
+	if($store.user.admin === 1) {
+		$scope.groups = $store.user.tutors_groups
+	}
+	
 	$scope.selected = {
-		group: {},
+		group: $scope.groups,
 		role: $scope.roles[0],
 	}
 	

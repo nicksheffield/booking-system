@@ -19,7 +19,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="user in users | orderBy: 'group.id' | orderBy: '-admin' | filter: filter as filtered">
+			<tr ng-repeat="user in users | orderBy: 'group.id' | orderBy: '-admin' | filter: staffFilter | filter: filter as filtered">
 				<td><a href="#/manage/user/{{ user.id }}">{{ user.name }}</a></td>
 				<td class="sm-hide">{{ user._role }}</td>
 				<td class="sm-hide"><a href="#/manage/class/{{ user.group.id }}" ng-show="!user.admin">{{ user.group.code }}</a></td>

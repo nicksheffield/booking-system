@@ -15,7 +15,16 @@ angular.module('app.controllers')
 		$scope.user = $store.get('users', $stateParams.id)
 	}
 	
+	if($scope.user.admin == 1 && $scope.user.group && !$scope.user.group._isTutor($store.user.id)) {
+		$location.path('/manage/user')
+	}
+	
 	$scope.groups = $store.groups
+	
+	if($store.user.admin === 1) {
+		$scope.groups = $store.user.tutors_groups
+	}
+	
 	$scope.selected = {
 		group: $scope.user.group ? $store.get('groups', $scope.user.group.id) : {},
 		role: _.find($scope.roles, (r) => r.level == $scope.user.admin)

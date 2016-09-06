@@ -33,6 +33,11 @@ class GroupTypesSeeder extends Seeder
 				'id' => 4,
 				'code' => 'DFM',
 				'name' => 'Digital Film Making'
+			],
+			[
+				'id' => 5,
+				'code' => 'IC',
+				'name' => 'iCreate'
 			]
 		];
 		

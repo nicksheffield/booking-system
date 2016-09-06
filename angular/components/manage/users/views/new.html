@@ -28,7 +28,7 @@
 				<input type="date" id="dob" ng-model="dob" class="form-control">
 			</div>
 		</div>
-		<div layout="row sm-col" class="spaced-row">
+		<div layout="row sm-col" class="spaced-row" ng-show="user.admin === 2">
 			<div class="form-group" ratio="1">
 				<label for="group">Role</label>
 				<ui-select ng-model="selected.role" id="role">

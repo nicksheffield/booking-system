@@ -31,13 +31,20 @@ class UserSeeder extends Seeder
 				'password' => bcrypt('abcd')
 			],[
 				'id' => 3,
+				'name' => 'Angelo De Marchi',
+				'email' => 'angelo@example.com',
+				'dob' => Carbon\Carbon::create(rand(1960, 1978), rand(1, 12), rand(1, 28)),
+				'admin' => 1,
+				'password' => bcrypt('abcd')
+			],[
+				'id' => 4,
 				'name' => 'Megan Harper',
 				'email' => 'megan@example.com',
 				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'admin' => 1,
 				'password' => bcrypt('abcd')
 			],[
-				'id' => 4,
+				'id' => 5,
 				'name' => 'Henry Fox',
 				'email' => 'henry@example.com',
 				'phone' => '021'.randInt(7),
@@ -53,13 +60,14 @@ class UserSeeder extends Seeder
 			App\Models\User::create($item);
 		}
 		
-		$id = 4;
+		$id = 5;
 		$user_count = 0;
 		$group_i = 0;
 		$person_i = 0;
 		$groups = [
 			[ 'id' => 1, 'count' => rand(9,19) ],
 			[ 'id' => 2, 'count' => rand(10,20) ],
+			[ 'id' => 3, 'count' => rand(10,20) ],
 		];
 		
 		foreach($groups as $group) {

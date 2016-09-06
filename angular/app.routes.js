@@ -117,7 +117,8 @@ angular.module('app.routes')
 		
 		'manage': {
 			url: '/manage',
-			templateUrl: 'components/manage/manage.html',
+			templateUrl: 'components/manage/manage/manage.html',
+			controller: 'manageCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
 				title: 'Manage'
@@ -133,7 +134,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/users/views/manage.html',
 			controller: 'userManageCtrl',
 			data: {
-				conditions: ['auth', 'manager_only'],
+				conditions: ['auth', 'staff_only'],
 				crumb_parent: 'manage',
 				title: 'All Users'
 			}
@@ -144,7 +145,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/users/views/new.html',
 			controller: 'userNewCtrl',
 			data: {
-				conditions: ['auth', 'manager_only'],
+				conditions: ['auth', 'staff_only'],
 				crumb_parent: 'manage_users',
 				title: 'New User'
 			}
@@ -155,7 +156,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/users/views/view.html',
 			controller: 'userViewCtrl',
 			data: {
-				conditions: ['auth', 'manager_only'],
+				conditions: ['auth', 'staff_only'],
 				crumb_parent: 'manage_users',
 				title: 'View User'
 			}
@@ -166,7 +167,7 @@ angular.module('app.routes')
 			templateUrl: 'components/manage/users/views/edit.html',
 			controller: 'userEditCtrl',
 			data: {
-				conditions: ['auth', 'manager_only'],
+				conditions: ['auth', 'staff_only'],
 				crumb_parent: 'view_user',
 				title: 'Edit User'
 			}

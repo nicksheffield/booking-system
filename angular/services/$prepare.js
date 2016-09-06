@@ -44,6 +44,10 @@ angular.module('app.services')
 				}
 			})
 			
+			group._isTutor = function(id) {
+				return !!_.find(group.tutors, (t) => t.id == $store.user.id)
+			}
+			
 		})
 		
 		return groups

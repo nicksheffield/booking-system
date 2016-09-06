@@ -27,7 +27,7 @@ class User extends Authenticatable
 		return $this->hasMany('App\Models\Booking', 'user_id');
 	}
 	
-	public function tutors_group() {
+	public function tutors_groups() {
 		return $this->belongsToMany('App\Models\Group', 'tutor');
 	}
 }

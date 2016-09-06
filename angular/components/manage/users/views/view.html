@@ -44,11 +44,11 @@
 			<td class="row-property">Class</td>
 			<td class="row-value"><a href="#/manage/class/{{ user.group.id }}">{{ user.group.code }}</a></td>
 		</tr>
-		<tr ng-show="user.admin && user.tutors_group.length">
+		<tr ng-show="user.admin && user.tutors_groups.length">
 			<td class="row-property">Tutor of</td>
 			<td class="row-value">
 				<ul>
-					<li ng-repeat="group in user.tutors_group">
+					<li ng-repeat="group in user.tutors_groups">
 						<a href="#/manage/class/{{ group.id }}">{{ group.code }}</a>
 					</li>
 				</ul>

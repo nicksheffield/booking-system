@@ -6,15 +6,19 @@
 
 <div class="page-content">
 
-	<p>Here you can manage all different aspects of the booking system.</p>
+	<p>Here you can manage aspects of the booking system.</p>
 	
-	<ul>
+	<ul ng-show="user.admin === 2">
 		<li><a href="#/manage/user">Manage Users</a></li>
 		<li><a href="#/manage/class_type">Manage Class Types</a></li>
 		<li><a href="#/manage/class">Manage Classes</a></li>
 		<li><a href="#/manage/product_type">Manage Product Types</a></li>
 		<li><a href="#/manage/product">Manage Products</a></li>
 		<li><a href="#/manage/unit">Manage Units</a></li>
+	</ul>
+	
+	<ul ng-show="user.admin === 1">
+		<li><a href="#/manage/user">Manage Users</a></li>
 	</ul>
 
 </div>
