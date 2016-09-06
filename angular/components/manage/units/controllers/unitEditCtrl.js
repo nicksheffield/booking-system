@@ -12,7 +12,7 @@ angular.module('app.controllers')
 		$scope.unit.product_id = $scope.selected.product.id
 		
 		Unit.update({id: $scope.unit.id}, $scope.unit).$promise.then(function(res) {
-			$invalidate.add(['units', 'products'])
+			$invalidate.add('units')
 			
 			$location.path('/manage/unit/' + $scope.unit.id)
 		})

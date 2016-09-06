@@ -34,7 +34,7 @@ angular.module('app.controllers')
 		u.admin      = $scope.selected.role.level
 		
 		u.$save().then(function(res) {
-			$invalidate.add(['users', 'groups', 'bookings'])
+			$invalidate.add('groups')
 			
 			$location.path('/manage/user')
 		}).catch(function(res) {

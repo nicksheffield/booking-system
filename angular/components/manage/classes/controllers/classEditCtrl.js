@@ -37,7 +37,7 @@ angular.module('app.controllers')
 		})
 		
 		Group.update({id: $scope.group.id}, $scope.group).$promise.then(function(res) {
-			$invalidate.add(['groups', 'group_types', 'users'])
+			$invalidate.add(['groups', 'users'])
 			
 			$location.path('/manage/class/' + $scope.group.id)
 		})

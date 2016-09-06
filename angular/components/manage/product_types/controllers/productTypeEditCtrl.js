@@ -5,7 +5,7 @@ angular.module('app.controllers')
 	
 	$scope.save = function() {
 		Product_Type.update({id: $scope.type.id}, $scope.type).$promise.then(function(res) {
-			$invalidate.add(['product_types', 'products'])
+			$invalidate.add('product_types')
 
 			$location.path('/manage/product_type/' + $scope.type.id)
 		})

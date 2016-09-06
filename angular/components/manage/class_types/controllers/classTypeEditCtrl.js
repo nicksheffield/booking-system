@@ -5,7 +5,7 @@ angular.module('app.controllers')
 	
 	$scope.save = function() {
 		Group_Type.update({id: $scope.type.id}, $scope.type).$promise.then(function(res) {
-			$invalidate.add(['group_types', 'groups'])
+			$invalidate.add('group_types')
 			
 			$location.path('/manage/class_type/' + $scope.type.id)
 		})
