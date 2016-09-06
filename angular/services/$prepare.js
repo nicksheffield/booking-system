@@ -101,7 +101,7 @@ angular.module('app.services')
 			
 			Object.defineProperty(unit, 'product', {
 				get: function() {
-					return _.find($store.product_types, (product) => product.id == unit.product_id)
+					return _.find($store.products, (product) => product.id == unit.product_id)
 				}
 			})
 		})
