@@ -1,6 +1,14 @@
 angular.module('app.controllers')
 
 .controller('makeCtrl', function($scope, $store, $location, $q) {
+	$scope.dateOptions = {
+		showWeeks: false,
+		minDate: new Date()
+	}
+	
+	$scope.openPickupDate = false
+	$scope.openDueDate = false
+	
 	$scope.user = $store.user
 	
 	$scope.booking = $store.booking
@@ -42,9 +50,13 @@ angular.module('app.controllers')
 			products: payload
 		})
 	}
-	$scope.openPickupDate = true
+	
 	$scope.openPickup = function() {
 		$scope.openPickupDate =! $scope.openPickupDate
+	}
+	
+	$scope.openDue = function() {
+		$scope.openDueDate =! $scope.openDueDate
 	}
 	
 	$scope.checkAgainstMax = function(product) {
