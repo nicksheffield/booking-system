@@ -1,8 +1,16 @@
 .wrapper
-	background #fff
 	border-radius body-rad
-	overflow hidden
 	position relative
+	
+.frame
+	background #fff
+	border-radius 0 body-rad body-rad 0
+	
+	@media (max-width bp-sm)
+		border-radius 0
+		
+	@media (max-width bp-md)
+		border-radius 0 0 body-rad body-rad
 	
 .bump-down
 	margin-top 1em

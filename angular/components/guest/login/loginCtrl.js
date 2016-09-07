@@ -26,11 +26,7 @@ angular.module('app.controllers')
 				
 				$load.trigger('user', $store.user)
 				
-				if($auth.getPayload().admin) {
-					$invalidate.add(['user', 'users', 'units', 'groups', 'products', 'group_types', 'product_types', 'bookings'])
-				} else {
-					$invalidate.add(['user', 'bookings'])
-				}
+				$invalidate.all()
 
 				$location.path('/home')
 			})

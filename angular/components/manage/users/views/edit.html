@@ -1,9 +1,9 @@
 <header class="page-header" layout="row" align="center" justify="between">
 	<h1>
-		<span ng-show="!profileMode">Edit User: {{ user.name }}</span>
+		<span ng-show="!profileMode">{{ user.name }}</span>
 		<span ng-show="profileMode">Edit Profile</span>
 	</h1>
-	<btn type="primary" small icon="floppy-o" ng-click="save()">Save</btn>
+	<btn type="primary" icon="floppy-o" ng-click="save()" small>Save</btn>
 </header>
 
 <breadcrumbs ng-hide="profileMode"></breadcrumbs>

@@ -21,7 +21,7 @@ angular.module('app.services')
 		if($auth.getPayload() && $auth.getPayload().admin) {
 			service.add(['user', 'users', 'groups', 'group_types', 'product_types', 'products', 'units', 'bookings'])
 		} else {
-			service.add(['user', 'groups'])
+			service.add(['user', 'groups', 'bookings'])
 		}
 	}
 	
