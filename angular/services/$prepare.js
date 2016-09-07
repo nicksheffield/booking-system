@@ -15,7 +15,7 @@ angular.module('app.services')
 *	Some getters have enumerable: true, which means any filters will be able to view the data of the
 *	linked objects. For example, viewing all users, you may filter by group code, because the
 *	user.group getter is enumerable.
-*	
+*
 *	Be careful with this, as you can end up with infinite loops if two objects reference eachother
 *	with getters and both have enumerable: true
 **/
