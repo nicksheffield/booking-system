@@ -1,15 +1,10 @@
 Todo.txt
 
-	- Handle page headers and their buttons more gracefully whenever the title is too long
 	- Add some managerial features for staff where applicable
 	- Waiting list for students that want to book a certain product
-	- Move all form submit buttons on new/edit pages into the page-header
 	- Get a date dropdown
 	- add tutor dropdown for classes can be cut off because the .frame or something has overflow hidden
-	
 	- Late fee restricts booking and that shows on user data
-
-	- on booking page remove table when filter alert displays
 	
 Late stuff
 	- Reset users passwords
