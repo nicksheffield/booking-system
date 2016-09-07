@@ -1,6 +1,5 @@
 Todo.txt
 
-	- Add some managerial features for staff where applicable
 	- Waiting list for students that want to book a certain product
 	- Get a date dropdown
 	- add tutor dropdown for classes can be cut off because the .frame or something has overflow hidden

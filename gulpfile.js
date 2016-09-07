@@ -45,6 +45,7 @@ gulp.task('css', function() {
 	// prepare css code
 	var stream = gulp.src([
 		'public/components/angular-ui-select/dist/select.min.css',
+		'public/components/angular-bootstrap/ui-bootstrap-csp.css',
 		'public/components/normalize-css/normalize.css',
 		'public/components/flexy/flexy.min.css',
 		'angular/style/3rdparty/bootstrap-v4-alpha.min.css',
@@ -120,6 +121,7 @@ gulp.task('libs', function() {
 		'public/components/angular-ui-router/release/angular-ui-router.js',
 		'public/components/angular-sanitize/angular-sanitize.js',
 		'public/components/angular-ui-select/dist/select.js',
+		'public/components/angular-bootstrap/ui-bootstrap.js',
 		'public/components/lodash/lodash.js',
 		'public/components/mousetrap/mousetrap.js',
 		'public/components/mousetrap/plugins/global-bind/mousetrap-global-bind.js',
@@ -155,7 +157,7 @@ gulp.task('watch', ['angular', 'css'], function() {
 		browserSync({
 			proxy: '127.0.0.1:8010',
 			port: 8000,
-			open: true,
+			open: false,
 			notify: false
 		})
 	}

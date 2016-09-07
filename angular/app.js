@@ -11,6 +11,7 @@ angular.module('app', [
 	'ngResource',
 	'ngSanitize',
 	'satellizer',
+	'ui.bootstrap',
 	'ui.router',
 	'ui.select',
 
