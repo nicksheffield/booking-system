@@ -1,6 +1,15 @@
 angular.module('app.controllers')
 
 .controller('registerCtrl', function($scope, $auth, $store, $state, $location, User) {
+	
+	$scope.dateOptions = {
+		showWeeks: false,
+		format: 'd MMM yyyy'
+	}
+	
+	$scope.openDob = function() {
+		$scope.openDobDate = $scope.openDobDate ? false : true
+	}
 	$scope.groups = $store.groups
 
 	$scope.selected = {}

@@ -1,15 +1,20 @@
 angular.module('app.controllers')
 
 .controller('makeCtrl', function($scope, $store, $location, $q) {
+	
 	$scope.dateOptions = {
 		showWeeks: false,
 		format: 'd MMM yyyy',
-		templateUrl: 'directives/datepicker/date.html',
 		minDate: new Date(),
 	}
 	
-	$scope.openPickupDate = false
-	$scope.openDueDate = false
+	$scope.openPickup = function() {
+		$scope.openPickupDate = $scope.openPickupDate ? false : true
+	}
+	
+	$scope.openDue = function() {
+		$scope.openDueDate = $scope.openDueDate ? false : true
+	}
 	
 	$scope.user = $store.user
 	
@@ -51,14 +56,6 @@ angular.module('app.controllers')
 			pickup_at: $scope.booking.pickup_at,
 			products: payload
 		})
-	}
-	
-	$scope.openPickup = function() {
-		$scope.openPickupDate =! $scope.openPickupDate
-	}
-	
-	$scope.openDue = function() {
-		$scope.openDueDate =! $scope.openDueDate
 	}
 	
 	$scope.checkAgainstMax = function(product) {

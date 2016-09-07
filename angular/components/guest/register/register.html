@@ -33,7 +33,7 @@
 			</div>
 			<div class="form-group" ratio="1">
 				<label for="dob">DOB</label>
-				<input type="date" id="dob" ng-model="dob" class="form-control">
+				<input type="text" id="dob" ng-model="user.dob" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openDobDate" datepicker-options="dateOptions" ng-click="openDob()">
 			</div>
 		</div>
 		<div layout="row sm-col" class="spaced-row">
