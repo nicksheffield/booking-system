@@ -3,7 +3,9 @@ angular.module('app.controllers')
 .controller('makeCtrl', function($scope, $store, $location, $q) {
 	$scope.dateOptions = {
 		showWeeks: false,
-		minDate: new Date()
+		format: 'd MMM yyyy',
+		templateUrl: 'directives/datepicker/date.html',
+		minDate: new Date(),
 	}
 	
 	$scope.openPickupDate = false

@@ -35,6 +35,7 @@ angular.module('app.controllers')
 				$location.path('/home')
 			})
 			.catch(function(res) {
+				console.log(res.data)
 				if(res.data.error == 'invalid_credentials') {
 					$scope.error = 'Email or password is invalid.'
 				} else {
