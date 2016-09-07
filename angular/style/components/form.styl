@@ -27,3 +27,22 @@ input[type=date]
 	
 input[ng-model=filter]
 	margin-bottom 1em
+	
+.filter
+	position relative
+	// width 25%
+	// float right
+	
+	i.fa
+		position absolute
+		left 0.6em
+		top 0.65em
+		color #999
+		pointer-events none
+	
+	input
+		padding-left 2em
+		
+		&:focus, &:hover
+			& + i.fa
+				color color-primary

@@ -7,7 +7,10 @@
 
 <div class="page-content">
 	
-	<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
+	<div class="filter">
+		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
+		<i class="fa fa-search"></i>
+	</div>
 
 	<table class="table table-hover table-filtered" ng-hide="!filtered.length">
 		<thead>
