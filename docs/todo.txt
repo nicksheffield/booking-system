@@ -10,11 +10,6 @@ Todo.txt
 	- Late fee restricts booking and that shows on user data
 
 	- on booking page remove table when filter alert displays
-
-	- bootstrap alpha added bugs
-		- ui.select now gets short when you open it
-		- line height in ui.select for selected items looks off
-		alerts look bad
 	
 Late stuff
 	- Reset users passwords
