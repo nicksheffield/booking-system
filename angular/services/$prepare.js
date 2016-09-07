@@ -1,5 +1,27 @@
 angular.module('app.services')
 
+/**
+*	This service's job is to take an object, or array of objects, and decorate them.
+*	Some of that includes adding custom properties, which we prepend with an underscore.
+*	eg.
+*		user._age
+*
+*	But it also adds getters to the objects, so that we may link objects to one another.
+*	eg.
+*		We want to be able to use the following syntax to get the groups code: user.group.code
+*		To do that we add a getter that searches all the groups for one that has the same id as the
+*		user's group_id value, and returns that object.
+*
+*	Some getters have enumerable: true, which means any filters will be able to view the data of the
+*	linked objects. For example, viewing all users, you may filter by group code, because the
+*	user.group getter is enumerable.
+*
+*	Be careful with this, as you can end up with infinite loops if two objects reference eachother
+*	with getters and both have enumerable: true
+*
+*	See: http://javascriptplayground.com/blog/2013/12/es5-getters-setters/
+**/
+
 .factory('$prepare', function($store) {
 	var service = {}
 	
@@ -19,13 +41,14 @@ angular.module('app.services')
 		user._age = duration.asYears().toFixed(0)
 
 		if(user.dob) user.dob = new Date(user.dob)
-			
+		
 		Object.defineProperty(user, 'group', {
+			enumerable: true,
 			get: function() {
 				return _.find($store.groups, (group) => group.id == user.group_id)
 			}
 		})
-			
+		
 		return user
 	}
 
@@ -33,6 +56,7 @@ angular.module('app.services')
 		_.forEach(groups, function(group) {
 			
 			Object.defineProperty(group, 'type', {
+				enumerable: true,
 				get: function() {
 					return _.find($store.group_types, (type) => type.id == group.group_type_id)
 				}
@@ -72,6 +96,7 @@ angular.module('app.services')
 			product._quantity = ''
 			
 			Object.defineProperty(product, 'type', {
+				enumerable: true,
 				get: function() {
 					return _.find($store.product_types, (type) => type.id == product.product_type_id)
 				}
@@ -104,6 +129,7 @@ angular.module('app.services')
 		_.forEach(units, function(unit) {
 			
 			Object.defineProperty(unit, 'product', {
+				enumerable: true,
 				get: function() {
 					return _.find($store.products, (product) => product.id == unit.product_id)
 				}
