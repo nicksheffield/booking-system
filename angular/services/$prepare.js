@@ -18,6 +18,8 @@ angular.module('app.services')
 *
 *	Be careful with this, as you can end up with infinite loops if two objects reference eachother
 *	with getters and both have enumerable: true
+*
+*	See: http://javascriptplayground.com/blog/2013/12/es5-getters-setters/
 **/
 
 .factory('$prepare', function($store) {
@@ -39,14 +41,14 @@ angular.module('app.services')
 		user._age = duration.asYears().toFixed(0)
 
 		if(user.dob) user.dob = new Date(user.dob)
-			
+		
 		Object.defineProperty(user, 'group', {
 			enumerable: true,
 			get: function() {
 				return _.find($store.groups, (group) => group.id == user.group_id)
 			}
 		})
-			
+		
 		return user
 	}
 
