@@ -1,7 +1,7 @@
 .breadcrumbs
 	background color-breadcrumbs-background
 	color color-breadcrumbs-text
-	padding 0.8em 2em
+	padding 0.9em 2em
 	
 	& > *
 		animation fade-in animation-fade-in-speed
@@ -10,12 +10,14 @@
 		list-style none
 		padding 0
 		margin 0
-		font-size 0.8em
+		font-size 0.7em
+		text-transform uppercase
 		
 		li:after
-			content '»' // » → ⇢
-			display: inline-block
+			content '/' // » → ⇢
+			display inline-block
 			margin 0 0.5em
+			color color-breadcrumbs-delimiter
 			
 		li:last-of-type:after
 			content ''
