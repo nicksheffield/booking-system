@@ -42,6 +42,10 @@ angular.module('app.controllers')
 			products: payload
 		})
 	}
+	$scope.openPickupDate = true
+	$scope.openPickup = function() {
+		$scope.openPickupDate =! $scope.openPickupDate
+	}
 	
 	$scope.checkAgainstMax = function(product) {
 		var max = $scope.max(product)

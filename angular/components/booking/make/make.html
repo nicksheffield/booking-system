@@ -13,7 +13,12 @@
 		<div layout="row sm-col" class="space-row">
 			<div ratio="1">
 				<label for="pickup_at">Pickup date</label>
-				<input type="date" id="pickup_at" ng-model="booking.pickup_at" ng-change="createBooking()" class="form-control" uib-datepicker-popup >
+				<div class="spaced-row" layout="row" align="center">
+					<div ratio="1">
+						<input type="text" id="pickup_at" ng-model="booking.pickup_at" ng-change="createBooking()" class="form-control" uib-datepicker-popup is-open="openPickupDate">
+					</div>
+					<btn type="secondary" icon="calendar" ng-click="openPickup()"></btn>
+				</div>
 			</div>
 			<div ratio="1">
 				<label for="due_at">Return date</label>

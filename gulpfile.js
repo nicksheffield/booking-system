@@ -122,6 +122,7 @@ gulp.task('libs', function() {
 		'public/components/angular-sanitize/angular-sanitize.js',
 		'public/components/angular-ui-select/dist/select.js',
 		'public/components/angular-bootstrap/ui-bootstrap.js',
+		'public/components/angular-bootstrap/ui-bootstrap-tpls.js',
 		'public/components/lodash/lodash.js',
 		'public/components/mousetrap/mousetrap.js',
 		'public/components/mousetrap/plugins/global-bind/mousetrap-global-bind.js',

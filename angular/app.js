@@ -12,6 +12,7 @@ angular.module('app', [
 	'ngSanitize',
 	'satellizer',
 	'ui.bootstrap',
+	'ui.bootstrap.tpls',
 	'ui.router',
 	'ui.select',
 
