@@ -101,13 +101,13 @@ angular.module('app.routes')
 			}
 		},
 		
-		'view_bookings': {
+		'manage_bookings': {
 			url: '/bookings',
-			templateUrl: 'components/booking/view/view.html',
-			controller: 'viewBookingsCtrl',
+			templateUrl: 'components/booking/manage/manage.html',
+			controller: 'bookingsManageCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				title: 'All Current Bookings'
+				title: 'All Bookings'
 			}
 		},
 		

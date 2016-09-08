@@ -145,6 +145,7 @@ angular.module('app.services')
 			booking.pickup_at = new Date(booking.pickup_at)
 			
 			Object.defineProperty(booking, 'user', {
+				enumerable: true,
 				get: function() {
 					return _.find($store.users, (user) => user.id == booking.user_id)
 				}

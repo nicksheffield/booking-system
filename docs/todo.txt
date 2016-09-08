@@ -4,6 +4,8 @@ Todo.txt
 	- add tutor dropdown for classes can be cut off because the .frame or something has overflow hidden
 	- Late fee restricts booking and that shows on user data
 	- Make breadcrumbs such as "View User" actually say the users name
+	- Go through and remove View: and Edit: from everything
+	- Attach filters to the bottom of breadcrumbs or the page header
 	
 Late stuff
 	- Reset users passwords

@@ -7,25 +7,25 @@
 	</div>
 </header>
 
-<div class="page-content">
-
-	<section>
-		<div layout="row sm-col" class="space-row">
-			<div ratio="1">
-				<label for="pickup_at">Pickup date</label>
-				<input type="text" id="pickup_at" ng-model="booking.pickup_at" ng-change="createBooking()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openPickupDate" datepicker-options="dateOptions" ng-click="openPickup()">
-			</div>
-			<div ratio="1">
-				<label for="due_at">Return date</label>
-				<input type="text" id="due_at" ng-model="booking.due_at" ng-change="createBooking()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openDueDate" datepicker-options="dateOptions" ng-click="openDue()">
-			</div>
+<div class="page-dates">
+	<div layout="row sm-col" class="space-row">
+		<div ratio="1">
+			<label for="pickup_at">Pickup date</label>
+			<input type="text" id="pickup_at" ng-model="booking.pickup_at" ng-change="createBooking()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openPickupDate" datepicker-options="dateOptions" ng-click="openPickup()">
 		</div>
-	</section>
-
-	<div class="filter">
-		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
-		<i class="fa fa-search"></i>
+		<div ratio="1">
+			<label for="due_at">Return date</label>
+			<input type="text" id="due_at" ng-model="booking.due_at" ng-change="createBooking()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openDueDate" datepicker-options="dateOptions" ng-click="openDue()">
+		</div>
 	</div>
+</div>
+
+<div class="filter">
+	<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
+	<i class="fa fa-search"></i>
+</div>
+
+<div class="page-content">
 	
 	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length">
 		<thead>

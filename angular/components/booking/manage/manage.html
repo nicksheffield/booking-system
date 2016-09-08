@@ -1,14 +1,17 @@
 <header class="page-header" layout="row" align="center" justify="between">
-	<h1>All Current Bookings</h1>
+	<h1>All Bookings</h1>
 </header>
 
 <breadcrumbs></breadcrumbs>
 
+<div class="filter">
+	<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
+	<i class="fa fa-search"></i>
+</div>
+
 <div class="page-content" ratio="1">
 
-	<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
-
-	<table class="table table-hover table-filtered" ng-hide="!filtered.length">
+	<table class="table table-hover table-striped table-filtered" ng-hide="!filtered.length">
 		<thead>
 			<tr>
 				<th>User</th>
@@ -20,13 +23,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="booking in bookings | filter: filter as filtered">
+			<tr ng-repeat="booking in bookings | filter: inClass | filter: filter as filtered">
 				<td>{{ booking.user.name }}</td>
-				<td>{{ group(booking.user.group_id).code }}</td>
+				<td>{{ booking.user.group.code }}</td>
 				<td>{{ booking.products.length }}</td>
 				<td>{{ booking.pickup_at | date }}</td>
 				<td>{{ booking.due_at | date }}</td>
-				<td><btn url="#/booking/{{ booking.id }}/issue" type="info" icon="arrow-right" small>Issue</btn></td>
+				<td class="button-row">
+					<btn url="#/booking/{{ booking.id }}/issue" type="info" icon="arrow-right" small></btn>
+					<btn url="#/booking/{{ booking.id }}/edit" type="info" icon="pencil" small></btn>
+				</td>
 			</tr>
 		</tbody>
 	</table>

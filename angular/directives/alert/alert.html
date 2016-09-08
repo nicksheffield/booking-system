@@ -1,7 +1,7 @@
 <div class="alert alert-{{ type }}">
 	<p layout="row" align="center" justify="between">
 		<span>
-			<i class="fa fa-{{ icon }}" ng-if="icon"></i>
+			<i class="fa fa-fw fa-{{ icon }}" ng-if="icon"></i>
 			<span ng-bind-html="text"></span>
 		</span>
 		<ng-transclude></ng-transclude>

@@ -1,16 +1,16 @@
 <header class="page-header" layout="row" justify="between" align="center">
 	<h1>All Users</h1>
-	<a href="#/manage/user/new" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New</a>
+	<btn icon="plus" small url="#/manage/user/new">New</btn>
 </header>
 
 <breadcrumbs></breadcrumbs>
 
-<div class="page-content">
+<div class="filter">
+	<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
+	<i class="fa fa-search"></i>
+</div>
 
-	<div class="filter">
-		<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
-		<i class="fa fa-search"></i>
-	</div>
+<div class="page-content">
 
 	<table class="table table-hover table-filtered" ng-hide="!filtered.length">
 		<thead>

@@ -19,7 +19,11 @@ input[type=number].form-control,
 input[type=url].form-control,
 input[type=search].form-control,
 select.form-control
-	&:hover, &:focus
+	transition border-color transition-time ease
+	
+	&:hover
+		border-color color-form-border-hover	
+	&:focus
 		border-color color-form-border-highlight
 	
 input[type=date]
@@ -32,17 +36,50 @@ input[ng-model=filter]
 	position relative
 	// width 25%
 	// float right
+	font-size 0.9em
 	
+	&:not(.standalone)
+		input.form-control
+			padding 1.22em 1.12em 1.02em 4.5em
+			margin-bottom 0
+			font-size 0.9em
+			background color-filter-background
+			border none
+			border-bottom 1px solid color-filter-border
+			border-radius 0
+			color color-filter-text
+		
+			&:hover, &:focus
+				border-color color-filter-border
+				
+				& + i.fa
+					color color-filter-icon
+			
+		i.fa
+			left 2.2em
+			top 1.04em
+			
 	i.fa
 		position absolute
-		left 0.6em
-		top 0.65em
+		left 0.8em
+		top 0.8em
 		color #999
 		pointer-events none
-	
-	input
-		padding-left 2em
+		color color-filter-icon
 		
-		&:focus, &:hover
+		transition color transition-time ease
+		
+	input.form-control
+		padding-left 2em
+		font-weight 600
+		-webkit-font-smoothing antialiased
+		text-transform uppercase
+		
+		&::-webkit-input-placeholder
+			color color-filter-placeholder
+		
+		&:hover, &:focus
+			border-color color-form-border-highlight
+			
 			& + i.fa
-				color color-primary
+				color color-form-border-highlight
