@@ -2,6 +2,15 @@ angular.module('app.controllers')
 
 .controller('userEditCtrl', function($scope, $stateParams, $state, $store, $location, $invalidate, User) {
 	
+	$scope.dateOptions = {
+		showWeeks: false,
+		format: 'd MMM yyyy'
+	}
+	
+	$scope.openDob = function() {
+		$scope.openDobDate = $scope.openDobDate ? false : true
+	}
+
 	$scope.roles = [
 		{ level: 0, text: 'Student'},
 		{ level: 1, text: 'Staff'},
@@ -13,6 +22,7 @@ angular.module('app.controllers')
 		$scope.profileMode = true
 	} else {
 		$scope.user = $store.get('users', $stateParams.id)
+		$scope.you = $store.user
 	}
 	
 	if($scope.user.admin == 1 && $scope.user.group && !$scope.user.group._isTutor($store.user.id)) {
