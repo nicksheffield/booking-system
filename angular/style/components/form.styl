@@ -4,13 +4,6 @@
 .form-title
 	margin-bottom 1em
 	
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
-}
-	
 input[type=text].form-control,
 input[type=password].form-control,
 input[type=date].form-control,
@@ -19,7 +12,7 @@ input[type=number].form-control,
 input[type=url].form-control,
 input[type=search].form-control,
 select.form-control
-	transition border-color transition-time ease
+	// transition border-color transition-time ease
 	
 	&:hover
 		border-color color-form-border-hover	
@@ -28,3 +21,11 @@ select.form-control
 	
 input[type=date]
 	line-height normal !important
+
+		
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
