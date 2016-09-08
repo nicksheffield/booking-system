@@ -4,6 +4,7 @@ angular.module('app.directives')
 	function link(scope, el, attrs, ctrl, $transclude) {
 		scope.small = attrs.small !== undefined ? true : false
 		scope.large = attrs.large !== undefined ? true : false
+		scope.spin = attrs.spin !== undefined ? true : false
 		
 		if(!scope.type) scope.type = 'primary'
 		

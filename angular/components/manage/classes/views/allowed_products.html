@@ -1,30 +1,18 @@
-<header class="page-header">
-	<h1>Allow products for class: {{ group.code }}</h1>
+<header class="page-header" layout="row" justify="between" align="center">
+	<h1>{{ group.code }}</h1>
+	
+	<div>
+		<btn type="info" icon="floppy-o" ng-show="saved === undefined" small>Autosave on</btn>
+		<btn type="info" icon="cog" ng-show="!saved && saved !== undefined" spinning small>Saving</btn>
+		<btn type="success" icon="check" ng-show="saved" small>Saved</btn>
+	</div>
 </header>
 
 <breadcrumbs></breadcrumbs>
 
+<filter model="filter" filtered="filtered"></filter>
+
 <div class="page-content">
-
-	<div class="status alert" ng-class="{'alert-success': saved, 'alert-info': !saved}">
-		
-		<span ng-if="saved === undefined">
-			<i class="fa fa-info-circle"></i>
-			Any changes you make here are saved <strong><em>immediately</em></strong>
-		</span>
-		
-		<span ng-if="!saved && saved !== undefined">
-			<i class="fa fa-cog fa-spin fa-fw"></i>
-			Saving...
-		</span>
-		
-		<span ng-if="saved">
-			<i class="fa fa-check"></i>
-			Changes saved!
-		</span>
-	</div>
-
-	<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
 	
 	<table class="table table-hover table-striped middle-table" ng-hide="!filtered.length">
 		<thead>
@@ -43,15 +31,10 @@
 				<td><a href="#/manage/product/{{ product.id }}">{{ product.name }}</a></td>
 				<td><a href="#/manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
 				<td>{{ product.units.length }}</td>
-				<td><input type="number" ng-model="product._quantity" ng-change="update(product)" max="{{ product.units.length }}" min="1" class="form-control"></td>
-				<td><input type="number" ng-model="product._days_allowed" ng-change="update(product)" min="1" class="form-control"></td>
+				<td><input type="number" ng-model="product._quantity" ng-change="update(product)" max="{{ product.units.length }}" min="1" class="form-control form-control-sm"></td>
+				<td><input type="number" ng-model="product._days_allowed" ng-change="update(product)" min="1" class="form-control form-control-sm"></td>
 			</tr>
 		</tbody>
 	</table>
-	
-	<div class="alert alert-danger bump-down" ng-if="!filtered.length">
-		<i class="fa fa-info-circle"></i>
-		There are no products that match <b>"{{ filter }}"</b>
-	</div>
 
 </div>

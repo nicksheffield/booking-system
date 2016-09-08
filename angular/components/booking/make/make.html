@@ -11,19 +11,16 @@
 	<div layout="row sm-col" class="space-row">
 		<div ratio="1">
 			<label for="pickup_at">Pickup date</label>
-			<input type="text" id="pickup_at" ng-model="booking.pickup_at" ng-change="createBooking()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openPickupDate" datepicker-options="dateOptions" ng-click="openPickup()">
+			<input type="text" id="pickup_at" ng-model="booking.pickup_at" ng-change="createBooking()" class="form-control form-control-sm" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openPickupDate" datepicker-options="dateOptions" ng-click="openPickup()">
 		</div>
 		<div ratio="1">
 			<label for="due_at">Return date</label>
-			<input type="text" id="due_at" ng-model="booking.due_at" ng-change="createBooking()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openDueDate" datepicker-options="dateOptions" ng-click="openDue()">
+			<input type="text" id="due_at" ng-model="booking.due_at" ng-change="createBooking()" class="form-control form-control-sm" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openDueDate" datepicker-options="dateOptions" ng-click="openDue()">
 		</div>
 	</div>
 </div>
 
-<div class="filter">
-	<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
-	<i class="fa fa-search"></i>
-</div>
+<filter model="filter" filtered="filtered"></filter>
 
 <div class="page-content">
 	
@@ -42,10 +39,9 @@
 			<td>{{ max(product) }}</td>
 			
 			<td>
-				<input type="number" ng-model="product._quantity" class="form-control booking-quantity-input" max="{{ max(product) }}" ng-keyup="checkAgainstMax(product)" min="0" ng-change="createBooking()">
+				<input type="number" ng-model="product._quantity" class="form-control booking-quantity-input form-control-sm" max="{{ max(product) }}" ng-keyup="checkAgainstMax(product)" min="0" ng-change="createBooking()">
 			</td>
 		</tr>
 	</table>
 	
-	<alert type="danger" text='There are no products that match <b>"{{ filter }}"</b>' icon="info-circle" ng-if="!filtered.length"></alert>
 </div>

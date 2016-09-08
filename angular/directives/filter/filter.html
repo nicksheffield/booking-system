@@ -1,0 +1,8 @@
+<div class="filter" ng-class="{ active: model.length, nomatch: model.length && !filtered.length }">
+	<input type="search" ng-model="model" class="form-control" placeholder="filter...">
+	<i class="fa fa-search"></i>
+	<div class="output">
+		<span ng-show="model.length && filtered.length">{{ filtered.length }}</span>
+		<span ng-show="model.length && !filtered.length">No matches</span>
+	</div>
+</div>

@@ -4,7 +4,7 @@
 		'btn-large': large,
 		'btn-icon': icon && hasTranscluded
 	}" ng-disabled="disable">
-		<i class="fa fa-fw fa-{{ icon }}" ng-show="icon"></i>
+		<i class="fa fa-fw fa-{{ icon }}" ng-class="{'fa-spin': spin}" ng-show="icon"></i>
 		<ng-transclude></ng-transclude>
 	</button>
 	
@@ -13,7 +13,7 @@
 		'btn-large': large,
 		'btn-icon': icon && hasTranscluded
 	}" ng-disabled="disable">
-		<i class="fa fa-fw fa-{{ icon }}" ng-show="icon"></i>
+		<i class="fa fa-fw fa-{{ icon }}" ng-class="{'fa-spin': spin}" ng-show="icon"></i>
 		<ng-transclude></ng-transclude>
 	</a>
 </span>

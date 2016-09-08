@@ -5,10 +5,7 @@
 
 <breadcrumbs></breadcrumbs>
 
-<div class="filter">
-	<input type="search" ng-model="filter" class="form-control" placeholder="filter...">
-	<i class="fa fa-search"></i>
-</div>
+<filter model="filter" filtered="filtered"></filter>
 
 <div class="page-content">
 
@@ -31,5 +28,4 @@
 		</tbody>
 	</table>
 	
-	<alert type="danger" text='There are no classes that match <b>"{{ filter }}"</b>' icon="info-circle" ng-if="!filtered.length"></alert>
 </div>
