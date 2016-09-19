@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('makeCtrl', function($scope, $store, $location, $q) {
+.controller('makeCtrl', function($scope, $store, $location) {
 	
 	$scope.dateOptions = {
 		showWeeks: false,
