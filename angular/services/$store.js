@@ -24,6 +24,16 @@ angular.module('app.services')
 		localStorage.removeItem('booking')
 		service.booking = {}
 	}
+
+	service.clear = function(things) {
+		if(things instanceof Array) {
+			_.forEach(things, function(thing) {
+				service[thing] = {}
+			})
+		} else {
+			service[things] = {}
+		}
+	}
 	
 	service.get = function(type, id) {
 		return _.find(service[type], typeof id == 'object' && id !== null ? id : (t) => t.id == id)
