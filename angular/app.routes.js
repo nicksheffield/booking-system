@@ -111,6 +111,16 @@ angular.module('app.routes')
 			}
 		},
 		
+		'issue_booking': {
+			url: '/book/:id/issue',
+			templateUrl: 'components/booking/issue/issue.html',
+			controller: 'issueCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				title: 'Issue Booking'
+			}
+		},
+		
 		// ------------------------------------------------------------
 		// Manage
 		// ------------------------------------------------------------
