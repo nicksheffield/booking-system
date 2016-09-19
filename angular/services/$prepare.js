@@ -150,6 +150,18 @@ angular.module('app.services')
 					return _.find($store.users, (user) => user.id == booking.user_id)
 				}
 			})
+			
+			Object.defineProperty(booking, '_products', {
+				get: function() {
+					// return _.filter($store.products, (product) => _.indexOf(booking.products, product.id) !== -1)
+					
+					var filtered = _.filter($store.products, function(product) {
+						return _.filter(booking.products, {id: product.id}).length
+					})
+					
+					return filtered
+				}
+			})
 		})
 		
 		return bookings

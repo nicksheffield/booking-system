@@ -6,8 +6,43 @@
 	</div>
 </header>
 
+<div class="page-dates">
+	<div layout="row sm-col" class="space-row">
+		<div ratio="1">
+			<label for="pickup_at">Pickup date</label>
+			<input type="text" id="pickup_at" ng-model="booking.pickup_at" ng-change="createBooking()" class="form-control form-control-sm" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openPickupDate" datepicker-options="dateOptions" ng-click="openPickup()">
+		</div>
+		<div ratio="1">
+			<label for="due_at">Return date</label>
+			<input type="text" id="due_at" ng-model="booking.due_at" ng-change="createBooking()" class="form-control form-control-sm" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openDueDate" datepicker-options="dateOptions" ng-click="openDue()">
+		</div>
+	</div>
+</div>
+
+<filter model="filter" filtered="filtered"></filter>
+
 <div class="page-content">
 	
-	
+	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length">
+		<thead>
+			<tr>
+				<th class="booking-heading-product">Product</th>
+				<th class="table-col-select-medium">Unit</th>
+			</tr>
+		</thead>
+		<tr ng-repeat="product in booking._products | filter: filter as filtered">
+			<td>{{ product.name }}</td>
+			<td>
+				<ui-select ng-model="product.unit" id="group">
+					<ui-select-match allow-clear="false" placeholder="​">
+						<span ng-bind="$select.selected.unit_number" class="setheight"></span>
+					</ui-select-match>
+					<ui-select-choices repeat="unit in (product.units | filter: $select.search) track by unit.id">
+						<div ng-bind-html="unit.unit_number | highlight: $select.search"></div>
+					</ui-select-choices>
+				</ui-select>
+			</td>
+		</tr>
+	</table>
 	
 </div>
