@@ -27,6 +27,8 @@ angular.module('app.controllers')
 			.put('/api/booking/' + $scope.booking.id, $scope.booking)
 			.then(function(res) {
 				$invalidate.add('bookings')
+
+				$location.path('/bookings')
 			})
 	}
 	

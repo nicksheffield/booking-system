@@ -21,10 +21,10 @@ class Booking extends Controller
 		// $q = $q->offset(($request->offset ?: 0));
 
 		if(!$request->status)                 $q = $q->active();
+		if($request->status == 'closed')      $q = $q->closed();
 		if($request->status == 'overdue')     $q = $q->overdue();
 		if($request->status == 'delivered')   $q = $q->delivered();
 		if($request->status == 'undelivered') $q = $q->undelivered();
-		if($request->status == 'closed')      $q = $q->closed();
 		
 		if($request->with) $q = $q->with(explode('|', $request->with));
 
@@ -81,6 +81,8 @@ class Booking extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
+		dd($request->products);
+
 		$model = Model::find($id);
 		
 		$model->fill($request->all());
@@ -88,9 +90,23 @@ class Booking extends Controller
 		$model->save();
 
 		foreach($request->products as $product) {
+			$data = [];
+
+			if(isset($product['unit'])) {
+				$data['unit_id'] = $product['unit']['id'];
+			}
+
+			if(isset($product['returned_at'])) {
+				$data['returned_at'] = $product['returned_at'];
+			}
+
+			if(isset($product['notes'])) {
+				$data['notes'] = $product['notes'];
+			}
+
 			$model->products()
 				->wherePivot('id', '=', $product['pivot']['id'])
-				->updateExistingPivot($product['id'], ['unit_id' => $product['unit']['id']]);
+				->updateExistingPivot($product['id'], $data);
 		}
 
 		return $model;
