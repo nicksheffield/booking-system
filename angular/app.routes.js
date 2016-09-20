@@ -121,6 +121,16 @@ angular.module('app.routes')
 			}
 		},
 		
+		'return_booking': {
+			url: '/booking/:id/return',
+			templateUrl: 'components/booking/return/return.html',
+			controller: 'returnCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				title: 'Return Equipment'
+			}
+		},
+		
 		// ------------------------------------------------------------
 		// Manage
 		// ------------------------------------------------------------

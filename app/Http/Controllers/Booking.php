@@ -9,6 +9,8 @@ use Auth;
 
 use App\Models\Booking as Model;
 
+use Carbon\Carbon;
+
 class Booking extends Controller
 {
 	public function index(Request $request)
@@ -22,7 +24,7 @@ class Booking extends Controller
 		if($request->status == 'overdue')     $q = $q->overdue();
 		if($request->status == 'delivered')   $q = $q->delivered();
 		if($request->status == 'undelivered') $q = $q->undelivered();
-		if($request->status == 'returned')    $q = $q->returned();
+		if($request->status == 'closed')      $q = $q->closed();
 		
 		if($request->with) $q = $q->with(explode('|', $request->with));
 
@@ -82,8 +84,14 @@ class Booking extends Controller
 		$model = Model::find($id);
 		
 		$model->fill($request->all());
+
+		// $model->taken_at = Carbon::now();
 		
 		$model->save();
+
+		foreach($request->products as $product) {
+			$model->products()->updateExistingPivot($product['id'], ['unit_id' => $product['unit']['id']]);
+		}
 
 		return $model;
 	}

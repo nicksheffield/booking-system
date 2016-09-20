@@ -3,9 +3,8 @@ Todo.txt
 	- Waiting list for students that want to book a certain product
 	- add tutor dropdown for classes can be cut off because the .frame or something has overflow hidden
 	- Late fee restricts booking and that shows on user data
-	- Make breadcrumbs such as "View User" actually say the users name
 	- Booking dates loaded the next day can be earlier than now
-	- Simplify the arrow functions in $prepare down to simple objects
+	- Restyle "There are no current bookings" message
 	
 Late stuff
 	- Reset users passwords

@@ -45,7 +45,7 @@ angular.module('app.services')
 		Object.defineProperty(user, 'group', {
 			enumerable: true,
 			get: function() {
-				return _.find($store.groups, (group) => group.id == user.group_id)
+				return _.find($store.groups, {id: user.group_id})
 			}
 		})
 		
@@ -58,18 +58,18 @@ angular.module('app.services')
 			Object.defineProperty(group, 'type', {
 				enumerable: true,
 				get: function() {
-					return _.find($store.group_types, (type) => type.id == group.group_type_id)
+					return _.find($store.group_types, {id: group.group_type_id})
 				}
 			})
 			
 			Object.defineProperty(group, 'users', {
 				get: function() {
-					return _.filter($store.users, (user) => user.group_id == group.id)
+					return _.filter($store.users, {group_id: group.id})
 				}
 			})
 			
 			group._isTutor = function(id) {
-				return !!_.find(group.tutors, (t) => t.id == $store.user.id)
+				return !!_.find(group.tutors, {id: $store.user.id})
 			}
 			
 		})
@@ -82,7 +82,7 @@ angular.module('app.services')
 			
 			Object.defineProperty(type, 'groups', {
 				get: function() {
-					return _.filter($store.groups, (group) => group.group_type_id == type.id)
+					return _.filter($store.groups, {group_type_id: type.id})
 				}
 			})
 			
@@ -98,13 +98,13 @@ angular.module('app.services')
 			Object.defineProperty(product, 'type', {
 				enumerable: true,
 				get: function() {
-					return _.find($store.product_types, (type) => type.id == product.product_type_id)
+					return _.find($store.product_types, {id: product.product_type_id})
 				}
 			})
 			
 			Object.defineProperty(product, 'units', {
 				get: function() {
-					return _.filter($store.units, (unit) => unit.product_id == product.id)
+					return _.filter($store.units, {product_id: product.id})
 				}
 			})
 		})
@@ -117,7 +117,7 @@ angular.module('app.services')
 			
 			Object.defineProperty(type, 'products', {
 				get: function() {
-					return _.filter($store.products, (product) => product.product_type_id == type.id)
+					return _.filter($store.products, {product_type_id: type.id})
 				}
 			})
 		})
@@ -131,7 +131,7 @@ angular.module('app.services')
 			Object.defineProperty(unit, 'product', {
 				enumerable: true,
 				get: function() {
-					return _.find($store.products, (product) => product.id == unit.product_id)
+					return _.find($store.products, {id: unit.product_id})
 				}
 			})
 		})
@@ -143,23 +143,37 @@ angular.module('app.services')
 		_.forEach(bookings, function(booking) {
 			booking.due_at = new Date(booking.due_at)
 			booking.pickup_at = new Date(booking.pickup_at)
+
+			// low is top of table
+			booking._priority = 0
+
+		
+			if(!booking.taken_at) booking._priority = 1 // not taken yet. "Booked"
+			if(booking.taken_at && !booking.returned_at) booking._priority = 2 // taken but not returned. "Issued"
+			if(booking.returned_at) booking._priority = 3 // taken and returned. "Returned"
 			
 			Object.defineProperty(booking, 'user', {
 				enumerable: true,
 				get: function() {
-					return _.find($store.users, (user) => user.id == booking.user_id)
+					return _.find($store.users, {id: booking.user_id})
 				}
 			})
 			
 			Object.defineProperty(booking, '_products', {
 				get: function() {
-					// return _.filter($store.products, (product) => _.indexOf(booking.products, product.id) !== -1)
+					// var filtered = _.filter($store.products, function(product){
+					// 	return _.filter(booking.products, {id: product.id}).length)
+					// })
 					
-					var filtered = _.filter($store.products, function(product) {
-						return _.filter(booking.products, {id: product.id}).length
+					// return filtered
+
+					var products = []
+
+					_.forEach(booking.products, function(product) {
+						products.push(_.find($store.products, {id: product.id}))
 					})
-					
-					return filtered
+
+					return products
 				}
 			})
 		})

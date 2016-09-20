@@ -14,7 +14,7 @@ class Booking extends Model
 	protected $table = 'bookings';
 	
 	protected $fillable = [
-		'user_id', 'due_at', 'pickup_at'
+		'user_id', 'due_at', 'pickup_at', 'taken_at'
 	];
 
 	public function scopeOverdue($query) {
@@ -29,12 +29,12 @@ class Booking extends Model
 		return $query->where('delivered_at', '!=', null);
 	}
 
-	public function scopeReturned($query) {
-		return $query->where('returned_at', '!=', null);
+	public function scopeClosed($query) {
+		return $query->where('closed_at', '!=', null);
 	}
 
 	public function scopeActive($query) {
-		return $query->where('returned_at', null);
+		return $query->where('closed_at', null);
 	}
 	
 	public function products() {

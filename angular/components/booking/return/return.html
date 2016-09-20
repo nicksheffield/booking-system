@@ -1,0 +1,26 @@
+<header class="page-header" layout="row" align="center" justify="between">
+	<h1>Return equipment</h1>
+	
+	<div class="button-row">
+		<btn icon="check" small ng-click="close()">Done</btn>
+	</div>
+</header>
+
+<filter model="filter" filtered="filtered"></filter>
+
+<div class="page-content">
+	
+	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length">
+		<thead>
+			<tr>
+				<th class="booking-heading-product">Product</th>
+				<th class="table-col-select-medium">Unit</th>
+			</tr>
+		</thead>
+		<tr ng-repeat="product in booking.products | filter: filter as filtered  track by $index">
+			<td>{{ product.name }}</td>
+			<td>{{ unit(product.pivot.unit_id).unit_number }}</td>
+		</tr>
+	</table>
+	
+</div>

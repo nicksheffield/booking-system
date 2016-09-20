@@ -11,15 +11,6 @@
 |
 */
 
-use Illuminate\Http\Request;
-
-Route::get('/api/test', function() {
-	return [
-		'id' => '1',
-		'email' => 'bklah'
-	];
-});
-
 /**
 *	Home page (angular)
 */

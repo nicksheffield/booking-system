@@ -1,5 +1,13 @@
 <header class="page-header" layout="row" align="center" justify="between">
 	<h1>All Bookings</h1>
+
+	<div class="button-row">
+		<label class="btn btn-sm btn-check btn-icon" ng-class="{'btn-success': showReturned, 'btn-default': !showReturned}" ng-click="toggleReturned()">
+			<i class="fa fa-check fa-fw" ng-show="showReturned"></i>
+			<i class="fa fa-times fa-fw" ng-hide="showReturned"></i>
+			Show returned
+		</label>
+	</div>
 </header>
 
 <breadcrumbs></breadcrumbs>
@@ -13,6 +21,7 @@
 			<tr>
 				<th>User</th>
 				<th>Class</th>
+				<th>Status</th>
 				<th>No of Products</th>
 				<th>Pickup</th>
 				<th>Return</th>
@@ -20,15 +29,21 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="booking in bookings | filter: inClass | filter: filter as filtered">
+			<tr ng-repeat="booking in bookings | orderBy: '_priority' | filter: inClass | filter: filter as filtered" ng-hide="booking.returned_at && !showReturned">
 				<td>{{ booking.user.name }}</td>
 				<td>{{ booking.user.group.code }}</td>
+				<td>
+					<span ng-if="booking._priority == 1">Booked</span>
+					<span ng-if="booking._priority == 2">Issued</span>
+					<span ng-if="booking._priority == 3">Returned</span>
+				</td>
 				<td>{{ booking.products.length }}</td>
 				<td>{{ booking.pickup_at | date }}</td>
 				<td>{{ booking.due_at | date }}</td>
 				<td class="button-row">
-					<btn url="#/booking/{{ booking.id }}/issue" type="info" icon="arrow-right" small></btn>
-					<btn url="#/booking/{{ booking.id }}/edit" type="info" icon="pencil" small></btn>
+					<btn url="#/booking/{{ booking.id }}/issue" type="info" icon="arrow-right" small ng-show="booking._priority == 1">Issue</btn>
+					<btn url="#/booking/{{ booking.id }}/edit" type="info" icon="pencil" small ng-show="booking._priority == 1">Edit</btn>
+					<btn url="#/booking/{{ booking.id }}/return" type="info" icon="arrow-left" small ng-show="booking._priority == 2">Return</btn>
 				</td>
 			</tr>
 		</tbody>
