@@ -84,13 +84,13 @@ class Booking extends Controller
 		$model = Model::find($id);
 		
 		$model->fill($request->all());
-
-		// $model->taken_at = Carbon::now();
 		
 		$model->save();
 
 		foreach($request->products as $product) {
-			$model->products()->updateExistingPivot($product['id'], ['unit_id' => $product['unit']['id']]);
+			$model->products()
+				->wherePivot('id', '=', $product['pivot']['id'])
+				->updateExistingPivot($product['id'], ['unit_id' => $product['unit']['id']]);
 		}
 
 		return $model;

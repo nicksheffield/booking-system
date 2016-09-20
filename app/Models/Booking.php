@@ -38,7 +38,7 @@ class Booking extends Model
 	}
 	
 	public function products() {
-		return $this->belongsToMany('App\Models\Product', 'booking_product')->withPivot('unit_id', 'notes')->withTimestamps();
+		return $this->belongsToMany('App\Models\Product', 'booking_product')->withPivot('id', 'unit_id', 'notes')->withTimestamps();
 	}
 	
 	public function user() {
