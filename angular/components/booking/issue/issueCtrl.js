@@ -9,8 +9,6 @@ angular.module('app.controllers')
 		format: 'd MMM yyyy',
 		minDate: new Date(),
 	}
-
-	console.log($scope)
 	
 	$scope.openPickup = function() {
 		$scope.openPickupDate = $scope.openPickupDate ? false : true
@@ -28,7 +26,7 @@ angular.module('app.controllers')
 			.then(function(res) {
 				$invalidate.add('bookings')
 
-				$location.path('/bookings')
+				$location.path('/bookings/' + $scope.booking.id)
 			})
 	}
 	

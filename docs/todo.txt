@@ -5,6 +5,7 @@ Todo.txt
 	- Late fee restricts booking and that shows on user data
 	- Booking dates loaded the next day can be earlier than now
 	- Restyle "There are no current bookings" message
+	- Seed bookings better. Maybe create a booking, attach some products to it with some units, or maybe not, so we have a spread of different booking types
 	
 Late stuff
 	- Reset users passwords

@@ -141,16 +141,34 @@ angular.module('app.services')
 	
 	service.bookings = function(bookings) {
 		_.forEach(bookings, function(booking) {
-			booking.due_at = new Date(booking.due_at)
-			booking.pickup_at = new Date(booking.pickup_at)
+			if(booking.created_at) booking.created_at = new Date(booking.created_at)
+			if(booking.due_at) booking.due_at = new Date(booking.due_at)
+			if(booking.pickup_at) booking.pickup_at = new Date(booking.pickup_at)
+			if(booking.taken_at) booking.taken_at = new Date(booking.taken_at)
+			if(booking.closed_at) booking.closed_at = new Date(booking.closed_at)
 
 			// low is top of table
 			booking._priority = 0
 
-		
-			if(!booking.taken_at) booking._priority = 1 // not taken yet. "Booked"
-			if(booking.taken_at && !booking.returned_at) booking._priority = 2 // taken but not returned. "Issued"
-			if(booking.returned_at) booking._priority = 3 // taken and returned. "Returned"
+			if(!booking.taken_at) {
+				booking._priority = 1
+				booking._status = 'Booked'
+			}
+
+			if(booking.taken_at && !booking.returned_at) {
+				booking._priority = 2
+				booking._status = 'Issued'
+			}
+
+			if(booking.closed_at) {
+				booking._priority = 3
+				booking._status = 'Returned'
+			}
+
+
+			_.forEach(booking.products, function(product) {
+				if(product.pivot.returned_at) product.pivot.returned_at = new Date(product.pivot.returned_at)
+			})
 			
 			Object.defineProperty(booking, 'user', {
 				enumerable: true,
@@ -161,12 +179,6 @@ angular.module('app.services')
 			
 			Object.defineProperty(booking, '_products', {
 				get: function() {
-					// var filtered = _.filter($store.products, function(product){
-					// 	return _.filter(booking.products, {id: product.id}).length)
-					// })
-					
-					// return filtered
-
 					var products = []
 
 					_.forEach(booking.products, function(product) {

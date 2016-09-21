@@ -4,22 +4,22 @@ angular.module('app.controllers')
 	$scope.bookings = $store.bookings
 	$scope.units = $store.units
 
-	$scope.showReturned = false
+	$scope.showClosed = false
 
-	$scope.toggleReturned = function() {
-		$scope.showReturned = !$scope.showReturned
+	console.log($scope.bookings)
+
+	$scope.toggleClosed = function() {
+		$scope.showClosed = !$scope.showClosed
 	}
 
 	$scope.group = function(id) {
 		return _.find($store.groups, {id: id})
 	}
 
-	$scope.inClass = function(value, index, array) {
-		if($store.user.admin == 2) {
-			return true
-		}
-		
-		if(value.user.group && value.user.group._isTutor($store.user.id)) {
+	$scope.showClosedFilter = function(value, index, array) {
+		if(!$scope.showClosed && value.closed_at) {
+			return false
+		} else {
 			return true
 		}
 	}

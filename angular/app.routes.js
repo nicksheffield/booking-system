@@ -111,6 +111,16 @@ angular.module('app.routes')
 			}
 		},
 		
+		'view_booking': {
+			url: '/booking/:id',
+			templateUrl: 'components/booking/view/view.html',
+			controller: 'viewBookingCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				title: 'View Booking'
+			}
+		},
+		
 		'issue_booking': {
 			url: '/booking/:id/issue',
 			templateUrl: 'components/booking/issue/issue.html',

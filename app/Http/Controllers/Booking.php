@@ -19,12 +19,6 @@ class Booking extends Controller
 
 		// $q = $q->limit(($request->limit ?: 0));
 		// $q = $q->offset(($request->offset ?: 0));
-
-		if(!$request->status)                 $q = $q->active();
-		if($request->status == 'closed')      $q = $q->closed();
-		if($request->status == 'overdue')     $q = $q->overdue();
-		if($request->status == 'delivered')   $q = $q->delivered();
-		if($request->status == 'undelivered') $q = $q->undelivered();
 		
 		if($request->with) $q = $q->with(explode('|', $request->with));
 
@@ -81,7 +75,7 @@ class Booking extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		dd($request->products);
+		// dd($request->products);
 
 		$model = Model::find($id);
 		
@@ -100,9 +94,11 @@ class Booking extends Controller
 				$data['returned_at'] = $product['returned_at'];
 			}
 
-			if(isset($product['notes'])) {
-				$data['notes'] = $product['notes'];
+			if(isset($product['pivot']['notes'])) {
+				$data['notes'] = $product['pivot']['notes'];
 			}
+
+			// dd($product, $data);
 
 			$model->products()
 				->wherePivot('id', '=', $product['pivot']['id'])

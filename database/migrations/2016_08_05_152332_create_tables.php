@@ -96,10 +96,10 @@ class CreateTables extends Migration
 		Schema::create('bookings', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('user_id');
-			$table->timestamp('pickup_at')->nullable();
 			$table->timestamp('taken_at')->nullable();
-			$table->timestamp('due_at')->nullable();
+			$table->timestamp('pickup_at')->nullable();
 			$table->timestamp('closed_at')->nullable();
+			$table->timestamp('due_at')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});
