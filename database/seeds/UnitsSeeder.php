@@ -23,11 +23,21 @@ class UnitsSeeder extends Seeder
 		];
 
 		$c = 1;
+		$l = '';
+		$n = 1;
 
 		foreach($items as $product_id) {
+			if($l == $product_id) {
+				$n++;
+			} else {
+				$n = 1;
+			}
+			
+			$l = $product_id;
+			
 			$item = [
 				'id' => $c++,
-				'unit_number' => randInt(5),
+				'unit_number' => $n,
 				'serial_number' => randInt(5),
 				'asset_number' => randInt(5),
 				'notes' => '',
