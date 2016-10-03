@@ -1,0 +1,57 @@
+{
+	"folders": [
+		{
+			"folder_exclude_patterns": [
+				"bootstrap",
+				"storage",
+				"tests",
+				"vendor",
+				"database/factories",
+				"resources/assets",
+				"resources/lang",
+				"resources/views/errors",
+				"app/Console",
+				"app/Events",
+				"app/Exceptions",
+				"app/Jobs",
+				"app/Listeners",
+				"app/Policies",
+				"app/Providers",
+				"app/Http/Middleware",
+				"app/Http/Requests",
+				"app/Http/Controllers/Auth"
+			],
+			"file_exclude_patterns": [
+				"artisan",
+				".gitignore",
+				".gitattributes",
+				".env.example",
+				"composer.json",
+				"composer.lock",
+				"phpunit.xml",
+				"server.php",
+				"readme.md",
+				"app/Http/Controllers/Controller.php",
+				"config/auth.php",
+				"config/broadcasting.php",
+				"config/cache.php",
+				"config/compile.php",
+				"config/database.php",
+				"config/filesystems.php",
+				"config/mail.php",
+				"config/queue.php",
+				"config/services.php",
+				"config/session.php",
+				"config/view.php",
+				"database/.gitignore",
+				"database/migrations/.gitkeep",
+				"database/seeds/.gitkeep",
+				"public/robots.txt",
+				"public/web.config",
+				"public/favicon.ico",
+				"app/Http/Kernel.php"
+			],
+			"path": "."
+		}
+	]
+}
