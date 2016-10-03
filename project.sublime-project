@@ -1,27 +1,9 @@
 {
-	"folders": [
+	"folders":
+	[
 		{
-			"folder_exclude_patterns": [
-				"bootstrap",
-				"storage",
-				"tests",
-				"vendor",
-				"database/factories",
-				"resources/assets",
-				"resources/lang",
-				"resources/views/errors",
-				"app/Console",
-				"app/Events",
-				"app/Exceptions",
-				"app/Jobs",
-				"app/Listeners",
-				"app/Policies",
-				"app/Providers",
-				"app/Http/Middleware",
-				"app/Http/Requests",
-				"app/Http/Controllers/Auth"
-			],
-			"file_exclude_patterns": [
+			"file_exclude_patterns":
+			[
 				"artisan",
 				".gitignore",
 				".gitattributes",
@@ -51,7 +33,31 @@
 				"public/favicon.ico",
 				"app/Http/Kernel.php"
 			],
+			"folder_exclude_patterns":
+			[
+				"bootstrap",
+				"storage",
+				"tests",
+				"vendor",
+				"database/factories",
+				"resources/assets",
+				"resources/lang",
+				"resources/views/errors",
+				"app/Console",
+				"app/Events",
+				"app/Exceptions",
+				"app/Jobs",
+				"app/Listeners",
+				"app/Policies",
+				"app/Providers",
+				"app/Http/Middleware",
+				"app/Http/Requests",
+				"app/Http/Controllers/Auth"
+			],
 			"path": "."
+		},
+		{
+			"path": "/Users/nick.sheffield/Desktop/selecttest"
 		}
 	]
 }

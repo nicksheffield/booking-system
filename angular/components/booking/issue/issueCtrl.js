@@ -9,6 +9,10 @@ angular.module('app.controllers')
 		format: 'd MMM yyyy',
 		minDate: new Date(),
 	}
+
+	$scope.select2Options = {
+		selectOnClose: true
+	}
 	
 	$scope.openPickup = function() {
 		$scope.openPickupDate = $scope.openPickupDate ? false : true
@@ -29,5 +33,27 @@ angular.module('app.controllers')
 				$location.path('/bookings/' + $scope.booking.id)
 			})
 	}
-	
+
+	$scope.isntSelected = function(currentProduct) {
+		return function(value, index, array) {
+			var notSelected = true
+
+			_.forEach($scope.booking.products, function(product) {
+				if(currentProduct == product) return
+
+				if(product.unit && product.unit.id == value.id) {
+					notSelected = false
+				}
+			})
+
+			return notSelected
+		}
+	}
+
+	$scope.selectOnKey = function(event) {
+		if(event.which == 9 || event.which == 13) {
+			console.log('tab/enter')
+		}
+	}
+
 })
