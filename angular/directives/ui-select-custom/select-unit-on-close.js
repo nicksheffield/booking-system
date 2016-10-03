@@ -1,6 +1,6 @@
 angular.module('app.directives')
 
-.directive('uiSelectOnClose', function() {
+.directive('selectUnitOnClose', function() {
 	function link(scope, element, attrs, $select) {
 		console.log($select)
 
@@ -19,6 +19,7 @@ angular.module('app.directives')
 	}
 
 	return {
+		restrict: 'A',
 		require: 'uiSelect',
 		link: link
 	}

@@ -33,7 +33,7 @@
 		<tr ng-repeat="product in booking._products | filter: filter as filtered  track by $index">
 			<td>{{ product.name }}</td>
 			<td>
-				<ui-select ui-select-on-close="item.unit_number" ng-model="booking.products[$index].unit" id="group" ng-keyup="selectOnKey($event)">
+				<ui-select select-unit-on-close ng-model="booking.products[$index].unit" id="group" ng-keyup="selectOnKey($event)">
 					<ui-select-match allow-clear="false" placeholder="​">
 						<span ng-bind="$select.selected.unit_number" class="setheight"></span>
 					</ui-select-match>
