@@ -50,10 +50,4 @@ angular.module('app.controllers')
 		}
 	}
 
-	$scope.selectOnKey = function(event) {
-		if(event.which == 9 || event.which == 13) {
-			console.log('tab/enter')
-		}
-	}
-
 })

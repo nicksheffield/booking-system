@@ -55,9 +55,6 @@
 				"app/Http/Controllers/Auth"
 			],
 			"path": "."
-		},
-		{
-			"path": "/Users/nick.sheffield/Desktop/selecttest"
 		}
 	]
 }
