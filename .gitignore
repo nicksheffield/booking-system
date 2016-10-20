@@ -8,3 +8,6 @@ Homestead.json
 .DS_Store
 public/components/
 public/dist/
+
+*.sublime-project
+*.sublime-workspace
