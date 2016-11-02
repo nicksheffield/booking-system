@@ -2,8 +2,6 @@ angular.module('app.directives')
 
 .directive('selectUnitOnClose', function() {
 	function link(scope, element, attrs, $select) {
-		console.log($select)
-
 		angular.element($select.searchInput)
 			.on('keyup', function() {
 				var search = this.value

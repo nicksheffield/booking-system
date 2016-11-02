@@ -141,13 +141,11 @@ angular.module('app.services')
 	
 	service.bookings = function(bookings) {
 		_.forEach(bookings, function(booking) {
-			console.log('before', booking.pickup_at)
 			if(booking.created_at) booking.created_at = new Date(booking.created_at)
 			if(booking.due_at) booking.due_at = new Date(booking.due_at)
 			if(booking.pickup_at) booking.pickup_at = new Date(booking.pickup_at)
 			if(booking.taken_at) booking.taken_at = new Date(booking.taken_at)
 			if(booking.closed_at) booking.closed_at = new Date(booking.closed_at)
-			console.log('after', booking.pickup_at)
 
 			// low is top of table
 			booking._priority = 0

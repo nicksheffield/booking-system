@@ -7,7 +7,7 @@
 	</div>
 </header>
 
-<div class="page-dates">
+<div class="page-dates" layout="col">
 	<div layout="row sm-col" class="space-row">
 		<div ratio="1">
 			<label for="pickup_at">Pickup date</label>
@@ -17,6 +17,18 @@
 			<label for="due_at">Return date</label>
 			<input type="text" id="due_at" ng-model="booking.due_at" ng-change="createBooking()" class="form-control form-control-sm" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openDueDate" datepicker-options="dateOptions" ng-click="openDue()">
 		</div>
+	</div>
+	
+	<div class="page-user">
+		<label for="user_id">User</label>
+		<ui-select select-unit-on-close ng-model="booking._user" id="user_id">
+			<ui-select-match allow-clear="false" placeholder="​">
+				<span ng-bind="$select.selected.name" class="setheight"></span>
+			</ui-select-match>
+			<ui-select-choices repeat="user in (product.users | filter: $select.search)">
+				<div ng-bind-html="user.name | highlight: $select.search"></div>
+			</ui-select-choices>
+		</ui-select>
 	</div>
 </div>
 
