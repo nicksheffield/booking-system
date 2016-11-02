@@ -9,7 +9,7 @@ angular.module('app.controllers')
 		format: 'd MMM yyyy',
 		minDate: new Date(),
 	}
-
+	
 	$scope.select2Options = {
 		selectOnClose: true
 	}
@@ -21,19 +21,29 @@ angular.module('app.controllers')
 	$scope.openDue = function() {
 		$scope.openDueDate = $scope.openDueDate ? false : true
 	}
-
+	
 	$scope.issue = function() {
-		$scope.booking.taken_at = new Date()
-
-		$http
-			.put('/api/booking/' + $scope.booking.id, $scope.booking)
-			.then(function(res) {
-				$invalidate.add('bookings')
-
-				$location.path('/bookings/' + $scope.booking.id)
-			})
+		
+		var allChosen = $scope.booking.products
+			.reduce(function(prev, cur) {
+				return prev && !!cur.unit
+			}, true)
+		
+		if(allChosen) {
+			$scope.booking.taken_at = new Date()
+			
+			$http
+				.put('/api/booking/' + $scope.booking.id, $scope.booking)
+				.then(function(res) {
+					$invalidate.add('bookings')
+					
+					$location.path('/booking/' + $scope.booking.id)
+				})
+		} else {
+			$scope.error = 'You need to assign a unit for every product.'
+		}
 	}
-
+	
 	$scope.isntSelected = function(currentProduct) {
 		return function(value, index, array) {
 			var notSelected = true

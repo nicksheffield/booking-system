@@ -117,7 +117,8 @@ angular.module('app.routes')
 			controller: 'viewBookingCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				title: 'View Booking'
+				title: 'View Booking',
+				crumb_parent: 'manage_bookings'
 			}
 		},
 		
@@ -127,7 +128,8 @@ angular.module('app.routes')
 			controller: 'issueCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				title: 'Issue Equipment'
+				title: 'Issue Equipment',
+				crumb_parent: 'view_booking'
 			}
 		},
 		
@@ -137,7 +139,19 @@ angular.module('app.routes')
 			controller: 'returnCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				title: 'Return Equipment'
+				title: 'Return Equipment',
+				crumb_parent: 'view_booking'
+			}
+		},
+		
+		'edit_booking': {
+			url: '/booking/:id/edit',
+			templateUrl: 'components/booking/edit/edit.html',
+			controller: 'editBookingCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				title: 'Edit Booking',
+				crumb_parent: 'view_booking'
 			}
 		},
 		
