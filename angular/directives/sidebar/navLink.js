@@ -7,7 +7,6 @@ angular.module('app.directives')
 		})
 		
 		function render(state) {
-
 			if($location.path() == scope.url.replace('#','')) {
 				el.addClass('current')
 			} else {

@@ -3,8 +3,6 @@ angular.module('app.controllers')
 .controller('classTypeViewCtrl', function($scope, $stateParams, $store, $location, $invalidate) {
 	$scope.type = $store.get('group_types', $stateParams.id)
 	
-	console.log($scope.type)
-	
 	window.scope = $scope
 	
 	$scope.delete = function() {

@@ -10,6 +10,8 @@ Todo.txt
 	- Staff/Manager making booking can make it on behalf of another user
 	- Weird shit going on with booking dates going backwards on save
 	- Date dropdowns on edit booking don't open
+	- Issued by, Returned by fields
+	- Only load bookings when needed, because they're basically the only thing that is going to grow insanely
 	
 	- Features
 		- Homepage info

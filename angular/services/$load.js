@@ -41,12 +41,10 @@ angular.module('app.services')
 	}
 	
 	service.groups = function() {
-		var query = {}
+		var query = {'with': 'allowed_products.type'}
 		
 		if($auth.getPayload() && $auth.getPayload().admin) {
-			query = {'with': 'allowed_products|tutors'}
-		} else {
-			query = {'with': 'allowed_products.type'}
+			query.with = 'allowed_products|tutors'
 		}
 		
 		var resource = Group.query(query)

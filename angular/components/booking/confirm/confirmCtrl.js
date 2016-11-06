@@ -12,9 +12,6 @@ angular.module('app.controllers')
 	$scope.product = (id) => $store.get('products', id)
 	
 	$scope.confirm = function() {
-		console.log('booking', $store.booking)
-		// $store.booking.
-		// console.log('confirmed!')
 		$http.post('/api/booking', $store.booking).then(function(res) {
 			$store.resetBooking()
 			
