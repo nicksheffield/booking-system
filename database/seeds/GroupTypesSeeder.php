@@ -36,8 +36,28 @@ class GroupTypesSeeder extends Seeder
 			],
 			[
 				'id' => 5,
+				'code' => 'DAN',
+				'name' => 'Digital Animation'
+			],
+			[
+				'id' => 6,
 				'code' => 'IC',
 				'name' => 'iCreate'
+			],
+			[
+				'id' => 7,
+				'code' => 'WE',
+				'name' => 'Web Development'
+			],
+			[
+				'id' => 8,
+				'code' => 'AFP',
+				'name' => 'Animation & Film Production'
+			],
+			[
+				'id' => 9,
+				'code' => 'GDW',
+				'name' => 'Graphic Design & Web'
 			]
 		];
 		

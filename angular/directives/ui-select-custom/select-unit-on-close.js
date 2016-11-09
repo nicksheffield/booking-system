@@ -2,20 +2,17 @@ angular.module('app.directives')
 
 .directive('selectUnitOnClose', function() {
 	function link(scope, element, attrs, $select) {
-		console.log($select)
+		angular.element($select.searchInput).on('keyup', function() {
+			var search = this.value
 
-		angular.element($select.searchInput)
-			.on('keyup', function() {
-				var search = this.value
+			_.forEach($select.items, function(item) {
+				var a = item.unit_number
 
-				_.forEach($select.items, function(item) {
-					var a = item.unit_number
-
-					if(search == a) {
-						$select.select(item)
-					}
-				})
+				if(search == a) {
+					$select.select(item)
+				}
 			})
+		})
 	}
 
 	return {

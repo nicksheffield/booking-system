@@ -64,11 +64,16 @@ class UserSeeder extends Seeder
 		$user_count = 0;
 		$group_i = 0;
 		$person_i = 0;
-		$groups = [
-			[ 'id' => 1, 'count' => rand(9,19) ],
-			[ 'id' => 2, 'count' => rand(10,20) ],
-			[ 'id' => 3, 'count' => rand(10,20) ],
-		];
+		$groups = [];
+		
+		$existing_groups = DB::table('groups')->get();
+		
+		foreach($existing_groups as $group) {
+			$groups[] = [
+				'group' => $group,
+				'count' => mt_rand(10, 20)
+			];
+		}
 		
 		foreach($groups as $group) {
 			$user_count += $group['count'];
@@ -99,7 +104,7 @@ class UserSeeder extends Seeder
 					'phone' => '021'.randInt(7),
 					'id_number' => randInt(5),
 					'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
-					'group_id' => $group['id'],
+					'group_id' => $group['group']->id,
 					'password' => bcrypt('abcd')
 				]);
 			}

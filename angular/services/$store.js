@@ -13,8 +13,6 @@ angular.module('app.services')
 		product_types: {},
 	}
 	
-	window.store = service
-	
 	service.setBooking = function(booking) {
 		localStorage.booking = JSON.stringify(booking)
 		service.booking = booking
@@ -35,9 +33,7 @@ angular.module('app.services')
 		}
 	}
 	
-	service.get = function(type, id) {
-		return _.find(service[type], typeof id == 'object' && id !== null ? id : {id: parseInt(id)})
-	}
+	service.get = (type, id) => _.find(service[type], typeof id == 'object' && id !== null ? id : {id: parseInt(id)})
 	
 	if(localStorage.booking) {
 		service.booking = JSON.parse(localStorage.booking)

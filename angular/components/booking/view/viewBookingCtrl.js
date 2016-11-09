@@ -8,4 +8,6 @@ angular.module('app.controllers')
 		return $store.get('units', id)
 	}
 	
+	$scope.return_difference = moment().diff(new Date($scope.booking.closed_at), 'hours')
+	
 })

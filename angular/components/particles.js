@@ -102,4 +102,5 @@ var at = {
 	dist:  function(a,b){return Math.sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y))},
 	step:  function(a,s){return {x:s*Math.cos(a*Math.PI/180),y:s*Math.sin(a*Math.PI/180)}}
 }
+
 function r(a,b,c){ return parseFloat((Math.random()*((a?a:1)-(b?b:0))+(b?b:0)).toFixed(c?c:0)) }

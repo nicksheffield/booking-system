@@ -3,11 +3,7 @@
 </header>
 
 <div class="page-content">
-	<div class="alert alert-danger" ng-show="error">
-		<i class="fa fa-exclamation-circle"></i>{{ error }}
-	</div>
-	
-	<alert type="danger" icon="exclamation-circle" text="{{ error }}" ng-show="{{ error }}"></alert>
+	<alert type="danger" icon="exclamation-circle" text="{{ error }}" ng-show="error"></alert>
 	
 	<form ng-submit="login()">
 		<div class="form-group">

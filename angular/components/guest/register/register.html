@@ -3,17 +3,7 @@
 </header>
 
 <div class="page-content">
-	<div class="alert alert-danger" ng-show="error">
-		<i class="fa fa-exclamation-circle"></i>{{ error }}
-	</div>
-	
-	<div class="alert alert-info" ng-show="info">
-		<i class="fa fa-exclamation-circle"></i>{{ info }}
-	</div>
-	
-	<div class="alert alert-warning" ng-show="warning">
-		<i class="fa fa-exclamation-circle"></i>{{ warning }}
-	</div>
+	<alert type="danger" icon="exclamation-circle" text="{{ error }}" ng-show="error"></alert>
 	
 	<form ng-submit="register()">
 		<div layout="row sm-col" class="spaced-row">

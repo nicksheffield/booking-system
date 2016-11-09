@@ -8,6 +8,11 @@ angular.module('app.controllers')
 		minDate: new Date(),
 	}
 	
+	if($store.user.admin) {
+		$scope.users = $store.users
+		console.log($scope.users)
+	}
+	
 	$scope.openPickup = function() {
 		$scope.openPickupDate = $scope.openPickupDate ? false : true
 	}

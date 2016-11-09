@@ -5,8 +5,6 @@ angular.module('app.auth')
 })
 
 .run(function($rootScope, $q, $state, $auth, $store, $load, $invalidate, $location, $title, $pretend) {
-	// $auth.setStorageType('sessionStorage')
-	
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 		event.preventDefault()
 		
@@ -17,10 +15,8 @@ angular.module('app.auth')
 		$rootScope.bodyClass = 'page-' + toState.name
 		
 		var invalids = $invalidate.load()
-		// invalids.push($pretend.wait(1000))
 		
 		if(invalids.length) invalids.push($pretend.wait(1000))
-			
 		
 		$rootScope.loader = true
 		

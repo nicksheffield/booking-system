@@ -5,6 +5,7 @@ angular.module('app.directives')
 		scope.small = attrs.small !== undefined ? true : false
 		scope.large = attrs.large !== undefined ? true : false
 		scope.spin = attrs.spin !== undefined ? true : false
+		scope.circle = attrs.circle !== undefined ? true : false
 		
 		if(!scope.type) scope.type = 'primary'
 		

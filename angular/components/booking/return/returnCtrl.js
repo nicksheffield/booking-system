@@ -3,6 +3,16 @@ angular.module('app.controllers')
 .controller('returnCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate) {
 	
 	$scope.booking = $store.get('bookings', $stateParams.id)
+	
+	$scope.booking.products
+		.map((p) => {
+			p.returned = !!p.pivot.returned_at
+			return p
+		})
+		.map((p) => {
+			p.locked = !!p.pivot.returned_at
+			return p
+		})
 
 	$scope.unit = function(id) {
 		return $store.get('units', id)
@@ -23,7 +33,7 @@ angular.module('app.controllers')
 			.then(function(res) {
 				$invalidate.add('bookings')
 
-				$location.path('/bookings/' + $scope.booking.id)
+				$location.path('/booking/' + $scope.booking.id)
 			})
 	}
 	

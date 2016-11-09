@@ -2,6 +2,7 @@
 	<button type="button" ng-show="!url" class="btn btn-{{ type }}" ng-class="{
 		'btn-sm': small,
 		'btn-large': large,
+		'btn-circle': circle,
 		'btn-icon': icon && hasTranscluded
 	}" ng-disabled="disable">
 		<i class="fa fa-fw fa-{{ icon }}" ng-class="{'fa-spin': spin}" ng-show="icon"></i>
@@ -11,6 +12,7 @@
 	<a href="{{ url }}" ng-show="url" class="btn btn-{{ type }}" ng-class="{
 		'btn-sm': small,
 		'btn-large': large,
+		'btn-circle': circle,
 		'btn-icon': icon && hasTranscluded
 	}" ng-disabled="disable">
 		<i class="fa fa-fw fa-{{ icon }}" ng-class="{'fa-spin': spin}" ng-show="icon"></i>

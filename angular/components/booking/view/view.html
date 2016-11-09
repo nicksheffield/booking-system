@@ -2,11 +2,13 @@
 	<h1>Booking: {{ booking.pickup_at | date }}</h1>
 
 	<div class="button-row">
-		<btn url="#/booking/{{ booking.id }}/edit" type="info" icon="pencil" small>Edit</btn>
+		<btn url="#/booking/{{ booking.id }}/edit" type="info" icon="pencil" small ng-show="booking._priority == 1">Edit</btn>
 		<btn url="#/booking/{{ booking.id }}/issue" icon="arrow-right" small ng-show="booking._priority == 1">Issue</btn>
 		<btn url="#/booking/{{ booking.id }}/return" icon="arrow-left" small ng-show="booking._priority == 2">Return</btn>
 	</div>
 </header>
+
+<breadcrumbs></breadcrumbs>
 
 <div class="page-content" ratio="1">
 
@@ -36,7 +38,12 @@
 			<td class="row-property">Due at</td>
 			<td class="row-value">{{ booking.due_at | date }}</td>
 			<td class="row-property">Returned at</td>
-			<td class="row-value">{{ booking.closed_at | date }}</td>
+			<td class="row-value">
+				{{ booking.closed_at | date }} 
+				<span ng-show="booking.closed_at && return_difference > 0">
+					(Late by {{ return_difference }} hours)
+				</span>
+			</td>
 		</tr>
 	</table>
 
