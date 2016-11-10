@@ -25,8 +25,9 @@
 			<ui-select-match allow-clear="false" placeholder="​">
 				<span ng-bind="$select.selected.name" class="setheight"></span>
 			</ui-select-match>
-			<ui-select-choices repeat="user in (product.users | filter: $select.search)">
+			<ui-select-choices repeat="user in (users | filter: $select.search)">
 				<div ng-bind-html="user.name | highlight: $select.search"></div>
+				<small ng-bind-html="user.group.code | highlight: $select.search"></small>
 			</ui-select-choices>
 		</ui-select>
 	</div>

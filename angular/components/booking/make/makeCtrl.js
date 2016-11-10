@@ -10,7 +10,6 @@ angular.module('app.controllers')
 	
 	if($store.user.admin) {
 		$scope.users = $store.users
-		console.log($scope.users)
 	}
 	
 	$scope.openPickup = function() {
@@ -24,6 +23,10 @@ angular.module('app.controllers')
 	$scope.user = $store.user
 	
 	$scope.booking = $store.booking
+
+	if(!$scope.booking._user) {
+		$scope.booking._user = $store.user
+	}
 	
 	if(!$scope.booking.pickup_at) {
 		$scope.booking.pickup_at = new Date()
@@ -32,7 +35,8 @@ angular.module('app.controllers')
 	$scope.reset = function() {
 		$store.resetBooking()
 		$scope.booking.pickup_at = new Date()
-		$scope.booking.due_at = undefined
+		$scope.booking.due_at = undefined,
+		$scope.booking._user = $store.user
 		
 		_.forEach($scope.products, function(product) {
 			product._quantity = undefined
@@ -59,7 +63,8 @@ angular.module('app.controllers')
 		$store.setBooking({
 			due_at: $scope.booking.due_at,
 			pickup_at: $scope.booking.pickup_at,
-			products: payload
+			products: payload,
+			_user: $scope.booking._user
 		})
 	}
 	
