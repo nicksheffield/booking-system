@@ -22,24 +22,26 @@
 			<td class="row-value">{{ booking._status }}</td>
 		</tr>
 		<tr>
-			<td class="row-property">Created at</td>
+			<td class="row-property">Created</td>
 			<td class="row-value">{{ booking.created_at | date }}</td>
 		</tr>
 	</table>
 
 	<table class="table data-table">
 		<tr>
-			<td class="row-property">Pickup at</td>
+			<td class="row-property"><i class="fa fa-upload"></i> Pickup</td>
 			<td class="row-value">{{ booking.pickup_at | date }}</td>
-			<td class="row-property">Issued at</td>
-			<td class="row-value">{{ booking.taken_at | date }}</td>
+
+			<td class="row-property"><i class="fa fa-download"></i> Due</td>
+			<td class="row-value">{{ booking.due_at | date }}</td>
 		</tr>
 		<tr>
-			<td class="row-property">Due at</td>
-			<td class="row-value">{{ booking.due_at | date }}</td>
-			<td class="row-property">Returned at</td>
+			<td class="row-property"><i class="fa fa-upload"></i> Issued</td>
+			<td class="row-value">{{ booking.taken_at | date }}</td>
+
+			<td class="row-property"><i class="fa fa-download"></i> Returned</td>
 			<td class="row-value">
-				{{ booking.closed_at | date }} 
+				{{ booking.closed_at | date }}
 				<span ng-show="booking.closed_at && return_difference > 0">
 					(Late by {{ return_difference }} hours)
 				</span>
@@ -53,7 +55,7 @@
 				<th>Name</th>
 				<th>Unit</th>
 				<th>Notes</th>
-				<th>Returned at</th>
+				<th>Returned</th>
 			</tr>
 			<tr ng-repeat="product in booking.products">
 				<td>{{ product.name }}</td>

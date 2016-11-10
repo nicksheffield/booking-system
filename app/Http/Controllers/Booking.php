@@ -35,7 +35,11 @@ class Booking extends Controller
 	{
 		$model->fill($request->all());
 		
-		$model->user_id = Auth::user()->id;
+		if($request->_user) {
+			$model->user_id = $request->_user['id'];
+		} else {
+			$model->user_id = Auth::user()->id;
+		}
 
 		$model->save();
 		
