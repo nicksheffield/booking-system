@@ -27,7 +27,52 @@
 		</tr>
 	</table>
 
-	<table class="table data-table">
+	<div class="date-row" layout="row sm-col md-col">
+		<div class="pickup" ratio="1" layout="row md-col sm-col">
+			<div layout="row" justify="center" align="center" class="icon">
+				<i class="fa fa-upload"></i>
+			</div>
+
+			<div layout="col">
+				<div layout="row">
+					<h2>Pickup</h2>
+					<p>{{ booking.pickup_at | date }}</p>
+				</div>
+				<div layout="row">
+					<h2>Issued</h2>
+					<p ng-show="booking.taken_at">{{ booking.taken_at | date }}</p>
+					<p ng-show="!booking.taken_at">-</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="due" ratio="1" layout="row md-col sm-col">
+			<div layout="row" justify="center" align="center" class="icon">
+				<i class="fa fa-download"></i>
+			</div>
+
+			<div layout="col">
+				<div layout="row">
+					<h2>Due</h2>
+					<p>{{ booking.due_at | date }}</p>
+				</div>
+				
+				<div layout="row">
+					<h2>Returned</h2>
+					<p ng-show="booking.closed_at">
+						{{ booking.closed_at | date }}
+						<span ng-show="booking.closed_at && return_difference > 0">
+							(Late by {{ return_difference }} hours)
+						</span>
+					</p>
+					<p ng-show="!booking.closed_at">-</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- <table class="table data-table">
 		<tr>
 			<td class="row-property"><i class="fa fa-upload"></i> Pickup</td>
 			<td class="row-value">{{ booking.pickup_at | date }}</td>
@@ -47,7 +92,7 @@
 				</span>
 			</td>
 		</tr>
-	</table>
+	</table> -->
 
 	<section>
 		<table class="table">
