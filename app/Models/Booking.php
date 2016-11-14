@@ -14,7 +14,7 @@ class Booking extends Model
 	protected $table = 'bookings';
 	
 	protected $fillable = [
-		'user_id', 'due_at', 'pickup_at', 'taken_at', 'closed_at'
+		'user_id', 'due_at', 'pickup_at', 'taken_at', 'closed_at', 'created_by', 'issued_by', 'closed_by'
 	];
 
 	public function scopeOverdue($query) {

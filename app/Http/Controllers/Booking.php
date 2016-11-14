@@ -35,7 +35,13 @@ class Booking extends Controller
 	{
 		$model->fill($request->all());
 		
-		$model->user_id = Auth::user()->id;
+		if($request->_user) {
+			$model->user_id = $request->_user['id'];
+		} else {
+			$model->user_id = Auth::user()->id;
+		}
+
+		$model->created_by = Auth::user()->id;
 
 		$model->save();
 		
@@ -80,9 +86,9 @@ class Booking extends Controller
 		$model = Model::find($id);
 		
 		$model->fill($request->all());
-		
-		$model->save();
 
+
+		# Returning
 		if(isset($request->products[0]['created_at'])) {
 			foreach($request->products as $product) {
 				$data = [];
@@ -105,6 +111,8 @@ class Booking extends Controller
 					->wherePivot('id', '=', $product['pivot']['id'])
 					->updateExistingPivot($product['id'], $data);
 			}
+
+		# Editing
 		} else {
 			$model->products()->detach();
 			
@@ -114,6 +122,8 @@ class Booking extends Controller
 				}
 			}
 		}
+
+		$model->save();
 
 		return $model;
 	}

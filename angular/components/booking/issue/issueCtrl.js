@@ -31,6 +31,7 @@ angular.module('app.controllers')
 		
 		if(allChosen) {
 			$scope.booking.taken_at = new Date()
+			$scope.booking.issued_by = $store.user.id
 			
 			$http
 				.put('/api/booking/' + $scope.booking.id, $scope.booking)

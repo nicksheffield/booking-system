@@ -7,10 +7,8 @@ Todo.txt
 	- Restyle "There are no current bookings" message
 	- Seed bookings better. Maybe create a booking, attach some products to it with some units, or maybe not, so we have a spread of different booking types
 	- Student can request to extend the return date of any issued bookings
-	- Staff/Manager making booking can make it on behalf of another user
 	- Weird shit going on with booking dates going backwards on save
 	- Date dropdowns on edit booking don't open
-	- Issued by, Returned by fields
 	- Only load bookings when needed, because they're basically the only thing that is going to grow insanely
 	- Editing groups group types don't save
 	
