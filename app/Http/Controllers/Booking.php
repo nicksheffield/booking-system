@@ -41,7 +41,7 @@ class Booking extends Controller
 			$model->user_id = Auth::user()->id;
 		}
 
-		$model->created_by = Auth::user()->id;
+		$model->created_by_id = Auth::user()->id;
 
 		$model->save();
 		

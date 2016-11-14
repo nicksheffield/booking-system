@@ -25,7 +25,7 @@
 			<td class="row-property">Created</td>
 			<td class="row-value">{{ booking.created_at | date }}</td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td class="row-property">Created by</td>
 			<td class="row-value">{{ booking.created_by.name }}</td>
 		</tr>
@@ -36,7 +36,7 @@
 		<tr>
 			<td class="row-property">Closed by</td>
 			<td class="row-value">{{ booking.closed_by.name }}</td>
-		</tr>
+		</tr> -->
 	</table>
 
 	<div class="date-row" layout="row sm-col md-col">
@@ -84,28 +84,6 @@
 
 	</div>
 
-	<!-- <table class="table data-table">
-		<tr>
-			<td class="row-property"><i class="fa fa-upload"></i> Pickup</td>
-			<td class="row-value">{{ booking.pickup_at | date }}</td>
-
-			<td class="row-property"><i class="fa fa-download"></i> Due</td>
-			<td class="row-value">{{ booking.due_at | date }}</td>
-		</tr>
-		<tr>
-			<td class="row-property"><i class="fa fa-upload"></i> Issued</td>
-			<td class="row-value">{{ booking.taken_at | date }}</td>
-
-			<td class="row-property"><i class="fa fa-download"></i> Returned</td>
-			<td class="row-value">
-				{{ booking.closed_at | date }}
-				<span ng-show="booking.closed_at && return_difference > 0">
-					(Late by {{ return_difference }} hours)
-				</span>
-			</td>
-		</tr>
-	</table> -->
-
 	<section>
 		<table class="table">
 			<tr>
@@ -116,7 +94,14 @@
 			</tr>
 			<tr ng-repeat="product in booking.products">
 				<td>{{ product.name }}</td>
-				<td>{{ product.pivot.unit_id ? unit(product.pivot.unit_id).unit_number : 'Not issued yet' }}</td>
+				<td>
+					<a href="#/manage/unit/{{ product.pivot.unit_id }}" ng-show="product.pivot.unit_id && user.admin">
+						{{ unit(product.pivot.unit_id).unit_number }}
+					</a>
+					<span ng-show="product.pivot.unit_id && !user.admin">
+						{{ unit(product.pivot.unit_id).unit_number }}
+					</span>
+				</td>
 				<td>{{ product.pivot.notes }}</td>
 				<td>{{ product.pivot.returned_at | date }}</td>
 			</tr>

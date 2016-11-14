@@ -23,14 +23,14 @@ class BookingsSeeder extends Seeder
 				'taken_at' => Carbon::now()->subDays(1),
 				'due_at' => Carbon::now()->subDays(1)->addHours(1),
 				'closed_at' => Carbon::now()->subDays(1)->addHours(1),
-				'created_by' => 2,
-				'issued_by' => 1,
-				'closed_by' => 1
+				'created_by_id' => 2,
+				'issued_by_id' => 1,
+				'closed_by_id' => 1
 			]
 		];
 		
 		$users = DB::table('users')->get();
-		$booking_per_person = 20;
+		$booking_per_person = 1;
 		
 		foreach($users as $user) {
 			for($i=0; $i<$booking_per_person; $i++) {
@@ -41,9 +41,9 @@ class BookingsSeeder extends Seeder
 					'taken_at' => Carbon::now()->subDays(1),
 					'due_at' => Carbon::now()->subDays(1)->addHours(1),
 					'closed_at' => Carbon::now()->subDays(1)->addHours(1),
-					'created_by' => $user->id,
-					'issued_by' => 1,
-					'closed_by' => 1
+					'created_by_id' => $user->id,
+					'issued_by_id' => 1,
+					'closed_by_id' => 1
 				];
 			}
 		}

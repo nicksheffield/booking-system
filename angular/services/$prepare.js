@@ -160,15 +160,15 @@ angular.module('app.services')
 			})
 			
 			Object.defineProperty(booking, 'created_by', {
-				get: () => _.find($store.users, {id: booking.created_by})
+				get: () => _.find($store.users, {id: booking.created_by_id})
 			})
 			
 			Object.defineProperty(booking, 'issued_by', {
-				get: () => _.find($store.users, {id: booking.issued_by})
+				get: () => _.find($store.users, {id: booking.issued_by_id})
 			})
 			
 			Object.defineProperty(booking, 'closed_by', {
-				get: () => _.find($store.users, {id: booking.closed_by})
+				get: () => _.find($store.users, {id: booking.closed_by_id})
 			})
 			
 			Object.defineProperty(booking, '_products', {
