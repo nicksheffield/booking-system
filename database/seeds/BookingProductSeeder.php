@@ -20,6 +20,7 @@ class BookingProductSeeder extends Seeder
 				'product_id' => 2,
 				'unit_id' => 2,
 				'notes' => '',
+				'returned_by' => 1,
 				'returned_at' => date('Y-m-d H:i:s'),
 				'created_at' => date('Y-m-d H:i:s'),
 				'updated_at' => null
@@ -41,6 +42,7 @@ class BookingProductSeeder extends Seeder
 					'unit_id' => $unit->id,
 					'product_id' => $unit->product_id,
 					'notes' => '',
+					'returned_by' => 1,
 					'returned_at' => date('Y-m-d H:i:s'),
 					'created_at' => date('Y-m-d H:i:s'),
 					'updated_at' => null

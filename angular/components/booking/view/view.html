@@ -25,6 +25,18 @@
 			<td class="row-property">Created</td>
 			<td class="row-value">{{ booking.created_at | date }}</td>
 		</tr>
+		<tr>
+			<td class="row-property">Created by</td>
+			<td class="row-value">{{ booking.created_by.name }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">Issued by</td>
+			<td class="row-value">{{ booking.issued_by.name }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">Closed by</td>
+			<td class="row-value">{{ booking.closed_by.name }}</td>
+		</tr>
 	</table>
 
 	<div class="date-row" layout="row sm-col md-col">

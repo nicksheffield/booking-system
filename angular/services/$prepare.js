@@ -159,6 +159,18 @@ angular.module('app.services')
 				get: () => _.find($store.users, {id: booking.user_id})
 			})
 			
+			Object.defineProperty(booking, 'created_by', {
+				get: () => _.find($store.users, {id: booking.created_by})
+			})
+			
+			Object.defineProperty(booking, 'issued_by', {
+				get: () => _.find($store.users, {id: booking.issued_by})
+			})
+			
+			Object.defineProperty(booking, 'closed_by', {
+				get: () => _.find($store.users, {id: booking.closed_by})
+			})
+			
 			Object.defineProperty(booking, '_products', {
 				get: function() {
 					var products = []

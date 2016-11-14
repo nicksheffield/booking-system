@@ -100,6 +100,9 @@ class CreateTables extends Migration
 			$table->timestamp('pickup_at')->nullable();
 			$table->timestamp('closed_at')->nullable();
 			$table->timestamp('due_at')->nullable();
+			$table->integer('created_by');
+			$table->integer('issued_by');
+			$table->integer('closed_by');
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -111,6 +114,7 @@ class CreateTables extends Migration
 			$table->integer('unit_id');
 			$table->string('notes');
 			$table->timestamp('returned_at')->nullable();
+			$table->integer('returned_by');
 			$table->timestamps();
 		});
 	}

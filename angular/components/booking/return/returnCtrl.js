@@ -22,6 +22,7 @@ angular.module('app.controllers')
 
 		if($scope.booking.products.length == _.filter($scope.booking.products, (p) => p.returned).length) {
 			$scope.booking.closed_at = new Date()
+			$scope.booking.closed_by = $store.user.id
 		}
 
 		_.forEach($scope.booking.products, function(product) {
