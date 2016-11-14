@@ -18,6 +18,7 @@ angular.module('app.services')
 	}
 	
 	service.all = function() {
+		console.log('$auth.getPayload()', $auth.getPayload())
 		if($auth.getPayload() && $auth.getPayload().admin) {
 			service.add([
 				'user',
@@ -66,9 +67,7 @@ angular.module('app.services')
 	service.add(['groups'])
 	
 	if($auth.isAuthenticated()) {
-		if($auth.getPayload().admin) {
-			service.all()
-		}
+		service.all()
 	}
 	
 	// invalidate everything every 5 minutes

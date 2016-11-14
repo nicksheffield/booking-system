@@ -19,7 +19,7 @@
 		</div>
 	</div>
 	
-	<div class="page-user">
+	<div class="page-user" ng-show="user.admin">
 		<label for="user_id">User</label>
 		<ui-select select-unit-on-close ng-model="booking._user" id="user_id">
 			<ui-select-match allow-clear="false" placeholder="​">

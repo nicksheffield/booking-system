@@ -10,6 +10,8 @@ angular.module('app.controllers')
 	
 	if($store.user.admin) {
 		$scope.users = $store.users
+	} else {
+		$scope.users = []
 	}
 	
 	$scope.openPickup = function() {
@@ -35,7 +37,7 @@ angular.module('app.controllers')
 	$scope.reset = function() {
 		$store.resetBooking()
 		$scope.booking.pickup_at = new Date()
-		$scope.booking.due_at = undefined,
+		$scope.booking.due_at = undefined
 		$scope.booking._user = $store.user
 		
 		_.forEach($scope.products, function(product) {
