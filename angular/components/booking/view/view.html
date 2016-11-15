@@ -9,13 +9,13 @@
 	</div>
 </header>
 
-<breadcrumbs></breadcrumbs>
+<breadcrumbs ng-show="user.admin"></breadcrumbs>
 
 <div class="page-content" ratio="1">
 
 	<table class="table data-table">
 		<tr>
-			<td class="row-property">By</td>
+			<td class="row-property">User</td>
 			<td class="row-value">{{ booking.user.name }}</td>
 		</tr>
 		<tr>

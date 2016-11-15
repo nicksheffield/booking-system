@@ -21,6 +21,7 @@ class Booking extends Controller
 		// $q = $q->offset(($request->offset ?: 0));
 		
 		if($request->with) $q = $q->with(explode('|', $request->with));
+		if($request->user_id) $q = $q->where('user_id', $request->user_id);
 
 		return $q->get();
 	}
@@ -65,7 +66,7 @@ class Booking extends Controller
 		$model = Model::find($id);
 
 		if($request->with) {
-			$model = $model->with(explode('|', $request->with));
+			$model = $model->with(explode('|', $request->with))->first();
 		}
 
 		return $model;

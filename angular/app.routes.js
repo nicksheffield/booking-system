@@ -116,7 +116,7 @@ angular.module('app.routes')
 			templateUrl: 'components/booking/view/view.html',
 			controller: 'viewBookingCtrl',
 			data: {
-				conditions: ['auth', 'staff_only'],
+				conditions: ['auth'],
 				title: 'View Booking',
 				crumb_parent: 'manage_bookings'
 			}

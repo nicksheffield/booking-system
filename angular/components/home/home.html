@@ -5,5 +5,11 @@
 </header>
 
 <div class="page-content">
-	<p>Let's put some stuff here later.</p>
+	<h2>Your Recent Bookings</h2>
+
+	<ul>
+		<li ng-repeat="booking in user.bookings">
+			<a href="#/booking/{{ booking.id }}">{{ booking.created_at | date }}</a>
+		</li>
+	</ul>
 </div>

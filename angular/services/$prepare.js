@@ -49,6 +49,10 @@ angular.module('app.services')
 			get: () => _.find($store.groups, {id: user.group_id})
 		})
 		
+		Object.defineProperty(user, 'bookings', {
+			get: () => _.filter($store.bookings, {user_id: user.id})
+		})
+		
 		return user
 	}
 
@@ -122,8 +126,8 @@ angular.module('app.services')
 		
 		return units
 	}
-	
-	service.bookings = function(bookings) {
+
+	service.booking = function(booking) {
 		function transformDate(originalDate) {
 			// Transform date string into what looks like an ISO string
 			var iso = originalDate.replace(' ', 'T').concat('.000Z')
@@ -135,65 +139,70 @@ angular.module('app.services')
 			return new Date(parseInt(unix))
 		}
 
-		_.forEach(bookings, function(booking) {
-			if(booking.created_at)    booking.created_at   = transformDate(booking.created_at)
-			if(booking.due_at)        booking.due_at       = transformDate(booking.due_at)
-			if(booking.pickup_at)     booking.pickup_at    = transformDate(booking.pickup_at)
-			if(booking.taken_at)      booking.taken_at     = transformDate(booking.taken_at)
-			if(booking.closed_at)     booking.closed_at    = transformDate(booking.closed_at)
+		if(booking.created_at)    booking.created_at   = transformDate(booking.created_at)
+		if(booking.due_at)        booking.due_at       = transformDate(booking.due_at)
+		if(booking.pickup_at)     booking.pickup_at    = transformDate(booking.pickup_at)
+		if(booking.taken_at)      booking.taken_at     = transformDate(booking.taken_at)
+		if(booking.closed_at)     booking.closed_at    = transformDate(booking.closed_at)
 
-			// low is top of table
-			booking._priority = 0
+		// low is top of table
+		booking._priority = 0
 
-			if(!booking.taken_at) {
-				booking._priority = 1
-				booking._status = 'Booked'
-			}
+		if(!booking.taken_at) {
+			booking._priority = 1
+			booking._status = 'Booked'
+		}
 
-			if(booking.taken_at && !booking.returned_at) {
-				booking._priority = 2
-				booking._status = 'Issued'
-			}
+		if(booking.taken_at && !booking.returned_at) {
+			booking._priority = 2
+			booking._status = 'Issued'
+		}
 
-			if(booking.closed_at) {
-				booking._priority = 3
-				booking._status = 'Returned'
-			}
+		if(booking.closed_at) {
+			booking._priority = 3
+			booking._status = 'Returned'
+		}
 
-
-			_.forEach(booking.products, function(product) {
-				if(product.pivot.returned_at) product.pivot.returned_at = new Date(product.pivot.returned_at)
-			})
-			
+		_.forEach(booking.products, function(product) {
+			if(product.pivot.returned_at) product.pivot.returned_at = new Date(product.pivot.returned_at)
+		})
+		
+		if(!booking.user) {
 			Object.defineProperty(booking, 'user', {
 				enumerable,
 				get: () => _.find($store.users, {id: booking.user_id})
 			})
-			
-			Object.defineProperty(booking, 'created_by', {
-				get: () => _.find($store.users, {id: booking.created_by_id})
-			})
-			
-			Object.defineProperty(booking, 'issued_by', {
-				get: () => _.find($store.users, {id: booking.issued_by_id})
-			})
-			
-			Object.defineProperty(booking, 'closed_by', {
-				get: () => _.find($store.users, {id: booking.closed_by_id})
-			})
-			
-			Object.defineProperty(booking, '_products', {
-				get: function() {
-					var products = []
-
-					_.forEach(booking.products, function(product) {
-						products.push(_.find($store.products, {id: product.id}))
-					})
-
-					return products
-				}
-			})
+		}
+		
+		Object.defineProperty(booking, 'created_by', {
+			get: () => _.find($store.users, {id: booking.created_by_id})
 		})
+		
+		Object.defineProperty(booking, 'issued_by', {
+			get: () => _.find($store.users, {id: booking.issued_by_id})
+		})
+		
+		Object.defineProperty(booking, 'closed_by', {
+			get: () => _.find($store.users, {id: booking.closed_by_id})
+		})
+		
+		Object.defineProperty(booking, '_products', {
+			get: function() {
+				var products = []
+
+				_.forEach(booking.products, function(product) {
+					products.push(_.find($store.products, {id: product.id}))
+				})
+
+				return products
+			}
+		})
+
+		return booking
+	}
+	
+	service.bookings = function(bookings) {
+		_.forEach(bookings, service.booking)
 		
 		return bookings
 	}

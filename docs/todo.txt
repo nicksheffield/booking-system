@@ -7,9 +7,8 @@ Todo.txt
 	- Restyle "There are no current bookings" message
 	- Student can request to extend the return date of any issued bookings
 	- Only load bookings when needed, because they're basically the only thing that is going to grow insanely
-	
-	- Features
-		- Homepage info
+	- Homepage info
+	- Students viewing their own booking don't see their own name, because that was found in $store.users and we don't load that for students. Same thing with unit numbers
 
 
 	- Main Features to finish

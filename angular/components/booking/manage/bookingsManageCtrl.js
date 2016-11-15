@@ -6,8 +6,6 @@ angular.module('app.controllers')
 
 	$scope.showClosed = false
 
-	console.log($scope.bookings)
-
 	$scope.toggleClosed = function() {
 		$scope.showClosed = !$scope.showClosed
 	}
