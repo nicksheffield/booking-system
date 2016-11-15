@@ -27,7 +27,7 @@ angular.module('app.controllers')
 	}
 	
 	$scope.save = function() {
-		$scope.group.type_id = $scope.selected.type.id
+		$scope.group.group_type_id = $scope.selected.type.id
 		$scope.group.tutors = []
 		
 		_.forEach($scope.selected.tutors, function(tutor) {

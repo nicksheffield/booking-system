@@ -74,7 +74,7 @@
 					<p ng-show="booking.closed_at">
 						{{ booking.closed_at | date }}
 						<span ng-show="booking.closed_at && return_difference > 0">
-							(Late by {{ return_difference }} hours)
+							 (Late by {{ return_difference }} hours)
 						</span>
 					</p>
 					<p ng-show="!booking.closed_at">-</p>

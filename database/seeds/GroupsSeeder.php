@@ -29,7 +29,7 @@ class GroupsSeeder extends Seeder
 			[
 				'id' => 3,
 				'code' => '16ADIC09',
-				'group_type_id' => 5,
+				'group_type_id' => 6,
 				'enrollment_key' => 'blah'
 			]
 		];
