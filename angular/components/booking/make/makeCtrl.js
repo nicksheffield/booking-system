@@ -68,6 +68,8 @@ angular.module('app.controllers')
 			products: payload,
 			_user: $scope.booking._user
 		})
+
+		console.log($store.booking)
 	}
 	
 	$scope.checkAgainstMax = function(product) {

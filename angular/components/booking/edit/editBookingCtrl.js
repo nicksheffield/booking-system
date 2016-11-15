@@ -11,10 +11,16 @@ angular.module('app.controllers')
 		minDate: new Date(),
 	}
 	
-	console.log('before', $scope.booking.pickup_at)
-	
 	$scope.select2Options = {
 		selectOnClose: true
+	}
+	
+	$scope.openPickup = function() {
+		$scope.openPickupDate = $scope.openPickupDate ? false : true
+	}
+	
+	$scope.openDue = function() {
+		$scope.openDueDate = $scope.openDueDate ? false : true
 	}
 	
 	$scope.save = function() {

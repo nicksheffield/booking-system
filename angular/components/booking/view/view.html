@@ -2,9 +2,10 @@
 	<h1>Booking: {{ booking.pickup_at | date }}</h1>
 
 	<div class="button-row">
-		<btn url="#/booking/{{ booking.id }}/edit" type="info" icon="pencil" small ng-show="booking._priority == 1">Edit</btn>
 		<btn url="#/booking/{{ booking.id }}/issue" icon="arrow-right" small ng-show="booking._priority == 1">Issue</btn>
 		<btn url="#/booking/{{ booking.id }}/return" icon="arrow-left" small ng-show="booking._priority == 2">Return</btn>
+		<btn url="#/booking/{{ booking.id }}/edit" type="info" icon="pencil" small ng-show="booking._priority == 1">Edit</btn>
+		<btn ng-click="delete()" type="danger" icon="trash" small ng-show="booking._priority == 1"></btn>
 	</div>
 </header>
 

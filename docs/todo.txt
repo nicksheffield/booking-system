@@ -10,7 +10,6 @@ Todo.txt
 	- Weird shit going on with booking dates going backwards on save
 	- Date dropdowns on edit booking don't open
 	- Only load bookings when needed, because they're basically the only thing that is going to grow insanely
-	- Editing groups group types don't save
 	
 	- Features
 		- Homepage info
@@ -20,6 +19,9 @@ Todo.txt
 		- Password Resets
 		- Large amounts of bookings performance
 		- Can't book overbooked products
+			- Booking Make and Edit have two columns
+				- Total quantity of product
+				- Available (not currently booked in this time frame)
 	
 Late stuff
 	- Reset users passwords
