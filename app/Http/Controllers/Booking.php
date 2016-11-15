@@ -68,7 +68,7 @@ class Booking extends Controller
 			$model = $model->with(explode('|', $request->with));
 		}
 
-		return $model->first();
+		return $model;
 		
 	}
 

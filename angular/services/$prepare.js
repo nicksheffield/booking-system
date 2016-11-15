@@ -124,12 +124,23 @@ angular.module('app.services')
 	}
 	
 	service.bookings = function(bookings) {
+		function transformDate(originalDate) {
+			// Transform date string into what looks like an ISO string
+			var iso = originalDate.replace(' ', 'T').concat('.000Z')
+			
+			// Transform that into a unix timestamp
+			var unix = moment(iso).format('x')
+			
+			// Return a date object based on the timestamp
+			return new Date(parseInt(unix))
+		}
+
 		_.forEach(bookings, function(booking) {
-			if(booking.created_at) booking.created_at = new Date(booking.created_at)
-			if(booking.due_at) booking.due_at = new Date(booking.due_at)
-			if(booking.pickup_at) booking.pickup_at = new Date(booking.pickup_at)
-			if(booking.taken_at) booking.taken_at = new Date(booking.taken_at)
-			if(booking.closed_at) booking.closed_at = new Date(booking.closed_at)
+			if(booking.created_at)    booking.created_at   = transformDate(booking.created_at)
+			if(booking.due_at)        booking.due_at       = transformDate(booking.due_at)
+			if(booking.pickup_at)     booking.pickup_at    = transformDate(booking.pickup_at)
+			if(booking.taken_at)      booking.taken_at     = transformDate(booking.taken_at)
+			if(booking.closed_at)     booking.closed_at    = transformDate(booking.closed_at)
 
 			// low is top of table
 			booking._priority = 0

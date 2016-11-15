@@ -18,7 +18,6 @@ angular.module('app.services')
 	}
 	
 	service.all = function() {
-		console.log('$auth.getPayload()', $auth.getPayload())
 		if($auth.getPayload() && $auth.getPayload().admin) {
 			service.add([
 				'user',
