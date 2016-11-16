@@ -16,6 +16,14 @@
 
 <div class="page-content" ratio="1">
 
+	<alert type="info" icon="filter" text="Limited to user: <b>{{ filteredUser.name }}</b>" ng-show="filteredUser">
+		<btn icon="times" type="primary" url="#/bookings" small>Clear</btn>
+	</alert>
+
+	<alert type="info" icon="filter" text="Limited to class: <b>{{ filteredGroup.code }}</b>" ng-show="filteredGroup">
+		<btn icon="times" type="primary" url="#/bookings" small>Clear</btn>
+	</alert>
+
 	<table class="table table-hover table-striped table-filtered" ng-hide="!filtered.length">
 		<thead>
 			<tr>
@@ -26,9 +34,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="booking in bookings | orderBy: '_priority' | filter: showClosedFilter | filter: filter as filtered" ng-hide="booking.closed_at && !showClosed">
-				<td><a href="#/manage/user/{{ booking.user.id }}">{{ booking.user.name }}</a></td>
-				<td>{{ booking.user.group.code }}</td>
+			<tr ng-repeat="booking in bookings | orderBy: '_priority' | filter: showClosedFilter | filter: userFilter | filter: groupFilter | filter: filter as filtered" ng-hide="booking.closed_at && !showClosed" class="filterable-row">
+				<td class="filterable-cell">
+					<a href="#/manage/user/{{ booking.user.id }}">{{ booking.user.name }}</a>
+					<btn icon="search" type="info" url="#/bookings?user={{ booking.user.id }}" small></btn>
+				</td>
+				<td class="filterable-cell">
+					{{ booking.user.group.code }}
+					<btn icon="search" type="info" url="#/bookings?group={{ booking.user.group.code }}" small></btn>
+				</td>
 				<td>{{ booking._status }}</td>
 				<td class="button-row">
 					<btn url="#/booking/{{ booking.id }}" type="info" icon="arrow-right" small></btn>

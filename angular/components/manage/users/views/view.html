@@ -40,6 +40,12 @@
 			<td class="row-property">Student ID</td>
 			<td class="row-value">{{ user.id_number }}</td>
 		</tr>
+		<tr>
+			<td class="row-property">Bookings</td>
+			<td class="row-value">
+				<a href="#/bookings?user={{ user.id }}">View all bookings by this user</a>
+			</td>
+		</tr>
 		<tr ng-show="!user.admin">
 			<td class="row-property">Class</td>
 			<td class="row-value"><a href="#/manage/class/{{ user.group.id }}">{{ user.group.code }}</a></td>
