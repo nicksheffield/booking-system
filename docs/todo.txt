@@ -10,7 +10,6 @@ Todo.txt
 	- Homepage info
 	- Students viewing their own booking don't see their own name, because that was found in $store.users and we don't load that for students. Same thing with unit numbers
 
-
 	- Main Features to finish
 		- Password Resets
 		- Large amounts of bookings performance
