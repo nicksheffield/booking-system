@@ -46,6 +46,11 @@ angular.module('app.controllers')
 		}
 	}
 	
+	// calculate the max quantity allowed for a product
+	$scope.max = function(product) {
+		return product._max
+	}
+	
 	// load all the products allowed based on the current users group.
 	// if the current user doesn't have a group, give them all the products
 	$scope.group = $store.get('groups', $store.user.group_id)
