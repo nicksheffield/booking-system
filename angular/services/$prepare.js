@@ -139,11 +139,12 @@ angular.module('app.services')
 			return new Date(parseInt(unix))
 		}
 
-		if(booking.created_at)    booking.created_at   = transformDate(booking.created_at)
-		if(booking.due_at)        booking.due_at       = transformDate(booking.due_at)
-		if(booking.pickup_at)     booking.pickup_at    = transformDate(booking.pickup_at)
-		if(booking.taken_at)      booking.taken_at     = transformDate(booking.taken_at)
-		if(booking.closed_at)     booking.closed_at    = transformDate(booking.closed_at)
+		if(booking.created_at)    booking.created_at    = transformDate(booking.created_at)
+		if(booking.due_at)        booking.due_at        = transformDate(booking.due_at)
+		if(booking.pickup_at)     booking.pickup_at     = transformDate(booking.pickup_at)
+		if(booking.taken_at)      booking.taken_at      = transformDate(booking.taken_at)
+		if(booking.closed_at)     booking.closed_at     = transformDate(booking.closed_at)
+		if(booking.cancelled_at)  booking.cancelled_at  = transformDate(booking.cancelled_at)
 
 		// low is top of table
 		booking._priority = 0
@@ -160,7 +161,12 @@ angular.module('app.services')
 
 		if(booking.closed_at) {
 			booking._priority = 3
-			booking._status = 'Returned'
+			booking._status = 'Closed'
+		}
+
+		if(booking.cancelled_at) {
+			booking._priority = 4
+			booking._status = 'Cancelled'
 		}
 
 		_.forEach(booking.products, function(product) {

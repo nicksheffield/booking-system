@@ -100,9 +100,11 @@ class CreateTables extends Migration
 			$table->timestamp('pickup_at')->nullable();
 			$table->timestamp('closed_at')->nullable();
 			$table->timestamp('due_at')->nullable();
+			$table->timestamp('cancelled_at')->nullable();
 			$table->integer('created_by_id');
 			$table->integer('issued_by_id');
 			$table->integer('closed_by_id');
+			$table->integer('cancelled_by_id');
 			$table->timestamps();
 			$table->softDeletes();
 		});
