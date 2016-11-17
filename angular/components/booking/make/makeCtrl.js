@@ -32,6 +32,9 @@ angular.module('app.controllers')
 	
 	if(!$scope.booking.pickup_at) {
 		$scope.booking.pickup_at = new Date()
+	} else if($scope.booking.pickup_at.valueOf() < new Date().valueOf()) {
+		$scope.booking.pickup_at = new Date()
+		$scope.booking.due_at = ''
 	}
 	
 	$scope.reset = function() {
