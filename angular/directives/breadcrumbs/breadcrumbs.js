@@ -35,8 +35,9 @@ angular.module('app.directives')
 						}
 					})
 					.join('/')
+					.split('?')[0]
 			} else {
-				return url
+				return url.split('?')[0]
 			}
 		}
 	}
