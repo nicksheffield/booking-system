@@ -43,8 +43,8 @@ class BookingProductSeeder extends Seeder
 					'product_id' => $unit->product_id,
 					'notes' => '',
 					'returned_by_id' => 1,
-					'returned_at' => date('Y-m-d H:i:s'),
-					'created_at' => date('Y-m-d H:i:s'),
+					'returned_at' => $booking->closed_at,
+					'created_at' => $booking->created_at,
 					'updated_at' => null
 				];
 			}
