@@ -43,7 +43,12 @@
 					{{ booking.user.group.code }}
 					<btn icon="search" type="info" url="#/bookings?group={{ booking.user.group.code }}" small></btn>
 				</td>
-				<td>{{ booking._status }}</td>
+				<td>
+					{{ booking._status }}
+					<span ng-show="booking._priority == 3">
+						 ({{ booking.closed_at | date }})
+					</span>
+				</td>
 				<td class="button-row">
 					<btn url="#/booking/{{ booking.id }}" type="info" icon="arrow-right" small></btn>
 				</td>
