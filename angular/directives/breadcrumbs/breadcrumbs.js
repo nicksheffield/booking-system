@@ -7,15 +7,13 @@ angular.module('app.directives')
 
 		scope.crumbs = []
 
-		getCrumbs($state.current)
-
-		function getCrumbs(state) {
+		;(function getCrumbs(state) {
 			if(state.data.crumb_parent) {
 				scope.crumbs.push(state.data.crumb_parent)
 
 				getCrumbs(state.data.crumb_parent)
 			}
-		}
+		})($state.current)
 
 		scope.crumbs.reverse()
 		
