@@ -94,8 +94,10 @@ angular.module('app.services')
 		return resource
 	}
 	
-	service.bookings = function() {
-		var resource = Booking.query({'with': 'products'})
+	service.bookings = function(limit, offset) {
+		if(limit === undefined) limit = 10
+		if(offset === undefined) offset = 0
+		var resource = Booking.query({limit, offset, 'with': 'products'})
 		
 		$store.bookings = resource
 		
