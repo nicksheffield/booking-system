@@ -38,7 +38,7 @@ class GroupsSeeder extends Seeder
 		
 		$months = ['02', '04', '07', '09'];
 		
-		$extra_classes = 5;
+		$extra_classes = 20;
 		
 		for($i=0; $i<$extra_classes; $i++) {
 			$type = mt_rand(0, count($types) - 1);

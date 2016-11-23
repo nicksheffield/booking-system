@@ -12,6 +12,7 @@ Todo.txt
 		- Maybe a way to filter not by just closed, but by all priorities
 		- Dropdowns for narrowing down group and user, and don't store that in url
 			- When following a link to the booking page to filter user or group, maybe quickly set localStorage first
+	- Move the make booking page's date and user fields to the confirm page so that all you do is pick products
 
 	- Main Features to finish
 		- Password Resets

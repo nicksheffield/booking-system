@@ -7,8 +7,6 @@ angular.module('app.services')
 	service.user = function() {
 		var resource = User.getWithToken()
 		
-		$store.user = resource
-		
 		resource.$promise
 			.then($prepare.user)
 			.then(service.notify('user'))
@@ -19,8 +17,6 @@ angular.module('app.services')
 	service.users = function() {
 		var resource = User.query({'with': 'tutors_groups.type'})
 		
-		$store.users = resource
-		
 		resource.$promise
 			.then($prepare.users)
 			.then(service.notify('users'))
@@ -30,8 +26,6 @@ angular.module('app.services')
 	
 	service.group_types = function() {
 		var resource = Group_Type.query()
-		
-		$store.group_types = resource
 		
 		resource.$promise
 			.then($prepare.group_types)
@@ -49,8 +43,6 @@ angular.module('app.services')
 		
 		var resource = Group.query(query)
 		
-		$store.groups = resource
-		
 		resource.$promise
 			.then($prepare.groups)
 			.then(service.notify('groups'))
@@ -60,8 +52,6 @@ angular.module('app.services')
 	
 	service.product_types = function() {
 		var resource = Product_Type.query()
-		
-		$store.product_types = resource
 		
 		resource.$promise
 			.then($prepare.product_types)
@@ -73,8 +63,6 @@ angular.module('app.services')
 	service.products = function() {
 		var resource = Product.query({'with': 'groups_allowed'})
 		
-		$store.products = resource
-		
 		resource.$promise
 			.then($prepare.products)
 			.then(service.notify('products'))
@@ -84,8 +72,6 @@ angular.module('app.services')
 	
 	service.units = function() {
 		var resource = Unit.query()
-		
-		$store.units = resource
 		
 		resource.$promise
 			.then($prepare.units)
@@ -98,8 +84,6 @@ angular.module('app.services')
 		if(limit === undefined) limit = 10
 		if(offset === undefined) offset = 0
 		var resource = Booking.query({limit, offset, 'with': 'products'})
-		
-		$store.bookings = resource
 		
 		resource.$promise
 			.then($prepare.bookings)

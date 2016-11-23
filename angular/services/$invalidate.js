@@ -46,15 +46,49 @@ angular.module('app.services')
 		var invalid = []
 		
 		_.forEach(service.invalidated, function(i) {
+			var thing
+			
 			switch(i) {
-				case 'user': invalid.push($load.user().$promise); break;
-				case 'users': invalid.push($load.users().$promise); break;
-				case 'units': invalid.push($load.units().$promise); break;
-				case 'groups': invalid.push($load.groups().$promise); break;
-				case 'products': invalid.push($load.products().$promise); break;
-				case 'bookings': invalid.push($load.bookings().$promise); break;
-				case 'group_types': invalid.push($load.group_types().$promise); break;
-				case 'product_types': invalid.push($load.product_types().$promise); break;
+				case 'user':
+					thing = $load.user()
+					$store.user = thing
+					invalid.push(thing.$promise);
+				break;
+				case 'users':
+					thing = $load.users()
+					$store.users = thing
+					invalid.push(thing.$promise);
+				break;
+				case 'units':
+					thing = $load.units()
+					$store.units = thing
+					invalid.push(thing.$promise);
+				break;
+				case 'groups':
+					thing = $load.groups()
+					$store.groups = thing
+					invalid.push(thing.$promise);
+				break;
+				case 'products':
+					thing = $load.products()
+					$store.products = thing
+					invalid.push(thing.$promise);
+				break;
+				case 'bookings':
+					thing = $load.bookings()
+					$store.bookings = thing
+					invalid.push(thing.$promise);
+				break;
+				case 'group_types':
+					thing = $load.group_types()
+					$store.group_types = thing
+					invalid.push(thing.$promise);
+				break;
+				case 'product_types':
+					thing = $load.product_types()
+					$store.product_types = thing
+					invalid.push(thing.$promise);
+				break;
 			}
 		})
 		
