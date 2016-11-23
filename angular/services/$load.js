@@ -1,6 +1,6 @@
 angular.module('app.services')
 
-.factory('$load', function($rootScope, $store, $prepare, $q, $auth, $timeout, User, Group, Group_Type, Product_Type, Product, Unit, Booking) {
+.factory('$load', function($store, $prepare, $auth, User, Group, Group_Type, Product_Type, Product, Unit, Booking) {
 	var service = {}
 	var events = []
 	
