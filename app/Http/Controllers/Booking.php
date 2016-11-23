@@ -17,8 +17,8 @@ class Booking extends Controller
 	{
 		$q = Model::query();
 
-		// $q = $q->limit(($request->limit ?: 0));
-		// $q = $q->offset(($request->offset ?: 0));
+		if($request->limit)  $q = $q->limit(($request->limit ?: 0));
+		if($request->offset) $q = $q->offset(($request->offset ?: 0));
 		
 		if($request->with) $q = $q->with(explode('|', $request->with));
 		if($request->user_id) $q = $q->where('user_id', $request->user_id);
