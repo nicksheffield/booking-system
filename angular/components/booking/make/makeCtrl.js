@@ -90,12 +90,21 @@ angular.module('app.controllers')
 	$scope.max = function(product) {
 		return product._max
 	}
-	
+
 	// load all the products allowed based on the current users group.
-	// if the current user doesn't have a group, give them all the products
-	$scope.group = $store.get('groups', $store.user.group_id)
+	if($store.user.group_id) {
+		$scope.group = $store.get('groups', $store.user.group_id)
+
+		if($scope.group) {
+			$scope.products = $scope.group.allowed_products
+
+			_.forEach($scope.products, function(product) {
+				product._max = product.pivot.quantity
+			})
+		}
 	
-	if(!$scope.group) {
+	// if the current user doesn't have a group, give them all the products
+	} else {
 		$scope.products = $store.products
 		
 		_.forEach($scope.products, function(product) {
@@ -106,12 +115,6 @@ angular.module('app.controllers')
 				
 				if(booking) product._quantity = booking.quantity
 			}
-		})
-	} else {
-		$scope.products = $scope.group.allowed_products
-
-		_.forEach($scope.products, function(product) {
-			product._max = product.pivot.quantity
 		})
 	}
 

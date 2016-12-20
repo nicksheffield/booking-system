@@ -102,7 +102,7 @@ angular.module('app.routes')
 		},
 		
 		'manage_bookings': {
-			url: '/bookings?user&group',
+			url: '/bookings?page&user&group',
 			templateUrl: 'components/booking/manage/manage.html',
 			controller: 'bookingsManageCtrl',
 			data: {

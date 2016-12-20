@@ -1,0 +1,19 @@
+<nav class="pagination-container" layout="row" justify="center">
+	<ul class="pagination">
+		<li class="page-item" ng-class="{disabled: !atStart}">
+			<a href="#/bookings?page=1" class="page-link">First</a>
+		</li>
+		<li class="page-item" ng-class="{disabled: current == 1}">
+			<a href="#/bookings?page={{ current - 1 }}" class="page-link">&laquo;</a>
+		</li>
+		<li class="page-item" ng-repeat="page in pages" ng-class="{active: current == page}">
+			<a href="#/bookings?page={{ page }}" class="page-link">{{ page }}</a>
+		</li>
+		<li class="page-item" ng-class="{disabled: current == last}">
+			<a href="#/bookings?page={{ current + 1 }}" class="page-link">&raquo;</a>
+		</li>
+		<li class="page-item" ng-class="{disabled: !atEnd}">
+			<a href="#/bookings?page={{ last }}" class="page-link">Last ({{ last }})</a>
+		</li>
+	</ul>
+</nav>

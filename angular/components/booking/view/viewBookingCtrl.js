@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('viewBookingCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate, Booking, $prepare) {
+.controller('viewBookingCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate, Booking, $prepare, $merge) {
 	
 	$scope.booking = $store.get('bookings', $stateParams.id)
 	$scope.user = $store.user

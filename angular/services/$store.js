@@ -1,6 +1,6 @@
 angular.module('app.services')
 
-.factory('$store', function() {
+.factory('$store', function($fetch) {
 	var service = {
 		user: {},
 		units: {},
@@ -12,6 +12,8 @@ angular.module('app.services')
 		group_types: {},
 		product_types: {},
 	}
+
+	window.store = service
 	
 	service.setBooking = function(booking) {
 		localStorage.booking = JSON.stringify(booking)
@@ -33,7 +35,16 @@ angular.module('app.services')
 		}
 	}
 	
-	service.get = (type, id) => _.find(service[type], typeof id == 'object' && id !== null ? id : {id: parseInt(id)})
+	service.get = function(type, id) {
+		var item = _.find(service[type], typeof id == 'object' && id !== null ? id : {id: parseInt(id)})
+
+		if(!item) {
+			item = $fetch[type](id)
+			service[type].push(item)
+			service[type].sort((a, b) => a.id - b.id)
+		}
+		return item
+	}
 	
 	if(localStorage.booking) {
 		service.booking = JSON.parse(localStorage.booking)

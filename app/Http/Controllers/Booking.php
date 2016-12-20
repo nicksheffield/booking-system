@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Auth;
+use DB;
 
 use App\Models\Booking as Model;
 
@@ -17,13 +18,30 @@ class Booking extends Controller
 	{
 		$q = Model::query();
 
-		if($request->limit)  $q = $q->limit(($request->limit ?: 0));
+		if($request->limit && $request->limit !== '0') $q = $q->limit(($request->limit ?: 0));
 		if($request->offset) $q = $q->offset(($request->offset ?: 0));
+
+		if($request->after) {
+			$q = $q
+				->where('pickup_at', '>', $request->after);
+				// ->orWhere('pickup_at', '>', $request->after);
+		}
+
+		if($request->before) {
+			$q = $q
+				->where('pickup_at', '<', $request->before);
+				// ->orWhere('pickup_at', '<', $request->before);
+		}
 		
 		if($request->with) $q = $q->with(explode('|', $request->with));
 		if($request->user_id) $q = $q->where('user_id', $request->user_id);
 
 		return $q->get();
+
+		// DB::enableQueryLog();
+		// $q->get();
+
+		// dd(DB::getQueryLog());
 	}
 
 	/**
@@ -142,5 +160,15 @@ class Booking extends Controller
 		$model->delete();
 
 		return $model;
+	}
+
+	/**
+	 * Return count information.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function count() {
+		return ['total' => Model::query()->count()];
 	}
 }

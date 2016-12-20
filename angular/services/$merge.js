@@ -9,7 +9,7 @@ angular.module('app.services')
 				$store.bookings.push(booking)
 			}
 		})
-
+		
 		// sort by id
 		$store.bookings.sort((a, b) => a.id - b.id)
 	}

@@ -111,7 +111,12 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	*	Delete unit
 	*/
 	Route::resource('unit', 'Unit');
-	
+
+	/**
+	*   Get bookings count
+	*/
+	Route::get('/booking/count', 'Booking@count');
+
 	/**
 	*	Get all bookings
 	*	Get one booking

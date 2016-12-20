@@ -4,7 +4,6 @@ angular.module('app.directives')
 	function link(scope, el, attrs) {
 		window.onkeyup = function(e) {
 			if(e.which == 70 && e.ctrlKey === true) {
-				console.log('do the thing')
 				el.find('input').focus()
 			}
 		}
