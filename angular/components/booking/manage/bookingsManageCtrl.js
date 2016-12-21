@@ -10,10 +10,14 @@ angular.module('app.controllers')
 	$scope.bookings = Booking.query({limit: $scope.perPage, offset: $scope.perPage * ($scope.current - 1)})
 	$scope.bookings.$promise.then($prepare.bookings)
 
-
+	$scope.filterOpen = false
 	$scope.showClosed = false
 
 	$scope.showClosed = localStorage.getItem('showClosed') == 'true' || false
+
+	$scope.toggleFilter = function() {
+		$scope.filterOpen = !$scope.filterOpen
+	}
 
 	$http.get('/api/booking/count').then(function(response) {
 		$scope.total = response.data.total

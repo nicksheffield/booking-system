@@ -10,30 +10,7 @@
 
 <!-- <filter model="filter" filtered="filtered"></filter> -->
 
-<div class="page-advanced-filter">
-	<div layout="row">
-		<div layout="col" ratio="1">
-			<div layout="row">
-				<label>After</label>
-				<input type="text" ng-model="afterDate" ng-change="search()" class="form-control form-control-sm" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openAfterDateControl" datepicker-options="dateOptions" ng-click="openAfterDate()">
-			</div>
-			<div layout="row">
-				<label>Before</label>
-				<input type="text" ng-model="beforeDate" ng-change="search()" class="form-control form-control-sm" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openBeforeDateControl" datepicker-options="dateOptions" ng-click="openBeforeDate()">
-			</div>
-		</div>
-		<div layout="col" ratio="1">
-			<div>
-				<input type="text" class="form-control" ng-model="filter" placeholder="Keyword filter">
-			</div>
-			<div>
-				<label>
-					<input type="checkbox" ng-model="showClosed" ng-change="toggleClosed()"> Show closed
-				</label>
-			</div>
-		</div>
-	</div>
-</div>
+<div ng-include="'components/booking/manage/filter.html'"></div>
 
 <div class="page-content" ratio="1">
 

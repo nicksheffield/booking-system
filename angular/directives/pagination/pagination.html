@@ -12,7 +12,7 @@
 		<li class="page-item" ng-class="{disabled: current == last}">
 			<a href="#/bookings?page={{ current + 1 }}" class="page-link">&raquo;</a>
 		</li>
-		<li class="page-item" ng-class="{disabled: !atEnd}">
+		<li class="page-item" ng-class="{disabled: current == last}">
 			<a href="#/bookings?page={{ last }}" class="page-link">Last ({{ last }})</a>
 		</li>
 	</ul>
