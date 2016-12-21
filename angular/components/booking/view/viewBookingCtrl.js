@@ -1,7 +1,6 @@
 angular.module('app.controllers')
 
 .controller('viewBookingCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate, Booking, $prepare, $merge) {
-	
 	$scope.booking = $store.get('bookings', $stateParams.id)
 	$scope.user = $store.user
 
@@ -9,16 +8,17 @@ angular.module('app.controllers')
 		return $store.get('units', id)
 	}
 	
-	$scope.return_difference = moment().diff(new Date($scope.booking.closed_at), 'hours')
-
-	if(!$scope.user.admin) {
-		Booking
-			.get({id: $stateParams.id, with: 'user|products', token: localStorage.satellizer_token})
-			.$promise
+	if($scope.booking) {
+		$scope.return_difference = moment().diff(new Date($scope.booking.closed_at), 'hours')
+	} else {
+		$scope.booking = Booking.get({id: $stateParams.id, with: 'user|products', token: localStorage.satellizer_token})
+		
+		$scope.booking.$promise
 			.then($prepare.booking)
 			.then(function(booking) {
-				$scope.booking = booking
-				console.log(booking)
+				$merge.bookings([booking])
+				$scope.return_difference = moment().diff(new Date($scope.booking.closed_at), 'hours')
+				console.log('loaded', booking.products)
 			})
 	}
 

@@ -19,6 +19,7 @@ angular.module('app.services')
 	
 	service.all = function() {
 		if($auth.getPayload() && $auth.getPayload().admin) {
+			// if logged in as admin
 			service.add([
 				'user',
 				'users',
@@ -26,11 +27,16 @@ angular.module('app.services')
 				'group_types',
 				'product_types',
 				'products',
-				'units',
-				'bookings'
+				'units'
 			])
 		} else {
-			service.add(['user', 'groups', 'bookings'])
+			// if not logged in, or logged in as student
+			service.add([
+				'user',
+				'groups',
+				'products',
+				'units',
+			])
 		}
 	}
 

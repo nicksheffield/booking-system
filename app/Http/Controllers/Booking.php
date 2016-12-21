@@ -36,6 +36,8 @@ class Booking extends Controller
 		if($request->with) $q = $q->with(explode('|', $request->with));
 		if($request->user_id) $q = $q->where('user_id', $request->user_id);
 
+		$q = $q->orderBy('created_at', 'desc');
+
 		return $q->get();
 
 		// DB::enableQueryLog();
@@ -81,14 +83,13 @@ class Booking extends Controller
 	 */
 	public function show(Request $request, $id)
 	{
-		$model = Model::find($id);
-
 		if($request->with) {
-			$model = $model->with(explode('|', $request->with))->first();
+			$model = Model::where('id', $id)->with(explode('|', $request->with))->first();
+		} else {
+			$model = Model::find($id);
 		}
 
 		return $model;
-		
 	}
 
 	/**

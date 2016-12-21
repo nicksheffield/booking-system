@@ -24,7 +24,7 @@
 
 	<pagination total="total" per-page="perPage" current="current" click="gotoPage"></pagination>
 
-	<table class="table table-hover table-striped table-filtered" ng-hide="!filtered.length">
+	<table class="table table-hover table-striped table-filtered">
 		<thead>
 			<tr>
 				<th>User</th>
@@ -34,7 +34,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="booking in bookings | orderBy: '_priority' | filter: showClosedFilter | filter: userFilter | filter: groupFilter | filter: filter as filtered" ng-hide="booking.closed_at && !showClosed" class="filterable-row">
+			<tr ng-repeat="booking in bookings | orderBy: '_priority'" class="filterable-row">
 				<td class="filterable-cell">
 					<a href="#/manage/user/{{ booking.user.id }}">{{ booking.user.name }}</a>
 					<btn icon="search" type="info" url="#/bookings?user={{ booking.user.id }}" small></btn>
@@ -55,10 +55,6 @@
 			</tr>
 		</tbody>
 	</table>
-	
-	<div class="full-height" layout="col" align="center" justify="center" ng-if="!filtered.length">
-		<alert icon="info" type="info" text="There are no current bookings"></alert>
-	</div>
 
 	<pagination total="total" per-page="perPage" current="current" click="gotoPage"></pagination>
 	
