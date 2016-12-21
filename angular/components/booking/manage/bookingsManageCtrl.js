@@ -33,10 +33,23 @@ angular.module('app.controllers')
 	// Filter
 	// --------------------------------------------------------------------------------
 
-	$scope.filterOpen = false
+	$scope.filterOpen = localStorage.filterOpen == "true" ? true : false
+
+	if(localStorage.filterOptions) {
+		$scope.filterOtions = JSON.parse($scope.filterOtions)
+	} else {
+		$scope.filterOtions = {
+			beforeDate: '',
+			afterDate: '',
+			showClosed: true,
+			perPage: 10
+		}
+	}
+	
 
 	$scope.toggleFilter = function() {
 		$scope.filterOpen = !$scope.filterOpen
+		localStorage.filterOpen = $scope.filterOpen
 	}
 
 	$scope.applyFilter = function() {

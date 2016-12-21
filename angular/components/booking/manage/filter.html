@@ -1,9 +1,6 @@
 <div class="page-advanced-filter">
 	
-	<div layout="col">
-		
-	</div>
-	<div layout="row" justify="between" align="center">
+	<div layout="row" justify="between" align="center" class="filter-header">
 		<h2>Advanced Filter</h2>
 		<div class="button-group">
 			<btn type="success" icon="caret-down" ng-if="filterOpen" ng-click="toggleFilter()"></btn>
@@ -11,41 +8,41 @@
 		</div>
 	</div>
 
-	<div ng-show="filterOpen">
-		<section layout="col">
-			<div class="group-heading first">Date Ranges</div>
-			<div class="item">
-				<label>After</label>
-				<input type="text" ng-model="afterDate" ng-change="search()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openAfterDateControl" datepicker-options="dateOptions" ng-click="openAfterDate()">
-			</div>
-			<div class="item">
-				<label>Before</label>
-				<input type="text" ng-model="beforeDate" ng-change="search()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openBeforeDateControl" datepicker-options="dateOptions" ng-click="openBeforeDate()">
-			</div>
-		</section>
+	<div ng-show="filterOpen" class="filter-drawer">
 
-		<section layout="col">
-			<div class="group-heading">Keywords</div>
-			<div class="item">
-				<input type="text" class="form-control" ng-model="filter" placeholder="John Doe...">
+		<div layout="row">
+			<div class="filter-col" layout="col" ratio="1">
+				<section layout="col">
+					<div class="group-heading first">Date Ranges</div>
+					<div class="item">
+						<label>After</label>
+						<input type="text" ng-model="filterOptions.afterDate" ng-change="search()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openAfterDateControl" datepicker-options="dateOptions" ng-click="openAfterDate()">
+					</div>
+					<div class="item">
+						<label>Before</label>
+						<input type="text" ng-model="filterOptions.beforeDate" ng-change="search()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openBeforeDateControl" datepicker-options="dateOptions" ng-click="openBeforeDate()">
+					</div>
+				</section>
 			</div>
-		</section>
 
-		<section layout="col">
-			<div class="group-heading">Types</div>
-			<div class="item">
-				<label class="checkbox">
-					<input type="checkbox" ng-model="showClosed" ng-change="toggleClosed()"> Show closed
-				</label>
-			</div>
-		</section>
+			<div class="filter-col" layout="col" ratio="1">
+				<section layout="col">
+					<div class="group-heading">Types</div>
+					<div class="item">
+						<label class="checkbox">
+							<input type="checkbox" ng-model="filterOptions.showClosed" ng-change="toggleClosed()"> Show closed
+						</label>
+					</div>
+				</section>
 
-		<section layout="col">
-			<div class="group-heading">Per Page</div>
-			<div class="item">
-				<input type="number" ng-model="perPage" class="form-control">
+				<section layout="col">
+					<div class="group-heading">Per Page</div>
+					<div class="item">
+						<input type="number" ng-model="perPage" class="form-control">
+					</div>
+				</section>
 			</div>
-		</section>
+		</div>
 
 		<div layout="row" justify="between">
 			<btn type="info" icon="search" ng-click="applyFilter()">Apply Filter</btn>
