@@ -26,9 +26,7 @@ angular.module('app.controllers')
 		var confirmed = confirm('Are you sure you want to delete this?')
 		
 		if(confirmed) {
-			$scope.booking.$delete().then(function() {
-				$invalidate.add('bookings')
-				
+			$http.delete('/api/booking/' + $scope.booking.id).then(function() {
 				$location.path('/bookings')
 			})
 		}

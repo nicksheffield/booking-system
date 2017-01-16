@@ -4,57 +4,85 @@ angular.module('app.controllers')
 	window.scope = $scope
 
 	// --------------------------------------------------------------------------------
+	// Filter
+	// --------------------------------------------------------------------------------
+
+	$scope.filterOpen = localStorage.filterOpen == "true" ? true : false
+	
+	var filterDefaults = {
+		beforeDate: '',
+		afterDate: '',
+		showClosed: true,
+		perPage: 10
+	}
+
+	try {
+		$scope.filterOptions = JSON.parse(localStorage.filterOptions)
+	} catch(e) {
+		$scope.filterOptions = _.clone(filterDefaults)
+	}
+
+	if($stateParams.before)  $scope.filterOptions.before     = $stateParams.before
+	if($stateParams.after)   $scope.filterOptions.after      = $stateParams.after
+	if($stateParams.perpage) $scope.filterOptions.perPage    = parseInt($stateParams.perpage)
+	if($stateParams.closed)  $scope.filterOptions.showClosed = $stateParams.closed
+
+	$scope.$watch('filterOptions', function() {
+		localStorage.filterOptions = JSON.stringify($scope.filterOptions)
+	}, true)
+
+	$scope.toggleFilter = function() {
+		$scope.filterOpen = !$scope.filterOpen
+		localStorage.filterOpen = $scope.filterOpen
+	}
+	
+	$scope.clearFilter = function() {
+		$scope.filterOptions = _.clone(filterDefaults)
+	}
+
+	$scope.applyFilter = function() {
+		var params = {}
+
+		if($scope.filterOptions.before) params.before = $scope.filterOptions.before
+		if($scope.filterOptions.after) params.after = $scope.filterOptions.after
+		if($scope.filterOptions.perpage) params.perpage = $scope.filterOptions.perpage
+
+		console.log($scope.filterOptions)
+
+		// $location.path()
+		console.log('/bookings?' + jQuery.param(params))
+	}
+
+
+	// --------------------------------------------------------------------------------
 	// Pagination
 	// --------------------------------------------------------------------------------
 
 	$scope.current = parseInt($stateParams.page) || 1
-	$scope.perPage = 10
+	$scope.perPage = parseInt($stateParams.perpage) || 10
 	$scope.total = 0
 
-	$http.get('/api/booking/count').then(response => $scope.total = response.data.total)
+	$http.get('/api/booking/count', {params: {user_id: 1}}).then(response => $scope.total = response.data.total)
 
 
 	// --------------------------------------------------------------------------------
 	// Bookings
 	// --------------------------------------------------------------------------------
 
-	$scope.bookings = Booking.query({
+	var query = {
 		limit: $scope.perPage,
 		offset: $scope.perPage * ($scope.current - 1),
-		with: 'user|products'
-	})
+		with: 'products'
+	}
+
+	if($stateParams.before) query.limit = $stateParams.before
+	if($stateParams.after) query.limit = $stateParams.after
+
+	$scope.bookings = Booking.query(query)
 
 	$scope.bookings.$promise
 		.then($prepare.bookings)
 		.then(bookings => $merge.bookings(bookings))
-
-
-	// --------------------------------------------------------------------------------
-	// Filter
-	// --------------------------------------------------------------------------------
-
-	$scope.filterOpen = localStorage.filterOpen == "true" ? true : false
-
-	if(localStorage.filterOptions) {
-		$scope.filterOtions = JSON.parse($scope.filterOtions)
-	} else {
-		$scope.filterOtions = {
-			beforeDate: '',
-			afterDate: '',
-			showClosed: true,
-			perPage: 10
-		}
-	}
-	
-
-	$scope.toggleFilter = function() {
-		$scope.filterOpen = !$scope.filterOpen
-		localStorage.filterOpen = $scope.filterOpen
-	}
-
-	$scope.applyFilter = function() {
-		console.log('applied!')
-	}
 
 
 	// --------------------------------------------------------------------------------
@@ -99,4 +127,6 @@ angular.module('app.controllers')
 	if($stateParams.group) $scope.filteredGroup = $store.get('groups', {code: $stateParams.group})
 	$scope.groupFilter = value => !$stateParams.group || value.user.group && value.user.group.id == $scope.filteredGroup.id
 	$scope.group = id => _.find($store.groups, {id: id})
+
+
 })

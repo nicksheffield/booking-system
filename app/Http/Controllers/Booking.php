@@ -169,7 +169,25 @@ class Booking extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function count() {
-		return ['total' => Model::query()->count()];
+	public function count(Request $request) {
+		$q = Model::query();
+
+		if($request->after) {
+			$q = $q->where('pickup_at', '>', $request->after);
+		}
+
+		if($request->before) {
+			$q = $q->where('pickup_at', '<', $request->before);
+		}
+
+		if($request->user_id) {
+			$q = $q->where('user_id', $request->user_id);
+		}
+
+		// if($request->group_id) {
+		// 	$q = $q->where('group_id', $request->group_id);
+		// }
+
+		return ['total' => $q->count()];
 	}
 }

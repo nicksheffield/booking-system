@@ -8,19 +8,60 @@
 
 <breadcrumbs></breadcrumbs>
 
-<!-- <filter model="filter" filtered="filtered"></filter> -->
+<div class="page-advanced-filter">
+	
+	<div layout="row" justify="between" align="center" class="filter-header">
+		<h2>Advanced Filter</h2>
+		<div class="button-group">
+			<btn type="success" icon="caret-down" ng-if="filterOpen" ng-click="toggleFilter()"></btn>
+			<btn type="success" icon="caret-right" ng-if="!filterOpen" ng-click="toggleFilter()"></btn>
+		</div>
+	</div>
 
-<div ng-include="'components/booking/manage/filter.html'"></div>
+	<div ng-show="filterOpen" class="filter-drawer">
+
+		<div layout="row">
+			<div class="filter-col" layout="col" ratio="1">
+				<section layout="col">
+					<div class="group-heading first">Date Ranges</div>
+					<div class="item">
+						<label>After</label>
+						<input type="text" ng-model="filterOptions.after" ng-change="search()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openAfterDateControl" datepicker-options="dateOptions" ng-click="openAfterDate()">
+					</div>
+					<div class="item">
+						<label>Before</label>
+						<input type="text" ng-model="filterOptions.before" ng-change="search()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openBeforeDateControl" datepicker-options="dateOptions" ng-click="openBeforeDate()">
+					</div>
+				</section>
+			</div>
+
+			<div class="filter-col" layout="col" ratio="1">
+				<section layout="col">
+					<div class="group-heading">Types</div>
+					<div class="item">
+						<label class="checkbox">
+							<input type="checkbox" ng-model="filterOptions.showClosed" ng-change="toggleClosed()"> Show closed
+						</label>
+					</div>
+				</section>
+
+				<section layout="col">
+					<div class="group-heading">Per Page</div>
+					<div class="item">
+						<input type="number" ng-model="filterOptions.perPage" class="form-control">
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<div layout="row" justify="between">
+			<btn type="info" icon="search" ng-click="applyFilter()">Apply Filters</btn>
+			<btn type="warning" icon="times" ng-click="clearFilter()">Clear</btn>
+		</div>
+	</div>
+</div>
 
 <div class="page-content" ratio="1">
-
-	<alert type="info" icon="filter" text="Limited to user: <b>{{ filteredUser.name }}</b>" ng-show="filteredUser">
-		<btn icon="times" type="primary" url="#/bookings" small>Clear</btn>
-	</alert>
-
-	<alert type="info" icon="filter" text="Limited to class: <b>{{ filteredGroup.code }}</b>" ng-show="filteredGroup">
-		<btn icon="times" type="primary" url="#/bookings" small>Clear</btn>
-	</alert>
 
 	<pagination total="total" per-page="perPage" current="current" click="gotoPage"></pagination>
 
