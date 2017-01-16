@@ -13,8 +13,8 @@
 	<div layout="row" justify="between" align="center" class="filter-header">
 		<h2>Advanced Filter</h2>
 		<div class="button-group">
-			<btn type="success" icon="caret-down" ng-if="filterOpen" ng-click="toggleFilter()"></btn>
-			<btn type="success" icon="caret-right" ng-if="!filterOpen" ng-click="toggleFilter()"></btn>
+			<btn type="success" icon="caret-up" ng-if="filterOpen" ng-click="toggleFilter()"></btn>
+			<btn type="success" icon="caret-down" ng-if="!filterOpen" ng-click="toggleFilter()"></btn>
 		</div>
 	</div>
 
@@ -26,11 +26,11 @@
 					<div class="group-heading first">Date Ranges</div>
 					<div class="item">
 						<label>After</label>
-						<input type="text" ng-model="filterOptions.after" ng-change="search()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openAfterDateControl" datepicker-options="dateOptions" ng-click="openAfterDate()">
+						<date-input ng-model="filterOptions.after" ng-change="search"></date-input>
 					</div>
 					<div class="item">
 						<label>Before</label>
-						<input type="text" ng-model="filterOptions.before" ng-change="search()" class="form-control" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openBeforeDateControl" datepicker-options="dateOptions" ng-click="openBeforeDate()">
+						<date-input ng-model="filterOptions.before" ng-change="search"></date-input>
 					</div>
 				</section>
 			</div>
@@ -77,12 +77,12 @@
 		<tbody>
 			<tr ng-repeat="booking in bookings | orderBy: '_priority'" class="filterable-row">
 				<td class="filterable-cell">
-					<a href="#/manage/user/{{ booking.user.id }}">{{ booking.user.name }}</a>
+					{{ booking.user.name }}
 					<btn icon="search" type="info" url="#/bookings?user={{ booking.user.id }}" small></btn>
 				</td>
 				<td class="filterable-cell">
 					{{ booking.user.group.code }}
-					<btn icon="search" type="info" url="#/bookings?group={{ booking.user.group.code }}" small></btn>
+					<btn icon="search" type="info" url="#/bookings?group={{ booking.user.group.code }}" ng-if="booking.user.group" small></btn>
 				</td>
 				<td>
 					{{ booking._status }}
