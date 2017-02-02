@@ -21,11 +21,9 @@ angular.module('app.controllers')
 
 	$scope.filterOptions = _.merge(_.clone(filterDefaults), JSON.parse(localStorage.filterOptions || '{}'))
 
-	console.log(1, $scope.filterOptions)
-
-	// if($stateParams.before)    $scope.filterOptions.before       = new Date(parseInt($stateParams.before))
-	// if($stateParams.after)     $scope.filterOptions.after        = new Date(parseInt($stateParams.after))
-	// if($stateParams.perpage)   $scope.filterOptions.perPage      = parseInt($stateParams.perpage)
+	if($stateParams.before)    $scope.filterOptions.before       = new Date(parseInt($stateParams.before))
+	if($stateParams.after)     $scope.filterOptions.after        = new Date(parseInt($stateParams.after))
+	if($stateParams.perpage)   $scope.filterOptions.perPage      = parseInt($stateParams.perpage)
 	// if($stateParams.closed)    $scope.filterOptions.showClosed   = $stateParams.closed
 	// if($stateParams.returned)  $scope.filterOptions.showReturned = $stateParams.returned
 	// if($stateParams.issued)    $scope.filterOptions.showIssued   = $stateParams.issued
@@ -50,15 +48,15 @@ angular.module('app.controllers')
 
 		var params = {}
 
-		// if($scope.filterOptions.before)       params.before   = new Date($scope.filterOptions.before).valueOf()
-		// if($scope.filterOptions.after)        params.after    = new Date($scope.filterOptions.after).valueOf()
+		if($scope.filterOptions.before)       params.before   = new Date($scope.filterOptions.before).valueOf()
+		if($scope.filterOptions.after)        params.after    = new Date($scope.filterOptions.after).valueOf()
 		if($scope.filterOptions.perpage)      params.perpage  = $scope.filterOptions.perpage
 		if($scope.filterOptions.showClosed)   params.closed   = $scope.filterOptions.showClosed
 		if($scope.filterOptions.showIssued)   params.issued   = $scope.filterOptions.showIssued
 		if($scope.filterOptions.showBooked)   params.booked   = $scope.filterOptions.showBooked
 		if($scope.filterOptions.showReturned) params.returned = $scope.filterOptions.showReturned
 
-		//$location.path('/bookings').search(params)
+		$location.path('/bookings').search(params)
 	}
 
 	// --------------------------------------------------------------------------------
@@ -86,7 +84,6 @@ angular.module('app.controllers')
 		}
 
 		$http.get('/api/booking/count', options).then(response => $scope.total = response.data.total)
-		console.log(3, $scope.filterOptions)
 	}
 
 	getCount()
@@ -109,20 +106,8 @@ angular.module('app.controllers')
 	$scope.bookings = Booking.query(query)
 
 	$scope.bookings.$promise
-		.then(function(d){
-			console.log(4, $scope.filterOptions)
-			return d
-		})
 		.then($prepare.bookings)
-		.then(function(d){
-			console.log(5, $scope.filterOptions)
-			return d
-		})
 		.then(bookings => $merge.bookings(bookings))
-		.then(function(d){
-			console.log(6, $scope.filterOptions)
-			return d
-		})
 
 
 	// --------------------------------------------------------------------------------
