@@ -40,6 +40,21 @@
 					<div class="group-heading">Types</div>
 					<div class="item">
 						<label class="checkbox">
+							<input type="checkbox" ng-model="filterOptions.showBooked" ng-change="toggleClosed()"> Show booked
+						</label>
+					</div>
+					<div class="item">
+						<label class="checkbox">
+							<input type="checkbox" ng-model="filterOptions.showIssued" ng-change="toggleClosed()"> Show issued
+						</label>
+					</div>
+					<div class="item">
+						<label class="checkbox">
+							<input type="checkbox" ng-model="filterOptions.showReturned" ng-change="toggleClosed()"> Show partially returned
+						</label>
+					</div>
+					<div class="item">
+						<label class="checkbox">
 							<input type="checkbox" ng-model="filterOptions.showClosed" ng-change="toggleClosed()"> Show closed
 						</label>
 					</div>

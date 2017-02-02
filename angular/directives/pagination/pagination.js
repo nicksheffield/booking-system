@@ -7,9 +7,13 @@ angular.module('app.directives')
 			var range = 2 // how many pages displayed either side of the current page
 			var max = range * 2 + 1
 
+			scope.last = Math.ceil(scope.total/scope.perPage)
+
 			var start = scope.current - range > 1 ? scope.current - range : 1
 
-			scope.last = Math.ceil(scope.total/scope.perPage)
+			if(start > scope.last - max + 1) {
+				start = scope.last - max + 1
+			}
 
 			for(var i=start; i<scope.last+1; i++) {
 				if(i > scope.current - range && i < scope.current + range || scope.pages.length < max) {

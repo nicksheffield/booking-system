@@ -12,7 +12,10 @@ angular.module('app.controllers')
 	var filterDefaults = {
 		beforeDate: '',
 		afterDate: '',
-		showClosed: true,
+		showClosed: false,
+		showIssued: true,
+		showBooked: true,
+		showReturned: true,
 		perPage: 10
 	}
 
@@ -22,35 +25,43 @@ angular.module('app.controllers')
 		$scope.filterOptions = _.clone(filterDefaults)
 	}
 
-	if($stateParams.before)  $scope.filterOptions.before     = $stateParams.before
-	if($stateParams.after)   $scope.filterOptions.after      = $stateParams.after
-	if($stateParams.perpage) $scope.filterOptions.perPage    = parseInt($stateParams.perpage)
-	if($stateParams.closed)  $scope.filterOptions.showClosed = $stateParams.closed
-
-	$scope.$watch('filterOptions', function() {
-		localStorage.filterOptions = JSON.stringify($scope.filterOptions)
-	}, true)
+	if($stateParams.before)    $scope.filterOptions.before       = $stateParams.before
+	if($stateParams.after)     $scope.filterOptions.after        = $stateParams.after
+	if($stateParams.perpage)   $scope.filterOptions.perPage      = parseInt($stateParams.perpage)
+	if($stateParams.closed)    $scope.filterOptions.showClosed   = $stateParams.closed
+	if($stateParams.returned)  $scope.filterOptions.showReturned = $stateParams.returned
+	if($stateParams.issued)    $scope.filterOptions.showIssued   = $stateParams.issued
+	if($stateParams.booked)    $scope.filterOptions.showBooked   = $stateParams.booked
 
 	$scope.toggleFilter = function() {
 		$scope.filterOpen = !$scope.filterOpen
 		localStorage.filterOpen = $scope.filterOpen
 	}
+
+	$scope.syncFilter = function() {
+		localStorage.filterOptions = JSON.stringify($scope.filterOptions)
+	}
 	
 	$scope.clearFilter = function() {
 		$scope.filterOptions = _.clone(filterDefaults)
+		$scope.syncFilter()
 	}
 
 	$scope.applyFilter = function() {
+		$scope.syncFilter()
+
 		var params = {}
 
-		if($scope.filterOptions.before) params.before = $scope.filterOptions.before
-		if($scope.filterOptions.after) params.after = $scope.filterOptions.after
-		if($scope.filterOptions.perpage) params.perpage = $scope.filterOptions.perpage
+		if($scope.filterOptions.before)       params.before   = $scope.filterOptions.before
+		if($scope.filterOptions.after)        params.after    = $scope.filterOptions.after
+		if($scope.filterOptions.perpage)      params.perpage  = $scope.filterOptions.perpage
+		if($scope.filterOptions.showClosed)   params.closed   = $scope.filterOptions.showClosed
+		if($scope.filterOptions.showIssued)   params.issued   = $scope.filterOptions.showIssued
+		if($scope.filterOptions.showBooked)   params.booked   = $scope.filterOptions.showBooked
+		if($scope.filterOptions.showReturned) params.returned = $scope.filterOptions.showReturned
 
-		console.log($scope.filterOptions)
-
-		// $location.path()
-		console.log('/bookings?' + jQuery.param(params))
+		$location.path('/bookings').search(params)
+		// console.log('/bookings?' + jQuery.param(params))
 	}
 
 
@@ -62,7 +73,18 @@ angular.module('app.controllers')
 	$scope.perPage = parseInt($stateParams.perpage) || 10
 	$scope.total = 0
 
-	$http.get('/api/booking/count', {params: {user_id: 1}}).then(response => $scope.total = response.data.total)
+	var options = {}
+
+	if(!$store.user.admin) {
+		options.params = {user_id: $store.user.id}
+	}
+
+	function getCount(options) {
+		$http.get('/api/booking/count', options).then(response => $scope.total = response.data.total)
+	}
+
+	getCount(options)
+	
 
 
 	// --------------------------------------------------------------------------------
