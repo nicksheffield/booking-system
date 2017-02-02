@@ -7,11 +7,11 @@ angular.module('app.controllers')
 	// Filter
 	// --------------------------------------------------------------------------------
 
-	$scope.filterOpen = localStorage.filterOpen == "true" ? true : false
+	$scope.filterOpen = localStorage.filterOpen == "true"
 	
 	var filterDefaults = {
-		beforeDate: '',
-		afterDate: '',
+		before: '',
+		after: '',
 		showClosed: false,
 		showIssued: true,
 		showBooked: true,
@@ -19,19 +19,17 @@ angular.module('app.controllers')
 		perPage: 10
 	}
 
-	try {
-		$scope.filterOptions = JSON.parse(localStorage.filterOptions)
-	} catch(e) {
-		$scope.filterOptions = _.clone(filterDefaults)
-	}
+	$scope.filterOptions = _.merge(_.clone(filterDefaults), JSON.parse(localStorage.filterOptions || '{}'))
 
-	if($stateParams.before)    $scope.filterOptions.before       = $stateParams.before
-	if($stateParams.after)     $scope.filterOptions.after        = $stateParams.after
-	if($stateParams.perpage)   $scope.filterOptions.perPage      = parseInt($stateParams.perpage)
-	if($stateParams.closed)    $scope.filterOptions.showClosed   = $stateParams.closed
-	if($stateParams.returned)  $scope.filterOptions.showReturned = $stateParams.returned
-	if($stateParams.issued)    $scope.filterOptions.showIssued   = $stateParams.issued
-	if($stateParams.booked)    $scope.filterOptions.showBooked   = $stateParams.booked
+	console.log(1, $scope.filterOptions)
+
+	// if($stateParams.before)    $scope.filterOptions.before       = new Date(parseInt($stateParams.before))
+	// if($stateParams.after)     $scope.filterOptions.after        = new Date(parseInt($stateParams.after))
+	// if($stateParams.perpage)   $scope.filterOptions.perPage      = parseInt($stateParams.perpage)
+	// if($stateParams.closed)    $scope.filterOptions.showClosed   = $stateParams.closed
+	// if($stateParams.returned)  $scope.filterOptions.showReturned = $stateParams.returned
+	// if($stateParams.issued)    $scope.filterOptions.showIssued   = $stateParams.issued
+	// if($stateParams.booked)    $scope.filterOptions.showBooked   = $stateParams.booked
 
 	$scope.toggleFilter = function() {
 		$scope.filterOpen = !$scope.filterOpen
@@ -52,18 +50,16 @@ angular.module('app.controllers')
 
 		var params = {}
 
-		if($scope.filterOptions.before)       params.before   = $scope.filterOptions.before
-		if($scope.filterOptions.after)        params.after    = $scope.filterOptions.after
+		// if($scope.filterOptions.before)       params.before   = new Date($scope.filterOptions.before).valueOf()
+		// if($scope.filterOptions.after)        params.after    = new Date($scope.filterOptions.after).valueOf()
 		if($scope.filterOptions.perpage)      params.perpage  = $scope.filterOptions.perpage
 		if($scope.filterOptions.showClosed)   params.closed   = $scope.filterOptions.showClosed
 		if($scope.filterOptions.showIssued)   params.issued   = $scope.filterOptions.showIssued
 		if($scope.filterOptions.showBooked)   params.booked   = $scope.filterOptions.showBooked
 		if($scope.filterOptions.showReturned) params.returned = $scope.filterOptions.showReturned
 
-		$location.path('/bookings').search(params)
-		// console.log('/bookings?' + jQuery.param(params))
+		//$location.path('/bookings').search(params)
 	}
-
 
 	// --------------------------------------------------------------------------------
 	// Pagination
@@ -73,17 +69,27 @@ angular.module('app.controllers')
 	$scope.perPage = parseInt($stateParams.perpage) || 10
 	$scope.total = 0
 
-	var options = {}
 
-	if(!$store.user.admin) {
-		options.params = {user_id: $store.user.id}
-	}
+	function getCount() {
+		var options = {}
 
-	function getCount(options) {
+		if(!$store.user.admin) {
+			options.params = {user_id: $store.user.id}
+		}
+
+		if($scope.filterOptions.before) {
+			options.before = $scope.filterOptions.before
+		}
+
+		if($scope.filterOptions.after) {
+			options.after = $scope.filterOptions.after
+		}
+
 		$http.get('/api/booking/count', options).then(response => $scope.total = response.data.total)
+		console.log(3, $scope.filterOptions)
 	}
 
-	getCount(options)
+	getCount()
 	
 
 
@@ -103,8 +109,20 @@ angular.module('app.controllers')
 	$scope.bookings = Booking.query(query)
 
 	$scope.bookings.$promise
+		.then(function(d){
+			console.log(4, $scope.filterOptions)
+			return d
+		})
 		.then($prepare.bookings)
+		.then(function(d){
+			console.log(5, $scope.filterOptions)
+			return d
+		})
 		.then(bookings => $merge.bookings(bookings))
+		.then(function(d){
+			console.log(6, $scope.filterOptions)
+			return d
+		})
 
 
 	// --------------------------------------------------------------------------------
@@ -124,13 +142,6 @@ angular.module('app.controllers')
 	$scope.openBeforeDate = function() {
 		$scope.openBeforeDateControl = $scope.openBeforeDateControl ? false : true
 		$scope.filterUseBeforeDate = true
-	}
-
-	$scope.afterDate = ''
-	$scope.beforeDate = ''
-
-	$scope.search = function() {
-		$scope.bookings = $store.bookings = $load.bookings({after: $scope.afterDate, before: $scope.beforeDate})
 	}
 
 

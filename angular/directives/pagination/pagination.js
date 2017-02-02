@@ -26,6 +26,15 @@ angular.module('app.directives')
 		}
 
 		scope.$watch('total', calculate)
+
+		scope.$watch('filters', function(newVal) {
+			var val = newVal
+
+			val.before = new Date(val.before).valueOf()
+			val.after  = new Date(val.after).valueOf()
+
+			scope.query = '&' + jQuery.param(val)
+		})
 	}
 
 	return {
@@ -37,7 +46,8 @@ angular.module('app.directives')
 			click: '=',
 			total: '=',
 			current: '=',
-			perPage: '='
+			perPage: '=',
+			filters: '='
 		}
 	}
 })

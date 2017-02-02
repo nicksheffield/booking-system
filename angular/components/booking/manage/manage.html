@@ -26,11 +26,11 @@
 					<div class="group-heading first">Date Ranges</div>
 					<div class="item">
 						<label>After</label>
-						<date-input ng-model="filterOptions.after" ng-change="search"></date-input>
+						<date-input ng-model="filterOptions.after"></date-input>
 					</div>
 					<div class="item">
 						<label>Before</label>
-						<date-input ng-model="filterOptions.before" ng-change="search"></date-input>
+						<date-input ng-model="filterOptions.before"></date-input>
 					</div>
 				</section>
 			</div>
@@ -78,7 +78,7 @@
 
 <div class="page-content" ratio="1">
 
-	<pagination total="total" per-page="perPage" current="current" click="gotoPage"></pagination>
+	<pagination total="total" per-page="perPage" current="current" click="gotoPage" filters="filterOptions"></pagination>
 
 	<table class="table table-hover table-striped table-filtered">
 		<thead>
@@ -112,6 +112,6 @@
 		</tbody>
 	</table>
 
-	<pagination total="total" per-page="perPage" current="current" click="gotoPage"></pagination>
+	<pagination total="total" per-page="perPage" current="current" click="gotoPage" filters="filterOptions"></pagination>
 	
 </div>
