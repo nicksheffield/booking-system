@@ -9,7 +9,7 @@ angular.module('app.directives')
 
 			scope.last = Math.ceil(scope.total/scope.filter.limit)
 
-			var start = scope.current - range > 1 ? scope.current - range : 1
+			var start = scope.filter.page - range > 1 ? scope.filter.page - range : 1
 			
 			if(start > scope.last - max + 1) {
 				start = scope.last - max + 1
@@ -18,13 +18,13 @@ angular.module('app.directives')
 			start = start <= 1 ? 1 : start
 
 			for(var i=start; i<scope.last+1; i++) {
-				if(i > scope.current - range && i < scope.current + range || scope.pages.length < max) {
+				if(i > scope.filter.page - range && i < scope.filter.page + range || scope.pages.length < max) {
 					scope.pages.push(i)
 				}
 			}
 
-			scope.atStart = scope.current !== 1
-			scope.atEnd = scope.current + range <= (scope.total / scope.filter.limit)
+			scope.atStart = scope.filter.page !== 1
+			scope.atEnd = scope.filter.page + range <= (scope.total / scope.filter.limit)
 		}
 
 		scope.$watch('total', calculate)
@@ -41,7 +41,6 @@ angular.module('app.directives')
 		templateUrl: 'directives/pagination/pagination.html',
 		scope: {
 			total: '=',
-			current: '=',
 			filter: '='
 		}
 	}

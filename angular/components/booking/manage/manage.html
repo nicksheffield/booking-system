@@ -74,7 +74,7 @@
 <div class="page-content" ratio="1">
 
 	<div ng-show="bookings.length">
-		<pagination total="total" current="current" filter="filter.options"></pagination>
+		<pagination total="total" filter="filter.options"></pagination>
 		
 		<table class="table table-hover table-striped table-filtered">
 			<thead>
@@ -108,7 +108,7 @@
 			</tbody>
 		</table>
 		
-		<pagination total="total" current="current" filter="filter.options"></pagination>
+		<pagination total="total" filter="filter.options"></pagination>
 	</div>
 
 	<div ng-show="!bookings.length">

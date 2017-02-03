@@ -22,7 +22,6 @@ angular.module('app.controllers')
 	// Pagination
 	// --------------------------------------------------------------------------------
 
-	$scope.current = parseInt($stateParams.page) || 1
 	$scope.limit = $bookingFilter.options.limit
 	$scope.total = 0
 
