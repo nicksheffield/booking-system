@@ -36,7 +36,7 @@ class BookingsSeeder extends Seeder
 		
 		foreach($users as $user) {
 			for($i=0; $i<$booking_per_person; $i++) {
-				$date = '2016-'.rand(1,(int)date('m')-1).'-'.rand(0, 28);
+				$date = '2016-'.rand(1, 12).'-'.rand(0, 28);
 
 				$items[] = [
 					'id' => $items[count($items)-1]['id'] + 1,
