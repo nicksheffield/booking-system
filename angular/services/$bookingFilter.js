@@ -28,7 +28,8 @@ angular.module('app.services')
 		overdue: false,
 		closed: false,
 		issued: true,
-		limit: 10
+		limit: 10,
+		page: 1
 	}
 
 	service.options = _.merge(_.clone(service.defaults), JSON.parse(localStorage.filterOptions || '{}'), $stateParams)

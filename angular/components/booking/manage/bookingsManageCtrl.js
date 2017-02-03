@@ -13,6 +13,7 @@ angular.module('app.controllers')
 
 	$scope.applyFilter = function() {
 		$bookingFilter.apply()
+		console.log($bookingFilter.options)
 		$location.path('/bookings').search($bookingFilter.options)
 		// $window.location.href = '#/bookings?' + jQuery.param($bookingFilter.options)
 	}
