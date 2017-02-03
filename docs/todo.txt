@@ -3,7 +3,6 @@ Todo.txt
 	- Waiting list for students that want to book a certain product
 	- add tutor dropdown for classes can be cut off because the .frame or something has overflow hidden
 	- Late fee restricts booking and that shows on user data
-	- Restyle "There are no current bookings" message
 	- Student can request to extend the return date of any issued bookings
 	- Only load bookings when needed, because they're basically the only thing that is going to grow insanely
 	- Homepage info

@@ -7,13 +7,15 @@ angular.module('app.directives')
 			var range = 2 // how many pages displayed either side of the current page
 			var max = range * 2 + 1
 
-			scope.last = Math.ceil(scope.total/scope.perPage)
+			scope.last = Math.ceil(scope.total/scope.filter.limit)
 
 			var start = scope.current - range > 1 ? scope.current - range : 1
-
+			
 			if(start > scope.last - max + 1) {
 				start = scope.last - max + 1
 			}
+
+			start = start <= 1 ? 1 : start
 
 			for(var i=start; i<scope.last+1; i++) {
 				if(i > scope.current - range && i < scope.current + range || scope.pages.length < max) {
@@ -22,19 +24,14 @@ angular.module('app.directives')
 			}
 
 			scope.atStart = start > 1
-			scope.atEnd = scope.current + range <= (scope.total / scope.perPage)
+			scope.atEnd = scope.current + range <= (scope.total / scope.filter.limit)
 		}
 
 		scope.$watch('total', calculate)
 
-		scope.$watch('filters', function(newVal) {
-			var val = _.clone(newVal)
-
-			val.before = new Date(val.before).valueOf()
-			val.after  = new Date(val.after).valueOf()
-
-			scope.query = '&' + jQuery.param(val)
-		})
+		scope.$watch('filter', function(newVal) {
+			scope.query = '&' + jQuery.param(scope.filter)
+		}, true)
 	}
 
 	return {
@@ -43,11 +40,9 @@ angular.module('app.directives')
 		link: link,
 		templateUrl: 'directives/pagination/pagination.html',
 		scope: {
-			click: '=',
 			total: '=',
 			current: '=',
-			perPage: '=',
-			filters: '='
+			filter: '='
 		}
 	}
 })

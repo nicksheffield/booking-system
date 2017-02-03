@@ -12,6 +12,10 @@ angular.module('app.directives')
 		scope.toggle = function() {
 			scope.open = !scope.open
 		}
+
+		scope.clear = function() {
+			scope.model = ''
+		}
 	}
 
 	return {

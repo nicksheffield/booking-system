@@ -13,12 +13,12 @@
 	<div layout="row" justify="between" align="center" class="filter-header">
 		<h2>Advanced Filter</h2>
 		<div class="button-group">
-			<btn type="success" icon="caret-up" ng-if="filterOpen" ng-click="toggleFilter()"></btn>
-			<btn type="success" icon="caret-down" ng-if="!filterOpen" ng-click="toggleFilter()"></btn>
+			<btn type="success" icon="caret-up" ng-if="filter.open" ng-click="filter.toggleOpen()"></btn>
+			<btn type="success" icon="caret-down" ng-if="!filter.open" ng-click="filter.toggleOpen()"></btn>
 		</div>
 	</div>
 
-	<div ng-show="filterOpen" class="filter-drawer">
+	<div ng-show="filter.open" class="filter-drawer">
 
 		<div layout="row">
 			<div class="filter-col" layout="col" ratio="1">
@@ -26,11 +26,11 @@
 					<div class="group-heading first">Date Ranges</div>
 					<div class="item">
 						<label>After</label>
-						<date-input ng-model="filterOptions.after"></date-input>
+						<date-input ng-model="filter.inDOM.after"></date-input>
 					</div>
 					<div class="item">
 						<label>Before</label>
-						<date-input ng-model="filterOptions.before"></date-input>
+						<date-input ng-model="filter.inDOM.before"></date-input>
 					</div>
 				</section>
 			</div>
@@ -40,22 +40,22 @@
 					<div class="group-heading">Types</div>
 					<div class="item">
 						<label class="checkbox">
-							<input type="checkbox" ng-model="filterOptions.showBooked" ng-change="toggleClosed()"> Show booked
+							<input type="checkbox" ng-model="filter.inDOM.showBooked" ng-change="toggleClosed()"> Show booked
 						</label>
 					</div>
 					<div class="item">
 						<label class="checkbox">
-							<input type="checkbox" ng-model="filterOptions.showIssued" ng-change="toggleClosed()"> Show issued
+							<input type="checkbox" ng-model="filter.inDOM.showIssued" ng-change="toggleClosed()"> Show issued
 						</label>
 					</div>
 					<div class="item">
 						<label class="checkbox">
-							<input type="checkbox" ng-model="filterOptions.showReturned" ng-change="toggleClosed()"> Show partially returned
+							<input type="checkbox" ng-model="filter.inDOM.showReturned" ng-change="toggleClosed()"> Show partially returned
 						</label>
 					</div>
 					<div class="item">
 						<label class="checkbox">
-							<input type="checkbox" ng-model="filterOptions.showClosed" ng-change="toggleClosed()"> Show closed
+							<input type="checkbox" ng-model="filter.inDOM.showClosed" ng-change="toggleClosed()"> Show closed
 						</label>
 					</div>
 				</section>
@@ -63,7 +63,7 @@
 				<section layout="col">
 					<div class="group-heading">Per Page</div>
 					<div class="item">
-						<input type="number" ng-model="filterOptions.perPage" class="form-control">
+						<input type="number" ng-model="filter.inDOM.limit" class="form-control">
 					</div>
 				</section>
 			</div>
@@ -71,14 +71,14 @@
 
 		<div layout="row" justify="between">
 			<btn type="info" icon="search" ng-click="applyFilter()">Apply Filters</btn>
-			<btn type="warning" icon="times" ng-click="clearFilter()">Clear</btn>
+			<btn type="warning" icon="times" ng-click="filter.clear()">Clear</btn>
 		</div>
 	</div>
 </div>
 
 <div class="page-content" ratio="1">
 
-	<pagination total="total" per-page="perPage" current="current" click="gotoPage" filters="filterOptions"></pagination>
+	<pagination total="total" current="current" filter="filter.options"></pagination>
 
 	<table class="table table-hover table-striped table-filtered">
 		<thead>
@@ -112,6 +112,6 @@
 		</tbody>
 	</table>
 
-	<pagination total="total" per-page="perPage" current="current" click="gotoPage" filters="filterOptions"></pagination>
+	<pagination total="total" current="current" filter="filter.options"></pagination>
 	
 </div>

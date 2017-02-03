@@ -1,62 +1,20 @@
 angular.module('app.controllers')
 
-.controller('bookingsManageCtrl', function($scope, $store, $load, $merge, $stateParams, $http, $location, Booking, $prepare) {
+.controller('bookingsManageCtrl', function($scope, $store, $load, $merge, $stateParams, $http, $location, Booking, $prepare, $bookingFilter, $window) {
 	window.scope = $scope
+
+	console.log('$bookingFilter', $bookingFilter)
 
 	// --------------------------------------------------------------------------------
 	// Filter
 	// --------------------------------------------------------------------------------
 
-	$scope.filterOpen = localStorage.filterOpen == "true"
-	
-	var filterDefaults = {
-		before: '',
-		after: '',
-		showClosed: false,
-		showIssued: true,
-		showBooked: true,
-		showReturned: true,
-		perPage: 10
-	}
-
-	$scope.filterOptions = _.merge(_.clone(filterDefaults), JSON.parse(localStorage.filterOptions || '{}'))
-
-	if($stateParams.before)    $scope.filterOptions.before       = new Date(parseInt($stateParams.before))
-	if($stateParams.after)     $scope.filterOptions.after        = new Date(parseInt($stateParams.after))
-	if($stateParams.perpage)   $scope.filterOptions.perPage      = parseInt($stateParams.perpage)
-	// if($stateParams.closed)    $scope.filterOptions.showClosed   = $stateParams.closed
-	// if($stateParams.returned)  $scope.filterOptions.showReturned = $stateParams.returned
-	// if($stateParams.issued)    $scope.filterOptions.showIssued   = $stateParams.issued
-	// if($stateParams.booked)    $scope.filterOptions.showBooked   = $stateParams.booked
-
-	$scope.toggleFilter = function() {
-		$scope.filterOpen = !$scope.filterOpen
-		localStorage.filterOpen = $scope.filterOpen
-	}
-
-	$scope.syncFilter = function() {
-		localStorage.filterOptions = JSON.stringify($scope.filterOptions)
-	}
-	
-	$scope.clearFilter = function() {
-		$scope.filterOptions = _.clone(filterDefaults)
-		$scope.syncFilter()
-	}
+	$scope.filter = $bookingFilter
 
 	$scope.applyFilter = function() {
-		$scope.syncFilter()
-
-		var params = {}
-
-		if($scope.filterOptions.before)       params.before   = new Date($scope.filterOptions.before).valueOf()
-		if($scope.filterOptions.after)        params.after    = new Date($scope.filterOptions.after).valueOf()
-		if($scope.filterOptions.perpage)      params.perpage  = $scope.filterOptions.perpage
-		if($scope.filterOptions.showClosed)   params.closed   = $scope.filterOptions.showClosed
-		if($scope.filterOptions.showIssued)   params.issued   = $scope.filterOptions.showIssued
-		if($scope.filterOptions.showBooked)   params.booked   = $scope.filterOptions.showBooked
-		if($scope.filterOptions.showReturned) params.returned = $scope.filterOptions.showReturned
-
-		$location.path('/bookings').search(params)
+		$bookingFilter.apply()
+		$location.path('/bookings').search($bookingFilter.options)
+		// $window.location.href = '#/bookings?' + jQuery.param($bookingFilter.options)
 	}
 
 	// --------------------------------------------------------------------------------
@@ -64,7 +22,7 @@ angular.module('app.controllers')
 	// --------------------------------------------------------------------------------
 
 	$scope.current = parseInt($stateParams.page) || 1
-	$scope.perPage = parseInt($stateParams.perpage) || 10
+	$scope.limit = $bookingFilter.options.limit
 	$scope.total = 0
 
 
@@ -75,15 +33,15 @@ angular.module('app.controllers')
 			options.params = {user_id: $store.user.id}
 		}
 
-		if($scope.filterOptions.before) {
-			options.before = $scope.filterOptions.before
+		if($bookingFilter.inDOM.before) {
+			options.before = $bookingFilter.inDOM.before
 		}
 
-		if($scope.filterOptions.after) {
-			options.after = $scope.filterOptions.after
+		if($bookingFilter.inDOM.after) {
+			options.after = $bookingFilter.inDOM.after
 		}
 
-		$http.get('/api/booking/count', options).then(response => $scope.total = response.data.total)
+		$http.get('/api/booking/count', {params: options}).then(response => $scope.total = response.data.total)
 	}
 
 	getCount()
@@ -95,13 +53,13 @@ angular.module('app.controllers')
 	// --------------------------------------------------------------------------------
 
 	var query = {
-		limit: $scope.perPage,
-		offset: $scope.perPage * ($scope.current - 1),
+		limit: $bookingFilter.options.limit,
+		offset: $bookingFilter.options.limit * ($scope.current - 1),
 		with: 'products'
 	}
 
-	if($stateParams.before) query.limit = $stateParams.before
-	if($stateParams.after) query.limit = $stateParams.after
+	if($stateParams.before) query.before = $bookingFilter.inDOM.before
+	if($stateParams.after) query.after = $bookingFilter.inDOM.after
 
 	$scope.bookings = Booking.query(query)
 
