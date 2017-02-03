@@ -5,6 +5,8 @@ angular.module('app.controllers')
 
 	console.log('$bookingFilter', $bookingFilter)
 
+	$bookingFilter.applyParams($stateParams)
+
 	// --------------------------------------------------------------------------------
 	// Filter
 	// --------------------------------------------------------------------------------

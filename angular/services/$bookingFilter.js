@@ -1,6 +1,6 @@
 angular.module('app.services')
 
-.factory('$bookingFilter', function($rootScope, $store, $stateParams) {
+.factory('$bookingFilter', function($rootScope, $store) {
 	var service = {}
 
 	// ------------------------------------------------
@@ -32,12 +32,22 @@ angular.module('app.services')
 		page: 1
 	}
 
-	service.options = _.merge(_.clone(service.defaults), JSON.parse(localStorage.filterOptions || '{}'), $stateParams)
-	service.inDOM   = _.merge(_.clone(service.defaults), JSON.parse(localStorage.filterOptions || '{}'), $stateParams)
+	service.options = _.merge(_.clone(service.defaults), JSON.parse(localStorage.filterOptions || '{}'))
+
+	service.options.limit = parseInt(service.options.limit)
+	service.options.page = parseInt(service.options.page)
+
+	console.log('service.options', service.options)
+
+
+	service.inDOM   = _.clone(service.options)
 
 	if(service.inDOM.before) service.inDOM.before = new Date(parseInt(service.inDOM.before + '000'))
 	if(service.inDOM.after)  service.inDOM.after  = new Date(parseInt(service.inDOM.after + '000'))
-	if(service.inDOM.limit)  service.inDOM.limit  = parseInt(service.inDOM.limit)
+
+	service.applyParams = function(params) {
+		service.options = _.merge(service.options, params)
+	}
 
 	service.saveOptions = function() {
 		localStorage.filterOptions = JSON.stringify(service.options)
