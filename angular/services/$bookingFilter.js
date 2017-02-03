@@ -38,8 +38,10 @@ angular.module('app.services')
 		service.options.limit = parseInt(service.options.limit)
 		service.options.page = parseInt(service.options.page)
 
-		console.log('service.options', service.options)
-
+		for(var prop in service.options) {
+			if(service.options[prop] == 'true')  service.options[prop] = true
+			if(service.options[prop] == 'false') service.options[prop] = false
+		}
 
 		service.inDOM   = _.clone(service.options)
 
@@ -49,7 +51,6 @@ angular.module('app.services')
 
 	service.applyParams = function(params) {
 		service.options = _.merge(service.options, params)
-
 		service.process()
 	}
 
