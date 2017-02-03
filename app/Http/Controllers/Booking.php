@@ -23,14 +23,26 @@ class Booking extends Controller
 
 		if($request->after) {
 			$q = $q
-				->where('pickup_at', '>', $request->after);
-				// ->orWhere('pickup_at', '>', $request->after);
+				->where('pickup_at', '>', Carbon::createFromTimestamp($request->after)->toDateTimeString());
 		}
 
 		if($request->before) {
 			$q = $q
-				->where('pickup_at', '<', $request->before);
-				// ->orWhere('pickup_at', '<', $request->before);
+				->where('pickup_at', '<', Carbon::createFromTimestamp($request->before)->toDateTimeString());
+		}
+
+		if($request->overdue == 'true') {
+			$q = $q->overdue();
+		}
+
+		if($request->issued == 'true') {
+			$q = $q->issued();
+		}
+
+		if($request->closed == 'true') {
+			$q = $q->closed();
+		} else {
+			$q = $q->active();
 		}
 		
 		if($request->with) $q = $q->with(explode('|', $request->with));
@@ -40,10 +52,7 @@ class Booking extends Controller
 
 		return $q->get();
 
-		// DB::enableQueryLog();
-		// $q->get();
-
-		// dd(DB::getQueryLog());
+		// DB::enableQueryLog(); $q->get(); dd(DB::getQueryLog());
 	}
 
 	/**
@@ -173,11 +182,11 @@ class Booking extends Controller
 		$q = Model::query();
 
 		if($request->after) {
-			$q = $q->where('pickup_at', '>', $request->after);
+			$q = $q->where('pickup_at', '>', Carbon::createFromTimestamp($request->after)->toDateTimeString());
 		}
 
 		if($request->before) {
-			$q = $q->where('pickup_at', '<', $request->before);
+			$q = $q->where('pickup_at', '<', Carbon::createFromTimestamp($request->before)->toDateTimeString());
 		}
 
 		if($request->user_id) {
@@ -187,6 +196,20 @@ class Booking extends Controller
 		// if($request->group_id) {
 		// 	$q = $q->where('group_id', $request->group_id);
 		// }
+
+		if($request->overdue == 'true') {
+			$q = $q->overdue();
+		}
+
+		if($request->issued == 'true') {
+			$q = $q->issued();
+		}
+
+		if($request->closed == 'true') {
+			$q = $q->closed();
+		} else {
+			$q = $q->active();
+		}
 
 		return ['total' => $q->count()];
 	}

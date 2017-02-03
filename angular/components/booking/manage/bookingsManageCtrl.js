@@ -29,17 +29,9 @@ angular.module('app.controllers')
 	function getCount() {
 		var options = {}
 
-		if(!$store.user.admin) {
-			options.params = {user_id: $store.user.id}
-		}
+		if(!$store.user.admin)          options.user_id = $store.user.id
 
-		if($bookingFilter.inDOM.before) {
-			options.before = $bookingFilter.inDOM.before
-		}
-
-		if($bookingFilter.inDOM.after) {
-			options.after = $bookingFilter.inDOM.after
-		}
+		options = _.merge(options, $bookingFilter.options)
 
 		$http.get('/api/booking/count', {params: options}).then(response => $scope.total = response.data.total)
 	}
@@ -58,8 +50,7 @@ angular.module('app.controllers')
 		with: 'products'
 	}
 
-	if($stateParams.before) query.before = $bookingFilter.inDOM.before
-	if($stateParams.after) query.after = $bookingFilter.inDOM.after
+	query = _.merge(query, $bookingFilter.options)
 
 	$scope.bookings = Booking.query(query)
 

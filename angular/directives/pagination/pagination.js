@@ -23,7 +23,7 @@ angular.module('app.directives')
 				}
 			}
 
-			scope.atStart = start > 1
+			scope.atStart = scope.current !== 1
 			scope.atEnd = scope.current + range <= (scope.total / scope.filter.limit)
 		}
 

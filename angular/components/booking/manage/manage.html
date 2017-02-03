@@ -40,22 +40,17 @@
 					<div class="group-heading">Types</div>
 					<div class="item">
 						<label class="checkbox">
-							<input type="checkbox" ng-model="filter.inDOM.showBooked" ng-change="toggleClosed()"> Show booked
+							<input type="checkbox" ng-model="filter.inDOM.overdue"> Show overdue
 						</label>
 					</div>
 					<div class="item">
 						<label class="checkbox">
-							<input type="checkbox" ng-model="filter.inDOM.showIssued" ng-change="toggleClosed()"> Show issued
+							<input type="checkbox" ng-model="filter.inDOM.closed"> Show closed
 						</label>
 					</div>
 					<div class="item">
 						<label class="checkbox">
-							<input type="checkbox" ng-model="filter.inDOM.showReturned" ng-change="toggleClosed()"> Show partially returned
-						</label>
-					</div>
-					<div class="item">
-						<label class="checkbox">
-							<input type="checkbox" ng-model="filter.inDOM.showClosed" ng-change="toggleClosed()"> Show closed
+							<input type="checkbox" ng-model="filter.inDOM.issued"> Show issued
 						</label>
 					</div>
 				</section>
@@ -78,40 +73,46 @@
 
 <div class="page-content" ratio="1">
 
-	<pagination total="total" current="current" filter="filter.options"></pagination>
+	<div ng-show="bookings.length">
+		<pagination total="total" current="current" filter="filter.options"></pagination>
+		
+		<table class="table table-hover table-striped table-filtered">
+			<thead>
+				<tr>
+					<th>User</th>
+					<th>Class</th>
+					<th>Status</th>
+					<th class="table-col-controls"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="booking in bookings | orderBy: '_priority'" class="filterable-row">
+					<td class="filterable-cell">
+						{{ booking.user.name }}
+						<btn icon="search" type="info" url="#/bookings?user={{ booking.user.id }}" small></btn>
+					</td>
+					<td class="filterable-cell">
+						{{ booking.user.group.code }}
+						<btn icon="search" type="info" url="#/bookings?group={{ booking.user.group.code }}" ng-if="booking.user.group" small></btn>
+					</td>
+					<td>
+						{{ booking._status }}
+						<span ng-show="booking._priority == 3">
+							 ({{ booking.closed_at | date }})
+						</span>
+					</td>
+					<td class="button-row">
+						<btn url="#/booking/{{ booking.id }}" type="info" icon="arrow-right" small></btn>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<pagination total="total" current="current" filter="filter.options"></pagination>
+	</div>
 
-	<table class="table table-hover table-striped table-filtered">
-		<thead>
-			<tr>
-				<th>User</th>
-				<th>Class</th>
-				<th>Status</th>
-				<th class="table-col-controls"></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="booking in bookings | orderBy: '_priority'" class="filterable-row">
-				<td class="filterable-cell">
-					{{ booking.user.name }}
-					<btn icon="search" type="info" url="#/bookings?user={{ booking.user.id }}" small></btn>
-				</td>
-				<td class="filterable-cell">
-					{{ booking.user.group.code }}
-					<btn icon="search" type="info" url="#/bookings?group={{ booking.user.group.code }}" ng-if="booking.user.group" small></btn>
-				</td>
-				<td>
-					{{ booking._status }}
-					<span ng-show="booking._priority == 3">
-						 ({{ booking.closed_at | date }})
-					</span>
-				</td>
-				<td class="button-row">
-					<btn url="#/booking/{{ booking.id }}" type="info" icon="arrow-right" small></btn>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-
-	<pagination total="total" current="current" filter="filter.options"></pagination>
+	<div ng-show="!bookings.length">
+		<alert type="warning" icon="exclamation-triangle" text="There are no bookings"></alert>
+	</div>
 	
 </div>
