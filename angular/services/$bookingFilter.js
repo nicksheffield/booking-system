@@ -32,25 +32,25 @@ angular.module('app.services')
 		page: 1
 	}
 
-	service.options = _.merge(_.clone(service.defaults), JSON.parse(localStorage.filterOptions || '{}'))
+	service.options = _.clone(service.defaults)
 
-	service.options.limit = parseInt(service.options.limit)
-	service.options.page = parseInt(service.options.page)
+	service.process = function() {
+		service.options.limit = parseInt(service.options.limit)
+		service.options.page = parseInt(service.options.page)
 
-	console.log('service.options', service.options)
+		console.log('service.options', service.options)
 
 
-	service.inDOM   = _.clone(service.options)
+		service.inDOM   = _.clone(service.options)
 
-	if(service.inDOM.before) service.inDOM.before = new Date(parseInt(service.inDOM.before + '000'))
-	if(service.inDOM.after)  service.inDOM.after  = new Date(parseInt(service.inDOM.after + '000'))
+		if(service.inDOM.before) service.inDOM.before = new Date(parseInt(service.inDOM.before + '000'))
+		if(service.inDOM.after)  service.inDOM.after  = new Date(parseInt(service.inDOM.after + '000'))
+	}
 
 	service.applyParams = function(params) {
 		service.options = _.merge(service.options, params)
-	}
 
-	service.saveOptions = function() {
-		localStorage.filterOptions = JSON.stringify(service.options)
+		service.process()
 	}
 
 	service.clear = function() {
@@ -63,8 +63,6 @@ angular.module('app.services')
 
 		if(service.options.before) service.options.before = Math.floor(new Date(service.options.before).valueOf() / 1000)
 		if(service.options.after)  service.options.after  = Math.floor(new Date(service.options.after).valueOf() / 1000)
-
-		service.saveOptions()
 	}
 
 	return service
