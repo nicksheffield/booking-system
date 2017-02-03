@@ -30,7 +30,7 @@ angular.module('app.directives')
 		scope.$watch('total', calculate)
 
 		scope.$watch('filter', function(newVal) {
-			scope.query = '&' + jQuery.param(scope.filter)
+			scope.query = '&' + jQuery.param(_.omit(scope.filter, ['page']))
 		}, true)
 	}
 
