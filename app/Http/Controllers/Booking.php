@@ -22,13 +22,11 @@ class Booking extends Controller
 		if($request->offset) $q = $q->offset(($request->offset ?: 0));
 
 		if($request->after) {
-			$q = $q
-				->where('pickup_at', '>', Carbon::createFromTimestamp($request->after)->toDateTimeString());
+			$q = $q->where('pickup_at', '>', Carbon::createFromTimestamp($request->after)->toDateTimeString());
 		}
 
 		if($request->before) {
-			$q = $q
-				->where('pickup_at', '<', Carbon::createFromTimestamp($request->before)->toDateTimeString());
+			$q = $q->where('pickup_at', '<', Carbon::createFromTimestamp($request->before)->toDateTimeString());
 		}
 
 		if($request->overdue == 'true') {
