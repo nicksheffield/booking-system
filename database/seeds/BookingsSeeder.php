@@ -48,13 +48,16 @@ class BookingsSeeder extends Seeder
 					'created_by_id' => $user->id,
 					'issued_by_id' => 1,
 					'closed_by_id' => 1,
-					'created_at' => Carbon::parse($date)->subDays(2)
+					'created_at' => Carbon::parse($date)->subDays(2),
+					'created_at' => Carbon::parse($date)->subDays(3),
+					'updated_at' => null
 				];
 			}
 		}
 
 		foreach($items as $item) {
-			App\Models\Booking::create($item);
+			// App\Models\Booking::create($item);
+			DB::table('bookings')->insert($item);
 		}
 	}
 }
