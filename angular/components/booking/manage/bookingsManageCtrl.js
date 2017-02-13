@@ -20,6 +20,11 @@ angular.module('app.controllers')
 		// $window.location.href = '#/bookings?' + jQuery.param($bookingFilter.options)
 	}
 
+	$scope.clearFilter = function() {
+		$bookingFilter.clear()
+		$window.location.href = '#/bookings'
+	}
+
 	// --------------------------------------------------------------------------------
 	// Pagination
 	// --------------------------------------------------------------------------------
@@ -31,7 +36,7 @@ angular.module('app.controllers')
 	function getCount() {
 		var options = {}
 
-		if(!$store.user.admin)          options.user_id = $store.user.id
+		if(!$store.user.admin) options.user_id = $store.user.id
 
 		options = _.merge(options, $bookingFilter.options)
 
@@ -60,7 +65,6 @@ angular.module('app.controllers')
 		.then($prepare.bookings)
 		.then(bookings => $merge.bookings(bookings))
 
-
 	// --------------------------------------------------------------------------------
 	// Dates
 	// --------------------------------------------------------------------------------
@@ -79,23 +83,5 @@ angular.module('app.controllers')
 		$scope.openBeforeDateControl = $scope.openBeforeDateControl ? false : true
 		$scope.filterUseBeforeDate = true
 	}
-
-
-	// --------------------------------------------------------------------------------
-	// User filter
-	// --------------------------------------------------------------------------------
-
-	if($stateParams.user) $scope.filteredUser = $store.get('users', $stateParams.user)
-	$scope.userFilter = value => !$stateParams.user || value.user && value.user.id == $scope.filteredUser.id
-	
-
-	// --------------------------------------------------------------------------------
-	// Group filter
-	// --------------------------------------------------------------------------------
-
-	if($stateParams.group) $scope.filteredGroup = $store.get('groups', {code: $stateParams.group})
-	$scope.groupFilter = value => !$stateParams.group || value.user.group && value.user.group.id == $scope.filteredGroup.id
-	$scope.group = id => _.find($store.groups, {id: id})
-
 
 })

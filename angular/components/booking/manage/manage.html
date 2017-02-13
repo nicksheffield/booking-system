@@ -53,6 +53,11 @@
 							<input type="checkbox" ng-model="filter.inDOM.issued"> Show issued
 						</label>
 					</div>
+					<div class="item">
+						<label class="checkbox">
+							<input type="checkbox" ng-model="filter.inDOM.booked"> Show booked
+						</label>
+					</div>
 				</section>
 
 				<section layout="col">
@@ -66,7 +71,7 @@
 
 		<div layout="row" justify="between">
 			<btn type="info" icon="search" ng-click="applyFilter()">Apply Filters</btn>
-			<btn type="warning" icon="times" ng-click="filter.clear()">Clear</btn>
+			<btn type="warning" icon="times" ng-click="clearFilter()">Clear</btn>
 		</div>
 	</div>
 </div>
@@ -112,7 +117,7 @@
 	</div>
 
 	<div ng-show="!bookings.length">
-		<alert type="warning" icon="exclamation-triangle" text="There are no bookings"></alert>
+		<alert type="danger" icon="exclamation-triangle" text="No bookings match your filter critera"></alert>
 	</div>
 	
 </div>

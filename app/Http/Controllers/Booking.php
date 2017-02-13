@@ -18,8 +18,14 @@ class Booking extends Controller
 	{
 		$q = Model::query();
 
-		if($request->limit && $request->limit !== '0') $q = $q->limit(($request->limit ?: 0));
-		if($request->offset) $q = $q->offset(($request->offset ?: 0));
+		$q = $q->where('id', 0);
+
+		if($request->booked == 'true')  $q->union(Model::query()->booked());
+		if($request->overdue == 'true') $q->union(Model::query()->overdue());
+		if($request->issued == 'true')  $q->union(Model::query()->issued());
+		if($request->closed == 'true')  $q->union(Model::query()->closed());
+
+		$q = $q->orderBy('created_at', 'desc');
 
 		if($request->after) {
 			$q = $q->where('pickup_at', '>', Carbon::createFromTimestamp($request->after)->toDateTimeString());
@@ -28,27 +34,19 @@ class Booking extends Controller
 		if($request->before) {
 			$q = $q->where('pickup_at', '<', Carbon::createFromTimestamp($request->before)->toDateTimeString());
 		}
-
-		if($request->overdue == 'true') {
-			$q = $q->overdue();
-		}
-
-		if($request->issued == 'true') {
-			$q = $q->issued();
-		}
-
-		if($request->closed == 'true') {
-			$q = $q->closed();
-		} else {
-			$q = $q->active();
-		}
 		
 		if($request->with) $q = $q->with(explode('|', $request->with));
 		if($request->user_id) $q = $q->where('user_id', $request->user_id);
 
-		$q = $q->orderBy('created_at', 'desc');
+		if($request->limit && $request->limit !== '0') $q = $q->limit(($request->limit ?: 0));
+		if($request->offset) $q = $q->offset(($request->offset ?: 0));
 
-		return $q->get();
+		if($request->booked == 'false' && $request->overdue == 'false' && $request->issued == 'false' && $request->closed == 'false') {
+			return [];
+		} else {
+			return $q->get();
+		}
+		
 
 		// DB::enableQueryLog(); $q->get(); dd(DB::getQueryLog());
 	}

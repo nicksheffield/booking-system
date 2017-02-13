@@ -28,6 +28,7 @@ angular.module('app.services')
 		overdue: false,
 		closed: false,
 		issued: true,
+		booked: true,
 		limit: 10,
 		page: 1
 	}
@@ -56,7 +57,7 @@ angular.module('app.services')
 
 	service.clear = function() {
 		service.inDOM = _.clone(service.defaults)
-		service.saveOptions()
+		service.apply()
 	}
 
 	service.apply = function() {
