@@ -177,6 +177,13 @@ class Booking extends Controller
 	public function count(Request $request) {
 		$q = Model::query();
 
+		$q = $q->where('id', 0);
+
+		if($request->booked == 'true')  $q->union(Model::query()->booked());
+		if($request->overdue == 'true') $q->union(Model::query()->overdue());
+		if($request->issued == 'true')  $q->union(Model::query()->issued());
+		if($request->closed == 'true')  $q->union(Model::query()->closed());
+
 		if($request->after) {
 			$q = $q->where('pickup_at', '>', Carbon::createFromTimestamp($request->after)->toDateTimeString());
 		}
@@ -193,20 +200,6 @@ class Booking extends Controller
 		// 	$q = $q->where('group_id', $request->group_id);
 		// }
 
-		if($request->overdue == 'true') {
-			$q = $q->overdue();
-		}
-
-		if($request->issued == 'true') {
-			$q = $q->issued();
-		}
-
-		if($request->closed == 'true') {
-			$q = $q->closed();
-		} else {
-			$q = $q->active();
-		}
-
-		return ['total' => $q->count()];
+		return ['total' => count($q->get())];
 	}
 }
