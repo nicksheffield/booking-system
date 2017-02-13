@@ -16,41 +16,10 @@ class Booking extends Controller
 {
 	public function index(Request $request)
 	{
-		$q = Model::query();
+		$q = $this->doFilter($request);
 
-		if($request->after) {
-			$q = $q->where('pickup_at', '>', Carbon::createFromTimestamp($request->after)->toDateTimeString());
-		}
-
-		if($request->before) {
-			$q = $q->where('pickup_at', '<', Carbon::createFromTimestamp($request->before)->toDateTimeString());
-		}
-
-		if($request->booked == 'true') {
-			$q2 = clone $q;
-			$q->union($q2->booked());
-		}
-
-		if($request->overdue == 'true') {
-			$q2 = clone $q;
-			$q->union($q2->overdue());
-		}
-
-		if($request->issued == 'true') {
-			$q2 = clone $q;
-			$q->union($q2->issued());
-		}
-
-		if($request->closed == 'true') {
-			$q2 = clone $q;
-			$q->union($q2->closed());
-		}
-
-		$q = $q->where('id', 0);
-
-		if($request->user_id) {
-			$q = $q->where('user_id', $request->user_id);
-		}
+		if($request->limit && $request->limit !== '0') $q->limit($request->limit ?: 0);
+		if($request->offset) $q = $q->offset($request->offset ?: 0);
 
 		if($request->booked == 'false' && $request->overdue == 'false' && $request->issued == 'false' && $request->closed == 'false') {
 			return [];
@@ -179,13 +148,7 @@ class Booking extends Controller
 		return $model;
 	}
 
-	/**
-	 * Return count information.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function count(Request $request) {
+	public function prepareNewQuery($request) {
 		$q = Model::query();
 
 		if($request->after) {
@@ -196,35 +159,51 @@ class Booking extends Controller
 			$q = $q->where('pickup_at', '<', Carbon::createFromTimestamp($request->before)->toDateTimeString());
 		}
 
+		if($request->user_id) {
+			$q = $q->where('user_id', $request->user_id);
+		}
+
+		$q = $q->orderBy('created_at');
+
+		return $q;
+	}
+
+	public function doFilter($request) {
+		$q = $this->prepareNewQuery($request);
+
 		if($request->booked == 'true') {
-			$q2 = clone $q;
+			$q2 = $this->prepareNewQuery($request);
 			$q->union($q2->booked());
 		}
 
 		if($request->overdue == 'true') {
-			$q2 = clone $q;
+			$q2 = $this->prepareNewQuery($request);
 			$q->union($q2->overdue());
 		}
 
 		if($request->issued == 'true') {
-			$q2 = clone $q;
+			$q2 = $this->prepareNewQuery($request);
 			$q->union($q2->issued());
 		}
 
 		if($request->closed == 'true') {
-			$q2 = clone $q;
+			$q2 = $this->prepareNewQuery($request);
 			$q->union($q2->closed());
 		}
 
 		$q = $q->where('id', 0);
 
-		if($request->user_id) {
-			$q = $q->where('user_id', $request->user_id);
-		}
+		return $q;
+	}
 
-		// if($request->group_id) {
-		// 	$q = $q->where('group_id', $request->group_id);
-		// }
+	/**
+	 * Return count information.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function count(Request $request) {
+		$q = $this->doFilter($request);
 
 		return ['total' => count($q->get())];
 	}
