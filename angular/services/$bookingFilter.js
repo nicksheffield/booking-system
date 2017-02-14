@@ -30,7 +30,9 @@ angular.module('app.services')
 		issued: true,
 		booked: true,
 		limit: 10,
-		page: 1
+		page: 1,
+		// group: 0,
+		user: 0
 	}
 
 	service.options = _.clone(service.defaults)
@@ -46,12 +48,15 @@ angular.module('app.services')
 
 		service.inDOM   = _.clone(service.options)
 
+		if(service.inDOM.user)   service.inDOM.user   = $store.get('users', service.inDOM.user)
+
 		if(service.inDOM.before) service.inDOM.before = new Date(parseInt(service.inDOM.before + '000'))
 		if(service.inDOM.after)  service.inDOM.after  = new Date(parseInt(service.inDOM.after + '000'))
 	}
 
 	service.applyParams = function(params) {
 		service.options = _.merge(service.options, params)
+
 		service.process()
 	}
 

@@ -33,6 +33,21 @@
 						<date-input ng-model="filter.inDOM.before"></date-input>
 					</div>
 				</section>
+
+				<section layout="col">
+					<div class="group-heading">User</div>
+					<div class="item">
+						<ui-select select-unit-on-close select-dark ng-model="filter.inDom.user">
+							<ui-select-match allow-clear="false" placeholder="​">
+								<span ng-bind="$select.selected.name" class="setheight"></span>
+							</ui-select-match>
+							<ui-select-choices repeat="user in (users | filter: $select.search)">
+								<div ng-bind-html="user.name | highlight: $select.search"></div>
+								<small ng-bind-html="user.group.code | highlight: $select.search"></small>
+							</ui-select-choices>
+						</ui-select>
+					</div>
+				</section>
 			</div>
 
 			<div class="filter-col" layout="col" ratio="1">
@@ -104,7 +119,7 @@
 						{{ booking._status }}
 
 						<span ng-show="booking._overdue"> (overdue)</span>
-						
+
 						<span ng-show="booking._priority == 3">
 							 ({{ booking.closed_at | date }})
 						</span>

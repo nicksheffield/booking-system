@@ -3,6 +3,9 @@ angular.module('app.controllers')
 .controller('bookingsManageCtrl', function($scope, $store, $load, $merge, $stateParams, $http, $location, Booking, $prepare, $bookingFilter, $window) {
 	window.scope = $scope
 
+	$scope.users = $store.users
+	$scope.groups = $store.groups
+
 	console.log('$bookingFilter', $bookingFilter)
 
 	$bookingFilter.applyParams($stateParams)
@@ -53,7 +56,7 @@ angular.module('app.controllers')
 
 	var query = {
 		limit: $bookingFilter.options.limit,
-		offset: $bookingFilter.options.limit * ($scope.current - 1),
+		offset: $bookingFilter.options.limit * ($bookingFilter.options.page - 1),
 		with: 'products'
 	}
 
