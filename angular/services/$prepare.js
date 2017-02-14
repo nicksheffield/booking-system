@@ -157,6 +157,10 @@ angular.module('app.services')
 		if(booking.taken_at && !booking.returned_at) {
 			booking._priority = 2
 			booking._status = 'Issued'
+
+			if(booking.due_at.valueOf() < new Date().valueOf()) {
+				booking._overdue = true
+			}
 		}
 
 		if(booking.closed_at) {

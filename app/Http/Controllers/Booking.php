@@ -21,6 +21,8 @@ class Booking extends Controller
 		if($request->limit && $request->limit !== '0') $q->limit($request->limit ?: 0);
 		if($request->offset) $q = $q->offset($request->offset ?: 0);
 
+		if($request->with) $q = $q->with(explode('|', $request->with));
+
 		if($request->booked == 'false' && $request->overdue == 'false' && $request->issued == 'false' && $request->closed == 'false') {
 			return [];
 		} else {

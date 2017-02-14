@@ -17,24 +17,24 @@ class Booking extends Model
 		'user_id', 'due_at', 'pickup_at', 'taken_at', 'closed_at', 'created_by_id', 'issued_by_id', 'closed_by_id'
 	];
 
-	public function scopeClosed($query) {
-		return $query->whereNotNull('closed_at');
+	public function scopeIssued($query) {
+		return $query->whereNotNull('taken_at')
+					 ->whereNull('closed_at')
+					 ->where('due_at', '>', Carbon::now()->toDateTimeString());
 	}
 
 	public function scopeOverdue($query) {
-		return $query->where('due_at', '<', Carbon::now())->whereNotNull('closed_at');
-	}
-
-	public function scopeActive($query) {
-		return $query->whereNull('closed_at');
-	}
-
-	public function scopeIssued($query) {
-		return $query->whereNotNull('taken_at');
+		return $query->whereNotNull('taken_at')
+					 ->whereNull('closed_at')
+					 ->where('due_at', '<=', Carbon::now()->toDateTimeString());
 	}
 
 	public function scopeBooked($query) {
 		return $query->whereNull('taken_at');
+	}
+
+	public function scopeClosed($query) {
+		return $query->whereNotNull('closed_at');
 	}
 	
 	public function products() {
