@@ -8,7 +8,7 @@ angular.module('app.services')
 		for(var prop in obj) {
 			var val = obj[prop]
 
-			if(val === false || val === '') continue
+			if(val === false || val === '' || val === undefined || val === null) continue
 			if(prop === 'page' && val === 1) continue
 
 			if(val === true) val = 'true'
