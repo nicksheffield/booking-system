@@ -103,7 +103,7 @@ class CreateTables extends Migration
 			$table->timestamp('cancelled_at')->nullable();
 			$table->integer('created_by_id');
 			$table->integer('issued_by_id');
-			$table->integer('closed_by_id');
+			$table->integer('closed_by_id')->nullable();
 			$table->integer('cancelled_by_id');
 			$table->timestamps();
 			$table->softDeletes();
@@ -116,7 +116,7 @@ class CreateTables extends Migration
 			$table->integer('unit_id');
 			$table->string('notes');
 			$table->timestamp('returned_at')->nullable();
-			$table->integer('returned_by_id');
+			$table->integer('returned_by_id')->nullable();
 			$table->timestamps();
 		});
 	}

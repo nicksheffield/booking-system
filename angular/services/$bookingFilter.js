@@ -25,7 +25,7 @@ angular.module('app.services')
 	service.defaults = {
 		before: '',
 		after: '',
-		overdue: false,
+		overdue: true,
 		closed: false,
 		issued: true,
 		booked: true,

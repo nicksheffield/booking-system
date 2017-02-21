@@ -95,7 +95,7 @@ class UserSeeder extends Seeder
 					$group_i++;
 				}
 				
-				$username = strtolower($person->name).strtolower(substr($person->surname,0,1)).rand(10,99);
+				$username = strtolower($person->name).strtolower(substr($person->surname,0,1)).rand(1,9999);
 				
 				App\Models\User::create([
 					'id' => ++$id,
