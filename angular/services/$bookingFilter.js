@@ -69,6 +69,7 @@ angular.module('app.services')
 
 		if(service.options.before) service.options.before = Math.floor(new Date(service.options.before).valueOf() / 1000)
 		if(service.options.after)  service.options.after  = Math.floor(new Date(service.options.after).valueOf() / 1000)
+		if(service.options.user)   service.options.user   = service.options.user.id
 	}
 
 	return service

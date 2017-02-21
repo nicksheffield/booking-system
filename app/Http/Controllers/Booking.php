@@ -161,8 +161,8 @@ class Booking extends Controller
 			$q = $q->where('pickup_at', '<', Carbon::createFromTimestamp($request->before)->toDateTimeString());
 		}
 
-		if($request->user_id) {
-			$q = $q->where('user_id', $request->user_id);
+		if($request->user) {
+			$q = $q->where('user_id', $request->user);
 		}
 
 		$q = $q->orderBy('created_at');

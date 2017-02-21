@@ -36,8 +36,8 @@
 
 				<section layout="col">
 					<div class="group-heading">User</div>
-					<div class="item">
-						<ui-select select-unit-on-close select-dark ng-model="filter.inDom.user">
+					<div class="item has-select-clearer">
+						<ui-select select-unit-on-close select-dark ng-model="filter.inDOM.user">
 							<ui-select-match allow-clear="false" placeholder="​">
 								<span ng-bind="$select.selected.name" class="setheight"></span>
 							</ui-select-match>
@@ -46,6 +46,9 @@
 								<small ng-bind-html="user.group.code | highlight: $select.search"></small>
 							</ui-select-choices>
 						</ui-select>
+						<button class="close" ng-click="clearUser()" ng-show="filter.inDOM.user">
+							<i class="fa fa-times-circle"></i>
+						</button>
 					</div>
 				</section>
 			</div>
@@ -109,11 +112,9 @@
 				<tr ng-repeat="booking in bookings | orderBy: '_priority'" class="filterable-row">
 					<td class="filterable-cell">
 						{{ booking.user.name }}
-						<btn icon="search" type="info" url="#/bookings?user={{ booking.user.id }}" small></btn>
 					</td>
 					<td class="filterable-cell">
 						{{ booking.user.group.code }}
-						<btn icon="search" type="info" url="#/bookings?group={{ booking.user.group.code }}" ng-if="booking.user.group" small></btn>
 					</td>
 					<td>
 						{{ booking._status }}

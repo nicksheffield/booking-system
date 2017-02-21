@@ -1,6 +1,6 @@
 angular.module('app.directives')
 
-.directive('pagination', function($state, $store, $auth) {
+.directive('pagination', function($state, $store, $auth, $queryString) {
 	function link(scope, el, attrs) {
 		function calculate() {
 			scope.pages = []
@@ -30,7 +30,8 @@ angular.module('app.directives')
 		scope.$watch('total', calculate)
 
 		scope.$watch('filter', function(newVal) {
-			scope.query = '&' + jQuery.param(_.omit(scope.filter, ['page']))
+			scope.query = '&' + $queryString(_.omit(scope.filter, ['page']))
+
 		}, true)
 	}
 

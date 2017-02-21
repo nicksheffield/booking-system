@@ -1,12 +1,10 @@
 angular.module('app.controllers')
 
-.controller('bookingsManageCtrl', function($scope, $store, $load, $merge, $stateParams, $http, $location, Booking, $prepare, $bookingFilter, $window) {
+.controller('bookingsManageCtrl', function($scope, $store, $load, $merge, $stateParams, $http, $location, Booking, $prepare, $bookingFilter, $window, $queryString) {
 	window.scope = $scope
 
 	$scope.users = $store.users
 	$scope.groups = $store.groups
-
-	console.log('$bookingFilter', $bookingFilter)
 
 	$bookingFilter.applyParams($stateParams)
 
@@ -18,13 +16,17 @@ angular.module('app.controllers')
 
 	$scope.applyFilter = function() {
 		$bookingFilter.apply()
-		$location.path('/bookings').search($bookingFilter.options)
-		// $window.location.href = '#/bookings?' + jQuery.param($bookingFilter.options)
+		// $location.path('/bookings').search($bookingFilter.options)
+		$window.location.href = '#/bookings' + $queryString($bookingFilter.options, true)
 	}
 
 	$scope.clearFilter = function() {
 		$bookingFilter.clear()
 		$window.location.href = '#/bookings'
+	}
+
+	$scope.clearUser = function() {
+		$bookingFilter.inDOM.user = undefined
 	}
 
 	// --------------------------------------------------------------------------------

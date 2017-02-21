@@ -32,9 +32,10 @@ class BookingsSeeder extends Seeder
 		];
 		
 		$users = DB::table('users')->get();
-		$booking_per_person = 1;
 		
 		foreach($users as $user) {
+			$booking_per_person = rand(1, 10);
+
 			for($i=0; $i<$booking_per_person; $i++) {
 				$date = '2016-'.rand(1, 12).'-'.rand(0, 28);
 
