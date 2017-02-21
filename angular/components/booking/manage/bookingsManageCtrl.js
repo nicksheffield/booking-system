@@ -23,6 +23,7 @@ angular.module('app.controllers')
 	$scope.clearFilter = function() {
 		$bookingFilter.clear()
 		$window.location.href = '#/bookings'
+		$window.location.reload()
 	}
 
 	$scope.clearUser = function() {
