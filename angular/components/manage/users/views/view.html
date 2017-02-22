@@ -60,6 +60,20 @@
 				</ul>
 			</td>
 		</tr>
+		<tr ng-show="!user.admin">
+			<td class="row-property">Notes</td>
+			<td class="row-value">
+				<div class="user-note" ng-repeat="note in user.notes" layout="row">
+					<div class="user-note-content" ratio="1">
+						{{ note.content }}
+					</div>
+					<div class="user-note-controls">
+						<btn icon="pencil" type="info" small></btn> 
+						<btn icon="times" type="danger" small></btn>
+					</div>
+				</div>
+			</td>
+		</tr>
 	</table>
 
 </div>

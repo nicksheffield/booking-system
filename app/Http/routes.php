@@ -54,6 +54,13 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	Route::resource('user', 'User', ['except' => ['index', 'store']]);
 
 	/**
+	*	Get one note
+	*	Update note
+	*	Delete note
+	*/
+	Route::resource('note', 'Note', ['except' => ['index', 'show']]);
+
+	/**
 	*	Get one group
 	*	Create a group
 	*	Update group

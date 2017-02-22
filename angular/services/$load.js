@@ -15,7 +15,7 @@ angular.module('app.services')
 	}
 	
 	service.users = function() {
-		var resource = User.query({'with': 'tutors_groups.type'})
+		var resource = User.query({'with': 'tutors_groups.type|notes'})
 		
 		resource.$promise
 			.then($prepare.users)
