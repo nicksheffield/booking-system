@@ -17,7 +17,7 @@ class User extends Authenticatable
 
 	protected $hidden = [
 		'password', 'remember_token',
-	]; 
+	];
 	
 	public function group() {
 		return $this->belongsTo('App\Models\Group', 'group_id');
@@ -25,6 +25,10 @@ class User extends Authenticatable
 	
 	public function bookings() {
 		return $this->hasMany('App\Models\Booking', 'user_id');
+	}
+	
+	public function notes() {
+		return $this->hasMany('App\Models\Note', 'user_id');
 	}
 	
 	public function tutors_groups() {

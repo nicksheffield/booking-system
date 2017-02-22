@@ -26,6 +26,15 @@ class CreateTables extends Migration
 			$table->timestamps();
 			$table->softDeletes();
 		});
+
+		Schema::create('notes', function(Blueprint $table) {
+			$table->increments('id');
+			$table->mediumText('content');
+			$table->integer('user_id');
+			$table->integer('writer_id');
+			$table->timestamps();
+			$table->softDeletes();
+		});
 		
 		Schema::create('tutor', function (Blueprint $table) {
 			$table->increments('id');
