@@ -28,7 +28,8 @@ class BookingsSeeder extends Seeder
 				'closed_at' => Carbon::parse($date),
 				'created_by_id' => 2,
 				'issued_by_id' => 1,
-				'closed_by_id' => 1
+				'closed_by_id' => 1,
+				'created_at' => Carbon::parse($date)
 			]
 		];
 

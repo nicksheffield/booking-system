@@ -18,15 +18,18 @@ class Booking extends Controller
 	{
 		$q = $this->doFilter($request);
 
-		if($request->limit && $request->limit !== '0') $q->limit($request->limit ?: 0);
-		if($request->offset) $q = $q->offset($request->offset ?: 0);
+		$limit = $request->limit && $request->limit !== '0' ? $request->limit : 10;
+
+		$offset = $request->page ? $request->page : 1;
 
 		if($request->with) $q = $q->with(explode('|', $request->with));
 
 		if($request->booked == 'false' && $request->overdue == 'false' && $request->issued == 'false' && $request->closed == 'false') {
 			return [];
 		} else {
-			return $q->get();
+			$chunk = array_chunk($q->get()->sortBy('created_at')->all(), $limit)[$offset - 1];
+
+			return $chunk;
 		}
 		
 
@@ -165,7 +168,7 @@ class Booking extends Controller
 			$q = $q->where('user_id', $request->user);
 		}
 
-		$q = $q->orderBy('created_at');
+		$q = $q->orderBy('due_at');
 
 		return $q;
 	}
