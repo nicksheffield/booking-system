@@ -1,7 +1,7 @@
 angular.module('app.controllers')
 
 .controller('classTypeEditCtrl', function($scope, $stateParams, $store, $location, $invalidate, Group_Type) {
-	$scope.type = $store.get('group_types', $stateParams.id)
+	$scope.type = _.clone($store.get('group_types', $stateParams.id))
 	
 	$scope.save = function() {
 		Group_Type.update({id: $scope.type.id}, $scope.type).$promise.then(function(res) {

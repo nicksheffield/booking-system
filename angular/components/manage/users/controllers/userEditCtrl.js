@@ -21,7 +21,7 @@ angular.module('app.controllers')
 		$scope.user = $store.user
 		$scope.profileMode = true
 	} else {
-		$scope.user = $store.get('users', $stateParams.id)
+		$scope.user = _.clone($store.get('users', $stateParams.id))
 		$scope.you = $store.user
 	}
 	

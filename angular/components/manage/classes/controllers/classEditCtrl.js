@@ -1,7 +1,7 @@
 angular.module('app.controllers')
 
 .controller('classEditCtrl', function($scope, $stateParams, $store, $location, $invalidate, Group) {
-	$scope.group = $store.get('groups', $stateParams.id)
+	$scope.group = _.clone($store.get('groups', $stateParams.id))
 	$scope.users = $store.users
 	
 	$scope.types = $store.group_types

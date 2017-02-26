@@ -3,7 +3,7 @@ angular.module('app.controllers')
 .controller('productEditCtrl', function($scope, $stateParams, $store, $location, $invalidate, Product) {
 	$scope.product = $store.get('products', $stateParams.id)
 	
-	$scope.types = $store.product_types
+	$scope.types = _.clone($store.product_types)
 	$scope.selected = {
 		type: $store.get('product_types', $scope.product.type.id)
 	}

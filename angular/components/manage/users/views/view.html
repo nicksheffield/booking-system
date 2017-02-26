@@ -61,7 +61,7 @@
 			</td>
 		</tr>
 		<tr ng-show="!user.admin">
-			<td class="row-property">Notes</td>
+			<td class="row-property">Notes ({{ user.notes.length }})</td>
 			<td class="row-value">
 				<div class="user-note" ng-repeat="note in user.notes" layout="row">
 					<div class="user-note-content" ratio="1">

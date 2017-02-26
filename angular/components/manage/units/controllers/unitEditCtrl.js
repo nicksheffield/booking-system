@@ -3,7 +3,7 @@ angular.module('app.controllers')
 .controller('unitEditCtrl', function($scope, $stateParams, $store, $location, $invalidate, Unit) {
 	$scope.products = $store.products
 	
-	$scope.unit = $store.get('units', $stateParams.id)
+	$scope.unit = _.clone($store.get('units', $stateParams.id))
 	$scope.selected = {
 		product: $store.get('products', $scope.unit.product.id)
 	}

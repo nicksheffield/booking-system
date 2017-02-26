@@ -2,7 +2,7 @@ angular.module('app.controllers')
 
 .controller('classProductCtrl', function($scope, $stateParams, $store, $location, $http, $timeout, $invalidate) {
 	$store.groups.$promise.then(function() {
-		$scope.group = $store.get('groups', $stateParams.id)
+		$scope.group = _.clone($store.get('groups', $stateParams.id))
 		
 		$scope.products = $store.products
 		
