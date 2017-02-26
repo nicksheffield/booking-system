@@ -80,17 +80,8 @@ angular.module('app.services')
 		return resource
 	}
 	
-	service.bookings = function(options) {
-		var DaysBefore10 = moment().subtract(10, 'days').startOf('day').format('YYYY-MM-D HH:mm:ss')
-
-		var {
-				limit = 10,
-				offset = 0,
-				after = DaysBefore10,
-				before = new Date()
-			} = (options || {})
-
-		var resource = Booking.query({limit, offset, /*after, before,*/ 'with': 'products'})
+	service.bookings = function() {
+		var resource = Booking.query({limit: 10, page: 1, 'with': 'products'})
 		
 		resource.$promise
 			.then($prepare.bookings)

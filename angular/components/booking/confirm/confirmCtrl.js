@@ -20,7 +20,7 @@ angular.module('app.controllers')
 		$http.post('/api/booking', $store.booking).then(function(res) {
 			$store.resetBooking()
 			
-			$invalidate.add('bookings')
+			// $invalidate.add('bookings')
 			
 			$location.path('/book/success')
 		})

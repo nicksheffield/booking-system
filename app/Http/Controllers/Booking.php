@@ -27,7 +27,7 @@ class Booking extends Controller
 		if($request->booked == 'false' && $request->overdue == 'false' && $request->issued == 'false' && $request->closed == 'false') {
 			return [];
 		} else {
-			$chunk = array_chunk($q->get()->sortBy('created_at')->all(), $limit)[$offset - 1];
+			$chunk = array_chunk($q->get()->sortByDesc('created_at')->all(), $limit)[$offset - 1];
 
 			return $chunk;
 		}
