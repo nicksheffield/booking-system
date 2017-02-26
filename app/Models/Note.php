@@ -7,13 +7,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Note extends Model
 {
-    use SoftDeletes;
+	use SoftDeletes;
 
-    protected $fillable = [
-    	'content', 'user_id'
-    ];
+	protected $fillable = [
+		'content', 'user_id'
+	];
 
-    public function user() {
-    	return $this->belongsTo('App\Models\User', 'user_id');
-    }
+	public function user() {
+		return $this->belongsTo('App\Models\User', 'user_id');
+	}
+
+	public function writer() {
+		return $this->belongsTo('App\Models\User', 'writer_id');
+	}
 }
