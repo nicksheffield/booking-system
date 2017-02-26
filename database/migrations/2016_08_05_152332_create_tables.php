@@ -139,6 +139,7 @@ class CreateTables extends Migration
 	{
 		Schema::drop('tutor');
 		Schema::drop('users');
+		Schema::drop('notes');
 		Schema::drop('units');
 		Schema::drop('groups');
 		Schema::drop('products');
