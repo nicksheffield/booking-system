@@ -12,7 +12,7 @@ use App\Models\Note as Model;
 class Note extends Controller
 {
 	public function index(Request $request) {
-		$q = Model::all();
+		$q = Model::orderBy('created_at', 'DESC')->get();
 
 		return $q;
 	}
