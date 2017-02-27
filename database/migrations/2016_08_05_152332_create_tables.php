@@ -22,6 +22,7 @@ class CreateTables extends Migration
 			$table->string('password');
 			$table->integer('group_id')->nullable();
 			$table->boolean('admin');
+			$table->boolean('can_book')->default(true);
 			$table->rememberToken();
 			$table->timestamps();
 			$table->softDeletes();

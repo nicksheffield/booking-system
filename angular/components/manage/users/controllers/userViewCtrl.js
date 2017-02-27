@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('userViewCtrl', function($scope, $stateParams, $store, $invalidate, $location, Note) {
+.controller('userViewCtrl', function($scope, $stateParams, $store, $invalidate, $location, Note, User) {
 	$scope.user = $store.get('users', $stateParams.id)
 	
 	if($scope.user.admin == 1 && $scope.user.group && !$scope.user.group._isTutor($store.user.id)) {
@@ -35,5 +35,15 @@ angular.module('app.controllers')
 				$scope.user.notes = _.reject($scope.user.notes, (n) => n.id == note.id)
 			})
 		}
+	}
+
+	$scope.syncCanBook = function() {
+		var u = _.clone($scope.user)
+
+		console.log($scope.user)
+
+		User.update({id: u.id}, u).$promise.then(function(res) {
+			console.log('res', res)
+		})
 	}
 })

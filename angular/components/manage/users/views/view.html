@@ -40,6 +40,13 @@
 			<td class="row-property">Student ID</td>
 			<td class="row-value">{{ user.id_number }}</td>
 		</tr>
+		<tr ng-show="!user.admin" ng-class="{'bg-danger': !user.can_book}">
+			<td class="row-property">Can book</td>
+			<td class="row-value">
+				<input type="checkbox" ng-model="user.can_book" ng-change="syncCanBook()" ng-true-value="1" class="push-right">
+				 {{ user.can_book ? 'Yes' : 'No' }}
+			</td>
+		</tr>
 		<tr>
 			<td class="row-property">Bookings</td>
 			<td class="row-value">
