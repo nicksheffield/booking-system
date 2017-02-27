@@ -217,6 +217,39 @@ angular.module('app.routes')
 			}
 		},
 		
+		'new_note': {
+			url: '/manage/user/:id/note/new',
+			templateUrl: 'components/manage/users/views/new_note.html',
+			controller: 'userNewNoteCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_parent: 'view_user',
+				title: 'New Note'
+			}
+		},
+		
+		'view_note': {
+			url: '/manage/user/:id/note/:id2',
+			templateUrl: 'components/manage/users/views/view_note.html',
+			controller: 'userViewNoteCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_parent: 'view_user',
+				title: 'New Note'
+			}
+		},
+		
+		'edit_note': {
+			url: '/manage/user/:id/note/:id2/edit',
+			templateUrl: 'components/manage/users/views/edit_note.html',
+			controller: 'userEditNoteCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_parent: 'view_user',
+				title: 'Edit Note'
+			}
+		},
+		
 		// ------------------------------------------------------------
 		// Manage Class Types
 		// ------------------------------------------------------------

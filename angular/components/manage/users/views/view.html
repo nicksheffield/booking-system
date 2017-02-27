@@ -63,13 +63,17 @@
 		<tr ng-show="!user.admin">
 			<td class="row-property">Notes ({{ user.notes.length }})</td>
 			<td class="row-value">
-				<div class="user-note" ng-repeat="note in user.notes" layout="row">
+				<div layout="row" justify="end">
+					<btn icon="plus" type="primary" small url="#/manage/user/{{ user.id }}/note/new"></btn>
+				</div>
+				<div class="user-note row-hoverable" ng-repeat="note in user.notes" layout="row" ng-hide="filterOutRevisions(note)">
 					<div class="user-note-content" ratio="1">
 						{{ note.content }}
 					</div>
 					<div class="user-note-controls">
-						<btn icon="pencil" type="info" small></btn> 
-						<btn icon="times" type="danger" small></btn>
+						<btn icon="eye" type="primary" small url="#/manage/user/{{ user.id }}/note/{{ note.id }}">View</btn> 
+						<btn icon="pencil" type="info" small url="#/manage/user/{{ user.id }}/note/{{ note.id }}/edit">Edit</btn> 
+						<btn icon="trash" type="danger" small ng-click="deleteNote(note)"></btn>
 					</div>
 				</div>
 			</td>

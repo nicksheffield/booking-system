@@ -20,7 +20,7 @@ class Note extends Controller
 	public function store(Model $model, Request $request)
 	{
 		$model->fill($request->all());
-		$model->writer_id = Auth::user_id();
+		$model->writer_id = Auth::user()->id;
 
 		$model->save();
 
@@ -36,9 +36,12 @@ class Note extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		$model = Model::find($id);
+		$model = new Model();
 		
 		$model->fill($request->all());
+
+		$model->revision_of = $id;
+		$model->writer_id = Auth::user()->id;
 		
 		$model->save();
 

@@ -32,6 +32,7 @@ class CreateTables extends Migration
 			$table->mediumText('content');
 			$table->integer('user_id');
 			$table->integer('writer_id');
+			$table->integer('revision_of')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});

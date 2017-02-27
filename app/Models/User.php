@@ -28,7 +28,7 @@ class User extends Authenticatable
 	}
 	
 	public function notes() {
-		return $this->hasMany('App\Models\Note', 'user_id');
+		return $this->hasMany('App\Models\Note', 'user_id')->orderBy('created_at', 'DESC');
 	}
 	
 	public function tutors_groups() {

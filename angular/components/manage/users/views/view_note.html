@@ -1,0 +1,24 @@
+<header class="page-header" layout="row" align="center" justify="between">
+	<h1>View Note</h1>
+	<div class="button-row">
+		<btn type="primary" icon="pencil" url="#/manage/user/{{ user.id }}/note/{{ note.id }}/edit" small>Edit</btn>
+		<btn type="danger" icon="trash" ng-click="deleteNote(note)" small></btn>
+	</div>
+</header>
+
+<breadcrumbs></breadcrumbs>
+
+<div class="page-content">
+
+	<h1>{{ note.content }}</h1>
+
+	<ul class="list-group">
+		<li ng-repeat="revision in revisions()" class="list-group-item">
+			<div layout="row" justify="between">
+				<span>{{ revision.content }}</span>
+				<span><a href="#/manage/user/{{ getUser(revision.writer_id).id }}">{{ getUser(revision.writer_id).name }}</a></span>
+			</div>
+		</li>
+	</ul>
+
+</div>
