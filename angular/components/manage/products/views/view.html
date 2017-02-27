@@ -21,17 +21,16 @@
 			<td class="row-value"><a href="#/manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
 		</tr>
 		<tr>
-			<td class="row-property">Units ({{ product.units.length }})</td>
+			<td class="row-property">
+				Units ({{ product.units.length }})<br>
+				<btn url="#/manage/unit/new?product={{ product.id }}" small icon="plus" type="secondary"></btn>
+			</td>
 			<td class="row-value">
-				<div layout="row" align="start" justify="between" ng-show="product.units.length">
-					<ul>
-						<li ng-repeat="unit in product.units">
-							<a href="#/manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a>
-						</li>
-					</ul>
-					
-					<btn url="#/manage/unit/new?product={{ product.id }}" small icon="plus"></btn>
-				</div>
+				<ul>
+					<li ng-repeat="unit in product.units">
+						<a href="#/manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a>
+					</li>
+				</ul>
 				
 				<alert type="info" text="No units for this product" icon="exclamation-circle" ng-if="!product.units.length">
 					<btn url="#/manage/unit/new?product={{ product.id }}" small icon="plus">Create one</btn>

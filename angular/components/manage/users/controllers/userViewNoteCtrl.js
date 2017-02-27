@@ -8,7 +8,9 @@ angular.module('app.controllers')
 
 	$scope.notes = $store.notes
 
-	window.scope = $scope
+	$scope.dateify = function(str) {
+		return new Date(str)
+	}
 
 	$scope.deleteNote = function(note) {
 		if(confirm('Are you sure you want to delete that note?')) {

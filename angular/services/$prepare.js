@@ -239,7 +239,7 @@ angular.module('app.services')
 						}
 					}
 
-					return _.sortBy(getParent([], note), (note) => note.created_at)
+					return _.sortBy(getParent([], note), (note) => -(new Date(note.created_at).valueOf()))
 				}
 			})
 

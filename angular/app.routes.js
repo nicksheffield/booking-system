@@ -235,7 +235,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumb_parent: 'view_user',
-				title: 'New Note'
+				title: 'View Note'
 			}
 		},
 		

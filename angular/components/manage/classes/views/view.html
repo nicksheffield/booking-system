@@ -41,18 +41,17 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="row-property">Students ({{ group.users.length }})</td>
+			<td class="row-property">
+				Students ({{ group.users.length }})<br>
+				<btn url="#/manage/user/new?class={{ group.code }}" small ng-if="group.users.length" icon="plus" type="secondary"></btn>
+			</td>
 			<td class="row-value">
-				<div layout="row" align="start" justify="between" ng-show="group.users.length">
-					<ul>
-						<li ng-repeat="user in group.users">
-							<a href="#/manage/user/{{ user.id }}">{{ user.name }}</a>
-						</li>
-					</ul>
-					
-					<btn url="#/manage/user/new?class={{ group.code }}" small ng-if="group.users.length" icon="plus"></btn>
-				</div>
-				
+				<ul>
+					<li ng-repeat="user in group.users">
+						<a href="#/manage/user/{{ user.id }}">{{ user.name }}</a>
+					</li>
+				</ul>
+			
 				<alert type="info" text="No students in this class" icon="exclamation-circle" ng-if="!group.users.length">
 					<btn url="#/manage/user/new?class={{ group.code }}" small icon="plus">Create one</btn>
 				</alert>

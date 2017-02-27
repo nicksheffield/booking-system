@@ -17,17 +17,16 @@
 			<td class="row-value">{{ type.name }}</td>
 		</tr>
 		<tr>
-			<td class="row-property">Products ({{ type.products.length }})</td>
+			<td class="row-property">
+				Products ({{ type.products.length }})<br>
+				<btn url="#/manage/product/new?type={{ type.name }}" small icon="plus" type="secondary"></btn>
+			</td>
 			<td class="row-value">
-				<div layout="row" align="start" justify="between" ng-show="type.products.length">
-					<ul>
-						<li ng-repeat="product in type.products">
-							<a href="#/manage/product/{{ product.id }}">{{ product.name }}</a>
-						</li>
-					</ul>
-					
-					<btn url="#/manage/product/new?type={{ type.name }}" small icon="plus"></btn>
-				</div>
+				<ul>
+					<li ng-repeat="product in type.products">
+						<a href="#/manage/product/{{ product.id }}">{{ product.name }}</a>
+					</li>
+				</ul>
 				
 				<alert type="info" text="No products with this type" icon="exclamation-circle" ng-if="!type.products.length">
 					<btn url="#/manage/product/new?type={{ type.name }}" small icon="plus">Create one</btn>

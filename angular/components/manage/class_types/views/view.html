@@ -21,17 +21,16 @@
 			<td class="row-value">{{ type.name }}</td>
 		</tr>
 		<tr>
-			<td class="row-property">Classes ({{ type.groups.length }})</td>
+			<td class="row-property">
+				Classes ({{ type.groups.length }})<br>
+				<btn url="#/manage/class/new?type={{ type.code }}" small ng-if="type.groups.length" icon="plus" type="secondary"></btn>
+			</td>
 			<td class="row-value">
-				<div layout="row" justify="between" align="start">
-					<ul ng-show="type.groups.length">
-						<li ng-repeat="group in type.groups">
-							<a href="#/manage/class/{{ group.id }}">{{ group.code }}</a>
-						</li>
-					</ul>
-					
-					<btn url="#/manage/class/new?type={{ type.code }}" small ng-if="type.groups.length" icon="plus"></btn>
-				</div>
+				<ul ng-show="type.groups.length">
+					<li ng-repeat="group in type.groups">
+						<a href="#/manage/class/{{ group.id }}">{{ group.code }}</a>
+					</li>
+				</ul>
 				
 				<alert type="info" text="No classes with this type" icon="exclamation-circle" ng-if="!type.groups.length">
 					<btn url="#/manage/class/new?type={{ type.code }}" small icon="plus">Create one</btn>
