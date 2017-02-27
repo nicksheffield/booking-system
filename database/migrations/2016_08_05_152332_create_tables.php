@@ -23,6 +23,7 @@ class CreateTables extends Migration
 			$table->integer('group_id')->nullable();
 			$table->boolean('admin');
 			$table->boolean('can_book')->default(true);
+			$table->string('can_book_reason');
 			$table->rememberToken();
 			$table->timestamps();
 			$table->softDeletes();

@@ -52,7 +52,8 @@ class UserSeeder extends Seeder
 				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'group_id' => 1,
 				'password' => bcrypt('abcd'),
-				'can_book' => 0
+				'can_book' => 0,
+				'can_book_reason' => 'Late fee'
 			]
 		];
 		

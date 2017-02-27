@@ -43,8 +43,13 @@
 		<tr ng-show="!user.admin" ng-class="{'bg-danger': !user.can_book}">
 			<td class="row-property">Can book</td>
 			<td class="row-value">
-				<input type="checkbox" ng-model="user.can_book" ng-change="syncCanBook()" ng-true-value="1" class="push-right">
+				<input type="checkbox" ng-model="user.can_book" ng-change="syncUser()" ng-true-value="1" class="push-right">
 				 {{ user.can_book ? 'Yes' : 'No' }}
+
+				<div class="bump-down" ng-show="!user.can_book">
+					<label for="can_book_reason">Reason</label>
+					<input type="text" ng-model="user.can_book_reason" class="form-control" id="can_book_reason" ng-blur="syncUser()">
+				</div>
 			</td>
 		</tr>
 		<tr>

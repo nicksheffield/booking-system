@@ -37,13 +37,11 @@ angular.module('app.controllers')
 		}
 	}
 
-	$scope.syncCanBook = function() {
+	$scope.syncUser = function() {
 		var u = _.clone($scope.user)
 
-		console.log($scope.user)
-
 		User.update({id: u.id}, u).$promise.then(function(res) {
-			console.log('res', res)
+			
 		})
 	}
 })
