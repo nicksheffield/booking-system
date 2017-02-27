@@ -8,17 +8,35 @@
 
 	<p>Here you can manage aspects of the booking system.</p>
 	
-	<ul ng-show="user.admin === 2">
-		<li><a href="#/manage/user">Manage Users</a></li>
-		<li><a href="#/manage/class_type">Manage Class Types</a></li>
-		<li><a href="#/manage/class">Manage Classes</a></li>
-		<li><a href="#/manage/product_type">Manage Product Types</a></li>
-		<li><a href="#/manage/product">Manage Products</a></li>
-		<li><a href="#/manage/unit">Manage Units</a></li>
-	</ul>
+	<div ng-show="user.admin === 2" style="list-group">
+		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="#/manage/user">
+			<span><i class="fa fa-wrench push-right"></i> Users</span>
+			<span class="label label-dark label-pill">{{ store.users.length }}</span>
+		</a>
+		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="#/manage/class_type">
+			<span><i class="fa fa-wrench push-right"></i> Class Types</span>
+			<span class="label label-dark label-pill">{{ store.group_types.length }}</span>
+		</a>
+		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="#/manage/class">
+			<span><i class="fa fa-wrench push-right"></i> Classes</span>
+			<span class="label label-dark label-pill">{{ store.groups.length }}</span>
+		</a>
+		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="#/manage/product_type">
+			<span><i class="fa fa-wrench push-right"></i> Product Types</span>
+			<span class="label label-dark label-pill">{{ store.product_types.length }}</span>
+		</a>
+		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="#/manage/product">
+			<span><i class="fa fa-wrench push-right"></i> Products</span>
+			<span class="label label-dark label-pill">{{ store.products.length }}</span>
+		</a>
+		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="#/manage/unit">
+			<span><i class="fa fa-wrench push-right"></i> Units</span>
+			<span class="label label-dark label-pill">{{ store.units.length }}</span>
+		</a>
+	</div>
 	
-	<ul ng-show="user.admin === 1">
-		<li><a href="#/manage/user">Manage Users</a></li>
-	</ul>
+	<div ng-show="user.admin === 1" style="list-group">
+		<li class="list-group-item"><a href="#/manage/user">Manage Users</a></li>
+	</div>
 
 </div>
