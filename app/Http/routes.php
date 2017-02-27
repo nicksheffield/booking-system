@@ -58,7 +58,7 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	*	Update note
 	*	Delete note
 	*/
-	Route::resource('note', 'Note', ['except' => ['index', 'show']]);
+	Route::resource('note', 'Note', ['except' => ['show']]);
 
 	/**
 	*	Get one group

@@ -1,6 +1,6 @@
 angular.module('app.services')
 
-.factory('$load', function($store, $prepare, $auth, User, Group, Group_Type, Product_Type, Product, Unit, Booking) {
+.factory('$load', function($store, $prepare, $auth, User, Group, Group_Type, Product_Type, Product, Unit, Booking, Note) {
 	var service = {}
 	var events = []
 	
@@ -15,7 +15,7 @@ angular.module('app.services')
 	}
 	
 	service.users = function() {
-		var resource = User.query({'with': 'tutors_groups.type|notes'})
+		var resource = User.query({'with': 'tutors_groups.type'})
 		
 		resource.$promise
 			.then($prepare.users)
@@ -86,6 +86,16 @@ angular.module('app.services')
 		resource.$promise
 			.then($prepare.bookings)
 			.then(service.notify('bookings'))
+		
+		return resource
+	}
+	
+	service.notes = function() {
+		var resource = Note.query({})
+		
+		resource.$promise
+			.then($prepare.notes)
+			.then(service.notify('notes'))
 		
 		return resource
 	}

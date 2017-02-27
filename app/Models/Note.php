@@ -20,4 +20,12 @@ class Note extends Model
 	public function writer() {
 		return $this->belongsTo('App\Models\User', 'writer_id');
 	}
+
+	public function versions() {
+		return $this->hasMany('App\Models\Note', 'revision_of');
+	}
+
+	public function original() {
+		return $this->hasOne('App\Models\Note', 'revision_of');
+	}
 }

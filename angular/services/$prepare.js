@@ -53,6 +53,10 @@ angular.module('app.services')
 			get: () => _.filter($store.bookings, {user_id: user.id})
 		})
 		
+		Object.defineProperty(user, 'notes', {
+			get: () => _.filter($store.notes, {user_id: user.id})
+		})
+		
 		return user
 	}
 
@@ -215,6 +219,40 @@ angular.module('app.services')
 		_.forEach(bookings, service.booking)
 		
 		return bookings
+	}
+	
+	service.notes = function(notes) {
+		_.forEach(notes, function(note) {
+
+			Object.defineProperty(note, 'history', {
+				enumerable,
+				get: function() {
+					function getParent(a, n) {
+						if(n.revision_of) {
+							var parent = _.find($store.notes, {id: n.revision_of})
+
+							a.push(parent)
+
+							return getParent(a, parent)
+						} else {
+							return a
+						}
+					}
+
+					return _.sortBy(getParent([], note), (note) => note.created_at)
+				}
+			})
+
+			Object.defineProperty(note, 'user', {
+				get: () => _.find($store.users, {id: note.user_id})
+			})
+
+			Object.defineProperty(note, 'writer', {
+				get: () => _.find($store.users, {id: note.writer_id})
+			})
+		})
+		
+		return notes
 	}
 
 	return service

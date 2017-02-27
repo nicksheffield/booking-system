@@ -30,6 +30,7 @@ class NotesSeeder extends Seeder
 				'id' => 3,
 				'user_id' => 5,
 				'writer_id' => 1,
+				'is_old' => 1,
 				'content' => 'Owes a late fee of $5.00'
 			],
 			[
@@ -38,6 +39,36 @@ class NotesSeeder extends Seeder
 				'writer_id' => 2,
 				'revision_of' => 3,
 				'content' => 'Owes a late fee of $5.00 (Paid)'
+			],
+			[
+				'id' => 5,
+				'user_id' => 5,
+				'writer_id' => 1,
+				'is_old' => 1,
+				'content' => 'A'
+			],
+			[
+				'id' => 6,
+				'user_id' => 5,
+				'writer_id' => 3,
+				'revision_of' => 5,
+				'is_old' => 1,
+				'content' => 'B'
+			],
+			[
+				'id' => 7,
+				'user_id' => 5,
+				'writer_id' => 1,
+				'revision_of' => 6,
+				'is_old' => 1,
+				'content' => 'C'
+			],
+			[
+				'id' => 8,
+				'user_id' => 5,
+				'writer_id' => 2,
+				'revision_of' => 7,
+				'content' => 'D'
 			],
 		];
 

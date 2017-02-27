@@ -11,6 +11,12 @@ use App\Models\Note as Model;
 
 class Note extends Controller
 {
+	public function index(Request $request) {
+		$q = Model::all();
+
+		return $q;
+	}
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -36,13 +42,16 @@ class Note extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		$model = new Model();
-		
-		$model->fill($request->all());
+		$old_model = Model::find($id);
+		$old_model->is_old = true;
+		$old_model->save();
 
+		$model = new Model();
+		$model->content = $request->content;
+		$model->user_id = $request->user_id;
+		// $model->revision_of = $old_model->revision_of ?: $id;
 		$model->revision_of = $id;
 		$model->writer_id = Auth::user()->id;
-		
 		$model->save();
 
 		return $model;

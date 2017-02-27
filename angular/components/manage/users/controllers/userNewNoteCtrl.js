@@ -12,7 +12,7 @@ angular.module('app.controllers')
 		n.user_id = $scope.user.id
 		
 		n.$save().then(function(res) {
-			$invalidate.add('users')
+			$invalidate.add('notes')
 			
 			$location.path('/manage/user/' + $scope.user.id)
 		}).catch(function(res) {

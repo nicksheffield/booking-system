@@ -5,6 +5,7 @@ angular.module('app.services')
 		user: {},
 		units: [],
 		users: [],
+		notes: [],
 		groups: [],
 		booking: {},
 		products: [],

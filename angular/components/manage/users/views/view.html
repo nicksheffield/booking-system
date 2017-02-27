@@ -61,12 +61,12 @@
 			</td>
 		</tr>
 		<tr ng-show="!user.admin">
-			<td class="row-property">Notes ({{ user.notes.length }})</td>
+			<td class="row-property">Notes</td>
 			<td class="row-value">
 				<div layout="row" justify="end">
 					<btn icon="plus" type="primary" small url="#/manage/user/{{ user.id }}/note/new"></btn>
 				</div>
-				<div class="user-note row-hoverable" ng-repeat="note in user.notes" layout="row" ng-hide="filterOutRevisions(note)">
+				<div class="user-note row-hoverable" ng-repeat="note in user.notes" layout="row" ng-hide="note.is_old">
 					<div class="user-note-content" ratio="1">
 						{{ note.content }}
 					</div>

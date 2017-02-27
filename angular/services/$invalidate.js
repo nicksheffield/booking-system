@@ -27,7 +27,8 @@ angular.module('app.services')
 				'group_types',
 				'product_types',
 				'products',
-				'units'
+				'units',
+				'notes'
 			])
 		} else {
 			// if not logged in, or logged in as student
@@ -93,6 +94,11 @@ angular.module('app.services')
 				case 'product_types':
 					thing = $load.product_types()
 					$store.product_types = thing
+					invalid.push(thing.$promise);
+				break;
+				case 'notes':
+					thing = $load.notes()
+					$store.notes = thing
 					invalid.push(thing.$promise);
 				break;
 			}
