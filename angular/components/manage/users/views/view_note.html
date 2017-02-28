@@ -10,7 +10,7 @@
 
 <div class="page-content">
 
-	<h1 class="center-text pad-down">{{ note.content }}</h1>
+	<h2 class="center-text">{{ note.content }}</h2>
 
 	<section>
 		<table class="table data-table">
@@ -25,13 +25,17 @@
 		</table>
 	</section>
 
-	<ul class="list-group">
-		<li ng-repeat="version in note.history" class="list-group-item">
-			<div layout="row" justify="between">
-				<span>{{ version.content }}</span>
-				<span><a href="#/manage/user/{{ version.writer.id }}">{{ version.writer.name }}</a> ({{ dateify(version.created_at) | date: 'd/M/yy h:mm a' }})</span>
-			</div>
-		</li>
-	</ul>
+	<div ng-show="note.history.length">
+		<h3>Note History</h3>
+
+		<ul class="list-group">
+			<li ng-repeat="version in note.history" class="list-group-item">
+				<div layout="row" justify="between">
+					<span>{{ version.content }}</span>
+					<span><a href="#/manage/user/{{ version.writer.id }}">{{ version.writer.name }}</a> ({{ dateify(version.created_at) | date: 'd/M/yy h:mm a' }})</span>
+				</div>
+			</li>
+		</ul>
+	</div>
 
 </div>

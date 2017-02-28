@@ -78,14 +78,15 @@
 				<btn icon="plus" small url="#/manage/user/{{ user.id }}/note/new" type="secondary"></btn>
 			</td>
 			<td class="row-value">
-				<div class="user-note row-hoverable" ng-repeat="note in user.notes" layout="row" ng-hide="note.is_old">
-					<div class="user-note-content" ratio="1">
-						{{ note.content }}
-					</div>
-					<div class="user-note-controls">
-						<btn icon="eye" type="primary" small url="#/manage/user/{{ user.id }}/note/{{ note.id }}">View</btn> 
-						<btn icon="pencil" type="info" small url="#/manage/user/{{ user.id }}/note/{{ note.id }}/edit">Edit</btn> 
-						<btn icon="trash" type="danger" small ng-click="deleteNote(note)"></btn>
+				<div class="list-group">
+					<div class="list-group-item user-note" ng-repeat="note in user.notes" layout="row" ng-hide="note.is_old">
+						<div class="user-note-content" ratio="1">
+							<a href="#/manage/user/{{ user.id }}/note/{{ note.id }}">{{ note.content }}</a>
+						</div>
+						<div class="user-note-controls">
+							<btn icon="pencil" type="info" small url="#/manage/user/{{ user.id }}/note/{{ note.id }}/edit">Edit</btn> 
+							<btn icon="trash" type="danger" small ng-click="deleteNote(note)"></btn>
+						</div>
 					</div>
 				</div>
 			</td>
