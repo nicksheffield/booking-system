@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 
+use App\Models\User;
+
 class UserSeeder extends Seeder
 {
 	/**
@@ -19,36 +21,55 @@ class UserSeeder extends Seeder
 				'id' => 1,
 				'name' => 'Nick Sheffield',
 				'email' => 'numbereft@gmail.com',
+				'phone' => '',
 				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'group_id' => 0,
 				'admin' => 2,
 				'password' => bcrypt('abcd'),
+				'can_book' => 1,
+				'can_book_reason' => '',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],[
 				'id' => 2,
 				'name' => 'Graeme Bibby',
 				'email' => 'graeme@example.com',
+				'phone' => '',
+				'id_number' => 0,
 				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'group_id' => 0,
 				'admin' => 1,
 				'password' => bcrypt('abcd'),
+				'can_book' => 1,
+				'can_book_reason' => '',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],[
 				'id' => 3,
 				'name' => 'Angelo De Marchi',
 				'email' => 'angelo@example.com',
+				'phone' => '',
+				'id_number' => 0,
 				'dob' => Carbon::create(rand(1960, 1978), rand(1, 12), rand(1, 28)),
+				'group_id' => 0,
 				'admin' => 1,
 				'password' => bcrypt('abcd'),
+				'can_book' => 1,
+				'can_book_reason' => '',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],[
 				'id' => 4,
 				'name' => 'Megan Harper',
 				'email' => 'megan@example.com',
+				'phone' => '',
+				'id_number' => 0,
 				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'group_id' => 0,
 				'admin' => 1,
 				'password' => bcrypt('abcd'),
+				'can_book' => 1,
+				'can_book_reason' => '',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],[
@@ -59,6 +80,7 @@ class UserSeeder extends Seeder
 				'id_number' => randInt(5),
 				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'group_id' => 1,
+				'admin' => 0,
 				'password' => bcrypt('abcd'),
 				'can_book' => 0,
 				'can_book_reason' => 'Late fee',
@@ -110,11 +132,19 @@ class UserSeeder extends Seeder
 				'id_number' => randInt(5),
 				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'group_id' => $group['group']->id,
+				'admin' => 0,
 				'password' => bcrypt('abcd'),
-				'created_at' => Carbon::now()
+				'can_book' => 1,
+				'can_book_reason' => '',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
 			];
 		}
 
-		DB::table('users')->insert($items);
+		// DB::table('users')->insert($items);
+
+		foreach($items as $user) {
+			User::create($user);
+		}
 	}
 }

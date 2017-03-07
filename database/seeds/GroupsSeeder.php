@@ -45,7 +45,7 @@ class GroupsSeeder extends Seeder
 			$month = mt_rand(0, count($months) - 1);
 			$items[] = [
 				'id' => $items[count($items)-1]['id'] + 1,
-				'code' => '16A' . $types[$type]->code . $months[$month],
+				'code' => '16AD' . $types[$type]->code . $months[$month],
 				'group_type_id' => $types[$type]->id,
 				'enrollment_key' => 'blah'
 			];
