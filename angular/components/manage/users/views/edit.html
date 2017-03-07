@@ -72,6 +72,22 @@
 				</ui-select>
 			</div>
 		</div>
+
+		<div layout="row sm-row" class="spaced-row" ng-show="selected.role.level === 0 && !profileMode">
+			<div class="form-group">
+				<label for="can_book">Can Book</label>
+				<div class="push-left">
+					<label>
+						<input type="checkbox" ng-model="user.can_book" ng-change="syncUser()" ng-true-value="1" class="push-right">
+						 {{ user.can_book ? 'Yes' : 'No' }}
+					</label>
+				</div>
+			</div>
+			<div class="form-group" ng-show="!user.can_book" ratio="1">
+				<label for="can_book_reason">Reason</label>
+				<input type="text" ng-model="user.can_book_reason" class="form-control" id="can_book_reason">
+			</div>
+		</div>
 	</form>
 
 </div>

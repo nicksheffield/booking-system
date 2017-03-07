@@ -36,12 +36,4 @@ angular.module('app.controllers')
 			})
 		}
 	}
-
-	$scope.syncUser = function() {
-		var u = _.clone($scope.user)
-
-		User.update({id: u.id}, u).$promise.then(function(res) {
-			
-		})
-	}
 })

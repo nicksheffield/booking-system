@@ -9,6 +9,7 @@ use Auth;
 use DB;
 
 use App\Models\Booking as Model;
+use App\Models\User;
 
 use Carbon\Carbon;
 
@@ -52,17 +53,23 @@ class Booking extends Controller
 			$model->user_id = Auth::user()->id;
 		}
 
-		$model->created_by_id = Auth::user()->id;
+		$user = User::find($model->user_id);
 
-		$model->save();
-		
-		foreach($request->products as $product) {
-			for($i=0; $i<$product['quantity']; $i++) {
-				$model->products()->attach($product['id']);
+		if($user->can_book) {
+			$model->created_by_id = Auth::user()->id;
+
+			$model->save();
+			
+			foreach($request->products as $product) {
+				for($i=0; $i<$product['quantity']; $i++) {
+					$model->products()->attach($product['id']);
+				}
 			}
-		}
 
-		return $model;
+			return $model;
+		} else {
+			return response(['error' => 'not_allowed'], 400);
+		}
 	}
 
 	/**

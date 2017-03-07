@@ -1,13 +1,13 @@
 <header class="page-header" layout="row" align="center" justify="between">
 	<h1>Book equipment</h1>
 	
-	<div class="button-row">
+	<div class="button-row" ng-show="user.can_book">
 		<btn type="danger" icon="undo" small ng-click="reset()">Reset</btn>
 		<btn icon="book" small ng-click="book()">Make booking</btn>
 	</div>
 </header>
 
-<div class="page-dates" layout="col">
+<div class="page-dates" layout="col" ng-show="user.can_book">
 	<div layout="row sm-col" class="space-row">
 		<div ratio="1">
 			<label for="pickup_at">Pickup date</label>
@@ -33,9 +33,9 @@
 	</div>
 </div>
 
-<filter model="filter" filtered="filtered"></filter>
+<filter model="filter" filtered="filtered" ng-show="user.can_book"></filter>
 
-<div class="page-content">
+<div class="page-content" ng-show="user.can_book">
 	
 	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length">
 		<thead>
@@ -57,4 +57,12 @@
 		</tr>
 	</table>
 	
+</div>
+
+
+<div class="page-content" ng-show="!user.can_book">
+	<alert type="danger" icon="exclamation-triangle" text="You are not allowed to make bookings"></alert>
+
+	<p>Reason: <strong>{{ user.can_book_reason }}</strong></p>
+	<p>Please talk to your tutor to resolve this issue.</p>
 </div>

@@ -12,10 +12,12 @@ angular.module('app.controllers')
 	$scope.product = (id) => $store.get('products', id)
 	
 	$scope.confirm = function() {
-		console.log('before', $store.booking.due_at)
+		if(!$scope.user.can_book) {
+			return
+		}
+
 		$store.booking.pickup_at = new Date($store.booking.pickup_at)
 		$store.booking.due_at = new Date($store.booking.due_at)
-		console.log('after', $store.booking.due_at)
 
 		$http.post('/api/booking', $store.booking).then(function(res) {
 			$store.resetBooking()

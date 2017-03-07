@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use GuzzleHttp\Client;
+use Carbon\Carbon;
 
 class UserSeeder extends Seeder
 {
@@ -19,48 +19,53 @@ class UserSeeder extends Seeder
 				'id' => 1,
 				'name' => 'Nick Sheffield',
 				'email' => 'numbereft@gmail.com',
-				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'admin' => 2,
-				'password' => bcrypt('abcd')
+				'password' => bcrypt('abcd'),
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
 			],[
 				'id' => 2,
 				'name' => 'Graeme Bibby',
 				'email' => 'graeme@example.com',
-				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'admin' => 1,
-				'password' => bcrypt('abcd')
+				'password' => bcrypt('abcd'),
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
 			],[
 				'id' => 3,
 				'name' => 'Angelo De Marchi',
 				'email' => 'angelo@example.com',
-				'dob' => Carbon\Carbon::create(rand(1960, 1978), rand(1, 12), rand(1, 28)),
+				'dob' => Carbon::create(rand(1960, 1978), rand(1, 12), rand(1, 28)),
 				'admin' => 1,
-				'password' => bcrypt('abcd')
+				'password' => bcrypt('abcd'),
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
 			],[
 				'id' => 4,
 				'name' => 'Megan Harper',
 				'email' => 'megan@example.com',
-				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'admin' => 1,
-				'password' => bcrypt('abcd')
+				'password' => bcrypt('abcd'),
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
 			],[
 				'id' => 5,
 				'name' => 'Henry Fox',
 				'email' => 'henry@example.com',
 				'phone' => '021'.randInt(7),
 				'id_number' => randInt(5),
-				'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'group_id' => 1,
 				'password' => bcrypt('abcd'),
 				'can_book' => 0,
-				'can_book_reason' => 'Late fee'
+				'can_book_reason' => 'Late fee',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
 			]
 		];
-		
-		# Create all the above users
-		foreach($items as $item) {
-			App\Models\User::create($item);
-		}
 		
 		$id = 5;
 		$user_count = 0;
@@ -80,36 +85,36 @@ class UserSeeder extends Seeder
 		foreach($groups as $group) {
 			$user_count += $group['count'];
 		}
-		
-		# then hit the uinames api to get a random list of names
-		$client = new Client();
-		$res = $client->request('GET', 'http://uinames.com/api/?region=england&amount='.$user_count);
-		$body = json_decode((string)$res->getBody());
-		
-		if($body) {
-			while($person = array_shift($body)) {
-				// echo $person->name;
-				$group = $groups[$group_i];
-				$person_i++;
-				
-				if($person_i == $group['count']) {
-					$person_i = 0;
-					$group_i++;
-				}
-				
-				$username = strtolower($person->name).strtolower(substr($person->surname,0,1)).rand(1,9999);
-				
-				App\Models\User::create([
-					'id' => ++$id,
-					'name' => $person->name . ' ' . $person->surname,
-					'email' => $username.'@example.com',
-					'phone' => '021'.randInt(7),
-					'id_number' => randInt(5),
-					'dob' => Carbon\Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
-					'group_id' => $group['group']->id,
-					'password' => bcrypt('abcd')
-				]);
+
+		$faker = Faker\Factory::create();
+
+		for($i=0; $i<$user_count; $i++) {
+			$group = $groups[$group_i];
+			$person_i++;
+			
+			if($person_i == $group['count']) {
+				$person_i = 0;
+				$group_i++;
 			}
+
+			$name = $faker->firstName;
+			$surname = $faker->lastName;
+			
+			$username = strtolower($name).strtolower(substr($surname,0,1)).rand(1,9999);
+
+			$items[] = [
+				'id' => ++$id,
+				'name' => $name . ' ' . $surname,
+				'email' => $username.'@example.com',
+				'phone' => '021'.randInt(7),
+				'id_number' => randInt(5),
+				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'group_id' => $group['group']->id,
+				'password' => bcrypt('abcd'),
+				'created_at' => Carbon::now()
+			];
 		}
+
+		DB::table('users')->insert($items);
 	}
 }

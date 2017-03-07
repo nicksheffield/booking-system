@@ -2,7 +2,7 @@
 	<h1>Confirm booking</h1>
 </header>
 
-<div class="page-content">
+<div class="page-content" ng-show="user.can_book">
 
 	<p>Does this look right?</p>
 	<p>If not, you can <a href="#/book">go back</a> and modify it first.</p>
@@ -46,4 +46,12 @@
 	
 	<btn type="success" large icon="check" ng-click="confirm()" disable="!booking.due_at || !booking.pickup_at || !booking.products.length">Yes</btn>
 	
+</div>
+
+
+<div class="page-content" ng-show="!user.can_book">
+	<alert type="danger" icon="exclamation-triangle" text="You are not allowed to make bookings"></alert>
+
+	<p>Reason: <strong>{{ user.can_book_reason }}</strong></p>
+	<p>Please talk to your tutor to resolve this issue.</p>
 </div>

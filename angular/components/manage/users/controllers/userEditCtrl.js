@@ -47,7 +47,7 @@ angular.module('app.controllers')
 		User.update({id: $scope.user.id}, $scope.user).$promise.then(function() {
 			$invalidate.add(['users', 'groups'])
 			
-			$location.path('/manage/user')
+			$location.path('/manage/user/' + $scope.user.id)
 		})
 	}
 	
