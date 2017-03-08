@@ -17,5 +17,5 @@
 		</li>
 	</ul>
 
-	<select ng-model="current" ng-options="('page: ' + num) for num in allpages" class="form-control page-picker"></select>
+	<select ng-model="current" ng-change="updateOld()" ng-options="('page: ' + num) for num in allpages" class="form-control page-picker"></select>
 </nav>

@@ -41,7 +41,13 @@ angular.module('app.directives')
 		scope.setCurrent = function(val) {
 			scope.current = val
 
-			old = val
+			scope.updateOld()
+		}
+
+		scope.updateOld = function() {
+			if(scope.current == null) return
+			
+			old = scope.current
 		}
 	}
 
