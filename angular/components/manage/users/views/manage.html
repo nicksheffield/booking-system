@@ -1,6 +1,8 @@
 <header class="page-header" layout="row" justify="between" align="center">
 	<h1>All Users</h1>
-	<btn icon="plus" small url="#/manage/user/new">New</btn>
+	<div class="button-row">
+		<btn icon="plus" small url="#/manage/user/new">New</btn>
+	</div>
 </header>
 
 <breadcrumbs></breadcrumbs>
@@ -9,7 +11,7 @@
 
 <div class="page-content">
 
-	<pager current="page" limit="limit()" data="users" filtered="filtered" filter="filter"></pager>
+	<pager current="page" limit="limit()" data="users" filtered="filtered" filter="filter" ng-show="!filter"></pager>
 
 	<table class="table table-hover table-filtered" ng-hide="!filtered.length">
 		<thead>
