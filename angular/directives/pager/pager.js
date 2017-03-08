@@ -2,11 +2,13 @@ angular.module('app.directives')
 
 .directive('pager', function($state, $store, $auth, $queryString) {
 	function link(scope, el, attrs) {
+		var old = null;
+
 		function calculate() {
 			scope.pages = []
 			scope.allpages = []
 
-			scope.current = scope.current ? scope.current : 1
+			scope.current = scope.current ? scope.current : (old ? old : 1)
 
 			var range = 2
 			var max = range * 2 + 1
@@ -38,6 +40,8 @@ angular.module('app.directives')
 
 		scope.setCurrent = function(val) {
 			scope.current = val
+
+			old = val
 		}
 	}
 
