@@ -1,0 +1,21 @@
+<nav class="pagination-container" layout="row" justify="center">
+	<ul class="pagination">
+		<li class="page-item" ng-class="{disabled: current == 1}">
+			<span class="page-link" ng-click="setCurrent(1)">First</span>
+		</li>
+		<li class="page-item" ng-class="{disabled: current == 1}">
+			<span class="page-link" ng-click="setCurrent(current - 1)">&laquo;</span>
+		</li>
+		<li class="page-item" ng-repeat="page in pages" ng-class="{active: current == page}">
+			<span class="page-link" ng-click="setCurrent(page)">{{ page }}</span>
+		</li>
+		<li class="page-item" ng-class="{disabled: current == totalpages}">
+			<span class="page-link" ng-click="setCurrent(current + 1)">&raquo;</span>
+		</li>
+		<li class="page-item" ng-class="{disabled: current == totalpages}">
+			<span class="page-link" ng-click="setCurrent(totalpages)">Last ({{ totalpages }})</span>
+		</li>
+	</ul>
+
+	<select ng-model="current" ng-options="('page: ' + num) for num in allpages" class="form-control page-picker"></select>
+</nav>
