@@ -4,6 +4,10 @@ angular.module('app.directives')
 	function link(scope, el, attrs) {
 		var old = null;
 
+		scope.getLimit = function() {
+			return scope.filter ? 99 : scope.limit
+		}
+
 		function calculate() {
 			scope.pages = []
 			scope.allpages = []
@@ -13,9 +17,9 @@ angular.module('app.directives')
 			var range = 2
 			var max = range * 2 + 1
 
-			scope.totalpages = Math.ceil((scope.filter ? scope.filtered.length : scope.data.length) / scope.limit)
+			scope.totalpages = Math.ceil((scope.filter ? scope.filtered.length : scope.data.length) / scope.getLimit())
 
-			var start = scope.current - range > 1 ? scope.current - range : 1
+			var start = scope.getCurrent() - range > 1 ? scope.getCurrent() - range : 1
 			
 			if(start > scope.totalpages - max + 1) {
 				start = scope.totalpages - max + 1
@@ -24,7 +28,7 @@ angular.module('app.directives')
 			start = start <= 1 ? 1 : start
 
 			for(var i=start; i<=scope.totalpages; i++) {
-				if(i > scope.current - range && i < scope.current + range || scope.pages.length < max) {
+				if(i > scope.getCurrent() - range && i < scope.getCurrent() + range || scope.pages.length < max) {
 					scope.pages.push(i)
 				}
 			}
@@ -45,9 +49,13 @@ angular.module('app.directives')
 		}
 
 		scope.updateOld = function() {
-			if(scope.current == null) return
+			if(scope.current === null) return
 			
 			old = scope.current
+		}
+
+		scope.getCurrent = function() {
+			return scope.filter ? 1 : (scope.current ? scope.current : (old ? old : 1))
 		}
 	}
 

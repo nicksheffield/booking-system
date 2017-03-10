@@ -16,4 +16,6 @@
 			<a href="#/bookings?page={{ last }}{{ query }}" class="page-link">Last ({{ last }})</a>
 		</li>
 	</ul>
+
+	<select ng-model="current" ng-change="goto()" ng-options="('page: ' + num) for num in allpages" class="form-control page-picker"></select>
 </nav>

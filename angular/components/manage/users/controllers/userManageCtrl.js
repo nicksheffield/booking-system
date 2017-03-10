@@ -10,12 +10,4 @@ angular.module('app.controllers')
 		
 		return value.group && value.group._isTutor($store.user.id)
 	}
-
-	$scope.limit = function() {
-		return $scope.filter ? 99 : 10
-	}
-
-	$scope.currentPage = function() {
-		return $scope.filter ? 1 : $scope.page
-	}
 })

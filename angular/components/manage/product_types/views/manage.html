@@ -11,6 +11,8 @@
 
 <div class="page-content">
 
+	<pager current="page" limit="10" data="product_types" filtered="filtered" filter="filter" ng-show="!filter && product_types.length >= 30"></pager>
+
 	<table class="table table-hover table-filtered" ng-hide="!filtered.length">
 		<thead>
 			<tr>
@@ -20,7 +22,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="type in product_types | filter: filter as filtered">
+			<tr ng-repeat="type in product_types | filter: filter | page : page : 10 : 30 as filtered">
 				<td><a href="#/manage/product_type/{{ type.id }}">{{ type.name }}</a></td>
 				<td>{{ type.products.length }}</td>
 				<td>

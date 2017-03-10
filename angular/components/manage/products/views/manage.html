@@ -11,16 +11,18 @@
 
 <div class="page-content">
 
+	<pager current="page" limit="10" data="products" filtered="filtered" filter="filter" ng-show="!filter && products.length >= 30"></pager>
+
 	<table class="table table-hover table-filtered" ng-hide="!filtered.length">
 		<thead>
 			<tr>
 				<th class="table-col-code">Name</th>
-				<th class="table-col-name">Type</th>
-				<th class="table-col-controls"></th>
+				<th class="table-col-name" width="30%">Type</th>
+				<th class="table-col-controls" width="10%"></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="product in products | filter: filter as filtered">
+			<tr ng-repeat="product in products | filter: filter | page : page : 10 : 30 as filtered">
 				<td><a href="#/manage/product/{{ product.id }}">{{ product.name }}</a></td>
 				<td><a href="#/manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
 				<td>

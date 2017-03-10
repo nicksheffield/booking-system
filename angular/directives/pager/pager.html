@@ -1,18 +1,18 @@
 <nav class="pagination-container" layout="row" justify="center">
 	<ul class="pagination">
-		<li class="page-item" ng-class="{disabled: current == 1}">
+		<li class="page-item" ng-class="{disabled: getCurrent() == 1}">
 			<span class="page-link" ng-click="setCurrent(1)">First</span>
 		</li>
-		<li class="page-item" ng-class="{disabled: current == 1}">
-			<span class="page-link" ng-click="setCurrent(current - 1)">&laquo;</span>
+		<li class="page-item" ng-class="{disabled: getCurrent() == 1}">
+			<span class="page-link" ng-click="setCurrent(getCurrent() - 1)">&laquo;</span>
 		</li>
-		<li class="page-item" ng-repeat="page in pages" ng-class="{active: current == page}">
+		<li class="page-item" ng-repeat="page in pages" ng-class="{active: getCurrent() == page}">
 			<span class="page-link" ng-click="setCurrent(page)">{{ page }}</span>
 		</li>
-		<li class="page-item" ng-class="{disabled: current == totalpages}">
-			<span class="page-link" ng-click="setCurrent(current + 1)">&raquo;</span>
+		<li class="page-item" ng-class="{disabled: getCurrent() == totalpages}">
+			<span class="page-link" ng-click="setCurrent(getCurrent() + 1)">&raquo;</span>
 		</li>
-		<li class="page-item" ng-class="{disabled: current == totalpages}">
+		<li class="page-item" ng-class="{disabled: getCurrent() == totalpages}">
 			<span class="page-link" ng-click="setCurrent(totalpages)">Last ({{ totalpages }})</span>
 		</li>
 	</ul>
