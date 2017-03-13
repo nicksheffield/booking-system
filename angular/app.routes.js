@@ -87,7 +87,8 @@ angular.module('app.routes')
 			controller: 'confirmCtrl',
 			data: {
 				conditions: ['auth'],
-				title: 'Confirm booking'
+				title: 'Confirm booking',
+				crumb_parent: 'make_booking'
 			}
 		},
 		

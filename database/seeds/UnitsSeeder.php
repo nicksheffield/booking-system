@@ -44,6 +44,10 @@ class UnitsSeeder extends Seeder
 				'product_id' => $product_id
 			];
 
+			if($item['id'] == 22 || $item['id'] == 23 || $item['id'] == 24) {
+				$item['limitless'] = true;
+			}
+
 			App\Models\Unit::create($item);
 		}
 	}

@@ -7,7 +7,7 @@
 	<title ng-bind="pageTitle">Booking</title>
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700|Open+Sans:300,400,700">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700">
 	<link rel="stylesheet" href="dist/style.min.css">
 	
 	<script src="dist/libs.min.js"></script>

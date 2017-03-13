@@ -8,19 +8,27 @@
 
 <breadcrumbs></breadcrumbs>
 
-<div class="page-advanced-filter">
+<div class="page-advanced-filter" ng-class="{'filter-open': filter.open}">
 	
-	<div layout="row" justify="between" align="center" class="filter-header">
-		<h2>Advanced Filter</h2>
-		<div class="button-group">
-			<btn type="success" icon="caret-up" ng-if="filter.open" ng-click="filter.toggleOpen()"></btn>
-			<btn type="success" icon="caret-down" ng-if="!filter.open" ng-click="filter.toggleOpen()"></btn>
+	<div layout="row" justify="between" align="center">
+		<div>
+			<btn type="primary" icon="caret-down" ng-if="filter.open" ng-click="filter.toggleOpen()">
+				Advanced Filter
+			</btn>
+			<btn type="primary" icon="caret-right" ng-if="!filter.open" ng-click="filter.toggleOpen()">
+				Advanced Filter
+			</btn>
+		</div>
+
+		<div class="button-row">
+			<btn type="info" icon="filter" ng-click="applyFilter()" ng-show="filter.open">Apply</btn>
+			<btn type="danger" icon="times" ng-click="clearFilter()">Clear<span ng-show="!filter.open"> filter</span></btn>
 		</div>
 	</div>
 
 	<div ng-show="filter.open" class="filter-drawer">
 
-		<div layout="row">
+		<div layout="row sm-col">
 			<div class="filter-col" layout="col" ratio="1">
 				<section layout="col">
 					<div class="group-heading first">Date Ranges</div>
@@ -85,11 +93,6 @@
 					</div>
 				</section>
 			</div>
-		</div>
-
-		<div layout="row" justify="between">
-			<btn type="info" icon="search" ng-click="applyFilter()">Apply Filters</btn>
-			<btn type="warning" icon="times" ng-click="clearFilter()">Clear</btn>
 		</div>
 	</div>
 </div>

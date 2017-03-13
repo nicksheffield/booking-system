@@ -102,6 +102,7 @@ class CreateTables extends Migration
 			$table->string('unit_number');
 			$table->integer('product_id');
 			$table->mediumText('notes');
+			$table->boolean('limitless');
 			$table->timestamps();
 			$table->softDeletes();
 		});

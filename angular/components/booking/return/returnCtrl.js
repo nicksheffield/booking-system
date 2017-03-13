@@ -32,7 +32,9 @@ angular.module('app.controllers')
 		$http
 			.put('/api/booking/' + $scope.booking.id, $scope.booking)
 			.then(function(res) {
-				$invalidate.add('bookings')
+				$store.bookings = _.map($store.bookings, function(booking, i) {
+					if(booking.id == res.id) $store.bookings[i] = res
+				})
 
 				$location.path('/booking/' + $scope.booking.id)
 			})
