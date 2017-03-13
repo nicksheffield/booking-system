@@ -63,7 +63,7 @@
 			height 100%
 		
 	a
-		color inherit
+		color color-sidebar-text
 		text-decoration none
 		display flex
 		align-items center
@@ -82,8 +82,9 @@
 			padding 1em
 		
 	a:hover
-		background darken(color-sidebar-highlight, 60%)
-		border-top-color transparent
+		background color-sidebar-hover
+		color color-sidebar-text
+		// border-top-color transparent
 	
 	.current a
 		background color-sidebar-highlight

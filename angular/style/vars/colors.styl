@@ -1,19 +1,24 @@
 // Main colors
-color-primary                     = #3F51B5
+color-primary                     = #4A89DC // #3F51B5
 color-secondary                   = #EEEEEE
-color-danger                      = #DD0000
-color-warning                     = #FF9800
-color-info                        = #00BCD4
+color-danger                      = #E91E63 // #DD0000
+color-warning                     = #FF9500
+color-info                        = #55ACEE // #00BCD4
 color-success                     = #8BC34A
 
 // Misc colors
 color-border                      = #DDDDDD
+color-clickable                   = #0095DD
+color-clickable-hover             = lighten(color-clickable, 25%)
+color-tertiary                    = #314d5b
+color-body-bg                     = #222
 
 // Sidebar colors
 color-sidebar-text                = #FFFFFF
-color-sidebar-background          = #222222
-color-sidebar-highlight           = color-info
+color-sidebar-background          = #253a47 // #222222
+color-sidebar-highlight           = #2d4d5b // color-info
 color-sidebar-border              = rgba(255, 255, 255, 0.1)
+color-sidebar-hover               = #1e333e // darken(color-sidebar-highlight, 60%)
 
 // Page header colors
 color-page-header-background      = #DDDDDD
@@ -23,6 +28,8 @@ color-page-header-text            = #000000
 color-breadcrumbs-background      = #EEEEEE
 color-breadcrumbs-text            = #222222
 color-breadcrumbs-delimiter       = #AAAAAA
+color-breadcrumbs-link            = color-clickable
+color-breadcrumbs-hover           = color-clickable-hover
 
 // Page Section colors
 color-page-section-background     = whitesmoke
@@ -65,8 +72,12 @@ color-loader-bg                   = rgba(255, 255, 255, 0.5)
 color-loader-icon                 = color-info
 
 // Advanced Filter colors
-color-adv-bg                      = #333
+color-adv-bg                      = color-tertiary // #333
 color-adv-text                    = #fff
 color-adv-heading                 = #ddd
 color-adv-border                  = #999
 color-adv-divider                 = #555
+color-adv-section                 = lighten(color-adv-bg, 10%) // #444
+
+// Pagination colors
+color-pagination-highlight        = color-tertiary
