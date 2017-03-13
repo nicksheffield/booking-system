@@ -44,7 +44,7 @@ class UnitsSeeder extends Seeder
 				'product_id' => $product_id
 			];
 
-			if($item['id'] == 22 || $item['id'] == 23 || $item['id'] == 24) {
+			if($product_id == 22 || $product_id == 23 || $product_id == 24) {
 				$item['limitless'] = true;
 			}
 
