@@ -21,6 +21,10 @@
 			<td class="row-value"><a href="#/manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
 		</tr>
 		<tr>
+			<td class="row-property">Limitless</td>
+			<td class="row-value">{{ product.limitless ? 'Yes' : 'No' }}</td>
+		</tr>
+		<tr>
 			<td class="row-property">
 				Units ({{ product.units.length }})<br>
 				<btn url="#/manage/unit/new?product={{ product.id }}" small icon="plus" type="secondary"></btn>

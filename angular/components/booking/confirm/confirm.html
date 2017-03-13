@@ -36,7 +36,7 @@
 				<ul ng-show="booking.products.length">
 					<li ng-repeat="item in booking.products">
 						{{ product(item.id).name }}
-						<b> x{{ item.quantity }}</b>
+						<b ng-hide="product(item.id).limitless"> x{{ item.quantity }}</b>
 					</li>
 				</ul>
 				<alert type="danger" text="You aren't booking any products" icon="exclamation-circle" ng-show="!booking.products.length"></alert>

@@ -12,7 +12,7 @@ class Product extends Model
 	protected $table = 'products';
 	
 	protected $fillable = [
-		'name', 'product_type_id'
+		'name', 'product_type_id', 'limitless'
 	];
 	
 	public function units() {

@@ -90,7 +90,7 @@ class CreateTables extends Migration
 			$table->increments('id');
 			$table->string('name');
 			$table->integer('product_type_id');
-			$table->string('image');
+			$table->boolean('limitless')->default(false);
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -102,7 +102,6 @@ class CreateTables extends Migration
 			$table->string('unit_number');
 			$table->integer('product_id');
 			$table->mediumText('notes');
-			$table->boolean('limitless')->default(false);
 			$table->timestamps();
 			$table->softDeletes();
 		});

@@ -122,17 +122,20 @@ class ProductsSeeder extends Seeder
 			[
 				'id' => 22,
 				'name' => 'Gel',
-				'product_type_id' => 5
+				'product_type_id' => 5,
+				'limitless' => true
 			],
 			[
 				'id' => 23,
 				'name' => 'Diffusion',
-				'product_type_id' => 5
+				'product_type_id' => 5,
+				'limitless' => true
 			],
 			[
 				'id' => 24,
 				'name' => 'Pegs',
-				'product_type_id' => 5
+				'product_type_id' => 5,
+				'limitless' => true
 			],
 			[
 				'id' => 25,
