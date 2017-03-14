@@ -128,6 +128,8 @@ gulp.task('libs', function() {
 		'public/components/mousetrap/plugins/global-bind/mousetrap-global-bind.js',
 		'public/components/satellizer/dist/satellizer.js',
 		'public/components/moment/moment.js',
+		'public/3rdparty/tether.min.js',
+		'public/3rdparty/bootstrap.min.js'
 	]
 
 	var stream = gulp.src(libs)                             // get all the lib files

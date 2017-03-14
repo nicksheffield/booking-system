@@ -1,9 +1,14 @@
 <header class="page-header" layout="row" justify="between" align="center">
 	<h1>{{ product.name }}</h1>
-	
-	<div class="button-row">
-		<btn url="#/manage/product/{{ product.id }}/edit" icon="pencil" small>Edit</btn>
-		<btn ng-click="delete()" icon="trash" type="danger" small></btn>
+
+	<div class="btn-group">
+		<a href="#/manage/product/{{ product.id }}/edit" class="btn btn-primary btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+		<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<span class="sr-only">Toggle Dropdown</span>
+		</button>
+		<div class="dropdown-menu dropdown-menu-right">
+			<span class="dropdown-item btn-icon" ng-click="delete()"><i class="fa fa-trash"></i>Delete</span>
+		</div>
 	</div>
 </header>
 
@@ -27,7 +32,7 @@
 		<tr>
 			<td class="row-property">
 				Units ({{ product.units.length }})<br>
-				<btn url="#/manage/unit/new?product={{ product.id }}" small icon="plus" type="secondary"></btn>
+				<a href="#/manage/unit/new?product={{ product.id }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
 			</td>
 			<td class="row-value">
 				<ul>

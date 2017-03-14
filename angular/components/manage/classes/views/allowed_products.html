@@ -2,10 +2,12 @@
 	<h1>{{ group.code }}</h1>
 	
 	<div>
-		<btn type="info" icon="floppy-o" ng-show="saved === undefined" small>Autosave on</btn>
-		<btn type="info" icon="cog" ng-show="!saved && saved !== undefined" spinning small>Saving</btn>
-		<btn type="success" icon="check" ng-show="saved" small>Saved</btn>
+		<btn type="info" icon="floppy-o" ng-show="saved === undefined">Autosave on</btn>
+		<btn type="info" icon="cog" ng-show="!saved && saved !== undefined" spinning>Saving</btn>
+		<btn type="success" icon="check" ng-show="saved">Saved</btn>
 	</div>
+
+
 </header>
 
 <breadcrumbs></breadcrumbs>

@@ -1,17 +1,22 @@
 <header class="page-header" layout="row" align="center" justify="between">
 	<h1>{{ user.name }}</h1>
 	
-	<div class="button-row">
-		<btn url="#/manage/user/{{ user.id }}/reset_pw" icon="unlock-alt" small>Reset Password</btn>
-		<btn url="#/manage/user/{{ user.id }}/edit" icon="pencil" small>Edit</btn>
-		<btn ng-click="delete()" icon="trash" type="danger" small></btn>
+	<div class="btn-group">
+		<a href="#/manage/user/{{ user.id }}/edit" class="btn btn-primary btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+		<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<span class="sr-only">Toggle Dropdown</span>
+		</button>
+		<div class="dropdown-menu dropdown-menu-right">
+			<a class="dropdown-item btn-icon" href="#/manage/user/{{ user.id }}/reset_pw"><i class="fa fa-unlock-alt"></i>Reset Password</a>
+
+			<span class="dropdown-item btn-icon" ng-click="delete()"><i class="fa fa-trash"></i>Delete</span>
+		</div>
 	</div>
 </header>
 
 <breadcrumbs></breadcrumbs>
 
 <div class="page-content">
-	
 	<table class="table data-table">
 		<tr>
 			<td class="row-property">Name</td>
@@ -73,7 +78,7 @@
 		<tr ng-show="!user.admin">
 			<td class="row-property">
 				Notes<br>
-				<btn icon="plus" small url="#/manage/user/{{ user.id }}/note/new" type="secondary"></btn>
+				<a href="#/manage/user/{{ user.id }}/note/new" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
 			</td>
 			<td class="row-value">
 				<div class="list-group">
