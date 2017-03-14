@@ -1,9 +1,14 @@
 <header class="page-header" layout="row" align="center" justify="between">
 	<h1>Book equipment</h1>
-	
-	<div class="button-row" ng-show="user.can_book">
-		<btn type="danger" icon="undo" small ng-click="reset()">Reset</btn>
-		<btn icon="book" small ng-click="book()">Make booking</btn>
+
+	<div class="btn-group" ng-show="user.can_book">
+		<button class="btn btn-primary btn-icon" ng-click="book()"><i class="fa fa-book"></i>Make Booking</button>
+		<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<span class="sr-only">Toggle Dropdown</span>
+		</button>
+		<div class="dropdown-menu dropdown-menu-right">
+			<span class="dropdown-item btn-icon" ng-click="reset()"><i class="fa fa-undo"></i>Reset</span>
+		</div>
 	</div>
 </header>
 
