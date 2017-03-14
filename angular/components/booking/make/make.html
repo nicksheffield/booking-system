@@ -49,12 +49,14 @@
 		<tr ng-repeat="product in products | filter: filter as filtered">
 			<td>{{ product.name }}</td>
 			<td class="sm-hide">{{ product.type.name }}</td>
-			<td>{{ max(product) }}</td>
+			<td>{{ product.limitless ? 'N/A' : max(product) }}</td>
 			
 			<td>
-				<input type="number" ng-model="product._quantity" class="form-control booking-quantity-input form-control-sm" max="{{ max(product) }}" ng-keyup="checkAgainstMax(product)" min="0" ng-change="createBooking()" ng-show="!product.limitless">
+				<div layout="row" justify="center">
+					<input type="number" ng-model="product._quantity" class="form-control booking-quantity-input form-control-sm" max="{{ max(product) }}" ng-keyup="checkAgainstMax(product)" min="0" ng-change="createBooking()" ng-show="!product.limitless">
 
-				<input type="checkbox" ng-model="product._quantity" ng-true-value="1" ng-false-value="0" ng-show="product.limitless">
+					<input type="checkbox" ng-model="product._quantity" ng-true-value="1" ng-false-value="0" ng-show="product.limitless">
+				</div>
 			</td>
 		</tr>
 	</table>
