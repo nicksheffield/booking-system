@@ -5,11 +5,32 @@
 </header>
 
 <div class="page-content">
-	<h2>Your Recent Bookings</h2>
+	<div layout="col">
+		<div layout="row" align="start sm-stretch">
+			<section ratio="1">
+				<h2>Your Current Bookings</h2>
+			</section>
+		</div>
+		<div layout="row sm-col" align="start sm-stretch">
+			<section ratio="1">
+				<h2>Your Recent Bookings</h2>
 
-	<ul>
-		<li ng-repeat="booking in user.bookings">
-			<a href="#/booking/{{ booking.id }}">{{ booking.created_at | date }}</a>
-		</li>
-	</ul>
+				<ul>
+					<li ng-repeat="booking in user.bookings">
+						<a href="#/booking/{{ booking.id }}">{{ booking.created_at | date }}</a>
+					</li>
+				</ul>
+			</section>
+
+			<section ratio="1">
+				<h2>Your Previous Bookings</h2>
+
+				<ul>
+					<li ng-repeat="booking in user.bookings">
+						<a href="#/booking/{{ booking.id }}">{{ booking.created_at | date }}</a>
+					</li>
+				</ul>
+			</section>
+		</div>
+	</div>
 </div>
