@@ -11,17 +11,41 @@ angular.module('app.controllers')
 		var bookings = $load.bookings(100, page)
 
 		bookings.$promise.then(function(res) {
-			if(res.length == 100) loadBookings(page + 1)
-
 			_.forEach(res, (a) => $scope.bookings.push(a))
+			console.log('loaded', $scope.bookings.length)
+
+			if(res.length == 100) {
+				loadBookings(page + 1)
+			} else {
+				simplifyBookings()
+			}
 		})
 	}
 
 	loadBookings(1)
 
-	$scope.$watch('bookings', function(newVal) {
-		console.log('bookings loaded', newVal.length)
-	}, true)
+	function simplifyBookings() {
+		console.log('simplified')
+		$store.bookings = $scope.bookings
+
+		$scope.bookings = []
+
+		_.forEach($store.bookings, function(booking) {
+			$scope.bookings.push({
+				id: booking.id,
+				user: {
+					name: booking.user.name,
+					group: {
+						code: booking.user.group ? booking.user.group.code : '',
+					}
+				},
+				closed_at: booking.closed_at,
+				_status: booking._status,
+				_overdue: booking._overdue,
+				_priority: booking._priority
+			})
+		})
+	}
 
 	// --------------------------------------------------------------------------------
 	// Dates
