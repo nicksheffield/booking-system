@@ -5,70 +5,23 @@ angular.module('app.controllers')
 
 	$scope.users = $store.users
 	$scope.groups = $store.groups
+	$scope.bookings = []
 
-	$bookingFilter.applyParams($stateParams)
+	function loadBookings(page) {
+		var bookings = $load.bookings(100, page)
 
-	// --------------------------------------------------------------------------------
-	// Filter
-	// --------------------------------------------------------------------------------
+		bookings.$promise.then(function(res) {
+			if(res.length == 100) loadBookings(page + 1)
 
-	$scope.filter = $bookingFilter
-
-	$scope.applyFilter = function() {
-		$bookingFilter.apply()
-		// $location.path('/bookings').search($bookingFilter.options)
-		$window.location.href = '#/bookings' + $queryString($bookingFilter.options, true)
+			_.forEach(res, (a) => $scope.bookings.push(a))
+		})
 	}
 
-	$scope.clearFilter = function() {
-		$bookingFilter.clear()
-		$window.location.href = '#/bookings'
-		$window.location.reload()
-	}
+	loadBookings(1)
 
-	$scope.clearUser = function() {
-		$bookingFilter.inDOM.user = undefined
-	}
-
-	// --------------------------------------------------------------------------------
-	// Pagination
-	// --------------------------------------------------------------------------------
-
-	$scope.limit = $bookingFilter.options.limit
-	$scope.total = 0
-
-
-	function getCount() {
-		var options = {}
-
-		if(!$store.user.admin) options.user_id = $store.user.id
-
-		options = _.merge(options, $bookingFilter.options)
-
-		$http.get('/api/booking/count', {params: options}).then(response => $scope.total = response.data.total)
-	}
-
-	getCount()
-	
-
-
-	// --------------------------------------------------------------------------------
-	// Bookings
-	// --------------------------------------------------------------------------------
-
-	var query = {
-		limit: $bookingFilter.options.limit,
-		offset: $bookingFilter.options.limit * ($bookingFilter.options.page - 1),
-		with: 'products'
-	}
-
-	query = _.merge(query, $bookingFilter.options)
-
-	$scope.bookings = Booking.query(query)
-
-	$scope.bookings.$promise
-		.then($prepare.bookings)
-		.then(bookings => $merge.bookings(bookings))
+	$scope.$watch('bookings', function(newVal) {
+		console.log('bookings loaded', newVal.length)
+	}, true)
 
 	// --------------------------------------------------------------------------------
 	// Dates

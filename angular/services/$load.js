@@ -80,8 +80,8 @@ angular.module('app.services')
 		return resource
 	}
 	
-	service.bookings = function() {
-		var resource = Booking.query({limit: 10, page: 1, 'with': 'products'})
+	service.bookings = function(limit, page) {
+		var resource = Booking.query({limit, page, 'with': 'products'})
 		
 		resource.$promise
 			.then($prepare.bookings)
