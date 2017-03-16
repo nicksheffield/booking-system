@@ -101,6 +101,8 @@
 </div>
 
 <div class="page-content" ratio="1">
+		
+	<pager current="page" limit="advFilter.props.limit" data="bookings" filtered="filtered" filter="filter" ng-show="!filter && bookings.length >= 30"></pager>
 
 	<div ng-show="bookings.length">
 		
@@ -137,8 +139,6 @@
 			</tbody>
 		</table>
 	</div>
-		
-	<pager current="page" limit="advFilter.props.limit" data="bookings" filtered="filtered" filter="filter" ng-show="!filter && bookings.length >= 30"></pager>
 
 	<!-- <div ng-show="!bookings.length">
 		<alert type="danger" icon="exclamation-triangle" text="No bookings match your filter critera"></alert>
