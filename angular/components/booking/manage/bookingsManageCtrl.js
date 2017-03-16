@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('bookingsManageCtrl', function($scope, $store, $load, $merge, $stateParams, $http, $location, Booking, $prepare, $window, $queryString) {
+.controller('bookingsManageCtrl', function($scope, $store, $load, Booking) {
 	window.$scope = $scope
 
 	$scope.users = $store.users
