@@ -17,24 +17,19 @@ class Booking extends Controller
 {
 	public function index(Request $request)
 	{
-		$q = $this->doFilter($request);
+		$limit = $request->limit && $request->limit !== '0' ? (int)$request->limit : 10;
 
-		$limit = $request->limit && $request->limit !== '0' ? $request->limit : 10;
+		$offset = $request->page ? (int)$request->page : 1;
 
-		$offset = $request->page ? $request->page : 1;
+		$q = Model::query();
 
 		if($request->with) $q = $q->with(explode('|', $request->with));
 
-		if($request->booked == 'false' && $request->overdue == 'false' && $request->issued == 'false' && $request->closed == 'false') {
-			return [];
-		} else {
-			$chunk = array_chunk($q->get()->sortByDesc('created_at')->all(), $limit)[$offset - 1];
+		$q = $q->orderBy('created_at');
 
-			return $chunk;
-		}
+		$q = $q->skip(($offset - 1) * $limit)->take($limit);
 		
-
-		// DB::enableQueryLog(); $q->get(); dd(DB::getQueryLog());
+		return $q->get();
 	}
 
 	/**

@@ -1,28 +1,34 @@
 <header class="page-header" layout="row" align="center" justify="between">
 	<h1>All Bookings</h1>
+
+	<div class="btn-group">
+		<button class="btn btn-primary btn-icon" ng-click="advFilter.toggleOpen()">
+			<i class="fa fa-filter"></i>
+			Filter
+		</button>
+		<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<span class="sr-only">Toggle Dropdown</span>
+		</button>
+		<div class="dropdown-menu dropdown-menu-right">
+			<span class="dropdown-item btn-icon" ng-click="advFilter.clear()">
+				<i class="fa fa-times"></i>
+				Clear filter
+			</span>
+		</div>
+	</div>
 </header>
 
 <breadcrumbs></breadcrumbs>
 
-<div class="page-advanced-filter" ng-class="{'filter-open': filter.open}">
-	
-	<div layout="row" justify="between" align="center">
-		<div>
-			<btn type="primary" icon="caret-down" ng-if="filter.open" ng-click="filter.toggleOpen()">
-				Advanced Filter
-			</btn>
-			<btn type="primary" icon="caret-right" ng-if="!filter.open" ng-click="filter.toggleOpen()">
-				Advanced Filter
-			</btn>
-		</div>
+<div class="page-advanced-filter" ng-show="advFilter.open" ng-class="{'filter-open': advFilter.open}">
 
-		<div class="button-row">
-			<btn type="info" icon="filter" ng-click="applyFilter()" ng-show="filter.open">Apply</btn>
-			<btn type="danger" icon="times" ng-click="clearFilter()">Clear<span ng-show="!filter.open"> filter</span></btn>
-		</div>
-	</div>
+	<div ng-show="advFilter.open" class="filter-drawer">
 
-	<div ng-show="filter.open" class="filter-drawer">
+		<div layout="row" align="center" justify="between" class="pad-down">
+			<h2>Filter</h2>
+
+			<btn type="success" icon="check" ng-click="advFilter.apply()" ng-show="advFilter.open">Apply</btn>
+		</div>
 
 		<div layout="row sm-col">
 			<div class="filter-col" layout="col" ratio="1">
@@ -30,18 +36,18 @@
 					<div class="group-heading first">Date Ranges</div>
 					<div class="item">
 						<label>After</label>
-						<date-input ng-model="filter.inDOM.after"></date-input>
+						<date-input ng-model="advFilter.props.after"></date-input>
 					</div>
 					<div class="item">
 						<label>Before</label>
-						<date-input ng-model="filter.inDOM.before"></date-input>
+						<date-input ng-model="advFilter.props.before"></date-input>
 					</div>
 				</section>
 
 				<section layout="col">
 					<div class="group-heading">User</div>
 					<div class="item has-select-clearer">
-						<ui-select select-unit-on-close select-dark ng-model="filter.inDOM.user">
+						<ui-select select-unit-on-close select-dark ng-model="advFilter.props.user">
 							<ui-select-match allow-clear="false" placeholder="​">
 								<span ng-bind="$select.selected.name" class="setheight"></span>
 							</ui-select-match>
@@ -50,7 +56,7 @@
 								<small ng-bind-html="user.group.code | highlight: $select.search"></small>
 							</ui-select-choices>
 						</ui-select>
-						<button class="close" ng-click="clearUser()" ng-show="filter.inDOM.user">
+						<button class="close" ng-click="advFilter.clearUser()" ng-show="advFilter.props.user">
 							<i class="fa fa-times-circle"></i>
 						</button>
 					</div>
@@ -62,22 +68,22 @@
 					<div class="group-heading">Types</div>
 					<div class="item">
 						<label class="checkbox">
-							<input type="checkbox" ng-model="filter.inDOM.overdue"> Show overdue
+							<input type="checkbox" ng-model="advFilter.props.overdue"> Show overdue
 						</label>
 					</div>
 					<div class="item">
 						<label class="checkbox">
-							<input type="checkbox" ng-model="filter.inDOM.closed"> Show closed
+							<input type="checkbox" ng-model="advFilter.props.closed"> Show closed
 						</label>
 					</div>
 					<div class="item">
 						<label class="checkbox">
-							<input type="checkbox" ng-model="filter.inDOM.issued"> Show issued
+							<input type="checkbox" ng-model="advFilter.props.issued"> Show issued
 						</label>
 					</div>
 					<div class="item">
 						<label class="checkbox">
-							<input type="checkbox" ng-model="filter.inDOM.booked"> Show booked
+							<input type="checkbox" ng-model="advFilter.props.booked"> Show booked
 						</label>
 					</div>
 				</section>
@@ -85,30 +91,32 @@
 				<section layout="col">
 					<div class="group-heading">Per Page</div>
 					<div class="item">
-						<input type="number" ng-model="filter.inDOM.limit" class="form-control">
+						<input type="number" ng-model="advFilter.props.limit" class="form-control">
 					</div>
 				</section>
 			</div>
 		</div>
 	</div>
+
 </div>
 
 <div class="page-content" ratio="1">
+		
+	<pager current="page" limit="advFilter.props.limit" data="bookings" filtered="filtered" filter="filter" ng-show="!filter && bookings.length >= 30"></pager>
 
 	<div ng-show="bookings.length">
-		<pagination total="total" filter="filter.options"></pagination>
 		
 		<table class="table table-hover table-filtered">
 			<thead>
 				<tr>
 					<th>User</th>
-					<th>Class</th>
-					<th>Status</th>
-					<th class="table-col-controls"></th>
+					<th width="20%">Class</th>
+					<th width="30%">Status</th>
+					<th width="10%" class="table-col-controls"></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="booking in bookings" class="filterable-row">
+				<tr ng-repeat="booking in bookings | page: page : advFilter.props.limit : 30 as filtered" class="filterable-row">
 					<td class="filterable-cell">
 						{{ booking.user.name }}
 					</td>
@@ -130,8 +138,6 @@
 				</tr>
 			</tbody>
 		</table>
-		
-		<pagination total="total" filter="filter.options"></pagination>
 	</div>
 
 	<!-- <div ng-show="!bookings.length">

@@ -7,6 +7,7 @@ button, a, input[type=submit]
 			
 		&:active
 			paperShadow(1)
+			transform translateY(1px)
 
 .btn
 	border 0
@@ -14,9 +15,6 @@ button, a, input[type=submit]
 	background white
 	color #000
 	transition background-color transition-time ease, color transition-time ease, box-shadow transition-time ease
-	
-	// @media (-webkit-min-device-pixel-ratio 2), (min-resolution 192dpi)
-	// 	font-weight 200
 	
 	&:hover
 		background color-secondary
@@ -113,7 +111,7 @@ button, a, input[type=submit]
 		
 .btn-default-focus
 	background none
-
+	
 .button-row
 	.btn
 		margin .2em 0 .2em .4em
@@ -128,6 +126,10 @@ button, a, input[type=submit]
 
 	&:active
 		paperShadow(1)
+		transform translateY(1px)
+	
+	.btn:not(.btn-link):active
+		transform none
 		
 	& > button.btn, & > a.btn
 		box-shadow none

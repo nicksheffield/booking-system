@@ -26,6 +26,7 @@ angular.module('app.services')
 	var service = {}
 
 	var enumerable = true
+	var configurable = true
 	
 	service.users = function(users) {
 		_.forEach(users, service.user)
@@ -46,6 +47,7 @@ angular.module('app.services')
 		
 		Object.defineProperty(user, 'group', {
 			enumerable,
+			configurable,
 			get: () => _.find($store.groups, {id: user.group_id})
 		})
 		
@@ -65,6 +67,7 @@ angular.module('app.services')
 			
 			Object.defineProperty(group, 'type', {
 				enumerable,
+				configurable,
 				get: () => _.find($store.group_types, {id: group.group_type_id})
 			})
 			
@@ -97,6 +100,7 @@ angular.module('app.services')
 			
 			Object.defineProperty(product, 'type', {
 				enumerable,
+				configurable,
 				get: () => _.find($store.product_types, {id: product.product_type_id})
 			})
 			
@@ -124,6 +128,7 @@ angular.module('app.services')
 			
 			Object.defineProperty(unit, 'product', {
 				enumerable,
+				configurable,
 				get: () => _.find($store.products, {id: unit.product_id})
 			})
 		})
@@ -184,6 +189,7 @@ angular.module('app.services')
 		if(!booking.user) {
 			Object.defineProperty(booking, 'user', {
 				enumerable,
+				configurable,
 				get: () => _.find($store.users, {id: booking.user_id})
 			})
 		}
@@ -226,6 +232,7 @@ angular.module('app.services')
 
 			Object.defineProperty(note, 'history', {
 				enumerable,
+				configurable,
 				get: function() {
 					function getParent(a, n) {
 						if(n.revision_of) {

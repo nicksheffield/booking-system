@@ -38,9 +38,10 @@ angular.module('app.directives')
 			}
 		}
 
-		scope.$watch('data', calculate)
+		scope.$watch('data', calculate, true)
 		scope.$watch('current', calculate)
 		scope.$watch('filter', calculate)
+		scope.$watch('limit', calculate)
 
 		scope.setCurrent = function(val) {
 			scope.current = val
