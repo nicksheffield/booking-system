@@ -6,6 +6,7 @@ angular.module('app.controllers')
 	$scope.users = $store.users
 	$scope.groups = $store.groups
 	$scope.bookings = []
+	$store.bookings = []
 
 	function loadBookings(page) {
 		var bookings = $load.bookings(100, page)
@@ -44,7 +45,7 @@ angular.module('app.controllers')
 				_priority: booking._priority
 			})
 		})
-		
+
 		$scope.advFilter.apply()
 	}
 
@@ -155,6 +156,7 @@ angular.module('app.controllers')
 			})
 
 			$scope.bookings = temp2
+			$scope.advFilter.open = false
 		}
 	}
 
