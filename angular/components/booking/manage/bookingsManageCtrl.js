@@ -1,6 +1,7 @@
 angular.module('app.controllers')
 
-.controller('bookingsManageCtrl', function($scope, $store, $load, Booking) {
+.controller('bookingsManageCtrl', function($scope, $store, $load, $stateParams, Booking) {
+	console.log('stateParams', $stateParams)
 	window.$scope = $scope
 
 	$scope.users = $store.users
@@ -96,6 +97,11 @@ angular.module('app.controllers')
 		clearUser: function() {
 			$scope.advFilter.props.user = null
 		},
+		importFromQueryString: function(obj) {
+			if(obj.user) $scope.advFilter.props.user = $store.get('users', parseInt(obj.user))
+
+			$scope.advFilter.apply()
+		},
 		apply: function() {
 			if($scope.advFilter.props.limit === 0) return
 
@@ -161,5 +167,7 @@ angular.module('app.controllers')
 	}
 
 	$scope.advFilter.clear()
+
+	$scope.advFilter.importFromQueryString($stateParams)
 
 })
