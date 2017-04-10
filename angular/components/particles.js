@@ -1,8 +1,10 @@
 Mousetrap.bindGlobal(['up up down down left right left right b a'], function() {
 	window.konami = true
-	document.body.classList.add('konami-code')
+	// document.body.classList.add('konami-code')
 	return false
 })
+
+window.konami = true
 
 $(document).on('click', function(event) {
 	if(window.konami) {
@@ -13,44 +15,47 @@ $(document).on('click', function(event) {
 })
 
 function explode(e) {
-	var x = e.clientX
-	var y = e.clientY
+	var x = e.pageX
+	var y = e.pageY
 	var c = document.createElement('canvas')
 	var ctx = c.getContext('2d')
 	var ratio = window.devicePixelRatio
+	var ringRadius = 0
+	var ringAccel = 7
+	var ringAlpha = 1
 	var particles = []
 	var colors = [
-		'#3F51B5',
-		'#D00',
-		'#FF9800',
-		'#00BCD4',
-		'#8BC34A'
+		'#FF1461', '#18FF92', '#5A87FF', '#FBF38C'
 	]
 	
 	document.body.appendChild(c)
+
+	var w = 600
+	var h = 600
 	
 	c.style.position = 'absolute'
-	c.style.left = (x - 100) + 'px'
-	c.style.top = (y - 100) + 'px'
+	c.style.left = (x - (w/2)) + 'px'
+	c.style.top = (y - (h/2)) + 'px'
 	c.style.pointerEvents = 'none'
-	c.style.width = 200 + 'px'
-	c.style.height = 200 + 'px'
+	c.style.width = w + 'px'
+	c.style.height = h + 'px'
 	c.style.zIndex = 9999
-	c.width = 400 / ratio
-	c.height = 400 / ratio
+	c.width = w * ratio
+	c.height = h * ratio
 	
 	function Particle() {
 		return {
 			x: c.width / 2,
 			y: c.height / 2,
-			radius: r(15,25) * ratio,
+			radius: r(30,50),
 			color: colors[parseInt(Math.random()*colors.length)],
 			rotation: r(0,360, true),
 			speed: r(8,12),
-			friction: 0.9,
 			opacity: r(0,0.5, true),
 			yVel: 0,
-			gravity: 0
+			gravity: 0,
+			friction: 0.5,
+			shrink: 2
 		}
 	}
 	
@@ -60,6 +65,20 @@ function explode(e) {
 	
 	function render() {
 		ctx.clearRect(0, 0, c.width, c.height)
+
+		ringRadius += ringAccel
+
+		ringAccel -= 0.3
+
+		if(ringAccel < 0.6) ringAccel = 0.6
+
+		ringAlpha -= 0.03
+
+		ctx.strokeStyle = 'rgba(0, 0, 0, ' + ringAlpha + ')'
+		
+		ctx.beginPath()
+		ctx.arc(c.width / 2, c.height / 2, ringRadius, 0, 2 * Math.PI, false)
+		ctx.stroke()
 		
 		particles.forEach(function(p, i) {
 			
@@ -69,8 +88,10 @@ function explode(e) {
 			p.y += step.y
 			
 			p.opacity -= 0.0
-			p.speed *= p.friction
-			p.radius *= p.friction
+			p.speed = p.speed - p.friction > 0 ? p.speed - p.friction : 1
+			p.radius -= p.shrink
+
+			// p.friction -= 0.01
 			
 			p.yVel += p.gravity
 			p.y += p.yVel
@@ -82,7 +103,7 @@ function explode(e) {
 			ctx.globalAlpha = p.opacity
 			ctx.fillStyle = p.color
 			ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, false)
-			// ctx.rect(p.x, p.y, p.size, p.size)
+			// ctx.rect(p.x, p.y, p.radius * 2, p.radius * 2)
 			ctx.fill()
 		})
 	}
