@@ -142,7 +142,7 @@ angular.module('app.services')
 			var iso = originalDate.replace(' ', 'T').concat('.000Z')
 			
 			// Transform that into a unix timestamp
-			var unix = moment(iso).format('x')
+			var unix = moment(originalDate).add(moment().utcOffset(), 'minutes').format('x')
 			
 			// Return a date object based on the timestamp
 			return new Date(parseInt(unix))
