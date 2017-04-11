@@ -1,10 +1,10 @@
 angular.module('app.controllers')
 
-.controller('homeCtrl', function($scope, $rootScope, $store, $stateParams, User) {
+.controller('homeCtrl', function($scope, $rootScope, $store, $stateParams, $prepare, User, Booking) {
 	$scope.user = $store.user
 
-	if($scope.user.admin) {
-		$scope.bookings = $store.bookings
-	}
+	$scope.bookings = Booking.query({user: $scope.user.id})
+
+	$scope.bookings.$promise.then($prepare.bookings)
 
 })
