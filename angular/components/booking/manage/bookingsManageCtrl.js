@@ -102,6 +102,16 @@ angular.module('app.controllers')
 
 			$scope.advFilter.apply()
 		},
+		importFromLocalStorage: function() {
+			if(localStorage.advFilter) {
+				$scope.advFilter.props = _.merge(
+					$scope.advFilter.props,
+					JSON.parse(localStorage.advFilter)
+				)
+			}
+
+			$scope.advFilter.apply()
+		},
 		apply: function() {
 			if($scope.advFilter.props.limit === 0) return
 
@@ -163,11 +173,19 @@ angular.module('app.controllers')
 
 			$scope.bookings = temp2
 			$scope.advFilter.open = false
+
+			localStorage.setItem('advFilter', JSON.stringify($scope.advFilter.props))
 		}
 	}
 
-	$scope.advFilter.clear()
+	// $scope.advFilter.clear()
+
+	$scope.advFilter.importFromLocalStorage()
 
 	$scope.advFilter.importFromQueryString($stateParams)
+
+	// $scope.$watch('advFilter.props', function(newVal, oldVal) {
+	// 	localStorage.setItem('advFilter', JSON.stringify($scope.advFilter.props))
+	// }, true)
 
 })
