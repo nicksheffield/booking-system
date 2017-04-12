@@ -15,16 +15,16 @@
 			<tr>
 				<th class="table-col-code">Name</th>
 				<th class="table-col-name" width="30%">Type</th>
-				<th class="table-col-controls" width="10%"></th>
+				<!-- <th class="table-col-controls" width="10%"></th> -->
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="product in products | filter: filter | page : page : 10 : 30 as filtered">
 				<td><a href="#/manage/product/{{ product.id }}">{{ product.name }}</a></td>
 				<td><a href="#/manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
-				<td>
+				<!-- <td>
 					<btn url="#/manage/product/{{ product.id }}" type="info" icon="arrow-right" small>View</btn>
-				</td>
+				</td> -->
 			</tr>
 		</tbody>
 	</table>

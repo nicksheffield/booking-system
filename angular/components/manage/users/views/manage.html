@@ -16,7 +16,7 @@
 				<th class="table-col-firstname">Name</th>
 				<th class="table-col-lastname sm-hide" width="15%">Role</th>
 				<th class="table-col-lastname sm-hide" width="15%">Class</th>
-				<th class="table-col-controls sm-hide" width="10%"></th>
+				<!-- <th class="table-col-controls sm-hide" width="10%"></th> -->
 			</tr>
 		</thead>
 		<tbody>
@@ -24,9 +24,9 @@
 				<td><a href="#/manage/user/{{ user.id }}">{{ user.name }}</a></td>
 				<td class="sm-hide">{{ user._role }}</td>
 				<td class="sm-hide"><a href="#/manage/class/{{ user.group.id }}" ng-show="!user.admin">{{ user.group.code }}</a></td>
-				<td class="sm-hide">
+				<!-- <td class="sm-hide">
 					<btn url="#/manage/user/{{ user.id }}" type="info" icon="arrow-right" small>View</btn>
-				</td>
+				</td> -->
 			</tr>
 		</tbody>
 	</table>

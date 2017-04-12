@@ -54,7 +54,9 @@ class BookingsSeeder extends Seeder
 			$booking_per_person = rand(1, 4);
 
 			for($i=0; $i<$booking_per_person; $i++) {
-				$date = '2016-'.rand(1, 12).'-'.rand(0, 28);
+				// $date = '2016-'.rand(1, 12).'-'.rand(0, 28);
+				// random date between jan 01 2016 and now
+				$date = date('Y-m-d H:i:s', mt_rand(1451606400, time()));
 
 				$status = rand(1, 3);
 				# 1: booked

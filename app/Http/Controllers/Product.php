@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Carbon\Carbon;
 
 use App\Models\Product as Model;
+use App\Models\Booking;
 
 class Product extends Controller
 {
@@ -133,6 +135,39 @@ class Product extends Controller
 		
 		return [
 			'message' => 'success'
+		];
+	}
+
+
+
+	public function check_availability(Request $request, $product_id) {
+		$pickup = Carbon::parse($request->pickup_at);
+		$due = Carbon::parse($request->due_at);
+
+		$bookings = Booking::query()
+			->where('due_at', '>', $pickup)
+			->where('pickup_at', '<', $due)
+			->get();
+
+		$thisProduct = Model::find($product_id);
+
+		if($thisProduct->limitless) {
+			$allowed = true;
+		} else {
+			$matches = 0;
+
+			foreach($bookings as $booking) {
+				foreach($booking->products as $product) {
+					if($product->id == $product_id) $matches++;
+				}
+			}
+
+			$allowed = $matches < $thisProduct->units()->count();
+		}
+
+		return [
+			'id' => $product_id,
+			'allowed' => $allowed
 		];
 	}
 }

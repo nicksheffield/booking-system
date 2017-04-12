@@ -31,10 +31,11 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="row-property">Products</td>
+			<td class="row-property">Items</td>
 			<td class="row-value">
 				<ul ng-show="booking.products.length">
-					<li ng-repeat="item in booking.products">
+					<li ng-repeat="item in booking.products" ng-class="{'not-allowed': !allowed(item.id)}">
+						<i class="fa fa-exclamation-triangle" ng-show="!allowed(item.id)"></i>&nbsp;
 						{{ product(item.id).name }}
 						<b ng-hide="product(item.id).limitless"> x{{ item.quantity }}</b>
 					</li>
@@ -44,7 +45,12 @@
 		</tr>
 	</table>
 	
-	<btn type="success" large icon="check" ng-click="confirm()" disable="!booking.due_at || !booking.pickup_at || !booking.products.length">Yes</btn>
+	<btn type="success" large icon="check" ng-click="confirm()" disable="disableSubmit()">Yes</btn>
+
+	<br>
+	<br>
+
+	<alert type="danger" icon="exclamation-triangle" ng-show="!overallAllowed" text="Some of your chosen items are unavailable during your chosen time period"></alert>
 	
 </div>
 
