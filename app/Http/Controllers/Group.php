@@ -34,8 +34,10 @@ class Group extends Controller
 
 		$model->save();
 		
-		foreach($request->tutors as $tutor) {
-			$model->tutors()->attach($tutor);
+		if($request->tutors) {
+			foreach($request->tutors as $tutor) {
+				$model->tutors()->attach($tutor);
+			}
 		}
 
 		return $model;
