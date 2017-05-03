@@ -44,10 +44,12 @@ angular.module('app.controllers')
 		$scope.user.group_id = $scope.selected.group.id
 		$scope.user.admin = $scope.selected.role.level
 		
-		User.update({id: $scope.user.id}, $scope.user).$promise.then(function() {
+		User.update({id: $scope.user.id}, $scope.user).$promise.then(function(res) {
 			$invalidate.add(['users', 'groups'])
 			
 			$location.path('/manage/user/' + $scope.user.id)
+		}, function(res) {
+			$scope.error = res.data.error
 		})
 	}
 	

@@ -33,6 +33,7 @@ angular.module('app.controllers')
 			.put('/api/booking/' + $scope.booking.id, $scope.booking)
 			.then(function(res) {
 				$store.bookings = _.map($store.bookings, function(booking, i) {
+					if(!booking) return
 					if(booking.id == res.id) $store.bookings[i] = res
 				})
 
