@@ -24,7 +24,6 @@ angular.module('app.directives')
 		link: link,
 		templateUrl: 'directives/btn/btn.html',
 		scope: {
-			click: '=',
 			icon: '@',
 			type: '@',
 			url: '@',
