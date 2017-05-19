@@ -1,8 +1,18 @@
 angular.module('app.controllers')
 
-.controller('issueCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate) {
+.controller('issueCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate, $load) {
 	
 	$scope.booking = $store.get('bookings', $stateParams.id)
+	$scope.errors = []
+
+	if(!$scope.booking) {
+		$scope.booking = $load.booking($stateParams.id)
+		console.log($scope.booking)
+	}
+	
+	$scope.booking.$promise.then(p => {}, function(err) {
+		$scope.errors.push({message: err.data.error})
+	})
 	
 	$scope.dateOptions = {
 		showWeeks: false,
@@ -43,7 +53,7 @@ angular.module('app.controllers')
 					$location.path('/booking/' + $scope.booking.id)
 				})
 		} else {
-			$scope.error = 'You need to assign a unit for every product.'
+			$scope.errors.push({message: 'You need to assign a unit for every product.'})
 		}
 	}
 	

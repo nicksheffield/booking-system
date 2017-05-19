@@ -3,6 +3,7 @@ angular.module('app.controllers')
 .controller('viewBookingCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate, Booking, $prepare, $merge) {
 	$scope.booking = $store.get('bookings', $stateParams.id)
 	$scope.user = $store.user
+	$scope.errors = []
 
 	$scope.unit = function(id) {
 		return $store.get('units', id)
@@ -19,6 +20,8 @@ angular.module('app.controllers')
 				$merge.bookings([booking])
 				$scope.return_difference = moment().diff(new Date($scope.booking.closed_at), 'hours')
 				console.log('loaded', booking.products)
+			}, function(err) {
+				$scope.errors.push({message: err.data.error})
 			})
 	}
 
