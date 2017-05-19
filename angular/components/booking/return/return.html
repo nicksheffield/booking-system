@@ -9,6 +9,10 @@
 <filter model="filter" filtered="filtered"></filter>
 
 <div class="page-content">
+
+	<div class="alert alert-danger" ng-show="errors.length">
+		<p ng-repeat="error in errors">Error: {{ error.message }}</p>
+	</div>
 	
 	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length">
 		<thead>
