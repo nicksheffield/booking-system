@@ -1,12 +1,12 @@
 <header class="page-header" layout="row" align="center" justify="between">
 	<h1>Issue equipment</h1>
 	
-	<btn icon="check" ng-click="issue()">Done</btn>
+	<btn icon="check" ng-click="issue()" disable="errors.length">Done</btn>
 </header>
 
 <breadcrumbs></breadcrumbs>
 
-<div class="page-dates">
+<div class="page-dates" ng-show="!errors.length">
 	<div layout="row sm-col" class="space-row">
 		<div ratio="1">
 			<label for="pickup_at">Pickup date</label>
@@ -19,13 +19,17 @@
 	</div>
 </div>
 
-<filter model="filter" filtered="filtered"></filter>
+<filter model="filter" filtered="filtered" ng-show="!errors.length"></filter>
 
 <div class="page-content">
 
-	<alert ng-show="error" type="danger" icon="exclamation-triangle" text="{{ error }}"></alert>
+	<div class="alert alert-danger" ng-show="errors.length">
+		<p ng-repeat="error in errors">Error: <b>{{ error.message }}</b></p>
+	</div>
+
+	<!-- <alert ng-show="error" type="danger" icon="exclamation-triangle" text="{{ error }}"></alert> -->
 	
-	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length">
+	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length && errors.length">
 		<thead>
 			<tr>
 				<th class="booking-heading-product">Product</th>

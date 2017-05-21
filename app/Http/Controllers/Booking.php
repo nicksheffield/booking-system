@@ -83,7 +83,11 @@ class Booking extends Controller
 			$model = Model::find($id);
 		}
 
-		return $model;
+		if($model) {
+			return $model;
+		} else {
+			return response(['error' => 'Booking not found'], 404);
+		}
 	}
 
 	/**

@@ -1,18 +1,24 @@
 angular.module('app.controllers')
 
-.controller('returnCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate) {
+.controller('returnCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate, $load) {
 	
+	$scope.errors = []
 	$scope.booking = $store.get('bookings', $stateParams.id)
+
+	if(!$scope.booking) {
+		$scope.booking = $load.booking($stateParams.id)
+		console.log($scope.booking)
+	}
 	
-	$scope.booking.products
-		.map((p) => {
-			p.returned = !!p.pivot.returned_at
-			return p
-		})
-		.map((p) => {
-			p.locked = !!p.pivot.returned_at
-			return p
-		})
+	$scope.booking.$promise.then((p) => {
+		p.products
+			.map((p) => {
+				p.returned = !!p.pivot.returned_at
+				p.locked = !!p.pivot.returned_at
+			})
+	}, function(err) {
+		$scope.errors.push({message: err.data.error})
+	})
 
 	$scope.unit = function(id) {
 		return $store.get('units', id)
@@ -33,6 +39,7 @@ angular.module('app.controllers')
 			.put('/api/booking/' + $scope.booking.id, $scope.booking)
 			.then(function(res) {
 				$store.bookings = _.map($store.bookings, function(booking, i) {
+					if(!booking) return
 					if(booking.id == res.id) $store.bookings[i] = res
 				})
 

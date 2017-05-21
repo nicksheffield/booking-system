@@ -32,7 +32,7 @@ angular.module('app.controllers')
 	$scope.deleteNote = function(note) {
 		if(confirm('Are you sure you want to delete that note?')) {
 			Note.delete({id: note.id}).$promise.then(function() {
-				$scope.user.notes = _.reject($scope.user.notes, (n) => n.id == note.id)
+				$store.notes = _.reject($scope.user.notes, (n) => n.id == note.id)
 			})
 		}
 	}

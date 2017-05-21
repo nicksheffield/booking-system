@@ -8,6 +8,8 @@ use Illuminate\Http\Response;
 use App\Http\Requests;
 use Auth;
 
+use Validator;
+
 use App\Models\User as Model;
 
 class User extends Controller
@@ -92,9 +94,17 @@ class User extends Controller
 			$model->password = bcrypt($request->password);
 		}
 		
-		$model->save();
+		$v = Validator::make($request->all(), [
+			'email' => 'required|email|unique:users,email'
+		]);
 
-		return $model;
+		if($v->fails()) {
+			return response(['error' => 'Email already taken'], 500);
+		} else {
+			$model->save();
+
+			return $model;
+		}
 	}
 
 	/**

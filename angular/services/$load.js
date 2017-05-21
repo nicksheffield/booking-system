@@ -79,6 +79,16 @@ angular.module('app.services')
 		
 		return resource
 	}
+
+	service.booking = function(id) {
+		var resource = Booking.get({id, 'with': 'products'})
+		
+		resource.$promise
+			.then($prepare.booking)
+			.then(service.notify('bookings'))
+		
+		return resource
+	}
 	
 	service.bookings = function(limit, page) {
 		var resource = Booking.query({limit, page, 'with': 'products'})

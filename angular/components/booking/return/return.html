@@ -1,7 +1,7 @@
 <header class="page-header" layout="row" align="center" justify="between">
 	<h1>Return equipment</h1>
 	
-	<btn icon="check" ng-click="close()">Done</btn>
+	<btn icon="check" ng-click="close()" disable="errors.length">Done</btn>
 </header>
 
 <breadcrumbs></breadcrumbs>
@@ -9,6 +9,10 @@
 <filter model="filter" filtered="filtered"></filter>
 
 <div class="page-content">
+
+	<div class="alert alert-danger" ng-show="errors.length">
+		<p ng-repeat="error in errors">Error: <b>{{ error.message }}</b></p>
+	</div>
 	
 	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length">
 		<thead>
