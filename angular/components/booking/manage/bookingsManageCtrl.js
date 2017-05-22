@@ -48,6 +48,7 @@ angular.module('app.controllers')
 				_overdue: booking._overdue,
 				_priority: booking._priority
 			})
+			console.log('bookingsManageCtrl', '$scope.bookings', $scope.bookings.length)
 		})
 
 		$scope.advFilter.apply()
