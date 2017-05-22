@@ -3,6 +3,7 @@ angular.module('app.routes')
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 	$locationProvider.hashPrefix('')
+	$locationProvider.html5Mode(true)
 
 	$urlRouterProvider.otherwise('/')
 	
