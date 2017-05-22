@@ -1,7 +1,6 @@
 angular.module('app.controllers')
 
 .controller('bookingsManageCtrl', function($scope, $store, $load, $stateParams, Booking) {
-	console.log('bookingsManageCtrl', '$scope', $scope)
 	window.$scope = $scope
 
 	$scope.users = $store.users
@@ -10,7 +9,6 @@ angular.module('app.controllers')
 	$store.bookings = []
 
 	function loadBookings(page) {
-		console.log('bookingsManageCtrl', 'loadBookings', page)
 		var bookings = $load.bookings(100, page)
 
 		bookings.$promise.then(function(res) {
@@ -27,13 +25,11 @@ angular.module('app.controllers')
 	loadBookings(1)
 
 	function simplifyBookings() {
-		console.log('bookingsManageCtrl', 'simplifyBookings')
 		$store.bookings = $scope.bookings
 
 		$scope.bookings = []
 
 		_.forEach($store.bookings, function(booking) {
-			console.log('bookingsManageCtrl', 'forEach->$store.bookings')
 			$scope.bookings.push({
 				id: booking.id,
 				user: {
@@ -48,9 +44,7 @@ angular.module('app.controllers')
 				_overdue: booking._overdue,
 				_priority: booking._priority
 			})
-			console.log('bookingsManageCtrl', '$scope.bookings', $scope.bookings.length)
 		})
-		console.log('bookingsManageCtrl', 'after $scope.bookings', $scope.bookings.length)
 
 		$scope.advFilter.apply()
 	}
@@ -184,6 +178,10 @@ angular.module('app.controllers')
 	}
 
 	// $scope.advFilter.clear()
+
+	if(typeof $scope.props.limit == 'undefined') {
+		$scope.advFilter.clear()
+	}
 
 	$scope.advFilter.importFromLocalStorage()
 
