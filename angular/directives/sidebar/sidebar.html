@@ -12,34 +12,34 @@
 	<nav>
 		<!-- guest -->
 		<ul layout="col md-row" align="md-stretch" ng-if="!auth.isAuthenticated()">
-			<li nav-link="Login" url="#/login"></li>
-			<li nav-link="Register" url="#/register"></li>
+			<li nav-link="Login" url="/login"></li>
+			<li nav-link="Register" url="/register"></li>
 		</ul>
 		
 		<!-- student -->
 		<ul layout="col md-row" align="md-stretch" ng-if="auth.isAuthenticated() && user.admin == 0">
-			<li nav-link="Home" url="#/"></li>
-			<li nav-link="Make booking" url="#/book"></li>
-			<li nav-link="Modify booking" url="#/book/edit"></li>
-			<li nav-link="Logout" url="#/logout"></li>
+			<li nav-link="Home" url="/"></li>
+			<li nav-link="Make booking" url="/book"></li>
+			<li nav-link="Modify booking" url="/book/edit"></li>
+			<li nav-link="Logout" url="/logout"></li>
 		</ul>
 		
 		<!-- staff -->
 		<ul layout="col md-row" align="md-stretch" ng-if="auth.isAuthenticated() && user.admin == 1">
-			<li nav-link="Home" url="#/"></li>
-			<li nav-link="Make booking" url="#/book"></li>
-			<li nav-link="View bookings" url="#/bookings"></li>
-			<li nav-link="Manage Data" url="#/manage"></li>
-			<li nav-link="Logout" url="#/logout"></li>
+			<li nav-link="Home" url="/"></li>
+			<li nav-link="Make booking" url="/book"></li>
+			<li nav-link="View bookings" url="/bookings"></li>
+			<li nav-link="Manage Data" url="/manage"></li>
+			<li nav-link="Logout" url="/logout"></li>
 		</ul>
 		
 		<!-- manager -->
 		<ul layout="col md-row" align="md-stretch" ng-if="auth.isAuthenticated() && user.admin == 2">
-			<li nav-link="Home" url="#/"></li>
-			<li nav-link="Make booking" url="#/book"></li>
-			<li nav-link="View bookings" url="#/bookings"></li>
-			<li nav-link="Manage Data" url="#/manage"></li>
-			<li nav-link="Logout" url="#/logout"></li>
+			<li nav-link="Home" url="/"></li>
+			<li nav-link="Make booking" url="/book"></li>
+			<li nav-link="View bookings" url="/bookings"></li>
+			<li nav-link="Manage Data" url="/manage"></li>
+			<li nav-link="Logout" url="/logout"></li>
 		</ul>
 		
 	</nav>
