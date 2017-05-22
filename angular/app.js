@@ -7,6 +7,8 @@ angular.module('app.routes', [])
 angular.module('app.views', [])
 angular.module('app.auth', [])
 
+console.log('hook test')
+
 angular.module('app', [
 	'ngResource',
 	'ngSanitize',
