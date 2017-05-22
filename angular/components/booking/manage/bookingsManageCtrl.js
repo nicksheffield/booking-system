@@ -50,6 +50,7 @@ angular.module('app.controllers')
 			})
 			console.log('bookingsManageCtrl', '$scope.bookings', $scope.bookings.length)
 		})
+		console.log('bookingsManageCtrl', 'after $scope.bookings', $scope.bookings.length)
 
 		$scope.advFilter.apply()
 	}
