@@ -95,7 +95,7 @@ class User extends Controller
 		}
 		
 		$v = Validator::make($request->all(), [
-			'email' => 'required|email|unique:users,email'
+			'email' => 'required|email|unique:users,email,' . $model->id
 		]);
 
 		if($v->fails()) {
