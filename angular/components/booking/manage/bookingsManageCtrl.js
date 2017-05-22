@@ -33,6 +33,7 @@ angular.module('app.controllers')
 		$scope.bookings = []
 
 		_.forEach($store.bookings, function(booking) {
+			console.log('bookingsManageCtrl', 'forEach->$store.bookings')
 			$scope.bookings.push({
 				id: booking.id,
 				user: {
