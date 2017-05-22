@@ -29,6 +29,8 @@ angular.module('app.controllers')
 	if(!$scope.booking._user) {
 		$scope.booking._user = $store.user
 	}
+
+	console.log('makeCtrl', 'booking', $scope.booking)
 	
 	if(!$scope.booking.pickup_at) {
 		$scope.booking.pickup_at = new Date()

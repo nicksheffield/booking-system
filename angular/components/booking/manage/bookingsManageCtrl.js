@@ -1,7 +1,7 @@
 angular.module('app.controllers')
 
 .controller('bookingsManageCtrl', function($scope, $store, $load, $stateParams, Booking) {
-	console.log('stateParams', $stateParams)
+	console.log('bookingsManageCtrl', '$scope', $scope)
 	window.$scope = $scope
 
 	$scope.users = $store.users
