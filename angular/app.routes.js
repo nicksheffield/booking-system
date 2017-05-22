@@ -2,6 +2,8 @@ angular.module('app.routes')
 
 .config(function($stateProvider, $urlRouterProvider) {
 
+	$locationProvider.hashPrefix('')
+
 	$urlRouterProvider.otherwise('/')
 	
 	var states = {
