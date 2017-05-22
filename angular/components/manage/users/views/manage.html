@@ -1,7 +1,7 @@
 <header class="page-header" layout="row" justify="between" align="center">
 	<h1>All Users</h1>
 	
-	<btn icon="plus" url="#/manage/user/new">New</btn>
+	<btn icon="plus" url="manage/user/new">New</btn>
 </header>
 
 <breadcrumbs></breadcrumbs>
@@ -21,11 +21,11 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="user in users | filter: staffFilter | filter: filter | orderBy: 'group.id' | orderBy: '-admin' | page: page : 10 : 30 as filtered">
-				<td><a href="#/manage/user/{{ user.id }}">{{ user.name }}</a></td>
+				<td><a href="manage/user/{{ user.id }}">{{ user.name }}</a></td>
 				<td class="sm-hide">{{ user._role }}</td>
-				<td class="sm-hide"><a href="#/manage/class/{{ user.group.id }}" ng-show="!user.admin">{{ user.group.code }}</a></td>
+				<td class="sm-hide"><a href="manage/class/{{ user.group.id }}" ng-show="!user.admin">{{ user.group.code }}</a></td>
 				<!-- <td class="sm-hide">
-					<btn url="#/manage/user/{{ user.id }}" type="info" icon="arrow-right" small>View</btn>
+					<btn url="manage/user/{{ user.id }}" type="info" icon="arrow-right" small>View</btn>
 				</td> -->
 			</tr>
 		</tbody>

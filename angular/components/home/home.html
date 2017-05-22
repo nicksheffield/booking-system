@@ -1,7 +1,7 @@
 <header class="page-header" layout="row" align="center" justify="between">
 	<h1>Welcome, {{ user.name }}</h1>
 
-	<btn type="primary" url="#/home/edit_profile" icon="pencil">Edit Profile</btn>
+	<btn type="primary" url="home/edit_profile" icon="pencil">Edit Profile</btn>
 </header>
 
 <div class="page-content">
@@ -12,7 +12,7 @@
 
 				<ul>
 					<li ng-repeat="booking in bookings" ng-show="booking._priority < 3">
-						<a href="#/booking/{{ booking.id }}">{{ booking.created_at | date }}</a>
+						<a href="booking/{{ booking.id }}">{{ booking.created_at | date }}</a>
 					</li>
 				</ul>
 			</section>
@@ -23,7 +23,7 @@
 
 				<ul>
 					<li ng-repeat="booking in bookings">
-						<a href="#/booking/{{ booking.id }}">{{ booking.created_at | date }}</a>
+						<a href="booking/{{ booking.id }}">{{ booking.created_at | date }}</a>
 					</li>
 				</ul>
 			</section>
@@ -33,7 +33,7 @@
 
 				<ul>
 					<li ng-repeat="booking in bookings" ng-show="booking._priority > 2">
-						<a href="#/booking/{{ booking.id }}">{{ booking.created_at | date }}</a>
+						<a href="booking/{{ booking.id }}">{{ booking.created_at | date }}</a>
 					</li>
 				</ul>
 			</section>

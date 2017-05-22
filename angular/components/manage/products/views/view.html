@@ -2,7 +2,7 @@
 	<h1>{{ product.name }}</h1>
 
 	<div class="btn-group">
-		<a href="#/manage/product/{{ product.id }}/edit" class="btn btn-primary btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+		<a href="manage/product/{{ product.id }}/edit" class="btn btn-primary btn-icon"><i class="fa fa-pencil"></i>Edit</a>
 		<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
@@ -23,7 +23,7 @@
 		</tr>
 		<tr>
 			<td class="row-property">Type</td>
-			<td class="row-value"><a href="#/manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
+			<td class="row-value"><a href="manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
 		</tr>
 		<tr>
 			<td class="row-property">Limitless</td>
@@ -32,17 +32,17 @@
 		<tr>
 			<td class="row-property">
 				Units ({{ product.units.length }})<br>
-				<a href="#/manage/unit/new?product={{ product.id }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+				<a href="manage/unit/new?product={{ product.id }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
 			</td>
 			<td class="row-value">
 				<ul>
 					<li ng-repeat="unit in product.units">
-						<a href="#/manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a>
+						<a href="manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a>
 					</li>
 				</ul>
 				
 				<alert type="info" text="No units for this product" icon="exclamation-circle" ng-if="!product.units.length">
-					<btn url="#/manage/unit/new?product={{ product.id }}" small icon="plus">Create one</btn>
+					<btn url="manage/unit/new?product={{ product.id }}" small icon="plus">Create one</btn>
 				</alert>
 			</td>
 		</tr>
@@ -52,7 +52,7 @@
 				<div layout="row" align="start" justify="between" ng-show="product.groups_allowed.length">
 					<ul>
 						<li ng-repeat="group in product.groups_allowed">
-							<a href="#/manage/class/{{ group.id }}">{{ group.code }}</a>
+							<a href="manage/class/{{ group.id }}">{{ group.code }}</a>
 						</li>
 					</ul>
 				</div>

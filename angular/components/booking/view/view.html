@@ -1,15 +1,15 @@
 <header class="page-header" layout="row" align="center" justify="between">
 	<h1>Booking: {{ booking.pickup_at | date }}</h1>
 
-	<btn url="#/booking/{{ booking.id }}/return" icon="arrow-left" ng-show="booking._priority == 2">Return</btn>
+	<btn url="booking/{{ booking.id }}/return" icon="arrow-left" ng-show="booking._priority == 2">Return</btn>
 
 	<div class="btn-group" ng-show="booking._priority == 1 && user.admin">
-		<a href="#/booking/{{ booking.id }}/issue" class="btn btn-primary btn-icon"><i class="fa fa-arrow-right"></i>Issue</a>
+		<a href="booking/{{ booking.id }}/issue" class="btn btn-primary btn-icon"><i class="fa fa-arrow-right"></i>Issue</a>
 		<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
 		<div class="dropdown-menu dropdown-menu-right">
-			<a href="#/booking/{{ booking.id }}/edit" class="dropdown-item btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+			<a href="booking/{{ booking.id }}/edit" class="dropdown-item btn-icon"><i class="fa fa-pencil"></i>Edit</a>
 			<span class="dropdown-item btn-icon" ng-click="delete()"><i class="fa fa-trash"></i>Delete</span>
 		</div>
 	</div>
@@ -102,7 +102,7 @@
 				<tr ng-repeat="product in booking.products">
 					<td>{{ product.name }}</td>
 					<td>
-						<a href="#/manage/unit/{{ product.pivot.unit_id }}" ng-show="product.pivot.unit_id && user.admin">
+						<a href="manage/unit/{{ product.pivot.unit_id }}" ng-show="product.pivot.unit_id && user.admin">
 							{{ unit(product.pivot.unit_id).unit_number }}
 						</a>
 						<span ng-show="product.pivot.unit_id && !user.admin">

@@ -1,7 +1,7 @@
 <header class="page-header" layout="row" justify="between" align="center">
 	<h1>All Class Types</h1>
 	
-	<btn icon="plus" url="#/manage/class_type/new">New</btn>
+	<btn icon="plus" url="manage/class_type/new">New</btn>
 </header>
 
 <breadcrumbs></breadcrumbs>
@@ -21,11 +21,11 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="type in group_types | filter: filter | page : 10 : 30 as filtered">
-				<td><a href="#/manage/class_type/{{ type.id }}">{{ type.code }}</a></td>
+				<td><a href="manage/class_type/{{ type.id }}">{{ type.code }}</a></td>
 				<td>{{ type.name }}</td>
 				<td>{{ type.groups.length }}</td>
 				<!-- <td>
-					<btn url="#/manage/class_type/{{ type.id }}" type="info" icon="arrow-right" small>View</btn>
+					<btn url="manage/class_type/{{ type.id }}" type="info" icon="arrow-right" small>View</btn>
 				</td> -->
 			</tr>
 		</tbody>

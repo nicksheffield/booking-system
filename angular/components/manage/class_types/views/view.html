@@ -2,7 +2,7 @@
 	<h1>{{ type.code }}</h1>
 
 	<div class="btn-group">
-		<a href="#/manage/class_type/{{ type.id }}/edit" class="btn btn-primary btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+		<a href="manage/class_type/{{ type.id }}/edit" class="btn btn-primary btn-icon"><i class="fa fa-pencil"></i>Edit</a>
 		<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
@@ -29,17 +29,17 @@
 			<td class="row-property">
 				Classes ({{ type.groups.length }})<br>
 
-				<a href="#/manage/class/new?type={{ type.code }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+				<a href="manage/class/new?type={{ type.code }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
 			</td>
 			<td class="row-value">
 				<ul ng-show="type.groups.length">
 					<li ng-repeat="group in type.groups">
-						<a href="#/manage/class/{{ group.id }}">{{ group.code }}</a>
+						<a href="manage/class/{{ group.id }}">{{ group.code }}</a>
 					</li>
 				</ul>
 				
 				<alert type="info" text="No classes with this type" icon="exclamation-circle" ng-if="!type.groups.length">
-					<btn url="#/manage/class/new?type={{ type.code }}" small icon="plus">Create one</btn>
+					<btn url="manage/class/new?type={{ type.code }}" small icon="plus">Create one</btn>
 				</alert>
 			</td>
 		</tr>

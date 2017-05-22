@@ -30,8 +30,8 @@
 		<tbody>
 			<tr ng-repeat="product in products | filter: filter as filtered">
 				<td><input type="checkbox" ng-model="product._allowed" ng-change="allow(product)"></td>
-				<td><a href="#/manage/product/{{ product.id }}">{{ product.name }}</a></td>
-				<td><a href="#/manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
+				<td><a href="manage/product/{{ product.id }}">{{ product.name }}</a></td>
+				<td><a href="manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
 				<td>{{ product.units.length }}</td>
 				<td><input type="number" ng-model="product._quantity" ng-change="update(product)" max="{{ product.units.length }}" min="1" class="form-control form-control-sm"></td>
 				<td><input type="number" ng-model="product._days_allowed" ng-change="update(product)" min="1" class="form-control form-control-sm"></td>

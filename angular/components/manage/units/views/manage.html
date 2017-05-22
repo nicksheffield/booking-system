@@ -1,7 +1,7 @@
 <header class="page-header" layout="row" justify="between" align="center">
 	<h1>All Units</h1>
 	
-	<btn icon="plus" url="#/manage/unit/new">New</btn>
+	<btn icon="plus" url="manage/unit/new">New</btn>
 </header>
 
 <breadcrumbs></breadcrumbs>
@@ -22,12 +22,12 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="unit in units | filter: filter | page: page : 10 : 30 as filtered">
-				<td><a href="#/manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a></td>
+				<td><a href="manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a></td>
 				<td>{{ unit.serial_number }}</td>
 				<td>{{ unit.asset_number }}</td>
-				<td><a href="#/manage/product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
+				<td><a href="manage/product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
 				<!-- <td>
-					<btn url="#/manage/unit/{{ unit.id }}" type="info" icon="arrow-right" small>View</btn>
+					<btn url="manage/unit/{{ unit.id }}" type="info" icon="arrow-right" small>View</btn>
 				</td> -->
 			</tr>
 		</tbody>

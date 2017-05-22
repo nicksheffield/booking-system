@@ -42,9 +42,9 @@ angular.module('app.directives')
 		}, true)
 
 		scope.goto = function() {
-			// #/bookings?page={{ last }}{{ query }}
-			console.log('#/bookings?page=' + scope.current + scope.query)
-			$window.location.href = '#/bookings?page=' + scope.current + scope.query
+			// bookings?page={{ last }}{{ query }}
+			console.log('bookings?page=' + scope.current + scope.query)
+			$window.location.href = 'bookings?page=' + scope.current + scope.query
 		}
 	}
 

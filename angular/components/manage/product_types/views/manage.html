@@ -1,7 +1,7 @@
 <header class="page-header" layout="row" justify="between" align="center">
 	<h1>All Product Types</h1>
 	
-	<btn icon="plus" url="#/manage/product_type/new">New</btn>
+	<btn icon="plus" url="manage/product_type/new">New</btn>
 </header>
 
 <breadcrumbs></breadcrumbs>
@@ -20,10 +20,10 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="type in product_types | filter: filter | page : page : 10 : 30 as filtered">
-				<td><a href="#/manage/product_type/{{ type.id }}">{{ type.name }}</a></td>
+				<td><a href="manage/product_type/{{ type.id }}">{{ type.name }}</a></td>
 				<td>{{ type.products.length }}</td>
 				<!-- <td>
-					<btn url="#/manage/product_type/{{ type.id }}" type="info" icon="arrow-right" small>View</btn>
+					<btn url="manage/product_type/{{ type.id }}" type="info" icon="arrow-right" small>View</btn>
 				</td> -->
 			</tr>
 		</tbody>
