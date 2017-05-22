@@ -6,7 +6,7 @@ Homestead.json
 .env
 
 .DS_Store
-public/components/
-public/dist/
+# public/components/
+# public/dist/
 
 project.sublime-*
