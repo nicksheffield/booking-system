@@ -10,6 +10,7 @@ angular.module('app.controllers')
 	$store.bookings = []
 
 	function loadBookings(page) {
+		console.log('bookingsManageCtrl', 'loadBookings', page)
 		var bookings = $load.bookings(100, page)
 
 		bookings.$promise.then(function(res) {
@@ -26,6 +27,7 @@ angular.module('app.controllers')
 	loadBookings(1)
 
 	function simplifyBookings() {
+		console.log('bookingsManageCtrl', 'simplifyBookings')
 		$store.bookings = $scope.bookings
 
 		$scope.bookings = []
