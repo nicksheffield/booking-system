@@ -135,7 +135,8 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 });
 
 Route::get('/api/hook', function() {
-	`git pull origin master`
+	$output = `git pull origin master`;
+	return $output;
 });
 
 /**
