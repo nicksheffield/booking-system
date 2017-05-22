@@ -179,7 +179,7 @@ angular.module('app.controllers')
 
 	// $scope.advFilter.clear()
 
-	if(typeof $scope.props.limit == 'undefined') {
+	if(typeof $scope.advFilter.props.limit == 'undefined') {
 		$scope.advFilter.clear()
 	}
 
