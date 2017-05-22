@@ -12,11 +12,6 @@
 */
 
 /**
-*	Home page (angular)
-*/
-Route::get('/', function() { return view('welcome'); });
-
-/**
 *	Unprotected routes
 */
 Route::group(['prefix' => '/api'], function() {
@@ -138,3 +133,10 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	*/
 	Route::resource('booking', 'Booking');
 });
+
+
+/**
+*	Home page (angular)
+*/
+Route::get('/', function() { return view('welcome'); });
+Route::get('{all}', function() { return view('welcome'); });
