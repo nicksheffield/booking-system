@@ -7,7 +7,7 @@ angular.module('app.routes', [])
 angular.module('app.views', [])
 angular.module('app.auth', [])
 
-console.log('hook test 2')
+console.log('hook test 4')
 
 angular.module('app', [
 	'ngResource',
