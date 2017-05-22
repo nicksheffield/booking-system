@@ -134,7 +134,7 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	Route::resource('booking', 'Booking');
 });
 
-Route::get('/api/hook', function() {
+Route::get('/pull', function() {
 	$output = `git pull origin master`;
 	return $output;
 });
