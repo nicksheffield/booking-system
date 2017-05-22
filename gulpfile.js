@@ -99,7 +99,7 @@ gulp.task('angular', function() {
 		.on('error', function(){})                          // suppress jscs error reporting
 		.pipe(stylish())                                    // third-party jscs error reporting
 		.pipe(annotate())                                   // make angular callbacks minifiable
-		.pipe(uglify())                                     // minify the code
+		// .pipe(uglify())                                     // minify the code
 		.pipe(concat('app.min.js'))                         // merge them all into the same file
 		.pipe(gulp.dest(paths.output))                      // save it into the dist folder
 		.pipe(browserSync.stream())                         // inject the saved file into the browsersync server
