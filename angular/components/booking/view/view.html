@@ -1,11 +1,9 @@
-<header class="page-header" layout="row" align="center" justify="between">
-	<h1>Booking: {{ booking.pickup_at | date }}</h1>
-
+<page-header text="Booking: {{ booking.pickup_at | date }}" breadcrumbs="user.admin">
 	<btn url="booking/{{ booking.id }}/return" icon="arrow-left" ng-show="booking._priority == 2">Return</btn>
 
 	<div class="btn-group" ng-show="booking._priority == 1 && user.admin">
-		<a href="booking/{{ booking.id }}/issue" class="btn btn-primary btn-icon"><i class="fa fa-arrow-right"></i>Issue</a>
-		<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<a href="booking/{{ booking.id }}/issue" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-arrow-right"></i>Issue</a>
+		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
 		<div class="dropdown-menu dropdown-menu-right">
@@ -13,9 +11,7 @@
 			<span class="dropdown-item btn-icon" ng-click="delete()"><i class="fa fa-trash"></i>Delete</span>
 		</div>
 	</div>
-</header>
-
-<breadcrumbs ng-show="user.admin"></breadcrumbs>
+</page-header>
 
 <div class="page-content" ratio="1">
 

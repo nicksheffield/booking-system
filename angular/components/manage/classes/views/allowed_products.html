@@ -1,16 +1,10 @@
-<header class="page-header" layout="row" justify="between" align="center">
-	<h1>{{ group.code }}</h1>
-	
+<page-header text="{{ group.code }}">
 	<div>
 		<btn type="info" icon="floppy-o" ng-show="saved === undefined">Autosave on</btn>
 		<btn type="info" icon="cog" ng-show="!saved && saved !== undefined" spinning>Saving</btn>
 		<btn type="success" icon="check" ng-show="saved">Saved</btn>
 	</div>
-
-
-</header>
-
-<breadcrumbs></breadcrumbs>
+</page-header>
 
 <filter model="filter" filtered="filtered"></filter>
 

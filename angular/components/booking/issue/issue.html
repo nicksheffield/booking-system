@@ -1,10 +1,6 @@
-<header class="page-header" layout="row" align="center" justify="between">
-	<h1>Issue equipment</h1>
-	
+<page-header text="Issue equipment">
 	<btn icon="check" ng-click="issue()" disable="errors.length">Done</btn>
-</header>
-
-<breadcrumbs></breadcrumbs>
+</page-header>
 
 <div class="page-dates" ng-show="!errors.length">
 	<div layout="row sm-col" class="space-row">
@@ -39,11 +35,11 @@
 		<tr ng-repeat="product in booking._products | filter: filter as filtered  track by $index">
 			<td>{{ product.name }}</td>
 			<td>
-				<ui-select select-unit-on-close ng-model="booking.products[$index].unit" id="group">
+				<ui-select select-unit-on-close ng-model="booking._products[$index].unit" id="group">
 					<ui-select-match allow-clear="false" placeholder="​">
 						<span ng-bind="$select.selected.unit_number" class="setheight"></span>
 					</ui-select-match>
-					<ui-select-choices repeat="unit in (product.units | filter: isntSelected(booking.products[$index]) | filter: $select.search)">
+					<ui-select-choices repeat="unit in (product.units | filter: isntSelected(booking._products[$index]) | filter: $select.search)">
 						<div ng-bind-html="unit.unit_number | highlight: $select.search"></div>
 					</ui-select-choices>
 				</ui-select>

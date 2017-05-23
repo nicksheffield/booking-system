@@ -7,12 +7,10 @@ angular.module('app.controllers')
 
 	if(!$scope.booking) {
 		$scope.booking = $load.booking($stateParams.id)
-		console.log($scope.booking)
+		$scope.booking.$promise.then(p => {}, function(err) {
+			$scope.errors.push({message: err.data.error})
+		})
 	}
-	
-	$scope.booking.$promise.then(p => {}, function(err) {
-		$scope.errors.push({message: err.data.error})
-	})
 	
 	$scope.dateOptions = {
 		showWeeks: false,

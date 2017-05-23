@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('bookingsManageCtrl', function($scope, $store, $load, $stateParams, Booking) {
+.controller('bookingsManageCtrl', function($scope, $store, $load, $stateParams, $timeout, Booking) {
 	window.$scope = $scope
 
 	$scope.users = $store.users
@@ -9,6 +9,7 @@ angular.module('app.controllers')
 	$store.bookings = []
 
 	function loadBookings(page) {
+		$scope.loading = true
 		var bookings = $load.bookings(100, page)
 
 		bookings.$promise.then(function(res) {
@@ -18,6 +19,7 @@ angular.module('app.controllers')
 				loadBookings(page + 1)
 			} else {
 				simplifyBookings()
+				$scope.loading = false
 			}
 		})
 	}
@@ -47,6 +49,7 @@ angular.module('app.controllers')
 		})
 
 		$scope.advFilter.apply()
+
 	}
 
 	// --------------------------------------------------------------------------------

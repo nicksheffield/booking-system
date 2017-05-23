@@ -1,6 +1,7 @@
 .filter
 	position relative
 	font-size 0.9em
+	padding 0 2.1em
 	-webkit-font-smoothing antialiased
 			
 	i.fa
@@ -34,7 +35,7 @@
 		height 45px
 		display flex
 		align-items center
-		right 1em
+		right 3em
 		color color-filter-active-text
 		font-weight bold
 		text-transform uppercase
@@ -43,7 +44,7 @@
 		&.active
 			input.form-control
 				background color-filter-active-background
-				border-bottom 2px solid color-filter-active-border
+				// border-bottom 2px solid color-filter-active-border
 				color color-filter-active-text
 				
 				&:hover, &:focus
@@ -64,9 +65,10 @@
 			font-size 0.9em
 			background color-filter-background
 			border none
-			border-bottom 2px solid color-filter-border
-			border-radius 0
+			// border-bottom 2px solid color-filter-border
+			border-radius 5px
 			color color-filter-text
+			
 		
 			&:hover, &:focus
 				border-color color-filter-border
@@ -75,5 +77,5 @@
 					color color-filter-icon
 			
 		i.fa
-			left 2.2em
+			left 3.5em
 			top 1.04em

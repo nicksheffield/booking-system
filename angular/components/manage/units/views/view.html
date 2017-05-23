@@ -1,18 +1,14 @@
-<header class="page-header" layout="row" align="center" justify="between">
-	<h1>{{ unit.product.name }}: {{ unit.unit_number }}</h1>
-	
+<page-header text="{{ unit.product.name }}: {{ unit.unit_number }}">
 	<div class="btn-group">
-		<a href="manage/unit/{{ unit.id }}/edit" class="btn btn-primary btn-icon"><i class="fa fa-pencil"></i>Edit</a>
-		<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<a href="manage/unit/{{ unit.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
 		<div class="dropdown-menu dropdown-menu-right">
 			<span class="dropdown-item btn-icon" ng-click="delete()"><i class="fa fa-trash"></i>Delete</span>
 		</div>
 	</div>
-</header>
-
-<breadcrumbs></breadcrumbs>
+</page-header>
 
 <div class="page-content">
 

@@ -1,147 +1,132 @@
-<header class="page-header" layout="row" align="center" justify="between">
-	<h1>All Bookings</h1>
-
-	<div class="btn-group">
-		<button class="btn btn-primary btn-icon" ng-click="advFilter.toggleOpen()">
-			<i class="fa fa-filter"></i>
-			Filter
-		</button>
-		<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<span class="sr-only">Toggle Dropdown</span>
-		</button>
-		<div class="dropdown-menu dropdown-menu-right">
-			<span class="dropdown-item btn-icon" ng-click="advFilter.clear()">
-				<i class="fa fa-undo"></i>
-				Reset
-			</span>
-		</div>
-	</div>
-</header>
-
-<breadcrumbs></breadcrumbs>
-
-<div class="page-advanced-filter" ng-show="advFilter.open" ng-class="{'filter-open': advFilter.open}">
-
-	<div ng-show="advFilter.open" class="filter-drawer">
-
-		<div layout="row" align="center" justify="between" class="pad-down">
-			<h2>Filter</h2>
-
-			<btn type="success" icon="check" ng-click="advFilter.apply()" ng-show="advFilter.open">Apply</btn>
-		</div>
-
-		<div layout="row sm-col">
-			<div class="filter-col" layout="col" ratio="1">
-				<section layout="col">
-					<div class="group-heading first">Date Ranges</div>
-					<div class="item">
-						<label>After</label>
-						<date-input ng-model="advFilter.props.after"></date-input>
-					</div>
-					<div class="item">
-						<label>Before</label>
-						<date-input ng-model="advFilter.props.before"></date-input>
-					</div>
-				</section>
-
-				<section layout="col">
-					<div class="group-heading">User</div>
-					<div class="item has-select-clearer">
-						<ui-select select-unit-on-close select-dark ng-model="advFilter.props.user">
-							<ui-select-match allow-clear="false" placeholder="​">
-								<span ng-bind="$select.selected.name" class="setheight"></span>
-							</ui-select-match>
-							<ui-select-choices repeat="user in (users | filter: $select.search)">
-								<div ng-bind-html="user.name | highlight: $select.search"></div>
-								<small ng-bind-html="user.group.code | highlight: $select.search"></small>
-							</ui-select-choices>
-						</ui-select>
-						<button class="close" ng-click="advFilter.clearUser()" ng-show="advFilter.props.user">
-							<i class="fa fa-times-circle"></i>
-						</button>
-					</div>
-				</section>
-			</div>
-
-			<div class="filter-col" layout="col" ratio="1">
-				<section layout="col">
-					<div class="group-heading">Types</div>
-					<div class="item">
-						<label class="checkbox">
-							<input type="checkbox" ng-model="advFilter.props.overdue"> Show overdue
-						</label>
-					</div>
-					<div class="item">
-						<label class="checkbox">
-							<input type="checkbox" ng-model="advFilter.props.closed"> Show closed
-						</label>
-					</div>
-					<div class="item">
-						<label class="checkbox">
-							<input type="checkbox" ng-model="advFilter.props.issued"> Show issued
-						</label>
-					</div>
-					<div class="item">
-						<label class="checkbox">
-							<input type="checkbox" ng-model="advFilter.props.booked"> Show booked
-						</label>
-					</div>
-				</section>
-
-				<section layout="col">
-					<div class="group-heading">Per Page</div>
-					<div class="item">
-						<input type="number" ng-model="advFilter.props.limit" class="form-control">
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-
-</div>
-
-<div class="page-content" ratio="1">
+<div layout="row">
+	<div layout="col" ratio="1">
 		
-	<pager current="page" limit="advFilter.props.limit" data="bookings" filtered="filtered" filter="filter" ng-show="!filter && bookings.length >= 30"></pager>
+		<page-header text="All Bookings">
+			<div class="btn-group">
+				<button class="btn btn-primary btn-icon btn-sm" ng-click="advFilter.toggleOpen()">
+					<i class="fa fa-filter"></i>
+					Filter
+				</button>
+				<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="sr-only">Toggle Dropdown</span>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right">
+					<span class="dropdown-item btn-icon" ng-click="advFilter.clear()">
+						<i class="fa fa-undo"></i>
+						Reset
+					</span>
+				</div>
+			</div>
+		</page-header>
 
-	<div ng-show="bookings.length">
-		
-		<table class="table table-hover table-filtered">
-			<thead>
-				<tr>
-					<th>User</th>
-					<th width="20%">Class</th>
-					<th width="30%">Status</th>
-					<th width="10%" class="table-col-controls"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="booking in bookings | page: page : advFilter.props.limit : 30 as filtered" class="filterable-row">
-					<td class="filterable-cell">
-						{{ booking.user.name }}
-					</td>
-					<td class="filterable-cell">
-						{{ booking.user.group.code }}
-					</td>
-					<td>
-						{{ booking._status }}
+		<div class="page-content">
 
-						<span ng-show="booking._overdue && booking._priority == 2"> (overdue)</span>
+			<div ng-show="bookings.length && !loading">
+				<a ng-repeat="booking in bookings | page: page : advFilter.props.limit : 30 as filtered" href="booking/{{ booking.id }}" class="booking filterable-row" layout="row" align="center">
+					<div class="col-username filterable-cell">
+						<div class="title">User</div>
+						<div class="content">{{ booking.user.name }}</div>
+					</div>
+					<div class="col-groupcode filterable-cell">
+						<div class="title">Class</div>
+						<div class="content">{{ booking.user.group.code }}</div>
+					</div>
+					<div class="col-status status-{{ booking._status.toLowerCase() }}" ng-class="{'status-overdue': booking._overdue}">
+						<div class="title">Status</div>
+						<div class="content">
+							{{ booking._status }}
+							
+							<span ng-show="booking._overdue && booking._priority == 2"> (overdue)</span>
+							<!-- {{booking._timeoverdue}} -->
 
-						<span ng-show="booking._priority == 3">
-							 ({{ booking.closed_at | date }})
-						</span>
-					</td>
-					<td class="button-row">
+							<span ng-show="booking._priority == 3">
+								 ({{ booking.closed_at | date }})
+							</span>
+						</div>
+					</div>
+					<div class="col-buttons button-row" layout="row" justify="end">
 						<btn url="booking/{{ booking.id }}" type="info" icon="arrow-right" small>View</btn>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+					</div>
+				</a>
+			</div>
+
+			<div ng-show="!bookings.length && !loading">
+				<alert type="danger" icon="exclamation-triangle" text="No bookings match your filter critera"></alert>
+			</div>
+				
+			<pager current="page" limit="advFilter.props.limit" data="bookings" filtered="filtered" filter="filter" ng-show="!filter && bookings.length >= 30 && !loading"></pager>
+
+			<div class="loading" ng-show="loading" layout="row" justify="center">
+				<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+			</div>
+			
+		</div>
 	</div>
 
-	<div ng-show="!bookings.length">
-		<alert type="danger" icon="exclamation-triangle" text="No bookings match your filter critera"></alert>
-	</div>
+	<!-- <div class="page-advanced-filter filter-open">
+
+		<div class="filter-drawer">
+
+			<div layout="col" justify="between" class="pad-down">
+				<h2>Filter</h2>
+
+				<btn type="success" icon="check" ng-click="advFilter.apply()" ng-show="advFilter.open">Apply</btn>
+			</div>
+
+			<div layout="col">
+				<div class="item">
+					<label>After</label>
+					<date-input ng-model="advFilter.props.after"></date-input>
+				</div>
+				<div class="item">
+					<label>Before</label>
+					<date-input ng-model="advFilter.props.before"></date-input>
+				</div>
+
+				<div class="item">
+					<label>User</label>
+					<ui-select select-unit-on-close select-dark ng-model="advFilter.props.user">
+						<ui-select-match allow-clear="false" placeholder="​">
+							<span ng-bind="$select.selected.name" class="setheight"></span>
+						</ui-select-match>
+						<ui-select-choices repeat="user in (users | filter: $select.search)">
+							<div ng-bind-html="user.name | highlight: $select.search"></div>
+							<small ng-bind-html="user.group.code | highlight: $select.search"></small>
+						</ui-select-choices>
+					</ui-select>
+					<button class="close" ng-click="advFilter.clearUser()" ng-show="advFilter.props.user">
+						<i class="fa fa-times-circle"></i>
+					</button>
+				</section>
+
+				<div class="item">
+					<label>Limit</label>
+					<input type="number" ng-model="advFilter.props.limit" class="form-control">
+				</div>
+
+				<div class="item">
+					<label class="checkbox">
+						<input type="checkbox" ng-model="advFilter.props.overdue"> Show overdue
+					</label>
+				</div>
+				<div class="item">
+					<label class="checkbox">
+						<input type="checkbox" ng-model="advFilter.props.closed"> Show closed
+					</label>
+				</div>
+				<div class="item">
+					<label class="checkbox">
+						<input type="checkbox" ng-model="advFilter.props.issued"> Show issued
+					</label>
+				</div>
+				<div class="item">
+					<label class="checkbox">
+						<input type="checkbox" ng-model="advFilter.props.booked"> Show booked
+					</label>
+				</div>
+			</div>
+		</div>
+
+	</div> -->
 	
 </div>

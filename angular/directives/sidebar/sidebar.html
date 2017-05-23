@@ -1,5 +1,5 @@
-<div class="sidebar" layout="col md-row" align="md-stretch" justify="md-between">
-	<header layout="row" justify="center" align="center">
+<div class="sidebar" layout="row" justify="between">
+	<div class="site-logo" layout="row" justify="center" align="center">
 		<!-- <img src="/images/logo2.svg" alt="" class="logo" height="50"> -->
 		<div class="logo">
 			<img src="/images/Yoobee_Design_School_Logo_EPS.png" height="50" alt="">
@@ -7,17 +7,17 @@
 		</div>
 		
 		<!-- <h1>Booking System</h1> -->
-	</header>
+	</div>
 	
-	<nav>
+	<nav layout="row">
 		<!-- guest -->
-		<ul layout="col md-row" align="md-stretch" ng-if="!auth.isAuthenticated()">
+		<ul layout="row" ng-if="!auth.isAuthenticated()">
 			<li nav-link="Login" url="/login"></li>
 			<li nav-link="Register" url="/register"></li>
 		</ul>
 		
 		<!-- student -->
-		<ul layout="col md-row" align="md-stretch" ng-if="auth.isAuthenticated() && user.admin == 0">
+		<ul layout="row" ng-if="auth.isAuthenticated() && user.admin == 0">
 			<li nav-link="Home" url="/"></li>
 			<li nav-link="Make booking" url="/book"></li>
 			<li nav-link="Modify booking" url="/book/edit"></li>
@@ -25,7 +25,7 @@
 		</ul>
 		
 		<!-- staff -->
-		<ul layout="col md-row" align="md-stretch" ng-if="auth.isAuthenticated() && user.admin == 1">
+		<ul layout="row" ng-if="auth.isAuthenticated() && user.admin == 1">
 			<li nav-link="Home" url="/"></li>
 			<li nav-link="Make booking" url="/book"></li>
 			<li nav-link="View bookings" url="/bookings"></li>
@@ -34,7 +34,7 @@
 		</ul>
 		
 		<!-- manager -->
-		<ul layout="col md-row" align="md-stretch" ng-if="auth.isAuthenticated() && user.admin == 2">
+		<ul layout="row" ng-if="auth.isAuthenticated() && user.admin == 2">
 			<li nav-link="Home" url="/"></li>
 			<li nav-link="Make booking" url="/book"></li>
 			<li nav-link="View bookings" url="/bookings"></li>

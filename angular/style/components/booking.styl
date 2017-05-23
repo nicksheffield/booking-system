@@ -3,3 +3,51 @@
 	
 .not-allowed
 	color color-danger
+	
+.booking
+	display block
+	text-decoration none
+	color #000 !important
+	background #fff
+	padding 0.5em 1em
+	margin 0.5em 0
+	border-radius 3px
+	display flex
+	transition background 0.2s, color 0.2s, transform 0.2s
+	
+	&:hover
+		background black
+		color white !important
+		transform scale(1.1)
+		text-decoration none
+	
+	.title
+		font-size 0.8em
+		font-weight bold
+		color inherit
+		
+	.content
+		padding 0.2em 0.5em
+		margin-left -0.4em
+		border-radius 3px
+		display inline-block
+		color inherit
+	
+	.col-username
+		width 25%
+		
+	.col-groupcode
+		width 25%
+		
+	.col-status
+		width 25%
+		
+		&.status-issued .content
+			color #fff
+			background color-success
+			
+		&.status-overdue .content
+			background color-danger
+		
+	.col-buttons
+		width 25%

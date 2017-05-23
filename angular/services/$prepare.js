@@ -169,6 +169,7 @@ angular.module('app.services')
 
 			if(booking.due_at.valueOf() < new Date().valueOf()) {
 				booking._overdue = true
+				booking._timeoverdue = moment().diff(booking.due_at, 'days')
 			}
 		}
 

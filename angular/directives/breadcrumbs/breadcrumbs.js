@@ -42,7 +42,7 @@ angular.module('app.directives')
 
 	return {
 		restrict: 'E',
-		replace: false,
+		replace: true,
 		transclude: false,
 		link: link,
 		templateUrl: 'directives/breadcrumbs/breadcrumbs.html',
