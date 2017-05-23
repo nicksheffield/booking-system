@@ -87,6 +87,7 @@ angular.module('app.services')
 			.then($prepare.booking)
 			.then(service.notify('bookings'))
 		
+		console.log('loaded')
 		return resource
 	}
 	

@@ -5,20 +5,20 @@ angular.module('app.controllers')
 	$scope.errors = []
 	$scope.booking = $store.get('bookings', $stateParams.id)
 
+
 	if(!$scope.booking) {
 		$scope.booking = $load.booking($stateParams.id)
-		console.log($scope.booking)
+
+		$scope.booking.$promise.then(p => {
+				p.products
+					.map((p) => {
+						p.returned = !!p.pivot.returned_at
+						p.locked = !!p.pivot.returned_at
+					})
+			}, function(err) {
+			$scope.errors.push({message: err.data.error})
+		})
 	}
-	
-	$scope.booking.$promise.then((p) => {
-		p.products
-			.map((p) => {
-				p.returned = !!p.pivot.returned_at
-				p.locked = !!p.pivot.returned_at
-			})
-	}, function(err) {
-		$scope.errors.push({message: err.data.error})
-	})
 
 	$scope.unit = function(id) {
 		return $store.get('units', id)
