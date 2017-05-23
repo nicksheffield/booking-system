@@ -139,6 +139,26 @@ Route::get('/hook/pull', function() {
 	return $output;
 });
 
+Route::get('/seed', function() {
+	Artisan::call('db:seed');
+	return 'Database seeded';
+});
+
+Route::get('/clear', function() {
+	DB::table('bookings')->delete();
+	DB::table('booking_product')->delete();
+	DB::table('group_types')->delete();
+	DB::table('groups')->delete();
+	DB::table('notes')->delete();
+	DB::table('password_resets')->delete();
+	DB::table('product_types')->delete();
+	DB::table('products')->delete();
+	DB::table('tutor')->delete();
+	DB::table('units')->delete();
+	DB::table('users')->delete();
+	return 'Cleared';
+});
+
 /**
 *	Home page (angular)
 */
