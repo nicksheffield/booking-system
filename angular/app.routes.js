@@ -38,15 +38,15 @@ angular.module('app.routes')
 		// Guest
 		// ------------------------------------------------------------
 		
-		'register': {
-			url: '/register',
-			templateUrl: 'components/guest/register/register.html',
-			controller: 'registerCtrl',
-			data: {
-				conditions: ['guest_only'],
-				title: 'Register'
-			}
-		},
+		// 'register': {
+		// 	url: '/register',
+		// 	templateUrl: 'components/guest/register/register.html',
+		// 	controller: 'registerCtrl',
+		// 	data: {
+		// 		conditions: ['guest_only'],
+		// 		title: 'Register'
+		// 	}
+		// },
 		
 		'login': {
 			url: '/login',

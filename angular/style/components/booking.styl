@@ -16,10 +16,15 @@
 	transition background 0.2s, color 0.2s, transform 0.2s
 	
 	&:hover
-		background black
-		color white !important
-		transform scale(1.1)
+		background #000
+		color #fff !important
 		text-decoration none
+		
+		.btn.btn-info
+			background none
+		
+	.btn.btn-info
+		background none
 	
 	.title
 		font-size 0.8em
@@ -34,20 +39,20 @@
 		color inherit
 	
 	.col-username
-		width 25%
+		flex 3
 		
 	.col-groupcode
-		width 25%
+		flex 3
 		
 	.col-status
-		width 25%
-		
-		&.status-issued .content
-			color #fff
-			background color-success
+		flex 2
 			
-		&.status-overdue .content
+	.col-status2
+		flex 3
+		
+		.content
 			background color-danger
+			color #fff
 		
 	.col-buttons
-		width 25%
+		flex 3

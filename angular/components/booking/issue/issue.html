@@ -15,7 +15,7 @@
 	</div>
 </div>
 
-<filter model="filter" filtered="filtered" ng-show="!errors.length"></filter>
+<!-- <filter model="filter" filtered="filtered" ng-show="!errors.length"></filter> -->
 
 <div class="page-content">
 
@@ -25,7 +25,7 @@
 
 	<!-- <alert ng-show="error" type="danger" icon="exclamation-triangle" text="{{ error }}"></alert> -->
 	
-	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length && errors.length">
+	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length && !errors.length">
 		<thead>
 			<tr>
 				<th class="booking-heading-product">Product</th>
