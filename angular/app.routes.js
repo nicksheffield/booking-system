@@ -198,6 +198,17 @@ angular.module('app.routes')
 			}
 		},
 		
+		'import_users': {
+			url: '/manage/user/import',
+			templateUrl: 'components/manage/users/views/import.html',
+			controller: 'userImportCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_parent: 'manage_users',
+				title: 'Import'
+			}
+		},
+		
 		'view_user': {
 			url: '/manage/user/:id',
 			templateUrl: 'components/manage/users/views/view.html',

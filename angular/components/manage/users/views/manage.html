@@ -1,5 +1,13 @@
 <page-header text="All Users">
-	<btn icon="plus" url="manage/user/new">New</btn>
+	<div class="btn-group">
+		<a href="manage/user/new" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New</a>
+		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<span class="sr-only">Toggle Dropdown</span>
+		</button>
+		<div class="dropdown-menu dropdown-menu-right">
+			<a class="dropdown-item btn-icon" href="manage/user/import"><i class="fa fa-cloud-upload"></i>Import users from CSV</a>
+		</div>
+	</div>
 </page-header>
 
 <filter model="filter" filtered="filtered"></filter>

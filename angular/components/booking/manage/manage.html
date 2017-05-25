@@ -61,7 +61,9 @@
 						<input type="date" ng-model="advFilter.props.before" class="form-control">
 					</div>
 				</div>
-				<div class="item has-select-clearer">
+			</div>
+			<div layout="row">
+				<div class="item has-select-clearer" ratio="1">
 					<label>User</label>
 					<ui-select select-unit-on-close select-dark ng-model="advFilter.props.user">
 						<ui-select-match allow-clear="false" placeholder="​">
@@ -77,11 +79,13 @@
 					</button>
 				</div>
 
-				<div class="item">
+				<div class="item" ratio="1">
 					<label>Limit</label>
 					<!-- <input type="number" ng-model="advFilter.props.limit" class="form-control"> -->
-					<input type="range" ng-model="advFilter.props.limit" step="15" min="10" max="55">
-					<output>{{ advFilter.props.limit }}</output>
+					<div layout="row">
+						<input type="range" class="form-control" ng-model="advFilter.props.limit" step="15" min="10" max="100">
+						<output>{{ advFilter.props.limit }}</output>
+					</div>
 				</div>
 			</div>
 		</div>
