@@ -1,4 +1,4 @@
-<page-header text="Book equipment">
+<page-header text="Book equipment" breadcrumbs="false">
 	<div class="btn-group" ng-show="user.can_book">
 		<button class="btn btn-primary btn-icon btn-sm" ng-click="book()"><i class="fa fa-book"></i>Make Booking</button>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -12,6 +12,69 @@
 		</div>
 	</div>
 </page-header>
+
+<div class="page-content"  ng-show="user.can_book">
+	<table class="table data-table">
+		<tr>
+			<td class="row-property">Name</td>
+			<td class="row-value">
+				<ui-select select-unit-on-close ng-model="booking._user" id="user_id" ng-show="user.admin">
+					<ui-select-match allow-clear="false" placeholder="​">
+						<span ng-bind="$select.selected.name" class="setheight"></span>
+					</ui-select-match>
+					<ui-select-choices repeat="user in (users | filter: $select.search)">
+						<div ng-bind-html="user.name | highlight: $select.search"></div>
+						<small ng-bind-html="user.group.code | highlight: $select.search"></small>
+					</ui-select-choices>
+				</ui-select>
+				<span ng-show="!user.admin">{{ user.name }}</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="row-property">Pick Up</td>
+			<td class="row-value ">
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">
+						<i class="fa fa-calendar"></i>
+					</span>
+					<input type="date" ng-model="booking.pickup_at" class="form-control">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="row-property">Due At</td>
+			<td class="row-value">
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">
+						<i class="fa fa-calendar"></i>
+					</span>
+					<input type="date" ng-model="booking.due_at" class="form-control">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="row-property">Items</td>
+			<td class="row-value">
+				<ul class="no-bullets">
+					<li layout="row" class="spaced-row pad-down" ng-repeat="product in selected.products">
+						<ui-select ng-model="selected.products[$index].product" ratio="1">
+							<ui-select-match allow-clear="false" placeholder="​">
+								<span ng-bind="$select.selected.name" class="setheight"></span>
+							</ui-select-match>
+							<ui-select-choices repeat="product in (products | filter: $select.search) track by product.id">
+								<div ng-bind-html="product.name | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+						<input type="number" class="form-control form-control-short" min="1" step="1" ng-model="product.quantity">
+						<btn type="danger" icon="times" ng-click="removeProduct(product)"></btn>
+					</li>
+				</ul>
+
+				<btn type="info" icon="plus" ng-click="addProduct()">Add Item</btn>
+			</td>
+		</tr>
+	</table>
+</div>
 
 <!-- <div class="page-dates" layout="col" ng-show="user.can_book">
 	<div layout="row sm-col" class="space-row">
@@ -39,7 +102,7 @@
 	</div>
 </div> -->
 
-<filter model="filter" filtered="filtered" ng-show="user.can_book"></filter>
+<!-- <filter model="filter" filtered="filtered" ng-show="user.can_book"></filter>
 
 <div class="page-content" ng-show="user.can_book">
 	
@@ -67,7 +130,7 @@
 		</tr>
 	</table>
 	
-</div>
+</div> -->
 
 
 <div class="page-content" ng-show="!user.can_book">

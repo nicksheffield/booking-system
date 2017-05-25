@@ -26,42 +26,41 @@
 			<btn type="success" icon="check" ng-click="advFilter.apply()" ng-show="advFilter.open">Apply</btn>
 		</div>
 
-		<div layout="row">
-			<div layout="col" ratio="1">
-				<div class="item">
-					<label class="checkbox">
-						<input type="checkbox" ng-model="advFilter.props.overdue"> Show overdue
-					</label>
-				</div>
-				<div class="item">
-					<label class="checkbox">
-						<input type="checkbox" ng-model="advFilter.props.closed"> Show closed
-					</label>
-				</div>
-				<div class="item">
-					<label class="checkbox">
-						<input type="checkbox" ng-model="advFilter.props.issued"> Show issued
-					</label>
-				</div>
-				<div class="item">
-					<label class="checkbox">
-						<input type="checkbox" ng-model="advFilter.props.booked"> Show booked
-					</label>
-				</div>
+		<div layout="col">
+			<div layout="row" ratio="1">
+				<label class="item checkbox-item">
+					<input type="checkbox" ng-model="advFilter.props.overdue"> Show overdue
+				</label>
+				<label class="item checkbox-item">
+					<input type="checkbox" ng-model="advFilter.props.closed"> Show closed
+				</label>
+				<label class="item checkbox-item">
+					<input type="checkbox" ng-model="advFilter.props.issued"> Show issued
+				</label>
+				<label class="item checkbox-item">
+					<input type="checkbox" ng-model="advFilter.props.booked"> Show booked
+				</label>
 			</div>
 
-			<div layout="col" ratio="1">
+			<div layout="row" ratio="1">
 				<div class="item">
 					<label>After</label>
-					<date-input ng-model="advFilter.props.after"></date-input>
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">
+							<i class="fa fa-calendar"></i>
+						</span>
+						<input type="date" ng-model="advFilter.props.after" class="form-control">
+					</div>
 				</div>
 				<div class="item">
 					<label>Before</label>
-					<date-input ng-model="advFilter.props.before"></date-input>
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">
+							<i class="fa fa-calendar"></i>
+						</span>
+						<input type="date" ng-model="advFilter.props.before" class="form-control">
+					</div>
 				</div>
-			</div>
-
-			<div layout="col" ratio="1">
 				<div class="item has-select-clearer">
 					<label>User</label>
 					<ui-select select-unit-on-close select-dark ng-model="advFilter.props.user">
@@ -90,32 +89,61 @@
 </div>
 
 <div class="page-content">
+		
+	<pager current="page" limit="advFilter.props.limit" data="bookings" filtered="filtered" filter="filter" ng-show="!filter && bookings.length >= advFilter.props.limit && !loading"></pager>
 
 	<div ng-show="bookings.length && !loading">
-		<a ng-repeat="booking in bookings | page: page : advFilter.props.limit : 30 as filtered" href="booking/{{ booking.id }}" class="booking filterable-row" layout="row sm-col" align="center sm-stretch">
-			<div class="col-username filterable-cell">
+		<a ng-repeat="booking in bookings | page: page : advFilter.props.limit : 30 as filtered" href="booking/{{ booking.id }}" class="booking filterable-row list-item" layout="row sm-col" align="center sm-stretch">
+			<div class="col-username filterable-cell" ratio="1">
 				<div class="title">User</div>
 				<div class="content">{{ booking.user.name }}</div>
 			</div>
-			<div class="col-groupcode filterable-cell">
+			<div class="col-groupcode filterable-cell" ratio="1">
 				<div class="title">Class</div>
 				<div class="content">{{ booking.user.group.code }}</div>
 			</div>
-			<div class="col-status status-{{ booking._status.toLowerCase() }}">
+			<div class="col-status status-{{ booking._status.toLowerCase() }}" ratio="1">
 				<div class="title">Status</div>
 				<div class="content">
 					{{ booking._status }}
 				</div>
 			</div>
-			<span class="col-status2">
-				<div class="content" ng-show="booking._overdue">
-					{{ booking._timeoverdue + (booking._timeoverdue == 1 ? ' day' : ' days') }}
-					<span ng-show="booking._overdue && booking._priority == 2"> overdue</span>
+			<div class="col-status2" ratio="1" ng-show="booking._overdue && booking._priority == 2">
+				<div class="title">
+					Late by
 				</div>
-			</span>
-			<div class="col-buttons button-row" layout="row" justify="end">
-				<btn url="booking/{{ booking.id }}" type="info" icon="arrow-right" small>View</btn>
+				<div class="content" ng-class="{late: booking._overdue && booking._priority == 2}">
+					{{ booking._timeoverdue + (booking._timeoverdue == 1 ? ' day' : ' days') }}
+					<span ng-show="booking._priority == 3"> ago</span>
+				</div>
 			</div>
+			<div class="col-status2" ratio="1" ng-show="!booking._overdue && booking._priority == 2">
+				<div class="title">
+					Due at
+				</div>
+				<div class="content">
+					{{ timediff(booking.due_at, 'days') }} days
+				</div>
+			</div>
+			<div class="col-status2" ratio="1" ng-show="booking._priority == 1">
+				<div class="title">
+					Pickup in
+				</div>
+				<div class="content">
+					{{ timediff(booking.pickup_at, 'days') }} days
+				</div>
+			</div>
+			<div class="col-status2" ratio="1" ng-show="booking._priority == 3">
+				<div class="title">
+					Closed
+				</div>
+				<div class="content">
+					{{ timediff(booking.closed_at, 'days') }} days ago
+				</div>
+			</div>
+			<!-- <div class="col-buttons button-row" layout="row" justify="end" ratio="3">
+				<btn url="booking/{{ booking.id }}" type="info" icon="arrow-right" small>View</btn>
+			</div> -->
 		</a>
 	</div>
 

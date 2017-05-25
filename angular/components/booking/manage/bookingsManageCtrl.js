@@ -71,6 +71,10 @@ angular.module('app.controllers')
 		$scope.filterUseBeforeDate = true
 	}
 
+	$scope.timediff = function(date, unit) {
+		return moment().diff(date, unit)
+	}
+
 	// --------------------------------------------------------------------------------
 	// Filter
 	// --------------------------------------------------------------------------------

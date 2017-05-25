@@ -1,0 +1,37 @@
+.list-item
+	display block
+	text-decoration none
+	color #000 !important
+	background #fff
+	padding 0.5em 1em
+	margin 0.5em 0
+	border-radius 3px
+	display flex
+	transition background 0.2s, color 0.2s, transform 0.2s
+	
+	&:hover
+		background #000
+		color #fff !important
+		text-decoration none
+		
+		.btn.btn-info
+			background none
+		
+	.btn.btn-info
+		background none
+	
+	.title
+		font-size 0.8em
+		font-weight bold
+		color inherit
+		
+	.content
+		padding 0.2em 0.5em
+		margin-left -0.4em
+		border-radius 3px
+		display inline-block
+		color inherit
+			
+	.col-status2 .content.late
+		background color-danger
+		color #fff

@@ -63,9 +63,12 @@
 		td
 			vertical-align top
 			
-		ul
+		ul:not(.dropdown-menu)
 			padding 0 0 0 1.2em
 			margin 0
+			
+			&.no-bullets
+				padding-left 0
 	
 	&.booking-table
 		td
@@ -101,3 +104,8 @@
 				
 // .table td, .table th
 	// border-top none
+		
+.dropdown-menu
+	table td, table th
+		padding 0
+		border none

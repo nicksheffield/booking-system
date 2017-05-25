@@ -7,6 +7,10 @@ angular.module('app.controllers')
 		format: 'd MMM yyyy',
 		minDate: new Date(),
 	}
+
+	$scope.selected = {
+		products: [{ quantity: 1 }]
+	}
 	
 	if($store.user.admin) {
 		$scope.users = $store.users
@@ -29,8 +33,6 @@ angular.module('app.controllers')
 	if(!$scope.booking._user) {
 		$scope.booking._user = $store.user
 	}
-
-	console.log('makeCtrl', 'booking', $scope.booking)
 	
 	if(!$scope.booking.pickup_at) {
 		$scope.booking.pickup_at = new Date()
@@ -48,6 +50,18 @@ angular.module('app.controllers')
 		_.forEach($scope.products, function(product) {
 			product._quantity = undefined
 		})
+	}
+
+	$scope.addProduct = function() {
+		$scope.selected.products.push({ quantity: 1 })
+	}
+	
+	$scope.removeProduct = function(product) {
+		$scope.selected.products = _.reject($scope.selected.products, (p) => p.product.id == product.id)
+		
+		if(!$scope.selected.products.length) {
+			$scope.addProduct()
+		}
 	}
 	
 	$scope.book = function() {
@@ -73,8 +87,6 @@ angular.module('app.controllers')
 			products: payload,
 			_user: $scope.booking._user
 		})
-
-		console.log($store.booking)
 	}
 	
 	$scope.checkAgainstMax = function(product) {
@@ -95,29 +107,38 @@ angular.module('app.controllers')
 
 	// load all the products allowed based on the current users group.
 	if($store.user.group_id) {
+		console.log(1)
 		$scope.group = $store.get('groups', $store.user.group_id)
+		console.log($store)
 
 		if($scope.group) {
+		console.log(3)
 			$scope.products = $scope.group.allowed_products
 
 			_.forEach($scope.products, function(product) {
+		console.log(4)
 				product._max = product.pivot.quantity
 			})
 		}
 	
 	// if the current user doesn't have a group, give them all the products
 	} else {
+		console.log(2)
 		$scope.products = $store.products
 		
 		_.forEach($scope.products, function(product) {
+		console.log(5)
 			product._max = product.units.length
 			
 			if($scope.booking.products && $scope.booking.products.length) {
+		console.log(6)
 				var booking = _.find($scope.booking.products, (p) => p.id == product.id)
 				
 				if(booking) product._quantity = booking.quantity
 			}
 		})
 	}
+
+	console.log('products', $scope.products)
 
 })

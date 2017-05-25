@@ -40,10 +40,11 @@ angular.module('app.directives')
 		replace: false,
 		transclude: false,
 		link: link,
-		template: '<a href="{{ url }}" layout="row" align="center"><span>{{ navLink }}</span></a>',
+		templateUrl: 'directives/navLink/navLink.html',
 		scope: {
 			'navLink': '@',
 			'url': '@',
+			'icon': '@'
 		}
 	}
 })
