@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
 				'id_number' => 0,
 				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'group_id' => 0,
-				'admin' => 1,
+				'admin' => 2,
 				'password' => bcrypt('abcd'),
 				'can_book' => 1,
 				'can_book_reason' => '',

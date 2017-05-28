@@ -32,7 +32,7 @@
 				<th class="table-col-select-medium">Unit</th>
 			</tr>
 		</thead>
-		<tr ng-repeat="product in booking._products | filter: filter as filtered  track by $index">
+		<tr ng-repeat="product in booking._products | filter: filter as filtered track by $index">
 			<td>{{ product.name }}</td>
 			<td>
 				<ui-select select-unit-on-close ng-model="booking._products[$index].unit" id="group">
