@@ -161,54 +161,6 @@ class Booking extends Controller
 		return $model;
 	}
 
-	public function prepareNewQuery($request) {
-		$q = Model::query();
-
-		if($request->after) {
-			$q = $q->where('pickup_at', '>', Carbon::createFromTimestamp($request->after)->toDateTimeString());
-		}
-
-		if($request->before) {
-			$q = $q->where('pickup_at', '<', Carbon::createFromTimestamp($request->before)->toDateTimeString());
-		}
-
-		if($request->user) {
-			$q = $q->where('user_id', $request->user);
-		}
-
-		$q = $q->orderBy('due_at');
-
-		return $q;
-	}
-
-	public function doFilter($request) {
-		$q = $this->prepareNewQuery($request);
-
-		if($request->booked == 'true') {
-			$q2 = $this->prepareNewQuery($request);
-			$q->union($q2->booked());
-		}
-
-		if($request->overdue == 'true') {
-			$q2 = $this->prepareNewQuery($request);
-			$q->union($q2->overdue());
-		}
-
-		if($request->issued == 'true') {
-			$q2 = $this->prepareNewQuery($request);
-			$q->union($q2->issued());
-		}
-
-		if($request->closed == 'true') {
-			$q2 = $this->prepareNewQuery($request);
-			$q->union($q2->closed());
-		}
-
-		$q = $q->where('id', 0);
-
-		return $q;
-	}
-
 	/**
 	 * Return count information.
 	 *
@@ -216,8 +168,6 @@ class Booking extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function count(Request $request) {
-		$q = $this->doFilter($request);
-
-		return ['total' => count($q->get())];
+		return ['total' => Model::query()->where('closed_at', null)->count()];
 	}
 }

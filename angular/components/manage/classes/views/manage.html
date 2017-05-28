@@ -1,4 +1,4 @@
-<page-header text="All Classes">
+<page-header text="All Classes" count="groups.length">
 	<btn icon="plus" url="manage/class/new">New</btn>
 </page-header>
 
@@ -6,24 +6,31 @@
 
 <div class="page-content">
 
-	<table class="table table-hover table-filtered" ng-hide="!filtered.length">
+	<a ng-repeat="group in groups | filter: filter | page : 10 : 30 as filtered" href="manage/class/{{ group.id }}" class="list-item">
+		<div class="col" ratio="1">
+			<div class="title">Code</div>
+			<div class="content">{{ group.code }}</div>
+		</div>
+		<div class="col" ratio="1">
+			<div class="title">Type</div>
+			<div class="content">{{ group.type.name }}</div>
+		</div>
+	</a>
+
+	<!-- <table class="table table-hover table-filtered" ng-hide="!filtered.length">
 		<thead>
 			<tr>
 				<th class="table-col-code">Code</th>
 				<th class="table-col-name">Type</th>
-				<!-- <th class="table-col-controls"></th> -->
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="group in groups | filter: filter | page : page : 10 : 30 as filtered">
 				<td><a href="manage/class/{{ group.id }}">{{ group.code }}</a></td>
 				<td><a href="manage/class_type/{{ group.type.id }}">{{ group.type.name }}</a></td>
-				<!-- <td>
-					<btn url="manage/class/{{ group.id }}" type="info" icon="arrow-right" small>View</btn>
-				</td> -->
 			</tr>
 		</tbody>
-	</table>
+	</table> -->
 
 	<pager current="page" limit="10" data="groups" filtered="filtered" filter="filter" ng-show="!filter && groups.length >= 30"></pager>
 	

@@ -1,4 +1,8 @@
-<a href="{{ url }}" layout="row" align="center">
-	<i class="fa {{ 'fa-' + icon }}" ng-show="icon"></i>
-	<span ng-show="!!navLink">{{ navLink }}</span>
+<a href="{{ url }}" layout="row" align="center" justify="between">
+	<div layout="row" align="center">
+		<i class="fa {{ 'fa-' + icon }}" ng-show="icon"></i>
+		<span ng-show="!!navLink">{{ navLink }}</span>
+	</div>
+	<span ng-if="loading" class="count"><i class="fa fa-circle-o-notch fa-spin fa-fw"></i></span>
+	<span ng-if="!loading" class="count">{{ number }}</span>
 </a>

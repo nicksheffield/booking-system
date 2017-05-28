@@ -21,7 +21,6 @@ angular.module('app.controllers')
 		$auth
 			.login(credentials)
 			.then(function(res) {
-				// $store.user = res.data.user
 				$store.user = new User(res.data.user)
 				
 				$load.trigger('user', $store.user)

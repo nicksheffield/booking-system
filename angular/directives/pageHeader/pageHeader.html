@@ -1,7 +1,12 @@
-<header class="page-header" layout="row" align="center" justify="between">
+<header class="page-header" layout="col" align="stretch">
 	<breadcrumbs ng-show="showBreadcrumbs"></breadcrumbs>
 
-	<h1>{{ text }}</h1>
-
-	<ng-transclude></ng-transclude>
+	<div class="title-holder" layout="row" align="center" justify="between">
+		<div layout="row" align="center">
+			<h1>{{ text }}</h1>
+			<span class="count" ng-if="count !== undefined">{{ count }}</span>
+		</div>
+		
+		<ng-transclude></ng-transclude>
+	</div>
 </header>

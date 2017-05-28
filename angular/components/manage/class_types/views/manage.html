@@ -5,14 +5,28 @@
 <filter model="filter" filtered="filtered"></filter>
 
 <div class="page-content">
+
+	<a ng-repeat="type in group_types | filter: filter | page : 10 : 30 as filtered" href="manage/class_type/{{ type.id }}" class="list-item">
+		<div class="col" ratio="1">
+			<div class="title">Name</div>
+			<div class="content">{{ type.name }}</div>
+		</div>
+		<div class="col" ratio="1">
+			<div class="title">Code</div>
+			<div class="content">{{ type.code }}</div>
+		</div>
+		<div class="col" ratio="1">
+			<div class="title">No. of Classes</div>
+			<div class="content">{{ type.groups.length }}</div>
+		</div>
+	</a>
 	
-	<table class="table table-hover table-filtered" ng-hide="!filtered.length">
+	<!-- <table class="table table-hover table-filtered" ng-hide="!filtered.length">
 		<thead>
 			<tr>
 				<th class="table-col-code">Code</th>
 				<th class="table-col-name">Name</th>
 				<th class="table-col-name">No of Classes</th>
-				<!-- <th class="table-col-controls"></th> -->
 			</tr>
 		</thead>
 		<tbody>
@@ -20,12 +34,9 @@
 				<td><a href="manage/class_type/{{ type.id }}">{{ type.code }}</a></td>
 				<td>{{ type.name }}</td>
 				<td>{{ type.groups.length }}</td>
-				<!-- <td>
-					<btn url="manage/class_type/{{ type.id }}" type="info" icon="arrow-right" small>View</btn>
-				</td> -->
 			</tr>
 		</tbody>
-	</table>
+	</table> -->
 
 	<pager current="page" limit="10" data="group_types" filtered="filtered" filter="filter" ng-show="!filter && group_types.length >= 30"></pager>
 

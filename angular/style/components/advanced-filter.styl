@@ -1,22 +1,28 @@
 .page-advanced-filter
 	padding 1em
 	border-radius 3px
-	margin 0 2em
 	-webkit-font-smoothing antialiased
-	background color-secondary
-	border-left 1px solid #eee
 	color color-adv-text
 	
 	&.filter-open
-		background color-adv-bg
+		background #fff
+		margin-bottom 2em
 	
 	h2
 		margin 0
 		font-weight 100
+		
+	h3
+		font-size 0.9em
+		text-transform uppercase
+		font-weight bold
+		color rgba(0, 0, 0, 0.5)
+		margin-top 1.5em
 	
 	label
 		width 100px
 		display inline-block
+		margin 0
 	
 	label.checkbox
 		margin-bottom 0
@@ -33,15 +39,26 @@
 	.item
 		padding 0.2em
 		
+	.item-row
+		display flex
+		align-items center
+		max-height 45px
+		height 100%
+		
+		.input-group, .range, .ui-select-container
+			width 230px
+		
 	output
 		margin-left 1em
 		
 	.checkbox-item
-		border-radius 3px
-		border 1px solid #ccc
-		padding 0.5em 1em
 		margin 0 1em 0 0
 		width auto
+		display flex
+		align-items center
+		
+		input
+			margin-right 0.5em
 	
 	.group-heading
 		padding 0.2em
@@ -56,3 +73,29 @@
 		padding 0
 		margin-right 0 !important
 		margin-left 0 !important
+		
+	.filter-drawer
+		[layout=col]
+			margin-right 1em
+			padding-right 1em
+			border-right 1px solid rgba(0, 0, 0, 0.1)
+			
+			&:last-of-type
+				border-right none
+				
+	.filter-header
+		border-bottom 1px solid rgba(0, 0, 0, 0.1)
+		
+	.filter-col
+		padding-bottom 1em
+		
+	.range
+		background #fff
+		border-radius 3px
+		width 200px
+		padding 0.3em 1em
+		border 1px solid #ccc
+		height 40px
+		
+		input
+			margin-right 1em

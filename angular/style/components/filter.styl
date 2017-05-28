@@ -1,8 +1,9 @@
 .filter
 	position relative
 	font-size 0.9em
-	padding 0 2.1em
+	padding 1em 2.1em
 	-webkit-font-smoothing antialiased
+	background whitesmoke
 			
 	i.fa
 		position absolute
@@ -48,7 +49,7 @@
 				color color-filter-active-text
 				
 				&:hover, &:focus
-					border-color color-filter-active-border
+					// border-color color-filter-active-border
 					
 					& + i.fa
 						color color-filter-active-icon
@@ -64,18 +65,22 @@
 			padding 1.12em 1.12em 1.02em 3.5em
 			font-size 0.9em
 			background color-filter-background
-			border 1px solid rgba(0, 0, 0, 0.2)
+			// border 1px solid rgba(0, 0, 0, 0.2)
 			// border-bottom 2px solid color-filter-border
+			border 0
 			border-radius 5px
 			color color-filter-text
 			
 		
 			&:hover, &:focus
-				border-color color-filter-border
+				// border-color color-filter-border
 				
 				& + i.fa
 					color color-filter-icon
 			
 		i.fa
 			left 3.5em
-			top 1.04em
+			top 2.04em
+			
+		.output
+			top 1em

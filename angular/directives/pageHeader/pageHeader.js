@@ -13,7 +13,8 @@ angular.module('app.directives')
 		templateUrl: 'directives/pageHeader/pageHeader.html',
 		scope: {
 			text: '@',
-			breadcrumbs: '='
+			breadcrumbs: '=',
+			count: '='
 		}
 	}
 })

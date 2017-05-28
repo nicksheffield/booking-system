@@ -11,9 +11,33 @@
 		background-color color-danger
 	100%
 		background-color color-primary
+		
+@keyframes color-cycle-text
+	0%
+		color color-primary
+	20%
+		color color-info
+	40%
+		color color-success
+	60%
+		color color-warning
+	80%
+		color color-danger
+	100%
+		color color-primary
 
 @keyframes fade-in
 	0%
 		opacity 1
 	100%
 		opacity 1
+		
+.konami-code
+	.sidebar
+		animation color-cycle 10s infinite
+		
+	.btn-primary
+		animation color-cycle 5s infinite
+		
+	.list-item:hover
+		animation color-cycle-text 1s infinite

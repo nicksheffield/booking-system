@@ -1,28 +1,16 @@
 .sidebar
-	padding 0 1em
+	width 250px
+	padding 1em 2em
 	background color-sidebar-background
 	color color-sidebar-text
 	border-radius body-rad 0 0 body-rad
 	-webkit-font-smoothing antialiased
 	
 	@media (max-width bp-sm)
-		width auto
-		max-width initial
-		min-width initial
-		border-radius 0
-		
-	@media (max-width bp-md)
 		width 100%
-		max-width initial
-		min-width initial
-		border-radius body-rad body-rad 0 0
 	
 	.site-logo
 		padding 0.5em
-		
-		@media (max-width bp-md)
-			padding 1em 1em 1em 0
-			height auto
 	
 	.logo
 		position relative
@@ -30,20 +18,16 @@
 		.caption
 			position absolute
 			bottom 0
-			right 0
+			left 0
+			width 100%
 			background color-sidebar-background
-			color #999
+			color color-sidebar-text
 			font-size 0.7em
 			font-weight bold
 			text-transform uppercase
 
 		img
-			min-width 50px
-			min-height 50px
-			// margin .5em 1em .5em 2em
-			
-			@media (max-width bp-md)
-				margin-left 1em
+			width 100%
 	
 	h1
 		font-size 1.5em
@@ -51,17 +35,24 @@
 		font-weight 400
 		margin 0
 		color color-secondary
-		
-		@media (max-width bp-md)
-			display none
-			
-		@media (max-width bp-sm)
-			display block
 	
 	ul
 		list-style none
 		padding 0
 		margin 0
+		
+	li.title
+		color rgba(255, 255, 255, 0.6)
+		text-transform uppercase
+		font-size 0.7em
+		font-weight bold
+		margin 3em 0 1em
+		padding-left 1em
+		user-select none
+		pointer-events none
+		
+		@media (max-width bp-sm)
+			display none
 		
 	a
 		color color-sidebar-text
@@ -69,27 +60,22 @@
 		display flex
 		align-items center
 		padding 0.5em 1em
-		// padding 0.5em 2em
 		height 100%
+		border-radius 3px
 		font-size 0.8em
-		font-weight bold
 		transition background-color transition-time ease
-		border-left 1px solid color-sidebar-border
 		
-		.fa
+		.count
+			background rgba(255, 255, 255, 0.1)
+			padding 0 0.5em
+			border-radius 50px
+		
+		.fa:not(.fa-spin)
 			margin-right 0.5em
-		
-		@media (max-width bp-md)
-			border-top 0
-			display flex
-			height 100%
-			
-		@media (max-width bp-sm)
-			padding 1em
 		
 	a:hover
 		background color-sidebar-hover
 		color color-sidebar-text
 	
 	.current a
-		color color-sidebar-highlight
+		background color-sidebar-highlight

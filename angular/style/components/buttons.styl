@@ -124,9 +124,9 @@
 	// &:hover
 		// paperShadow(3)
 
-	&:active
+	// &:active
 		// paperShadow(1)
-		transform translateY(1px)
+		// transform translateY(1px)
 	
 	.btn:not(.btn-link):active
 		transform none
@@ -142,7 +142,9 @@
 		.dropdown-menu
 			display block
 			margin 0
-			padding 0.5em 0
+			padding 0
+			box-shadow none
+			border 1px solid #ccc
 			
 			// paperShadow(3)
 		
@@ -152,3 +154,8 @@
 		.dropdown-item
 			cursor pointer
 			padding 0.5em 20px
+			border-bottom 1px solid #eee
+			font-size 0.9em
+			
+			&:last-child
+				border-bottom 0

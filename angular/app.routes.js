@@ -182,7 +182,6 @@ angular.module('app.routes')
 			controller: 'userManageCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
-				crumb_parent: 'manage',
 				title: 'All Users'
 			}
 		},
@@ -274,7 +273,6 @@ angular.module('app.routes')
 			controller: 'classTypeManageCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
-				crumb_parent: 'manage',
 				title: 'All Class Types'
 			}
 		},
@@ -322,7 +320,6 @@ angular.module('app.routes')
 			controller: 'classManageCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
-				crumb_parent: 'manage',
 				title: 'All Classes'
 			}
 		},
@@ -381,7 +378,6 @@ angular.module('app.routes')
 			controller: 'productTypeManageCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
-				crumb_parent: 'manage',
 				title: 'All Product Types'
 			}
 		},
@@ -429,7 +425,6 @@ angular.module('app.routes')
 			controller: 'productManageCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
-				crumb_parent: 'manage',
 				title: 'All Products'
 			}
 		},
@@ -477,7 +472,6 @@ angular.module('app.routes')
 			controller: 'unitManageCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
-				crumb_parent: 'manage',
 				title: 'All Units'
 			}
 		},

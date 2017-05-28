@@ -6,7 +6,7 @@ angular.module('app.controllers')
 	$scope.users = $store.users
 	$scope.groups = $store.groups
 	$scope.bookings = []
-	$store.bookings = []
+	$scope.allBookings = []
 
 	function loadBookings(page) {
 		$scope.loading = true
@@ -27,11 +27,11 @@ angular.module('app.controllers')
 	loadBookings(1)
 
 	function simplifyBookings() {
-		$store.bookings = $scope.bookings
+		$scope.allBookings = $scope.bookings
 
 		$scope.bookings = []
 
-		_.forEach($store.bookings, function(booking) {
+		_.forEach($scope.allBookings, function(booking) {
 			$scope.bookings.push({
 				id: booking.id,
 				user: {
@@ -49,7 +49,6 @@ angular.module('app.controllers')
 		})
 
 		$scope.advFilter.apply()
-
 	}
 
 	// --------------------------------------------------------------------------------
@@ -74,6 +73,14 @@ angular.module('app.controllers')
 	$scope.timediff = function(date, unit) {
 		return moment().diff(date, unit)
 	}
+
+
+	$scope.sortables = [
+		{ text: 'Name' },
+		{ text: 'Class' },
+		{ text: 'Date' }
+	]
+	$scope.sortable = $scope.sortables[0]
 
 	// --------------------------------------------------------------------------------
 	// Filter
@@ -105,7 +112,6 @@ angular.module('app.controllers')
 		},
 		importFromQueryString: function(obj) {
 			if(obj.user) $scope.advFilter.props.user = $store.get('users', parseInt(obj.user))
-
 			$scope.advFilter.apply()
 		},
 		importFromLocalStorage: function() {
@@ -123,7 +129,7 @@ angular.module('app.controllers')
 
 			var temp = [], temp2 = []
 			
-			_.forEach($store.bookings, function(booking) {
+			_.forEach($scope.allBookings, function(booking) {
 				var keep = true
 
 				if($scope.advFilter.props.after) {

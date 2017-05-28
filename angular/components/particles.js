@@ -2,7 +2,7 @@
 
 Mousetrap.bindGlobal(['up up down down left right left right b a'], function() {
 	window.konami = true
-	// document.body.classList.add('konami-code')
+	document.body.classList.add('konami-code')
 	return false
 })
 

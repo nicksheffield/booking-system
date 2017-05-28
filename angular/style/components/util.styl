@@ -4,8 +4,8 @@
 	
 .frame
 	background color-frame-bg
-	margin 1em auto
-	max-width 1000px
+	// margin 1em auto
+	// max-width 1000px
 	width 100%
 	border-radius 0 body-rad body-rad 0
 	
@@ -96,3 +96,15 @@ paperShadow(level = 1)
 		box-shadow 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
 	else if level == 5
 		box-shadow 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)
+
+@media (max-width bp-sm)
+	.sm-hide
+		display none !important
+
+@media (max-width bp-md)
+	.md-hide
+		display none !important
+		
+@media (min-width bp-sm)
+	[show-only-sm]
+		display none !important

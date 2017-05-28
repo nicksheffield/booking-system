@@ -7,7 +7,7 @@ angular.module('app.directives')
 		})
 		
 		function render(state) {
-			if($location.path() == scope.url.replace('#','')) {
+			if($location.path() == scope.url.replace('#', '')) {
 				el.addClass('current')
 			} else {
 				el.removeClass('current')
@@ -26,7 +26,13 @@ angular.module('app.directives')
 			}
 			
 			_.forEach(scope.crumbs, function(crumb) {
-				if(scope.url.replace('#', '') == crumb.url) {
+				var url = crumb.url
+
+				if(url.indexOf('?') > -1) {
+					url = url.substring(0, url.indexOf('?'))
+				}
+
+				if(scope.url.replace('#', '') == url) {
 					el.addClass('current')
 				}
 			})
@@ -44,7 +50,9 @@ angular.module('app.directives')
 		scope: {
 			'navLink': '@',
 			'url': '@',
-			'icon': '@'
+			'icon': '@',
+			'number': '@',
+			'loading': '='
 		}
 	}
 })

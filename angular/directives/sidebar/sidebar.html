@@ -1,45 +1,65 @@
-<div class="sidebar" layout="row" justify="between">
+<div class="sidebar" layout="col sm-row">
 	<div class="site-logo" layout="row" justify="center" align="center">
 		<!-- <img src="/images/logo2.svg" alt="" class="logo" height="50"> -->
 		<div class="logo">
-			<img src="/images/Yoobee_Design_School_Logo_EPS.png" height="50" alt="">
-			<span class="caption">Equipment Booking</span>
+			<img src="/images/yoobee_logo_light.svg" alt="">
+			<!-- <span class="caption">Equipment Booking</span> -->
 		</div>
 		
 		<!-- <h1>Booking System</h1> -->
 	</div>
 	
-	<nav layout="row">
+	<nav layout="col sm-row">
 		<!-- guest -->
-		<ul layout="row" ng-if="!auth.isAuthenticated()">
+		<ul layout="col sm-row" ng-if="!auth.isAuthenticated()">
+
+			<li class="title"></li>
 			<li nav-link="Login" url="/login"></li>
 			<!-- <li nav-link="Register" url="/register"></li> -->
 		</ul>
 		
 		<!-- student -->
-		<ul layout="row" ng-if="auth.isAuthenticated() && user.admin == 0">
-			<li nav-link="Home" url="/"></li>
-			<li nav-link="Make booking" url="/book"></li>
-			<li nav-link="Modify booking" url="/book/edit"></li>
-			<li nav-link="Logout" url="/logout"></li>
+		<ul layout="col sm-row" ng-if="auth.isAuthenticated() && user.admin == 0">
+			<li class="title">Bookings</li>
+			<li nav-link="My Bookings" url="/"></li>
+			<li nav-link="Make a Booking" url="/book"></li>
+
+			<li class="title"></li>
+			<li nav-link="Logout ({{ user.name }})" url="/logout"></li>
 		</ul>
 		
 		<!-- staff -->
-		<ul layout="row" ng-if="auth.isAuthenticated() && user.admin == 1">
-			<li nav-link="Home" url="/"></li>
-			<li nav-link="Book" url="/book"></li>
-			<li nav-link="Bookings" url="/bookings"></li>
-			<li nav-link="Users" url="/manage/user"></li>
-			<li nav-link="Logout" url="/logout"></li>
+		<ul layout="col sm-row" ng-if="auth.isAuthenticated() && user.admin == 1">
+			<li class="title">Bookings</li>
+			<li nav-link="My Bookings" url="/"></li>
+			<li nav-link="Make a Booking" url="/book"></li>
+			<li nav-link="All Bookings" url="/bookings"></li>
+
+			<li class="title">Manage</li>
+			<li nav-link="Users" url="/manage/user" number="{{ store.users.length }}"></li>
+
+			<li class="title"></li>
+			<li nav-link="Logout ({{ user.name }})" url="/logout"></li>
 		</ul>
 		
 		<!-- manager -->
-		<ul layout="row" ng-if="auth.isAuthenticated() && user.admin == 2">
-			<li nav-link="Home" url="/"></li>
-			<li nav-link="Book" url="/book"></li>
-			<li nav-link="Bookings" url="/bookings"></li>
-			<li nav-link="Manage" url="/manage"></li>
-			<li nav-link="Logout" url="/logout"></li>
+		<ul layout="col sm-row" ng-if="auth.isAuthenticated() && user.admin == 2">
+			<li class="title">Bookings</li>
+			<li nav-link="My Bookings" url="/"></li>
+			<li nav-link="Make a Booking" url="/book"></li>
+			<li nav-link="All Bookings" url="/bookings" number="{{ bookings_count }}" loading="loading_bookings"></li>
+
+			<li class="title">Manage</li>
+			<li nav-link="Manage" url="/manage" show-only-sm></li>
+			<li nav-link="Users" url="/manage/user" number="{{ store.users.length }}" loading="!store.users.$resolved" class="sm-hide"></li>
+			<li nav-link="Class Types" url="/manage/class_type" number="{{ store.group_types.length }}" loading="!store.group_types.$resolved" class="sm-hide"></li>
+			<li nav-link="Classes" url="/manage/class" number="{{ store.groups.length }}" loading="!store.groups.$resolved" class="sm-hide"></li>
+			<li nav-link="Product Types" url="/manage/product_type" number="{{ store.product_types.length }}" loading="!store.product_types.$resolved" class="sm-hide"></li>
+			<li nav-link="Products" url="/manage/product" number="{{ store.products.length }}" loading="!store.products.$resolved" class="sm-hide"></li>
+			<li nav-link="Units" url="/manage/unit" number="{{ store.units.length }}" loading="!store.units.$resolved" class="sm-hide"></li>
+
+			<li class="title"></li>
+			<li nav-link="Logout ({{ user.name }})" url="/logout"></li>
 		</ul>
 		
 	</nav>

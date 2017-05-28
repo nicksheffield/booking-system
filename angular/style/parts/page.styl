@@ -1,12 +1,6 @@
 .page-header
-	padding 0 2em
 	background color-page-header-background
 	color color-page-header-text
-	height 100px
-	padding-top 2em
-	display flex
-	align-items center
-	justify-content space-between
 	border-radius 0 body-rad 0 0
 	position relative
 	
@@ -16,11 +10,39 @@
 		
 	& > *
 		animation fade-in animation-fade-in-speed
+		
+	.title-holder
+		padding 1em 3em
+		border-bottom 1px solid color-page-header-border
+		
+	.breadcrumbs
+		order 2
+		
+	// .btn.btn-primary
+	// 	color color-page-header-button
+	// 	border 1px solid #color-page-header-button
+	// 	background none
+		
+	// 	&:hover
+	// 		background color-page-header-button-hover
+	// 		color color-page-header-background
+			
+	.count
+		background color-page-header-count-bg
+		color color-page-header-count-text
+		padding 0.3em 0.9em
+		border-radius 23px
+		margin-left 1.5em
+		font-weight bold
+		font-size 0.7em
+		user-select none
+		pointer-events none
 
 .page-content
 	flex 1
 	padding 2em
 	animation fade-in animation-fade-in-speed
+	background whitesmoke
 
 .page-dates
 	background color-page-dates-background
@@ -28,6 +50,20 @@
 	
 	.page-user
 		padding-top 1em
+		
+.page-meta
+	background #fff
+	padding 0.5em 0.5em 0.5em 1em
+	border-radius 5px
+	margin-bottom 1em
+	
+	p, label
+		margin 0
+	
+	select.form-control
+		width 100px
+		display inline-block
+		margin-left 1em
 
 section
 	margin 1em
