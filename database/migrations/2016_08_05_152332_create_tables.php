@@ -21,9 +21,10 @@ class CreateTables extends Migration
 			$table->date('dob');
 			$table->string('password');
 			$table->integer('group_id')->nullable();
-			$table->boolean('admin');
+			$table->boolean('admin')->default(false);
 			$table->boolean('can_book')->default(true);
-			$table->string('can_book_reason');
+			$table->string('can_book_reason')->default('');
+			$table->boolean('new_user')->default(true);
 			$table->rememberToken();
 			$table->timestamps();
 			$table->softDeletes();
@@ -65,7 +66,6 @@ class CreateTables extends Migration
 			$table->increments('id');
 			$table->string('code');
 			$table->integer('group_type_id');
-			$table->string('enrollment_key');
 			$table->timestamps();
 			$table->softDeletes();
 		});

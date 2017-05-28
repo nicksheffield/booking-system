@@ -17,20 +17,17 @@ class GroupsSeeder extends Seeder
 			[
 				'id' => 1,
 				'code' => '16ADDAV07',
-				'group_type_id' => 3,
-				'enrollment_key' => 'blah'
+				'group_type_id' => 3
 			],
 			[
 				'id' => 2,
 				'code' => '16ADGD02B',
-				'group_type_id' => 1,
-				'enrollment_key' => 'blah'
+				'group_type_id' => 1
 			],
 			[
 				'id' => 3,
 				'code' => '16ADIC09',
-				'group_type_id' => 6,
-				'enrollment_key' => 'blah'
+				'group_type_id' => 6
 			]
 		];
 		
@@ -54,8 +51,7 @@ class GroupsSeeder extends Seeder
 			$items[] = [
 				'id' => $items[count($items)-1]['id'] + 1,
 				'code' => $code,
-				'group_type_id' => $types[$type]->id,
-				'enrollment_key' => 'blah'
+				'group_type_id' => $types[$type]->id
 			];
 		}
 		

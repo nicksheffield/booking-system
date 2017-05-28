@@ -1,8 +1,49 @@
 <page-header text="Import Users">
-	<btn type="primary" icon="floppy-o" ng-click="import()">Import</btn>
+	<btn type="primary" icon="cloud-upload" ng-click="import()">Import</btn>
 </page-header>
 
 <div class="page-content">
+
+	<div class="importer">
+		<label>CSV File</label>
+		<input type="file" class="form-control" fileread="file">
+	</div>
+
+	<div class="error-box error-box" ng-show="errors.length">
+		<div class="title"><i class="fa fa-exclamation-triangle"></i> Errors</div>
+		<div class="content" layout="col">
+			<p ng-repeat="error in errors" ratio="1">{{ error.message }}</p>
+		</div>
+	</div>
+
+	<div ng-show="users.length">
+		<p>Found {{ users.length }} Users</p>
+
+		<table class="table">
+			<tr>
+				<th>name</th>
+				<th>email</th>
+				<th>id_number</th>
+				<th>phone</th>
+				<th>dob</th>
+				<th>password</th>
+				<th>group</th>
+			</tr>
+
+			<tr ng-repeat="user in users">
+				<td>{{ user.name }}</td>
+				<td>{{ user.email }}</td>
+				<td>{{ user.id_number }}</td>
+				<td>{{ user.phone }}</td>
+				<td>{{ user.dob }}</td>
+				<td>{{ user.password }}</td>
+				<td>
+					<span ng-show="user._group">{{ user._group.code }}</span>
+					<span ng-show="user._nogroup" class="pip pip-info">{{ user._nogroup }}</span>
+				</td>
+			</tr>
+		</table>
+	</div>
 
 	
 

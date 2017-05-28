@@ -33,6 +33,16 @@ angular.module('app.routes')
 				edit_profile: true
 			}
 		},
+
+		'set_password': {
+			url: '/set_password',
+			templateUrl: 'components/manage/users/views/password.html',
+			controller: 'userPasswordCtrl',
+			data: {
+				conditions: ['auth'],
+				title: 'Set Password'
+			}
+		},
 		
 		// ------------------------------------------------------------
 		// Guest

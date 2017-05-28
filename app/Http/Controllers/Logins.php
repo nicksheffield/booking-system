@@ -38,7 +38,16 @@ class Logins extends Controller
 	}
 
 	public function authenticate(Request $request) {
-		$credentials = $request->only('email', 'password');
+		// $credentials = $request->only('email', 'password');
+		$credentials = [];
+
+		if(strpos($request->email, '@') !== false) {
+			$credentials['email'] = $request->email;
+		} else {
+			$credentials['id_number'] = $request->email;
+		}
+
+		$credentials['password'] = $request->password;
 		
 		JWTAuth::attempt($credentials);
 		

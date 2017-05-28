@@ -11,6 +11,12 @@ angular.module('app.auth')
 		if(toState.data && toState.data.title) {
 			$title(toState.data.title)
 		}
+
+		// if($store.user && $store.user.new_user && toState.url !== '/set_password') {
+		// 	console.log('no!')
+		// 	$location.path('/set_password')
+		// 	return
+		// }
 		
 		$rootScope.bodyClass = 'page-' + toState.name
 		
