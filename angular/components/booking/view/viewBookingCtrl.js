@@ -30,6 +30,7 @@ angular.module('app.controllers')
 		
 		if(confirmed) {
 			$http.delete('/api/booking/' + $scope.booking.id).then(function() {
+				$invalidate.add('booking_count')
 				$location.path('/bookings')
 			})
 		}

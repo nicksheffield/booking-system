@@ -28,7 +28,8 @@ angular.module('app.services')
 				'product_types',
 				'products',
 				'units',
-				'notes'
+				'notes',
+				'booking_count'
 			])
 		} else {
 			// if not logged in, or logged in as student
@@ -100,6 +101,11 @@ angular.module('app.services')
 					thing = $load.notes()
 					$store.notes = thing
 					invalid.push(thing.$promise);
+				break;
+				case 'booking_count':
+					thing = $load.booking_count()
+					thing.then(res => $store.notes = res.data.total)
+					invalid.push(thing);
 				break;
 			}
 		})

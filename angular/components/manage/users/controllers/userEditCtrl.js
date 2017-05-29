@@ -41,6 +41,13 @@ angular.module('app.controllers')
 	}
 	
 	$scope.save = function() {
+		if($scope.password == $scope.confirm_password) {
+			$scope.user.password = $scope.password
+		} else {
+			alert('Passwords do not match')
+			return
+		}
+
 		$scope.user.group_id = $scope.selected.group.id
 		$scope.user.admin = $scope.selected.role.level
 		

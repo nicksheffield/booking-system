@@ -35,6 +35,34 @@ class InitSeeder extends Seeder
 				'can_book_reason' => '',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
+			],
+			[
+				'id' => 2,
+				'name' => 'Jonathan Daniels',
+				'email' => 'staff@gmail.com',
+				'phone' => '',
+				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'group_id' => 0,
+				'admin' => 1,
+				'password' => bcrypt('abcd'),
+				'can_book' => 1,
+				'can_book_reason' => '',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id' => 3,
+				'name' => 'Henry Fox',
+				'email' => 'student@gmail.com',
+				'phone' => '',
+				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
+				'group_id' => 0,
+				'admin' => 0,
+				'password' => bcrypt('abcd'),
+				'can_book' => 1,
+				'can_book_reason' => '',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
 			]
 		];
 

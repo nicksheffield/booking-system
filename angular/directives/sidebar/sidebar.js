@@ -8,12 +8,12 @@ angular.module('app.directives')
 
 		$load.listen('user', function(user) {
 			scope.user = user
-
 			scope.loading_bookings = true
-			$http.get('/api/booking/count').then(function(res) {
-				scope.bookings_count = parseInt(res.data.total)
-				scope.loading_bookings = false
-			})
+		})
+
+		$load.listen('booking_count', function(res) {
+			scope.bookings_count = parseInt(res.data.total)
+			scope.loading_bookings = false
 		})
 	}
 

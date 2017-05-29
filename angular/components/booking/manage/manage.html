@@ -90,13 +90,13 @@
 
 	<div ng-show="bookings.length && !loading">
 
-		<a ng-repeat="booking in bookings | page: page : advFilter.props.limit : 30 as filtered" href="booking/{{ booking.id }}" class="booking filterable-row list-item" layout="row sm-col" align="center sm-stretch">
+		<a ng-repeat="booking in bookings | orderBy: 'id' | page: page : advFilter.props.limit : 30 as filtered" href="booking/{{ booking.id }}" class="booking filterable-row list-item" layout="row sm-col" align="center sm-stretch">
 			<div class="col-username filterable-cell" ratio="1">
 				<div class="title">User</div>
 				<div class="content">{{ booking.user.name }}</div>
 			</div>
 			<div class="col-groupcode filterable-cell" ratio="1">
-				<div class="title">Class</div>
+				<div class="title" ng-show="booking.user.group">Class</div>
 				<div class="content">{{ booking.user.group.code }}</div>
 			</div>
 			<div class="col-status status-{{ booking._status.toLowerCase() }}" ratio="1">
@@ -105,45 +105,69 @@
 					{{ booking._status }}
 				</div>
 			</div>
-			<div class="col-status2" ratio="1" ng-show="booking._overdue && booking._priority == 2">
-				<div class="title">
-					Late by
-				</div>
-				<div class="content" ng-class="{late: booking._overdue && booking._priority == 2}">
-					{{ booking._timeoverdue + (booking._timeoverdue == 1 ? ' day' : ' days') }}
-					<span ng-show="booking._priority == 3"> ago</span>
-				</div>
-			</div>
-			<div class="col-status2" ratio="1" ng-show="!booking._overdue && booking._priority == 2">
-				<div class="title">
-					Due at
-				</div>
-				<div class="content">
-					{{ timediff(booking.due_at, 'days') }} days
-				</div>
-			</div>
+
+
 			<div class="col-status2" ratio="1" ng-show="booking._priority == 1">
 				<div class="title">
-					Pickup in
+					Pickup
 				</div>
-				<div class="content">
-					{{ timediff(booking.pickup_at, 'days') }} days
+				<div class="content" ng-show="diff(booking.pickup_at) > 1">
+					in {{ diff(booking.pickup_at) }} days
+				</div>
+				<div class="content" ng-show="diff(booking.pickup_at) == 1">
+					Tomorrow
+				</div>
+				<div class="content" ng-show="diff(booking.pickup_at) == 0">
+					<span class="pip pip-success">Today</span>
+				</div>
+				<div class="content" ng-show="diff(booking.pickup_at) == -1">
+					<span class="pip pip-danger">Yesterday</span>
+				</div>
+				<div class="content" ng-show="diff(booking.pickup_at) < -1">
+					<span class="pip pip-danger">{{ diff(booking.pickup_at) * -1 }} days ago</span>
 				</div>
 			</div>
+
+			<div class="col-status2" ratio="1" ng-show="booking._priority == 2">
+				<div class="title" ng-show="diff(booking.due_at) > -1">
+					Due
+				</div>
+				<div class="title" ng-show="diff(booking.due_at) < 0">
+					Overdue
+				</div>
+				<div class="content" ng-show="diff(booking.due_at) > 1">
+					in {{ diff(booking.due_at) }} days
+				</div>
+				<div class="content" ng-show="diff(booking.due_at) == 1">
+					Tomorrow
+				</div>
+				<div class="content" ng-show="diff(booking.due_at) == 0">
+					<span class="pip pip-success">Today</span>
+				</div>
+				<div class="content" ng-show="diff(booking.due_at) == -1">
+					<span class="pip pip-danger">Yesterday</span>
+				</div>
+				<div class="content" ng-show="diff(booking.due_at) < -1">
+					<span class="pip pip-danger">by {{ diff(booking.due_at) * -1 }} days</span>
+				</div>
+			</div>
+
+
+
 			<div class="col-status2" ratio="1" ng-show="booking._priority == 3">
 				<div class="title">
 					Closed
 				</div>
-				<div class="content" ng-show="timediff(booking.closed_at, 'days') != 0">
-					{{ timediff(booking.closed_at, 'days') }} days ago
-				</div>
-				<div class="content" ng-show="timediff(booking.closed_at, 'days') == 0">
+				<div class="content" ng-show="diff(booking.closed_at) == 0">
 					Today
 				</div>
+				<div class="content" ng-show="diff(booking.closed_at) == -1">
+					Yesterday
+				</div>
+				<div class="content" ng-show="diff(booking.closed_at) < -1">
+					{{ diff(booking.closed_at) * -1 }} days ago
+				</div>
 			</div>
-			<!-- <div class="col-buttons button-row" layout="row" justify="end" ratio="3">
-				<btn url="booking/{{ booking.id }}" type="info" icon="arrow-right" small>View</btn>
-			</div> -->
 		</a>
 	</div>
 

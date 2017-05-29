@@ -4,6 +4,7 @@ angular.module('app.controllers')
 
 	$scope.users = []
 	$scope.errors = []
+	$scope.loader = {}
 	
 	$scope.$watch('file', function(newVal, oldVal) {
 		if(newVal) {
@@ -46,6 +47,10 @@ angular.module('app.controllers')
 			if(!confirm('There ' + ($scope.errors.length == 1 ? 'is an unresolved issue' : 'are ' + $scope.errors.length + ' unresolved issues') + '. Are you sure you want to import?')) {
 				return
 			}
+		} else {
+			if(!confirm('Are you sure you want to import ' + ($scope.users.length == 1 ? ' this user?' : 'these ' + $scope.users.length + ' users?'))) {
+				return
+			}
 		}
 
 		var promises = $scope.users.map(user => user.$save().$promise)
@@ -58,23 +63,34 @@ angular.module('app.controllers')
 	
 })
 
-.directive("fileread", function () {
+.directive('fileread', function() {
 	return {
 		scope: {
-			fileread: "="
+			fileread: '=',
+			loader: '='
 		},
-		link: function (scope, element, attributes) {
-			element.bind("change", function (changeEvent) {
-				var reader = new FileReader();
-				reader.onload = function (loadEvent) {
-					scope.$apply(function () {
-						scope.fileread = loadEvent.target.result;
-					});
-				}
-				reader.readAsText(changeEvent.target.files[0]);
+		link: function(scope, element, attributes) {
+			var file = null
+
+			if(!scope.loader) scope.loader = {}
+
+			element.bind('change', function(changeEvent) {
+				file = changeEvent.target.files[0]
+				scope.loader.load()
+				// element.val(null)
+			})
+
+			scope.loader.load = function() {
+				var reader = new FileReader()
 				
-				element.val(null)
-			});
+				reader.readAsText(file)
+
+				reader.onload = function(loadEvent) {
+					scope.$apply(function() {
+						scope.fileread = loadEvent.target.result
+					})
+				}
+			}
 		}
 	}
 })

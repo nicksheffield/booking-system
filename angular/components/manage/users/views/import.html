@@ -4,9 +4,10 @@
 
 <div class="page-content">
 
-	<div class="importer">
+	<div class="importer" layout="flex" align="center">
 		<label>CSV File</label>
-		<input type="file" class="form-control" fileread="file">
+		<input type="file" class="form-control" fileread="file" loader="loader" ratio="1">
+		<button class="btn btn-info" ng-click="loader.load()"><i class="fa fa-refresh"></i></button>
 	</div>
 
 	<div class="error-box error-box" ng-show="errors.length">
@@ -17,7 +18,7 @@
 	</div>
 
 	<div ng-show="users.length">
-		<p>Found {{ users.length }} Users</p>
+		<alert type="success" icon="check" text="Found {{ users.length }} Users"></alert>
 
 		<table class="table">
 			<tr>
@@ -39,7 +40,7 @@
 				<td>{{ user.password }}</td>
 				<td>
 					<span ng-show="user._group">{{ user._group.code }}</span>
-					<span ng-show="user._nogroup" class="pip pip-info">{{ user._nogroup }}</span>
+					<span ng-show="user._nogroup" class="pip pip-danger">{{ user._nogroup }}</span>
 				</td>
 			</tr>
 		</table>

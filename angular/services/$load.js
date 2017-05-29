@@ -1,6 +1,6 @@
 angular.module('app.services')
 
-.factory('$load', function($store, $prepare, $auth, User, Group, Group_Type, Product_Type, Product, Unit, Booking, Note) {
+.factory('$load', function($prepare, $auth, $http, User, Group, Group_Type, Product_Type, Product, Unit, Booking, Note) {
 	var service = {}
 	var events = []
 	
@@ -108,6 +108,14 @@ angular.module('app.services')
 			.then($prepare.notes)
 			.then(service.notify('notes'))
 		
+		return resource
+	}
+
+	service.booking_count = function() {
+		var resource = $http.get('/api/booking/count')
+
+		resource.then(service.notify('booking_count'))
+
 		return resource
 	}
 	

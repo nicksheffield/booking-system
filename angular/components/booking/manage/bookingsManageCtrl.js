@@ -71,7 +71,15 @@ angular.module('app.controllers')
 	}
 
 	$scope.timediff = function(date, unit) {
-		return moment().diff(date, unit)
+		return moment().startOf('day').diff(moment(date).startOf('day'), unit) * -1
+	}
+
+	$scope.diff = function(date) {
+		return $scope.timediff(date, 'days')
+	}
+
+	$scope.days = function(num) {
+		return num == 1 ? 'day' : 'days'
 	}
 
 
@@ -80,6 +88,7 @@ angular.module('app.controllers')
 		{ text: 'Class' },
 		{ text: 'Date' }
 	]
+
 	$scope.sortable = $scope.sortables[0]
 
 	// --------------------------------------------------------------------------------
@@ -94,7 +103,7 @@ angular.module('app.controllers')
 			before: null,
 			user: null,
 			overdue: true,
-			closed: false,
+			closed: true,
 			issued: true,
 			booked: true,
 			limit: 10

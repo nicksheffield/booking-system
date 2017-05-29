@@ -9,7 +9,8 @@
   },
   "scripts": {
     "install": "bower install; gulp",
-    "initseed": "php artisan db:seed --class=InitSeeder"
+    "initseed": "php artisan db:seed --class=InitSeeder",
+    "testseed": "php artisan db:seed --class=BookingsTestSeeder"
   },
   "repository": {
     "type": "git",

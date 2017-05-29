@@ -12,9 +12,10 @@ angular.module('app.services')
 		bookings: [],
 		group_types: [],
 		product_types: [],
+		booking_count: 0
 	}
 
-	window.store = service
+	window.$store = service
 	
 	service.setBooking = function(booking) {
 		localStorage.booking = JSON.stringify(booking)

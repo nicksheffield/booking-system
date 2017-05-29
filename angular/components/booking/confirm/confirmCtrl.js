@@ -44,6 +44,7 @@ angular.module('app.controllers')
 		$http.post('/api/booking', $store.booking).then(function(res) {
 			$store.resetBooking()
 			
+			$invalidate.add('booking_count')
 			$location.path('/book/success')
 		})
 	}
