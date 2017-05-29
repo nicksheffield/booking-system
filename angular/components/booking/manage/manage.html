@@ -112,10 +112,10 @@
 					Pickup
 				</div>
 				<div class="content" ng-show="diff(booking.pickup_at) > 1">
-					in {{ diff(booking.pickup_at) }} days
+					<span class="pip pip-warning">in {{ diff(booking.pickup_at) }} days</span>
 				</div>
 				<div class="content" ng-show="diff(booking.pickup_at) == 1">
-					Tomorrow
+					<span class="pip pip-warning">Tomorrow</span>
 				</div>
 				<div class="content" ng-show="diff(booking.pickup_at) == 0">
 					<span class="pip pip-success">Today</span>
@@ -136,10 +136,10 @@
 					Overdue
 				</div>
 				<div class="content" ng-show="diff(booking.due_at) > 1">
-					in {{ diff(booking.due_at) }} days
+					<span class="pip pip-warning">in {{ diff(booking.due_at) }} days</span>
 				</div>
 				<div class="content" ng-show="diff(booking.due_at) == 1">
-					Tomorrow
+					<span class="pip pip-warning">Tomorrow</span>
 				</div>
 				<div class="content" ng-show="diff(booking.due_at) == 0">
 					<span class="pip pip-success">Today</span>
