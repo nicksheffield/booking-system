@@ -39,7 +39,7 @@
 					<div class="item item-row">
 						<label>From</label>
 						<div class="input-group">
-							<span class="input-group-addon" id="basic-addon1">
+							<span class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							</span>
 							<input type="date" ng-model="advFilter.props.after" class="form-control">
@@ -48,7 +48,7 @@
 					<div class="item item-row">
 						<label>To</label>
 						<div class="input-group">
-							<span class="input-group-addon" id="basic-addon1">
+							<span class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							</span>
 							<input type="date" ng-model="advFilter.props.before" class="form-control">
@@ -90,7 +90,7 @@
 
 	<div ng-show="bookings.length && !loading">
 
-		<a ng-repeat="booking in bookings | orderBy: 'id' | page: page : advFilter.props.limit : 30 as filtered" href="booking/{{ booking.id }}" class="booking filterable-row list-item" layout="row sm-col" align="center sm-stretch">
+		<a ng-repeat="booking in bookings | orderBy: '-id' | page: page : advFilter.props.limit : 30 as filtered" href="booking/{{ booking.id }}" class="booking filterable-row list-item" layout="row sm-col" align="center sm-stretch">
 			<div class="col-username filterable-cell" ratio="1">
 				<div class="title">User</div>
 				<div class="content">{{ booking.user.name }}</div>

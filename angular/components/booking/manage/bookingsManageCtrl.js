@@ -103,7 +103,7 @@ angular.module('app.controllers')
 			before: null,
 			user: null,
 			overdue: true,
-			closed: true,
+			closed: false,
 			issued: true,
 			booked: true,
 			limit: 10
