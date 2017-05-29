@@ -1,20 +1,43 @@
 // Main colors
-vividColors = true
+colorScheme = 'flat'
 
-if(vividColors)
+if(colorScheme == 'material')
 	color-primary                     = #3F51B5
-	color-secondary                   = #CCCCCC
 	color-danger                      = #DD0000
 	color-warning                     = #FF9500
 	color-info                        = #00BCD4
 	color-success                     = #8BC34A
-else
-	color-primary                     = #4eb2fc
 	color-secondary                   = #CCCCCC
-	color-danger                      = #eba692
-	color-warning                     = #eec87c
-	color-info                        = #587a92
-	color-success                     = #accf91
+	color-dark                        = #636e75
+
+if(colorScheme == 'pale')
+	color-primary                     = saturation(#4eb2fc, 80%)
+	color-danger                      = saturation(#eba692, 80%)
+	color-warning                     = saturation(#eec87c, 80%)
+	color-info                        = saturation(#587a92, 80%)
+	color-success                     = saturation(#accf91, 80%)
+	color-secondary                   = #CCCCCC
+	color-dark                        = #607D8B
+	
+if(colorScheme == 'flat')
+	color-primary                     = #3498DB
+	color-danger                      = #E74C3C
+	color-warning                     = #F39C12
+	color-info                        = #1ABC9C
+	color-success                     = #2ECC71
+	color-secondary                   = #ECF0F1
+	color-dark                        = #7F8C8D
+	
+if(colorScheme == 'fio')
+	color-primary                     = #227889
+	color-danger                      = #B25B66
+	color-warning                     = #F6BB42
+	color-info                        = #58C1BE
+	color-success                     = #94D9BB
+	color-secondary                   = #ECF0F1
+	color-dark                        = #030820
+	
+
 
 // Misc colors
 color-border                      = #DDDDDD

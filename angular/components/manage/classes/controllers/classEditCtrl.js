@@ -17,9 +17,9 @@ angular.module('app.controllers')
 	$scope.addTutor = function() {
 		$scope.selected.tutors.push({})
 	}
-	
-	$scope.removeTutor = function(tutor) {
-		$scope.selected.tutors = _.reject($scope.selected.tutors, (t) => t.id == tutor.id)
+
+	$scope.removeTutor = function(product, index) {
+		$scope.selected.tutors.splice(index, 1)
 		
 		if(!$scope.selected.tutors.length) {
 			$scope.addTutor()

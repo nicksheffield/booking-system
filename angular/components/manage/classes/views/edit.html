@@ -36,7 +36,7 @@
 								<div ng-bind-html="user.name | highlight: $select.search"></div>
 							</ui-select-choices>
 						</ui-select>
-						<btn type="danger" icon="times" ng-click="removeTutor(tutor)"></btn>
+						<btn type="danger" icon="times" ng-click="removeTutor(tutor, $index)"></btn>
 					</li>
 				</ul>
 

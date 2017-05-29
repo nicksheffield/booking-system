@@ -1,24 +1,25 @@
-.table
-	th
+.table, .fake-table
+	th, .th
 		border-top 0
 		text-transform uppercase
 		font-weight 600
 		font-size 0.8em
 	
-	td
+	td, .td
 		vertical-align middle
 		
-	td, th
+	td, th, .td, .th
 		padding 0.5em 0.75em
-		
-	// thead th
-	// 	border-bottom 0
-	// 	border-right 2px solid white
-	// 	padding 1em
-	// 	background whitesmoke
 		
 	label
 		margin-bottom 0
+		
+	td.center
+		vertical-align middle
+		
+	.td.center
+		display flex
+		align-items center
 		
 	.table-col-controls
 		width 100px
@@ -35,16 +36,6 @@
 	.row-property
 		font-weight bold
 		width 150px
-		padding-top 0.8em
-		
-	// .filterable-row
-	// 	.btn
-	// 		opacity 0
-	// 		transition opacity 0.2s
-			
-	// 	&:hover
-	// 		.btn
-	// 			opacity 1
 				
 	.filterable-cell
 		.btn
@@ -100,9 +91,6 @@
 			
 			.user-note-controls
 				opacity 1
-				
-// .table td, .table th
-	// border-top none
 		
 .dropdown-menu
 	table td, table th

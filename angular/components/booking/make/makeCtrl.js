@@ -1,6 +1,8 @@
 angular.module('app.controllers')
 
 .controller('makeCtrl', function($scope, $store, $location) {
+
+	window.scope = $scope
 	
 	$scope.dateOptions = {
 		showWeeks: false,
@@ -22,11 +24,8 @@ angular.module('app.controllers')
 				product: $store.get('products', p.id),
 				quantity: p.quantity
 			})
-			// console.log('p', p)
 		})
 	}
-
-	window.scope = $scope
 	
 	if($store.user.admin) {
 		$scope.users = $store.users
@@ -72,9 +71,8 @@ angular.module('app.controllers')
 		$scope.selected.products.push({ quantity: 1 })
 	}
 	
-	$scope.removeProduct = function(product) {
-		console.log('removeProduct', product)
-		$scope.selected.products = _.reject($scope.selected.products, (p) => p.product.id == product.product.id)
+	$scope.removeProduct = function(product, index) {
+		$scope.selected.products.splice(index, 1)
 		
 		if(!$scope.selected.products.length) {
 			$scope.addProduct()
@@ -119,6 +117,7 @@ angular.module('app.controllers')
 	
 	// calculate the max quantity allowed for a product
 	$scope.max = function(product) {
+		if(!product) return 1
 		return product._max
 	}
 
