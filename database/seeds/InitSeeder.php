@@ -25,7 +25,7 @@ class InitSeeder extends Seeder
 			[
 				'id' => 1,
 				'name' => 'Nick Sheffield',
-				'email' => 'admin@gmail.com',
+				'email' => 'numbereft@gmail.com',
 				'phone' => '',
 				'dob' => Carbon::create(rand(1980, 1998), rand(1, 12), rand(1, 28)),
 				'group_id' => 0,

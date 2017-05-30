@@ -1,26 +1,61 @@
 angular.module('app.controllers')
 
-.controller('userImportCtrl', function($scope, $q, $invalidate, $store, $location, User) {
+.controller('userImportCtrl', function($scope, $q, $invalidate, $store, $location, $csv, User) {
 
 	$scope.users = []
 	$scope.errors = []
 	$scope.loader = {}
+	$scope.reloading = false
+
+	function getValue(cols, line, col) {
+		var index = _.indexOf(cols, col)
+
+		console.log(col, index)
+
+		return line[index]
+	}
+
+	$scope.reload = function() {
+		$scope.reloading = true
+		$invalidate.add('groups')
+
+		$q.all($invalidate.load()).then(function() {
+			if($scope.loader.load) $scope.loader.load()
+			$scope.reloading = false
+		})
+	}
 	
-	$scope.$watch('file', function(newVal, oldVal) {
-		if(newVal) {
+	$scope.loader.loaded = function(file) {
+		if(file) {
 			$scope.users = []
 			$scope.errors = []
-			var lines = newVal.split('\n')
 
-			var cols = lines.shift().split(',')
+			var csv = $csv(file)
 
-			lines.forEach(line => {
+			var fields = {
+				'Student': 'name',
+				'Intake': 'group',
+				'Email (Student) (Contact)': 'email',
+				'Take2 ID (Student) (Contact)': 'id_number',
+				'Date of Birth - New (Student) (Contact)': 'dob',
+				'Mobile Phone (Student) (Contact)': 'phone',
+				'Preferred Name (Student) (Contact)': 'fname',
+				'Last Name (Student) (Contact)': 'lname'
+			}
+
+			var cols = csv.shift()
+
+			cols = cols.map(col => fields[col] ? fields[col] : col)
+
+			csv.forEach(line => {
 				var newUser = new User()
 
-				var values = line.split(',')
+				line.forEach((val, i) => {
+					var col = cols[i]
 
-				values.forEach((val, i) => {
-					if(cols[i] == 'group_id') {
+					// if(!fields[col]) return
+
+					if(col == 'group') {
 						var group = $store.get('groups', {code: val})
 						
 						if(group) {
@@ -28,17 +63,29 @@ angular.module('app.controllers')
 							newUser.group_id = newUser._group.id
 						} else {
 							newUser._nogroup = val
-							$scope.errors.push({message: 'Group "' + val + '" not found'})
+							var error = _.find($scope.errors, {message: 'Class "' + val + '" not found'})
+
+							if(!error) {
+								$scope.errors.push({message: 'Class "' + val + '" not found', count: 1, type: 'group', group_code: val})
+							} else {
+								error.count++
+							}
 						}
+					} if(col == 'name') {
+						newUser.name = getValue(cols, line, 'fname') + ' ' + getValue(cols, line, 'lname')
 					} else {
-						newUser[cols[i]] = val
+						newUser[col] = val
 					}
 				})
+
+				if(!newUser.password) {
+					newUser.password = 'Yoobee01'
+				}
 
 				$scope.users.push(newUser)
 			})
 		}
-	})
+	}
 
 	$scope.import = function() {
 		if(!$scope.users.length) return
@@ -88,6 +135,7 @@ angular.module('app.controllers')
 				reader.onload = function(loadEvent) {
 					scope.$apply(function() {
 						scope.fileread = loadEvent.target.result
+						scope.loader.loaded(loadEvent.target.result)
 					})
 				}
 			}

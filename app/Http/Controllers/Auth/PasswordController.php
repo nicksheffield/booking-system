@@ -29,4 +29,29 @@ class PasswordController extends Controller
     {
         $this->middleware($this->guestMiddleware());
     }
+
+
+    /**
+     * Send a reset link to the given user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postEmail(Request $request)
+    {
+        return $this->sendResetLinkEmail($request);
+    }
+
+
+
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postReset(Request $request)
+    {
+        return $this->reset($request);
+    }
 }

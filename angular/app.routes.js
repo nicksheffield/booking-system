@@ -79,6 +79,16 @@ angular.module('app.routes')
 			}]
 		},
 		
+		'password_reset': {
+			url: '/reset_password',
+			templateUrl: 'components/guest/reset/reset.html',
+			controller: 'resetCtrl',
+			data: {
+				conditions: ['guest_only'],
+				title: 'Reset Password'
+			}
+		},
+		
 		// ------------------------------------------------------------
 		// Booking
 		// ------------------------------------------------------------
@@ -335,7 +345,7 @@ angular.module('app.routes')
 		},
 		
 		'new_class': {
-			url: '/manage/class/new?type',
+			url: '/manage/class/new?type&code',
 			templateUrl: 'components/manage/classes/views/new.html',
 			controller: 'classNewCtrl',
 			data: {

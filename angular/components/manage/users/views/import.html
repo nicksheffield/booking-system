@@ -7,13 +7,18 @@
 	<div class="importer" layout="flex" align="center">
 		<label>CSV File</label>
 		<input type="file" class="form-control" fileread="file" loader="loader" ratio="1">
-		<button class="btn btn-info" ng-click="loader.load()"><i class="fa fa-refresh"></i></button>
+		<button class="btn btn-info" ng-click="reload()"><i class="fa fa-refresh fa-fw" ng-class="{'fa-spin': reloading}"></i></button>
 	</div>
 
 	<div class="error-box error-box" ng-show="errors.length">
-		<div class="title"><i class="fa fa-exclamation-triangle"></i> Errors</div>
+		<div class="title"><i class="fa fa-exclamation-triangle"></i> Errors <b>({{ errors.length }})</b></div>
 		<div class="content" layout="col">
-			<p ng-repeat="error in errors" ratio="1">{{ error.message }}</p>
+			<p ng-repeat="error in errors" ratio="1" layout="row" justify="between" align="center">
+				<span>{{ error.message }}</span>
+				<a class="btn btn-primary btn-sm btn-icon" href="/manage/class/new?code={{ error.group_code }}" target="_blank">
+					<i class="fa fa-plus"></i>Create {{ error.group_code }}
+				</a>
+			</p>
 		</div>
 	</div>
 
@@ -22,13 +27,13 @@
 
 		<table class="table">
 			<tr>
-				<th>name</th>
-				<th>email</th>
-				<th>id_number</th>
-				<th>phone</th>
-				<th>dob</th>
-				<th>password</th>
-				<th>group</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>ID Number</th>
+				<th>Phone</th>
+				<th>DOB</th>
+				<th>Password</th>
+				<th>Class</th>
 			</tr>
 
 			<tr ng-repeat="user in users">

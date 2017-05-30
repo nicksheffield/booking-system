@@ -20,7 +20,7 @@ class BookingsTestSeeder extends Seeder
 
 		function make($opts) {
 			$defaults = [
-				'user_id' => 1,
+				'user_id' => 3,
 				'pickup_at' => Carbon::parse(date('Y-m-d')),
 				'due_at' => Carbon::parse(date('Y-m-d'))->addDays(3),
 				'created_by_id' => 1,

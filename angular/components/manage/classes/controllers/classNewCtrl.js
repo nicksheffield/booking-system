@@ -2,6 +2,7 @@ angular.module('app.controllers')
 
 .controller('classNewCtrl', function($scope, $stateParams, $store, $location, $invalidate, Group) {
 	var type = $stateParams.type
+	var code = $stateParams.code
 
 	$scope.users = $store.users
 	$scope.types = $store.group_types
@@ -10,10 +11,8 @@ angular.module('app.controllers')
 		tutors: [{}]
 	}
 	
-	if(type) {
-		$scope.selected.type = $store.get('group_types', {code: type})
-		console.log($scope.selected.type)
-	}
+	if(type) $scope.selected.type = $store.get('group_types', {code: type})
+	if(code) $scope.code = code
 	
 	$scope.tutorRole = function(value, index, array) {
 		return value.admin > 0
