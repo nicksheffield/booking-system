@@ -22,6 +22,11 @@ Route::group(['prefix' => '/api'], function() {
 	Route::post('auth', 'Logins@authenticate');
 
 	/**
+	*	Logout
+	*/
+	Route::get('logout', 'Logins@logout');
+
+	/**
 	*	Get all users
 	*/
 	Route::get('user', 'User@index');

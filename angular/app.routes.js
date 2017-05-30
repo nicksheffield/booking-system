@@ -48,16 +48,6 @@ angular.module('app.routes')
 		// Guest
 		// ------------------------------------------------------------
 		
-		// 'register': {
-		// 	url: '/register',
-		// 	templateUrl: 'components/guest/register/register.html',
-		// 	controller: 'registerCtrl',
-		// 	data: {
-		// 		conditions: ['guest_only'],
-		// 		title: 'Register'
-		// 	}
-		// },
-		
 		'login': {
 			url: '/login',
 			templateUrl: 'components/guest/login/login.html',
@@ -70,10 +60,12 @@ angular.module('app.routes')
 		
 		'logout': {
 			url: '/logout',
-			controller: ['$auth', '$location', '$store', function($auth, $location, $store) {
+			controller: ['$auth', '$location', '$store', '$http', function($auth, $location, $store, $http) {
 				$auth.logout().then(function() {
+					console.log('$http', $http)
 					$store.user = {}
 					$store.resetBooking()
+					$http.get('/api/logout')
 					$location.path('login')
 				})
 			}]
