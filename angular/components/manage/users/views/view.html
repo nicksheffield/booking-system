@@ -27,7 +27,7 @@
 				<span ng-if="!user.email">-</span>
 			</td>
 		</tr>
-		<tr>
+		<tr ng-show="user.dob">
 			<td class="row-property">DOB</td>
 			<td class="row-value">{{ user.dob | date }} ({{ user._age }} years old)</td>
 		</tr>

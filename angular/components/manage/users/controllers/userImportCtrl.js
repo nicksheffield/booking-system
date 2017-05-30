@@ -82,6 +82,8 @@ angular.module('app.controllers')
 					newUser.password = 'Yoobee01'
 				}
 
+				newUser._add = true
+
 				$scope.users.push(newUser)
 			})
 		}
@@ -95,17 +97,23 @@ angular.module('app.controllers')
 				return
 			}
 		} else {
-			if(!confirm('Are you sure you want to import ' + ($scope.users.length == 1 ? ' this user?' : 'these ' + $scope.users.length + ' users?'))) {
+			if(!confirm('Are you sure you want to import ' + ($scope.users.filter(u => u._add).length == 1 ? ' this user?' : 'these ' + $scope.users.filter(u => u._add).length + ' users?'))) {
 				return
 			}
 		}
 
-		var promises = $scope.users.map(user => user.$save().$promise)
+		var promises = $scope.users
+			.filter(u => u._add)
+			.map(u => u.$save().$promise)
 
 		$q.all(promises).then(function(values) {
 			$invalidate.add('users')
 			$location.path('/manage/user')
 		})
+	}
+
+	$scope.checkedUsers = function() {
+		return $scope.users.filter(u => u._add)
 	}
 	
 })

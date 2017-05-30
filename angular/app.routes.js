@@ -71,7 +71,7 @@ angular.module('app.routes')
 			}]
 		},
 		
-		'password_reset': {
+		'reset_password': {
 			url: '/reset_password',
 			templateUrl: 'components/guest/reset/reset.html',
 			controller: 'resetCtrl',

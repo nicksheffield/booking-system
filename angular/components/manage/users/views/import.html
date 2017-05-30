@@ -1,32 +1,38 @@
 <page-header text="Import Users">
-	<btn type="primary" icon="cloud-upload" ng-click="import()">Import</btn>
+	<btn type="primary" icon="cloud-upload" ng-click="import()" disable="!checkedUsers().length">Import</btn>
 </page-header>
 
 <div class="page-content">
 
-	<div class="importer" layout="flex" align="center">
-		<label>CSV File</label>
-		<input type="file" class="form-control" fileread="file" loader="loader" ratio="1">
-		<button class="btn btn-info" ng-click="reload()"><i class="fa fa-refresh fa-fw" ng-class="{'fa-spin': reloading}"></i></button>
-	</div>
+	<div class="importer" layout="col">
+		<div layout="row" align="center">
+			<input type="file" class="form-control" fileread="file" loader="loader" ratio="1">
+			<button class="btn btn-info" ng-click="reload()"><i class="fa fa-refresh fa-fw" ng-class="{'fa-spin': reloading}"></i></button>
+		</div>
 
-	<div class="error-box error-box" ng-show="errors.length">
-		<div class="title"><i class="fa fa-exclamation-triangle"></i> Errors <b>({{ errors.length }})</b></div>
-		<div class="content" layout="col">
+		<div ng-show="errors.length">
+			<h2>{{ errors.length }} Issues</h2>
+			
 			<p ng-repeat="error in errors" ratio="1" layout="row" justify="between" align="center">
 				<span>{{ error.message }}</span>
 				<a class="btn btn-primary btn-sm btn-icon" href="/manage/class/new?code={{ error.group_code }}" target="_blank">
 					<i class="fa fa-plus"></i>Create {{ error.group_code }}
 				</a>
 			</p>
+		
 		</div>
 	</div>
 
+	
+
 	<div ng-show="users.length">
-		<alert type="success" icon="check" text="Found {{ users.length }} Users"></alert>
+		<!-- <alert type="success" icon="check" text="Found {{ users.length }} Users"></alert> -->
+
+		<filter model="filter" filtered="filtered"></filter>
 
 		<table class="table">
 			<tr>
+				<th></th>
 				<th>Name</th>
 				<th>Email</th>
 				<th>ID Number</th>
@@ -36,7 +42,8 @@
 				<th>Class</th>
 			</tr>
 
-			<tr ng-repeat="user in users">
+			<tr ng-repeat="user in users | filter: filter as filtered">
+				<td><input type="checkbox" ng-model="user._add"></td>
 				<td>{{ user.name }}</td>
 				<td>{{ user.email }}</td>
 				<td>{{ user.id_number }}</td>

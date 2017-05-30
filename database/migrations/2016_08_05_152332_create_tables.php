@@ -18,7 +18,7 @@ class CreateTables extends Migration
 			$table->string('email')->unique();
 			$table->string('phone');
 			$table->string('id_number');
-			$table->date('dob');
+			$table->date('dob')->nullable();
 			$table->string('password');
 			$table->integer('group_id')->nullable();
 			$table->boolean('admin')->default(false);
