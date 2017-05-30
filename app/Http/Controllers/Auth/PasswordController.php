@@ -38,7 +38,7 @@ class PasswordController extends Controller
 	 */
 	public function postEmail(Request $request)
 	{
-		$this->sendResetLinkEmail($request);
+		// $this->sendResetLinkEmail($request);
 
 		return [
 			'email' => 'send'
@@ -53,7 +53,7 @@ class PasswordController extends Controller
 	 */
 	public function postReset(Request $request)
 	{
-		$this->reset($request);
+		// $this->reset($request);
 
 		return [
 			'post' => 'reset'
