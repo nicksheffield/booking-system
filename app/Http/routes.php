@@ -141,6 +141,8 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@showResetForm');
 Route::post('password/reset', 'Auth\PasswordController@reset');
 Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 
+Route::post('mail', 'TestController@sendMessage');
+
 /**
 *	Home page (angular)
 */
