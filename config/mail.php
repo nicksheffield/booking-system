@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'hello@myApp.com', 'name' => 'Booking System'],
+    'from' => ['address' => 'ns@webdev.natcoll.ac.nz', 'name' => 'Booking System'],
 
     /*
     |--------------------------------------------------------------------------
