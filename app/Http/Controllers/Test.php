@@ -17,9 +17,7 @@ class Test extends Controller
 	 */
 	public function sendMessage(Request $request)
 	{
-		$message = $request->message;
-
-		Mail::send('email', ['message' => $message], function ($m) {
+		Mail::send('email', ['msg' => $request->message], function ($m) {
 			$m->from('hello@app.com', 'Your Application');
 
 			$m->to('numbereft@gmail.com', 'Nick Sheffield')->subject('Your Reminder!');
