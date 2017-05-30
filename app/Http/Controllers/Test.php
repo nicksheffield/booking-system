@@ -17,6 +17,8 @@ class Test extends Controller
 	 */
 	public function sendMessage(Request $request)
 	{
+		dd($request->all);
+		
 		Mail::send('email', ['message' => $request->message], function ($m) {
 			$m->from('hello@app.com', 'Your Application');
 
