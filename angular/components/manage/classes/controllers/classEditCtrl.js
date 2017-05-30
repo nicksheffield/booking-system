@@ -6,7 +6,7 @@ angular.module('app.controllers')
 	
 	$scope.types = $store.group_types
 	$scope.selected = {
-		type: $store.get('group_types', $scope.group.type.id),
+		type: $scope.group.type ? $store.get('group_types', $scope.group.type.id) : null,
 		tutors: $scope.group.tutors
 	}
 	
