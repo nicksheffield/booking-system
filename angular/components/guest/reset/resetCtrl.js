@@ -8,9 +8,7 @@ angular.module('app.controllers')
 				email: $scope.email
 			})
 			.then(function(res) {
-				var data = res.data
-
-				console.log(data)
+				$scope.message = 'Password Reset email sent. Please check your inbox.'
 			})
 	}
 })
