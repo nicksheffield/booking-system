@@ -6,7 +6,7 @@ use Mail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class TestController extends Controller
+class Test extends Controller
 {
 	/**
 	 * Send an e-mail reminder to the user.
