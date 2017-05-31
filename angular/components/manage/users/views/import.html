@@ -23,8 +23,6 @@
 		</div>
 	</div>
 
-	
-
 	<div ng-show="users.length">
 		<!-- <alert type="success" icon="check" text="Found {{ users.length }} Users"></alert> -->
 
@@ -38,18 +36,18 @@
 				<th>ID Number</th>
 				<th>Phone</th>
 				<th>DOB</th>
-				<th>Password</th>
+				<!-- <th>Password</th> -->
 				<th>Class</th>
 			</tr>
 
-			<tr ng-repeat="user in users | filter: filter as filtered">
-				<td><input type="checkbox" ng-model="user._add"></td>
+			<tr ng-repeat="user in users | filter: filter as filtered" class="importer-row" box-checker="user._add" ng-class="{'no-import': !user._add}">
+				<td><input type="checkbox" ng-model="user._add" class="no-click"></td>
 				<td>{{ user.name }}</td>
 				<td>{{ user.email }}</td>
 				<td>{{ user.id_number }}</td>
 				<td>{{ user.phone }}</td>
-				<td>{{ user.dob }}</td>
-				<td>{{ user.password }}</td>
+				<td>{{ user.dob | date }}</td>
+				<!-- <td>{{ user.password }}</td> -->
 				<td>
 					<span ng-show="user._group">{{ user._group.code }}</span>
 					<span ng-show="user._nogroup" class="pip pip-danger">{{ user._nogroup }}</span>
@@ -57,7 +55,5 @@
 			</tr>
 		</table>
 	</div>
-
-	
 
 </div>

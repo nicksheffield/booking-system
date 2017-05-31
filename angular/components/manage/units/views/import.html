@@ -39,8 +39,8 @@
 				<th>Asset No</th>
 			</tr>
 
-			<tr ng-repeat="unit in units | filter: filter as filtered">
-				<td><input type="checkbox" ng-model="unit._add"></td>
+			<tr ng-repeat="unit in units | filter: filter as filtered" class="importer-row" box-checker="unit._add" ng-class="{'no-import': !unit._add}">
+				<td><input type="checkbox" ng-model="unit._add" class="no-click"></td>
 				<td>
 					<span ng-show="unit._product">{{ unit._product.name }}</span>
 					<span ng-show="unit._noproduct" class="pip pip-danger">{{ unit._noproduct }}</span>

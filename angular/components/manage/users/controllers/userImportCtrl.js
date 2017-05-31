@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('userImportCtrl', function($scope, $q, $invalidate, $store, $location, $csv, User) {
+.controller('userImportCtrl', function($scope, $q, $invalidate, $store, $location, $csv, $xlsx, User) {
 
 	$scope.users = []
 	$scope.errors = []
@@ -9,8 +9,6 @@ angular.module('app.controllers')
 
 	function getValue(cols, line, col) {
 		var index = _.indexOf(cols, col)
-
-		console.log(col, index)
 
 		return line[index]
 	}
@@ -24,69 +22,78 @@ angular.module('app.controllers')
 			$scope.reloading = false
 		})
 	}
+
+	$scope.$watch('users', function(newVal, oldVal) {
+		$scope.calculateErrors()
+	}, true)
+
+	$scope.calculateErrors = function() {
+		var errors = []
+
+		$scope.users
+			.filter(u => u._add)
+			.forEach(user => {
+				if(user._nogroup) {
+					var error = _.find(errors, {message: 'Class "' + user._nogroup + '" not found'})
+
+					if(!error) {
+						errors.push({message: 'Class "' + user._nogroup + '" not found', count: 1, type: 'group', group_code: user._nogroup})
+					} else {
+						error.count++
+					}
+				}
+			})
+
+		$scope.errors = errors
+	}
 	
-	$scope.loader.loaded = function(file) {
-		if(file) {
-			$scope.users = []
-			$scope.errors = []
+	$scope.loader.loaded = function(file, type) {
+		var data
 
-			var csv = $csv(file)
+		console.log('loaded', type)
+		
+		if(file && type == 'csv') {
+			data = $csv.parse(file)
+		} else if(file && type == 'xlsx') {
+			data = $xlsx.parse(file)
+		}
 
-			var fields = {
-				'Student': 'name',
-				'Intake': 'group',
-				'Email (Student) (Contact)': 'email',
-				'Take2 ID (Student) (Contact)': 'id_number',
-				'Date of Birth - New (Student) (Contact)': 'dob',
-				'Mobile Phone (Student) (Contact)': 'phone',
-				'Preferred Name (Student) (Contact)': 'fname',
-				'Last Name (Student) (Contact)': 'lname'
+		$scope.users = []
+
+		data.forEach(row => {
+			var user = new User()
+
+			// standard stuff
+			user.name      = row['Preferred Name (Student) (Contact)'] + ' ' + row['Last Name (Student) (Contact)']
+			user.email     = row['Email (Student) (Contact)']
+			user.phone     = row['Mobile Phone (Student) (Contact)']
+			user.id_number = row['Take2 ID (Student) (Contact)']
+			user.password  = 'Yoobee01'
+			user._add      = true
+
+			// date stuff
+			var date = row['Date of Birth - New (Student) (Contact)']
+
+			if(type == 'xlsx') {
+				date = XLSX.SSF.parse_date_code(date)
+				user.dob = new Date([date.y, date.m, date.d].join('-'))
+			} else {
+				user.dob = new Date(date)
 			}
 
-			var cols = csv.shift()
+			// group stuff
+			var group = $store.get('groups', {code: row.Intake})
 
-			cols = cols.map(col => fields[col] ? fields[col] : col)
+			if(group) {
+				user._group = group
+				user.group_id = user._group.id
+			} else {
+				user._nogroup = row.Intake
+			}
 
-			csv.forEach(line => {
-				var newUser = new User()
-
-				line.forEach((val, i) => {
-					var col = cols[i]
-
-					// if(!fields[col]) return
-
-					if(col == 'group') {
-						var group = $store.get('groups', {code: val})
-						
-						if(group) {
-							newUser._group = group
-							newUser.group_id = newUser._group.id
-						} else {
-							newUser._nogroup = val
-							var error = _.find($scope.errors, {message: 'Class "' + val + '" not found'})
-
-							if(!error) {
-								$scope.errors.push({message: 'Class "' + val + '" not found', count: 1, type: 'group', group_code: val})
-							} else {
-								error.count++
-							}
-						}
-					} if(col == 'name') {
-						newUser.name = getValue(cols, line, 'fname') + ' ' + getValue(cols, line, 'lname')
-					} else {
-						newUser[col] = val
-					}
-				})
-
-				if(!newUser.password) {
-					newUser.password = 'Yoobee01'
-				}
-
-				newUser._add = true
-
-				$scope.users.push(newUser)
-			})
-		}
+			$scope.users.push(user)
+		})
+		
 	}
 
 	$scope.import = function() {

@@ -84,5 +84,25 @@ angular.module('app.services')
 		return( arrData );
 	}
 
-	return CSVToArray
+	var service = {
+		parse: function(text) {
+			var arr = CSVToArray(text)
+
+			var cols = arr.shift()
+
+			var rows = arr.map(row => {
+				var obj = {}
+
+				cols.forEach((col, i) => {
+					obj[col] = row[i]
+				})
+
+				return obj
+			})
+
+			return rows
+		}
+	}
+
+	return service
 })
