@@ -5,7 +5,7 @@ angular.module('app.controllers')
 	
 	$scope.unit = _.clone($store.get('units', $stateParams.id))
 	$scope.selected = {
-		product: $store.get('products', $scope.unit.product.id)
+		product: $scope.unit.product ? $store.get('products', $scope.unit.product.id) : null
 	}
 	
 	$scope.save = function() {
