@@ -52,7 +52,11 @@ angular.module('app.controllers')
 		$scope.user.admin = $scope.selected.role.level
 		
 		User.update({id: $scope.user.id}, $scope.user).$promise.then(function(res) {
-			$invalidate.add(['users', 'groups'])
+			if($store.user.admin) {
+				$invalidate.add(['users', 'groups'])
+			} else {
+				$invalidate.add(['groups'])
+			}
 			
 			$location.path('/manage/user/' + $scope.user.id)
 		}, function(res) {

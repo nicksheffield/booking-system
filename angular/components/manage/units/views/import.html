@@ -1,0 +1,57 @@
+<page-header text="Import Units">
+	<btn type="primary" icon="cloud-upload" ng-click="import()" disable="!checkedUnits().length">Import</btn>
+</page-header>
+
+<div class="page-content">
+
+	<div class="importer" layout="col">
+		<div layout="row" align="center">
+			<input type="file" class="form-control" fileread="file" loader="loader" ratio="1">
+			<button class="btn btn-info" ng-click="reload()"><i class="fa fa-refresh fa-fw" ng-class="{'fa-spin': reloading}"></i></button>
+		</div>
+
+		<div ng-show="errors.length">
+			<h2>{{ errors.length }} Issues</h2>
+			
+			<p ng-repeat="error in errors" ratio="1" layout="row" justify="between" align="center">
+				<span>{{ error.message }}</span>
+				<a class="btn btn-primary btn-sm btn-icon" href="/manage/product/new?name={{ error.product_name }}" target="_blank">
+					<i class="fa fa-plus"></i>Create {{ error.product_name }}
+				</a>
+			</p>
+		
+		</div>
+	</div>
+
+	
+
+	<div ng-show="units.length">
+		<!-- <alert type="success" icon="check" text="Found {{ units.length }} Users"></alert> -->
+
+		<filter model="filter" filtered="filtered"></filter>
+
+		<table class="table">
+			<tr>
+				<th></th>
+				<th>Product</th>
+				<th>Unit No</th>
+				<th>Serial No</th>
+				<th>Asset No</th>
+			</tr>
+
+			<tr ng-repeat="unit in units | filter: filter as filtered">
+				<td><input type="checkbox" ng-model="unit._add"></td>
+				<td>
+					<span ng-show="unit._product">{{ unit._product.name }}</span>
+					<span ng-show="unit._noproduct" class="pip pip-danger">{{ unit._noproduct }}</span>
+				</td>
+				<td>{{ unit.unit_number }}</td>
+				<td>{{ unit.serial_number }}</td>
+				<td>{{ unit.asset_number }}</td>
+			</tr>
+		</table>
+	</div>
+
+	
+
+</div>

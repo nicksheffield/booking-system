@@ -5,7 +5,7 @@ angular.module('app.controllers')
 	
 	$scope.types = _.clone($store.product_types)
 	$scope.selected = {
-		type: $store.get('product_types', $scope.product.type.id)
+		type: $scope.product.type ? $store.get('product_types', $scope.product.type.id) : null
 	}
 	
 	$scope.save = function() {

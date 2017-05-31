@@ -442,7 +442,7 @@ angular.module('app.routes')
 		},
 		
 		'new_product': {
-			url: '/manage/product/new?type',
+			url: '/manage/product/new?type&name',
 			templateUrl: 'components/manage/products/views/new.html',
 			controller: 'productNewCtrl',
 			data: {
@@ -496,6 +496,17 @@ angular.module('app.routes')
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'manage_unit',
 				title: 'New Unit'
+			}
+		},
+		
+		'import_units': {
+			url: '/manage/unit/import',
+			templateUrl: 'components/manage/units/views/import.html',
+			controller: 'unitImportCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_parent: 'manage_units',
+				title: 'Import'
 			}
 		},
 		
