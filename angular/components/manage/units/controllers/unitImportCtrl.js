@@ -1,6 +1,7 @@
 angular.module('app.controllers')
 
 .controller('unitImportCtrl', function($scope, $q, $invalidate, $store, $location, $csv, Unit) {
+	window.$scope = $scope
 
 	$scope.units = []
 	$scope.errors = []
@@ -24,57 +25,64 @@ angular.module('app.controllers')
 			$scope.reloading = false
 		})
 	}
-	
-	$scope.loader.loaded = function(file) {
-		if(file) {
-			$scope.units = []
-			$scope.errors = []
 
-			var csv = $csv(file)
+	$scope.$watch('units', function(newVal, oldVal) {
+		$scope.calculateErrors()
+	}, true)
 
-			var fields = {
-				'product_name'  : 'product_name',
-				'unit_number'   : 'unit_number',
-				'serial_number' : 'serial_number',
-				'asset_number'  : 'asset_number'
+	$scope.calculateErrors = function() {
+		var errors = []
+
+		$scope.units
+			.filter(u => u._add)
+			.forEach(unit => {
+				if(unit._noproduct) {
+					var error = _.find(errors, {message: 'Product "' + unit._noproduct + '" not found'})
+
+					if(!error) {
+						errors.push({message: 'Product "' + unit._noproduct + '" not found', count: 1, type: 'product', product_name: unit._noproduct})
+					} else {
+						error.count++
+					}
+				}
+			})
+
+		$scope.errors = errors
+	}
+
+	$scope.loader.loaded = function(file, type) {
+		var data
+		
+		if(file && type == 'csv') {
+			data = $csv.parse(file)
+		} else if(file && type == 'xlsx') {
+			data = $xlsx.parse(file)
+		}
+
+		$scope.units = []
+
+		data.forEach(row => {
+			var unit = new Unit()
+
+			// standard stuff
+			unit.unit_number   = row.unit_number
+			unit.serial_number = row.serial_number
+			unit.asset_number  = row.asset_number
+			unit._add          = true
+
+			// product stuff
+			var product = $store.get('products', {name: row.product_name})
+
+			if(product) {
+				unit._product = product
+				unit.product_id = unit._product.id
+			} else {
+				unit._noproduct = row.product_name
 			}
 
-			var cols = csv.shift()
-
-			cols = cols.map(col => fields[col] ? fields[col] : col)
-
-			csv.forEach(line => {
-				var newUnit = new Unit()
-
-				line.forEach((val, i) => {
-					var col = cols[i]
-
-					if(col == 'product_name') {
-						var product = $store.get('products', {name: val})
-						
-						if(product) {
-							newUnit._product = product
-							newUnit.product_id = newUnit._product.id
-						} else {
-							newUnit._noproduct = val
-							var error = _.find($scope.errors, {message: 'Product "' + val + '" not found'})
-
-							if(!error) {
-								$scope.errors.push({message: 'Product "' + val + '" not found', count: 1, type: 'product', product_name: val})
-							} else {
-								error.count++
-							}
-						}
-					} else {
-						newUnit[col] = val
-					}
-				})
-
-				newUnit._add = true
-
-				$scope.units.push(newUnit)
-			})
-		}
+			$scope.units.push(unit)
+		})
+		
 	}
 
 	$scope.import = function() {

@@ -4,7 +4,7 @@ angular.module('app.directives')
 	function link(scope, el, attrs) {
 		el
 			.on('mouseover', function(e) {
-				if(boxChecker.mousedown) {
+				if(boxChecker.mousedown && boxChecker.shift) {
 					scope.boxChecker = boxChecker.setState
 					scope.$apply()
 				}
@@ -33,4 +33,15 @@ var boxChecker = {
 	setState: false
 }
 
-$(window).on('mouseup', () => boxChecker.mousedown = false)
+$(window)
+	.on('mouseup', () => boxChecker.mousedown = false)
+	.on('keydown', (e) => {
+		if(e.which == 16) {
+			boxChecker.shift = true
+		}
+	})
+	.on('keyup', (e) => {
+		if(e.which == 16) {
+			boxChecker.shift = false
+		}
+	})

@@ -49,8 +49,6 @@ angular.module('app.controllers')
 	
 	$scope.loader.loaded = function(file, type) {
 		var data
-
-		console.log('loaded', type)
 		
 		if(file && type == 'csv') {
 			data = $csv.parse(file)
