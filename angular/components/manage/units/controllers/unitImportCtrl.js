@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('unitImportCtrl', function($scope, $q, $invalidate, $store, $location, $csv, Unit) {
+.controller('unitImportCtrl', function($scope, $q, $invalidate, $store, $location, $csv, $xlsx, Unit) {
 	window.$scope = $scope
 
 	$scope.units = []
