@@ -216,7 +216,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumb_parent: 'manage_users',
-				title: 'Import'
+				title: 'Import Users'
 			}
 		},
 		
@@ -506,7 +506,7 @@ angular.module('app.routes')
 			data: {
 				conditions: ['auth', 'staff_only'],
 				crumb_parent: 'manage_units',
-				title: 'Import'
+				title: 'Import Units'
 			}
 		},
 		
