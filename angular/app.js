@@ -15,6 +15,7 @@ angular.module('app', [
 	'ui.bootstrap.tpls',
 	'ui.router',
 	'ui.select',
+	'19degrees.ngSweetAlert2',
 
 	'app.controllers',
 	'app.directives',

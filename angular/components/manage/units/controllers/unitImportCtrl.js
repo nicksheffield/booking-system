@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('unitImportCtrl', function($scope, $q, $invalidate, $store, $location, $csv, $xlsx, Unit) {
+.controller('unitImportCtrl', function($scope, $q, $invalidate, $store, $location, $csv, $xlsx, sweetAlert, Unit) {
 	window.$scope = $scope
 
 	$scope.units = []
@@ -89,23 +89,35 @@ angular.module('app.controllers')
 		if(!$scope.units.length) return
 
 		if($scope.errors.length) {
-			if(!confirm('There ' + ($scope.errors.length == 1 ? 'is an unresolved issue' : 'are ' + $scope.errors.length + ' unresolved issues') + '. Are you sure you want to import?')) {
-				return
-			}
+			sweetAlert.swal({
+				titleText: 'Unresolved Issues',
+				html: 'Do you still want to import all these units?',
+				showCancelButton: true,
+				cancelButtonText: "I'll fix the issues",
+				confirmButtonText: "Yeah it's fine"
+			})
+			.then(go)
 		} else {
-			if(!confirm('Are you sure you want to import ' + ($scope.units.filter(u => u._add).length == 1 ? ' this unit?' : 'these ' + $scope.units.filter(u => u._add).length + ' units?'))) {
-				return
-			}
+			sweetAlert.swal({
+				titleText: 'Good to go',
+				html: 'You are about to import <b>' + $scope.units.filter(u => u._add).length + '</b> ' + ($scope.units.filter(u => u._add).length == 1 ? ' unit' : ' units'),
+				showCancelButton: true,
+				cancelButtonText: "Not yet",
+				confirmButtonText: "Sweet let's do it"
+			})
+			.then(go)
 		}
 
-		var promises = $scope.units
-			.filter(u => u._add)
-			.map(u => u.$save().$promise)
+		function go() {
+			var promises = $scope.units
+				.filter(u => u._add)
+				.map(u => u.$save().$promise)
 
-		$q.all(promises).then(function(values) {
-			$invalidate.add('units')
-			$location.path('/manage/unit')
-		})
+			$q.all(promises).then(function(values) {
+				$invalidate.add('units')
+				$location.path('/manage/unit')
+			})
+		}
 	}
 
 	$scope.checkedUnits = function() {

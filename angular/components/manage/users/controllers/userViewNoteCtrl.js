@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('userViewNoteCtrl', function($scope, $stateParams, $store, $invalidate, $location, Note) {
+.controller('userViewNoteCtrl', function($scope, $stateParams, $store, $invalidate, $location, Note, sweetAlert) {
 
 	$scope.user = _.clone($store.get('users', $stateParams.id))
 	// $scope.note = _.find($scope.user.notes, (note) => note.id == $stateParams.id2)
@@ -13,11 +13,16 @@ angular.module('app.controllers')
 	}
 
 	$scope.deleteNote = function(note) {
-		if(confirm('Are you sure you want to delete that note?')) {
+		sweetAlert.swal({
+			text: 'Are you sure you want to delete this?',
+			showCancelButton: true,
+			type: 'warning'
+		})
+		.then(function() {
 			Note.delete({id: note.id}).$promise.then(function() {
 				$invalidate.add('notes')
 				$location.path('/manage/user/' + $scope.user.id)
 			})
-		}
+		})
 	}
 })

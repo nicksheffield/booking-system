@@ -48,10 +48,11 @@ gulp.task('css', function() {
 		'public/components/angular-bootstrap/ui-bootstrap-csp.css',
 		'public/components/normalize-css/normalize.css',
 		'public/components/flexy/flexy.min.css',
+		'public/components/sweetalert2/dist/sweetalert2.css',
 		'angular/style/3rdparty/bootstrap-v4-alpha.min.css',
 		paths.stylus.main
 	])                                                // grab our stylus file
-		.pipe(order(['select.min.css', 'normalize.css'])) // reorder files
+		.pipe(order(['select.min.css', 'normalize.css', 'sweetalert2.css'])) // reorder files
 		.pipe(plumber(plumberOpts))                   // notify us if any errors appear
 		.pipe(sourcemap.init())                       // get ready to write a sourcemap
 		.pipe(stylus())                               // turn the stylus into css
@@ -130,6 +131,8 @@ gulp.task('libs', function() {
 		'public/components/moment/moment.js',
 		'public/components/js-xlsx/dist/jszip.js',
 		'public/components/js-xlsx/dist/xlsx.js',
+		'public/components/sweetalert2/dist/sweetalert2.js',
+		'public/components/ngSweetAlert2/SweetAlert.js',
 		'public/3rdparty/tether.min.js',
 		'public/3rdparty/bootstrap.min.js'
 	]

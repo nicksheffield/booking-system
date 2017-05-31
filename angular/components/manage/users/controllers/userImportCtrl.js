@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('userImportCtrl', function($scope, $q, $invalidate, $store, $location, $csv, $xlsx, User) {
+.controller('userImportCtrl', function($scope, $q, $invalidate, $store, $location, $csv, $xlsx, sweetAlert, User) {
 
 	$scope.users = []
 	$scope.errors = []
@@ -98,23 +98,35 @@ angular.module('app.controllers')
 		if(!$scope.users.length) return
 
 		if($scope.errors.length) {
-			if(!confirm('There ' + ($scope.errors.length == 1 ? 'is an unresolved issue' : 'are ' + $scope.errors.length + ' unresolved issues') + '. Are you sure you want to import?')) {
-				return
-			}
+			sweetAlert.swal({
+				titleText: 'Unresolved Issues',
+				html: 'Do you still want to import all these users?',
+				showCancelButton: true,
+				cancelButtonText: "I'll fix the issues",
+				confirmButtonText: "Yeah it's fine"
+			})
+			.then(go)
 		} else {
-			if(!confirm('Are you sure you want to import ' + ($scope.users.filter(u => u._add).length == 1 ? ' this user?' : 'these ' + $scope.users.filter(u => u._add).length + ' users?'))) {
-				return
-			}
+			sweetAlert.swal({
+				titleText: 'Good to go',
+				html: 'You are about to import <b>' + $scope.users.filter(u => u._add).length + '</b> ' + ($scope.users.filter(u => u._add).length == 1 ? ' user' : ' users'),
+				showCancelButton: true,
+				cancelButtonText: "Not yet",
+				confirmButtonText: "Sweet let's do it"
+			})
+			.then(go)
 		}
 
-		var promises = $scope.users
-			.filter(u => u._add)
-			.map(u => u.$save().$promise)
+		function go() {
+			var promises = $scope.users
+				.filter(u => u._add)
+				.map(u => u.$save().$promise)
 
-		$q.all(promises).then(function(values) {
-			$invalidate.add('users')
-			$location.path('/manage/user')
-		})
+			$q.all(promises).then(function(values) {
+				$invalidate.add('users')
+				$location.path('/manage/user')
+			})
+		}
 	}
 
 	$scope.checkedUsers = function() {

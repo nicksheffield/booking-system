@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('userViewCtrl', function($scope, $stateParams, $store, $invalidate, $location, Note, User) {
+.controller('userViewCtrl', function($scope, $stateParams, $store, $invalidate, $location, Note, User, sweetAlert) {
 	$scope.user = $store.get('users', $stateParams.id)
 	
 	if($scope.user.admin == 1 && $scope.user.group && !$scope.user.group._isTutor($store.user.id)) {
@@ -18,22 +18,30 @@ angular.module('app.controllers')
 	}
 	
 	$scope.delete = function() {
-		var confirmed = confirm('Are you sure you want to delete this?')
-		
-		if(confirmed) {
+		sweetAlert.swal({
+			text: 'Are you sure you want to delete this?',
+			showCancelButton: true,
+			type: 'warning'
+		})
+		.then(function() {
 			$scope.user.$delete().then(function() {
 				$invalidate.add(['users', 'groups', 'bookings'])
 				
 				$location.path('/manage/user')
 			})
-		}
+		})
 	}
 
 	$scope.deleteNote = function(note) {
-		if(confirm('Are you sure you want to delete that note?')) {
+		sweetAlert.swal({
+			text: 'Are you sure you want to delete that note?',
+			showCancelButton: true,
+			type: 'warning'
+		})
+		.then(function() {
 			Note.delete({id: note.id}).$promise.then(function() {
 				$store.notes = _.reject($scope.user.notes, (n) => n.id == note.id)
 			})
-		}
+		})
 	}
 })
