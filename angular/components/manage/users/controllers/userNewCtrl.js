@@ -1,16 +1,6 @@
 angular.module('app.controllers')
 
 .controller('userNewCtrl', function($scope, $stateParams, $store, $location, $auth, $invalidate, User) {
-	
-	$scope.dateOptions = {
-		showWeeks: false,
-		format: 'd MMM yyyy'
-	}
-	
-	$scope.openDob = function() {
-		$scope.openDobDate = $scope.openDobDate ? false : true
-	}
-
 	var group = $stateParams['class']
 	
 	$scope.roles = [
