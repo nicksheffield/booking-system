@@ -78,7 +78,7 @@
 	</div>
 
 	<div ng-show="!bookings.length && !loading">
-		<alert type="secondary" icon="exclamation-triangle" text="No bookings match your filter critera"></alert>
+		<alert type="secondary" icon="exclamation-triangle" text="You have no bookings"></alert>
 	</div>
 		
 	<pager current="page" limit="advFilter.props.limit" data="bookings" filtered="filtered" filter="filter" ng-show="!filter && bookings.length >= 30 && !loading"></pager>
