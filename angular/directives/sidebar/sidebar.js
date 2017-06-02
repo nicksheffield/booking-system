@@ -1,6 +1,6 @@
 angular.module('app.directives')
 
-.directive('sidebar', function($store, $auth, $load, $rootScope, $http) {
+.directive('sidebar', function($store, $state, $auth, $load, $location, $rootScope, $http) {
 	function link(scope, el, attrs) {
 		scope.auth = $auth
 		scope.user = $store.user
@@ -9,6 +9,11 @@ angular.module('app.directives')
 		$load.listen('user', function(user) {
 			scope.user = user
 			scope.loading_bookings = true
+
+			// no idea if this little part actually works
+			if(!$auth.isAuthenticated() && $state.current.data.conditions.indexOf('auth') !== -1) {
+				$location.path('/')
+			}
 		})
 
 		$load.listen('booking_count', function(res) {
