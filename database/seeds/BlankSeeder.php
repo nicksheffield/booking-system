@@ -23,7 +23,7 @@ class BlankSeeder extends Seeder
 		DB::table('units')->delete();
 		DB::table('notes')->delete();
 
-		$items = [
+		$users = [
 			[
 				'id' => 1,
 				'name' => 'Admin',
@@ -40,11 +40,58 @@ class BlankSeeder extends Seeder
 			]
 		];
 
-		foreach($items as $item) {
-			$item['created_at'] = date('Y-m-d H:i:s');
-			$item['updated_at'] = null;
+		foreach($users as $user) {
+			$user['created_at'] = date('Y-m-d H:i:s');
+			$user['updated_at'] = null;
 
-			DB::table('users')->insert($item);
+			DB::table('users')->insert($user);
+		}
+
+		$group_types = [
+			[
+				'code' => 'DAF',
+				'name' => 'Animation and Film Production',
+			],
+			[
+				'code' => 'DSP',
+				'name' => 'Screen Production',
+			],
+			[
+				'code' => 'D3DP',
+				'name' => '3D Production',
+			],
+			[
+				'code' => 'DWUX',
+				'name' => 'Web & UX',
+			],
+			[
+				'code' => 'CIC',
+				'name' => 'iCreate',
+			],
+			[
+				'code' => 'DWG',
+				'name' => 'Web and Graphics',
+			],
+			[
+				'code' => 'DCDD',
+				'name' => 'Creative Digital Design',
+			],
+			[
+				'code' => 'DGM',
+				'name' => 'Game Art and Development',
+			],
+			[
+				'code' => 'DMA',
+				'name' => 'Digital Media Advanced'
+			]
+		];
+
+
+		foreach($group_types as $type) {
+			$type['created_at'] = date('Y-m-d H:i:s');
+			$type['updated_at'] = null;
+
+			DB::table('group_types')->insert($type);
 		}
 	}
 }

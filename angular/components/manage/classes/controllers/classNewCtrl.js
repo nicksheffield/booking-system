@@ -12,7 +12,14 @@ angular.module('app.controllers')
 	}
 	
 	if(type) $scope.selected.type = $store.get('group_types', {code: type})
-	if(code) $scope.code = code
+	if(code) {
+		$scope.code = code
+		$store.group_types.forEach(gt => {
+			if(code.indexOf(gt.code) !== -1) {
+				$scope.selected.type = gt
+			}
+		})
+	}
 	
 	$scope.tutorRole = function(value, index, array) {
 		return value.admin > 0
