@@ -34,12 +34,12 @@ angular.module('app.controllers')
 		_.forEach($scope.allBookings, function(booking) {
 			$scope.bookings.push({
 				id: booking.id,
-				user: {
+				user: booking.user ? {
 					name: booking.user.name,
 					group: {
 						code: booking.user.group ? booking.user.group.code : '',
 					}
-				},
+				} : { name: 'N/A' },
 				closed_at: booking.closed_at,
 				created_at: booking.created_at,
 				_status: booking._status,

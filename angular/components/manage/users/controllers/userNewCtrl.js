@@ -11,6 +11,7 @@ angular.module('app.controllers')
 	
 	$scope.groups = $store.groups
 	$scope.user = $store.user
+	$scope.errors = []
 	
 	if($store.user.admin === 1) {
 		$scope.groups = $store.user.tutors_groups
@@ -27,6 +28,20 @@ angular.module('app.controllers')
 	
 
 	$scope.save = function() {
+		if($scope.password !== $scope.confirm_password) {
+			$scope.errors.push({
+				message: 'The passwords do not match'
+			})
+			return
+		}
+
+		if(!$scope.password) {
+			$scope.errors.push({
+				message: 'You need to set a password'
+			})
+			return
+		}
+
 		var u = new User()
 		
 		u.dob        = $scope.dob
