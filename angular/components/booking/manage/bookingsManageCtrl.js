@@ -209,6 +209,8 @@ angular.module('app.controllers')
 
 	$scope.advFilter.importFromQueryString($stateParams)
 
+	$scope.group_code = (user) => user.group ? user.group.code : ''
+
 	// $scope.$watch('advFilter.props', function(newVal, oldVal) {
 	// 	localStorage.setItem('advFilter', JSON.stringify($scope.advFilter.props))
 	// }, true)

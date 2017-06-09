@@ -8,6 +8,8 @@ angular.module('app.controllers')
 		{ level: 2, text: 'Manager'},
 	]
 
+	$scope.errors = []
+
 	if($state.current.data.edit_profile) {
 		$scope.user = $store.user
 		$scope.profileMode = true
@@ -34,11 +36,13 @@ angular.module('app.controllers')
 	}
 	
 	$scope.save = function() {
-		if($scope.password == $scope.confirm_password) {
-			$scope.user.password = $scope.password
-		} else {
-			alert('Passwords do not match')
+		if($scope.password !== $scope.confirm_password) {
+			$scope.errors.push({
+				message: 'The passwords do not match'
+			})
 			return
+		} else {
+			$scope.user.password = $scope.password
 		}
 
 		$scope.user.group_id = $scope.selected.group.id
@@ -53,7 +57,9 @@ angular.module('app.controllers')
 			
 			$location.path('/manage/user/' + $scope.user.id)
 		}, function(res) {
-			$scope.error = res.data.error
+			$scope.errors.push({
+				message: res.data.error
+			})
 		})
 	}
 	

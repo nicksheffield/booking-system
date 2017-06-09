@@ -3,24 +3,16 @@ angular.module('app.controllers')
 .controller('makeCtrl', function($scope, $store, $location) {
 
 	window.scope = $scope
-	
-	$scope.dateOptions = {
-		showWeeks: false,
-		format: 'd MMM yyyy',
-		minDate: new Date(),
-	}
 
-	$scope.selected = {
-		products: [{ quantity: 1 }]
-	}
+	$scope.selectedProducts = [{ quantity: 1 }]
 
 	console.log('$store.booking', $store.booking)
 
 	if($store.booking && $store.booking.products && $store.booking.products.length) {
-		$scope.selected.products = []
+		$scope.selectedProducts = []
 
 		$store.booking.products.forEach(function(p) {
-			$scope.selected.products.push({
+			$scope.selectedProducts.push({
 				product: $store.get('products', p.id),
 				quantity: p.quantity
 			})
@@ -32,6 +24,9 @@ angular.module('app.controllers')
 	} else {
 		$scope.users = []
 	}
+
+	$scope.user_group = (user) => user.group ? user.group.code : ''
+	$scope.product_type = (product) => product.type ? product.type.name : ''
 	
 	$scope.openPickup = function() {
 		$scope.openPickupDate = $scope.openPickupDate ? false : true
@@ -68,13 +63,13 @@ angular.module('app.controllers')
 	}
 
 	$scope.addProduct = function() {
-		$scope.selected.products.push({ quantity: 1 })
+		$scope.selectedProducts.push({ quantity: 1 })
 	}
 	
 	$scope.removeProduct = function(product, index) {
-		$scope.selected.products.splice(index, 1)
+		$scope.selectedProducts.splice(index, 1)
 		
-		if(!$scope.selected.products.length) {
+		if(!$scope.selectedProducts.length) {
 			$scope.addProduct()
 		}
 	}
@@ -87,7 +82,7 @@ angular.module('app.controllers')
 	$scope.createBooking = function() {
 		var payload = []
 		
-		_.forEach($scope.selected.products, function(selected) {
+		_.forEach($scope.selectedProducts, function(selected) {
 			if(parseInt(selected.quantity) > 0) {
 				payload.push({
 					id: selected.product.id,

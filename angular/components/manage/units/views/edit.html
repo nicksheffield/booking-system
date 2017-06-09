@@ -22,14 +22,7 @@
 
 		<div class="form-group">
 			<label for="product">Product</label>
-			<ui-select ng-model="selected.product" id="product">
-				<ui-select-match allow-clear="false" placeholder="​">
-					<span ng-bind="$select.selected.name" class="setheight"></span>
-				</ui-select-match>
-				<ui-select-choices repeat="product in (products | filter: $select.search) track by product.id">
-					<div ng-bind-html="product.name | highlight: $select.search"></div>
-				</ui-select-choices>
-			</ui-select>
+			<dropdown ng-model="product" data="products" display="{text: 'name', subtext: product_type}" nullable></dropdown>
 		</div>
 		
 		<div class="form-group">

@@ -1,0 +1,15 @@
+<div class="ns-dropdown">
+	<input type="text" ng-model="filter_text" placeholder="{{ ngModel ? text(ngModel) : 'Search...' }}" class="form-control ns-dropdown-input" ng-class="{'ns-dropdown-input-has-icon': icon}">
+	<div class="icons">
+		<i class="fa fa-{{ icon }} ns-dropdown-input-icon" ng-show="icon"></i>
+		<i class="fa fa-chevron-down ns-dropdown-arrow"></i>
+		<i class="fa fa-times-circle ns-dropdown-close" ng-if="nullable && ngModel" ng-click="clear()"></i>
+	</div>
+
+	<ul class="ns-dropdown-list" ng-cloak ng-show="focused">
+		<li ng-repeat="item in data | filter: filter_text as filtered" class="ns-dropdown-item" ng-class="{focused: ngModel ? (item == ngModel) : false}" ng-click="select(item)">
+			<span class="ns-dropdown-item-field text">{{ text(item) }}</span>
+			<span class="ns-dropdown-item-field subtext" ng-show="display.subtext">{{ subtext(item) }}</span>
+		</li>
+	</ul>
+</div>

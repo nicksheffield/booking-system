@@ -19,7 +19,7 @@
 		<div class="tr">
 			<div class="td row-property center">Name</div>
 			<div class="td row-value">
-				<ui-select select-unit-on-close ng-model="booking._user" id="user_id" ng-show="user.admin">
+				<!-- <ui-select select-unit-on-close ng-model="booking._user" id="user_id" ng-show="user.admin">
 					<ui-select-match allow-clear="false" placeholder="​">
 						<span ng-bind="$select.selected.name" class="setheight"></span>
 					</ui-select-match>
@@ -27,7 +27,10 @@
 						<div ng-bind-html="user.name | highlight: $select.search"></div>
 						<small ng-bind-html="user.group.code | highlight: $select.search"></small>
 					</ui-select-choices>
-				</ui-select>
+				</ui-select> -->
+				<div ng-show="user.admin">
+					<dropdown ng-model="booking._user" data="users" display="{text: 'name', subtext: user_group}"></dropdown>
+				</div>
 				<span ng-show="!user.admin">{{ user.name }}</span>
 			</div>
 		</div>
@@ -58,17 +61,13 @@
 			<div class="td row-property">Items</div>
 			<div class="td row-value">
 				<ul class="no-bullets">
-					<li layout="row" class="spaced-row pad-down" ng-repeat="product in selected.products">
-						<ui-select ng-model="selected.products[$index].product" ratio="1">
-							<ui-select-match allow-clear="false" placeholder="​">
-								<span ng-bind="$select.selected.name" class="setheight"></span>
-							</ui-select-match>
-							<ui-select-choices repeat="product in (products | filter: $select.search) track by product.id">
-								<div ng-bind-html="product.name | highlight: $select.search"></div>
-							</ui-select-choices>
-						</ui-select>
+					<li layout="row" class="spaced-row pad-down" ng-repeat="product in selectedProducts">
+						<dropdown ng-model="selectedProducts[$index].product" data="products" display="{text: 'name', subtext: product_type}"></dropdown>
+
 						<input type="number" class="form-control form-control-short" min="1" max="{{ max(product.product) }}" step="1" ng-model="product.quantity" ng-show="!product.product.limitless">
+
 						<span class="product-quantity-na" ng-show="product.product.limitless">N/A</span>
+
 						<btn type="danger" icon="times" ng-click="removeProduct(product, $index)" class="nudge-down"></btn>
 					</li>
 				</ul>
