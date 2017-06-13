@@ -14,7 +14,7 @@
 
 .ns-dropdown-arrow
 	position absolute
-	top 0.6em
+	top 0.65em
 	right 0.8em
 	pointer-events none
 	color #ccc
@@ -41,9 +41,16 @@
 	border-radius .25rem
 	border 1px solid #ccc
 	width 100%
-	max-height 300px
+	max-height 250px
 	overflow-x none
 	overflow-y auto
+		
+	&.ns-dropdown-list-up
+		top initial
+		bottom 100%
+		
+	&.ns-dropdown-hide
+		display none
 
 .ns-dropdown-item
 	padding 0.5em
@@ -54,7 +61,7 @@
 		background #eee
 
 	&.focused
-		background orange
+		background color-primary
 		color #fff
 		
 		.subtext

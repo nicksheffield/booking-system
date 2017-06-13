@@ -19,15 +19,6 @@
 		<div class="tr">
 			<div class="td row-property center">Name</div>
 			<div class="td row-value">
-				<!-- <ui-select select-unit-on-close ng-model="booking._user" id="user_id" ng-show="user.admin">
-					<ui-select-match allow-clear="false" placeholder="​">
-						<span ng-bind="$select.selected.name" class="setheight"></span>
-					</ui-select-match>
-					<ui-select-choices repeat="user in (users | filter: $select.search)">
-						<div ng-bind-html="user.name | highlight: $select.search"></div>
-						<small ng-bind-html="user.group.code | highlight: $select.search"></small>
-					</ui-select-choices>
-				</ui-select> -->
 				<div ng-show="user.admin">
 					<dropdown ng-model="booking._user" data="users" display="{text: 'name', subtext: user_group}"></dropdown>
 				</div>
@@ -64,7 +55,7 @@
 					<li layout="row" class="spaced-row pad-down" ng-repeat="product in selectedProducts">
 						<dropdown ng-model="selectedProducts[$index].product" data="products" display="{text: 'name', subtext: product_type}"></dropdown>
 
-						<input type="number" class="form-control form-control-short" min="1" max="{{ max(product.product) }}" step="1" ng-model="product.quantity" ng-show="!product.product.limitless">
+						<input type="number" class="form-control form-control-short" min="1" max="{{ max(product.product) }}" step="1" ng-model="product.quantity" ng-show="!product.product.limitless" />
 
 						<span class="product-quantity-na" ng-show="product.product.limitless">N/A</span>
 
@@ -74,128 +65,9 @@
 
 				<btn type="info" icon="plus" ng-click="addProduct()">Add Item</btn>
 			</div>
-		</tr>
+		</div>
 	</div>
-
-	<!-- <table class="table data-table">
-		<tr>
-			<td class="row-property">Name</td>
-			<td class="row-value">
-				<ui-select select-unit-on-close ng-model="booking._user" id="user_id" ng-show="user.admin">
-					<ui-select-match allow-clear="false" placeholder="​">
-						<span ng-bind="$select.selected.name" class="setheight"></span>
-					</ui-select-match>
-					<ui-select-choices repeat="user in (users | filter: $select.search)">
-						<div ng-bind-html="user.name | highlight: $select.search"></div>
-						<small ng-bind-html="user.group.code | highlight: $select.search"></small>
-					</ui-select-choices>
-				</ui-select>
-				<span ng-show="!user.admin">{{ user.name }}</span>
-			</td>
-		</tr>
-		<tr>
-			<td class="row-property">Pick Up</td>
-			<td class="row-value ">
-				<div class="input-group">
-					<span class="input-group-addon" id="basic-addon1">
-						<i class="fa fa-calendar"></i>
-					</span>
-					<input type="date" ng-model="booking.pickup_at" class="form-control">
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td class="row-property">Due At</td>
-			<td class="row-value">
-				<div class="input-group">
-					<span class="input-group-addon" id="basic-addon1">
-						<i class="fa fa-calendar"></i>
-					</span>
-					<input type="date" ng-model="booking.due_at" class="form-control">
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td class="row-property">Items</td>
-			<td class="row-value">
-				<ul class="no-bullets">
-					<li layout="row" class="spaced-row pad-down" ng-repeat="product in selected.products">
-						<ui-select ng-model="selected.products[$index].product" ratio="1">
-							<ui-select-match allow-clear="false" placeholder="​">
-								<span ng-bind="$select.selected.name" class="setheight"></span>
-							</ui-select-match>
-							<ui-select-choices repeat="product in (products | filter: $select.search) track by product.id">
-								<div ng-bind-html="product.name | highlight: $select.search"></div>
-							</ui-select-choices>
-						</ui-select>
-						<input type="number" class="form-control form-control-short" min="1" step="1" ng-model="product.quantity" ng-show="!product.limitless">
-						<span ng-show="product.limitless">N/A</span>
-						<btn type="danger" icon="times" ng-click="removeProduct(product, $index)"></btn>
-					</li>
-				</ul>
-
-				<btn type="info" icon="plus" ng-click="addProduct()">Add Item</btn>
-			</td>
-		</tr>
-	</table> -->
 </div>
-
-<!-- <div class="page-dates" layout="col" ng-show="user.can_book">
-	<div layout="row sm-col" class="space-row">
-		<div ratio="1">
-			<label for="pickup_at">Pickup date</label>
-			<input type="text" id="pickup_at" ng-model="booking.pickup_at" ng-change="createBooking()" class="form-control form-control-sm" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openPickupDate" datepicker-options="dateOptions" ng-click="openPickup()">
-		</div>
-		<div ratio="1">
-			<label for="due_at">Return date</label>
-			<input type="text" id="due_at" ng-model="booking.due_at" ng-change="createBooking()" class="form-control form-control-sm" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openDueDate" datepicker-options="dateOptions" ng-click="openDue()">
-		</div>
-	</div>
-	
-	<div class="page-user" ng-show="user.admin">
-		<label for="user_id">User</label>
-		<ui-select select-unit-on-close ng-model="booking._user" id="user_id">
-			<ui-select-match allow-clear="false" placeholder="​">
-				<span ng-bind="$select.selected.name" class="setheight"></span>
-			</ui-select-match>
-			<ui-select-choices repeat="user in (users | filter: $select.search)">
-				<div ng-bind-html="user.name | highlight: $select.search"></div>
-				<small ng-bind-html="user.group.code | highlight: $select.search"></small>
-			</ui-select-choices>
-		</ui-select>
-	</div>
-</div> -->
-
-<!-- <filter model="filter" filtered="filtered" ng-show="user.can_book"></filter>
-
-<div class="page-content" ng-show="user.can_book">
-	
-	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length">
-		<thead>
-			<tr>
-				<th class="booking-heading-product">Product</th>
-				<th class="booking-heading-type sm-hide">Type</th>
-				<th class="booking-heading-quantity">Available</th>
-				<th class="booking-heading-quantity">Quantity</th>
-			</tr>
-		</thead>
-		<tr ng-repeat="product in products | filter: filter as filtered">
-			<td>{{ product.name }}</td>
-			<td class="sm-hide">{{ product.type.name }}</td>
-			<td>{{ product.limitless ? 'N/A' : max(product) }}</td>
-			
-			<td>
-				<div layout="row" justify="center">
-					<input type="number" ng-model="product._quantity" class="form-control booking-quantity-input form-control-sm" max="{{ max(product) }}" ng-keyup="checkAgainstMax(product)" min="0" ng-change="createBooking()" ng-show="!product.limitless">
-
-					<input type="checkbox" ng-model="product._quantity" ng-true-value="1" ng-false-value="0" ng-show="product.limitless">
-				</div>
-			</td>
-		</tr>
-	</table>
-	
-</div> -->
-
 
 <div class="page-content" ng-show="!user.can_book">
 	<alert type="danger" icon="exclamation-triangle" text="You are not allowed to make bookings"></alert>

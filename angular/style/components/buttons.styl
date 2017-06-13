@@ -1,14 +1,3 @@
-// button, a, input[type=submit]
-// 	&.btn:not(.btn-link)
-// 		paperShadow(2)
-		
-// 		&:hover
-// 			paperShadow(3)
-			
-// 		&:active
-// 			paperShadow(1)
-// 			transform translateY(1px)
-
 .btn
 	border 0
 	border-radius button-rad
@@ -119,15 +108,7 @@
 
 .btn-group
 	border-radius button-rad
-	// paperShadow(2)
 	transition box-shadow transition-time ease
-
-	// &:hover
-		// paperShadow(3)
-
-	// &:active
-		// paperShadow(1)
-		// transform translateY(1px)
 	
 	.btn:not(.btn-link):active
 		transform none
@@ -139,18 +120,16 @@
 			box-shadow none
 		
 	&.show
-		
 		.dropdown-menu
 			display block
 			margin 0
 			padding 0
 			box-shadow none
 			border 1px solid #ccc
-			
-			// paperShadow(3)
 		
 	.dropdown-menu
 		border 0
+		overflow hidden
 		
 		.dropdown-item
 			cursor pointer

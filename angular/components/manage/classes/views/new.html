@@ -17,17 +17,16 @@
 		
 		<section>
 			<div class="form-group">
-				<div layout="row" align="start" class="pad-down spaced-row">
-					<label>Tutors</label>
-					<btn type="info" small icon="plus" ng-click="addTutor()"></btn>
-				</div>
+				<label>Tutors</label>
 				
 				<ul class="no-bullets">
-					<li layout="row" class="spaced-row pad-down" ng-repeat="tutor in tutors">
+					<li layout="row" class="spaced-row pad-down" ng-repeat="tutor in tutors track by $index">
 						<dropdown ng-model="tutors[$index]" data="staff" display="{text: 'name'}" nullable></dropdown>
 						<btn type="danger" icon="times" ng-click="removeTutor($index)"></btn>
 					</li>
 				</ul>
+
+				<btn type="info" icon="plus" ng-click="addTutor()">Add Tutor</btn>
 			</div>
 		</section>
 	</form>

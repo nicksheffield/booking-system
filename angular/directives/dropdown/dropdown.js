@@ -2,10 +2,26 @@ angular.module('app.directives')
 
 .directive('dropdown', function($timeout) {
 	function link(scope, el, attrs) {
-		scope.focused = false
 		scope.nullable = attrs.nullable !== undefined
+		scope.listDown = true
 
+		var elem = el[0]
+		var dropdownList = el.find('.ns-dropdown-list')
 		var ignoreBlur = false
+
+		function checkHeight() {
+			window.elem = elem
+			var cb = elem.getBoundingClientRect()
+			
+			dropdownList.removeClass('ns-dropdown-hide')
+			var listHeight = dropdownList.height()
+
+			if(window.innerHeight > cb.bottom + listHeight) {
+				dropdownList.removeClass('ns-dropdown-list-up')
+			} else {
+				dropdownList.addClass('ns-dropdown-list-up')
+			}
+		}
 
 		scope.text = function(item) {
 			if(typeof scope.display.text == 'function') {
@@ -27,13 +43,13 @@ angular.module('app.directives')
 			scope.ngModel = item
 
 			scope.filter_text = scope.text(item)
-			scope.focused = false
+			dropdownList.addClass('ns-dropdown-hide')
 		}
 
 		scope.clear = function() {
 			scope.ngModel = null
 			scope.filter_text = ''
-			scope.focused = false
+			dropdownList.addClass('ns-dropdown-hide')
 		}
 
 		scope.$watch('ngModel', function(newVal) {
@@ -48,8 +64,9 @@ angular.module('app.directives')
 		.on('focus', 'input', function(e) {
 			scope.$apply(function() {
 				scope.filter_text = ''
-				scope.focused = true
+				dropdownList.removeClass('ns-dropdown-hide')
 				ignoreBlur = false
+				checkHeight()
 
 				$timeout(function() {
 					if(el.find('.ns-dropdown-item.focused').length === 0) {
@@ -69,7 +86,7 @@ angular.module('app.directives')
 						scope.filter_text = ''
 					}
 					
-					scope.focused = false
+					dropdownList.addClass('ns-dropdown-hide')
 				})
 			}
 		})

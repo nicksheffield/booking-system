@@ -29,11 +29,10 @@ angular.module('app.controllers')
 	if($store.user.admin === 1) {
 		$scope.groups = $store.user.tutors_groups
 	}
-	
-	$scope.selected = {
-		group: $scope.user.group ? $store.get('groups', $scope.user.group.id) : {},
-		role: _.find($scope.roles, (r) => r.level == $scope.user.admin)
-	}
+
+	$scope.group = $scope.user.group ? $store.get('groups', $scope.user.group.id) : null
+
+	$scope.role = _.find($scope.roles, (r) => r.level == $scope.user.admin)
 	
 	$scope.save = function() {
 		if($scope.password !== $scope.confirm_password) {
@@ -45,8 +44,8 @@ angular.module('app.controllers')
 			$scope.user.password = $scope.password
 		}
 
-		$scope.user.group_id = $scope.selected.group.id
-		$scope.user.admin = $scope.selected.role.level
+		$scope.user.group_id = $scope.group.id
+		$scope.user.admin = $scope.role.level
 		
 		User.update({id: $scope.user.id}, $scope.user).$promise.then(function(res) {
 			if($store.user.admin) {

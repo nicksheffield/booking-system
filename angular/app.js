@@ -11,10 +11,7 @@ angular.module('app', [
 	'ngResource',
 	'ngSanitize',
 	'satellizer',
-	'ui.bootstrap',
-	'ui.bootstrap.tpls',
 	'ui.router',
-	'ui.select',
 	'19degrees.ngSweetAlert2',
 
 	'app.controllers',
