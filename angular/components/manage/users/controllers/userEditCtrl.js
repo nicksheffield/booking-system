@@ -44,7 +44,7 @@ angular.module('app.controllers')
 			$scope.user.password = $scope.password
 		}
 
-		$scope.user.group_id = $scope.group.id
+		$scope.user.group_id = $scope.group ? $scope.group.id : ''
 		$scope.user.admin = $scope.role.level
 		
 		User.update({id: $scope.user.id}, $scope.user).$promise.then(function(res) {

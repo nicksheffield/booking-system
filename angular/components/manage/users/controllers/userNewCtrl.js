@@ -47,7 +47,7 @@ angular.module('app.controllers')
 		u.admin      = $scope.role ? $scope.role.level : 0
 		
 		u.$save().then(function(res) {
-			$invalidate.add('groups', 'users')
+			$invalidate.add(['groups', 'users'])
 			
 			$location.path('/manage/user')
 		}).catch(function(res) {
