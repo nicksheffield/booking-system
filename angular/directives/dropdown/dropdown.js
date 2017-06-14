@@ -4,6 +4,7 @@ angular.module('app.directives')
 	function link(scope, el, attrs) {
 		scope.nullable = attrs.nullable !== undefined
 		scope.listDown = true
+		scope.filter_val = ''
 
 		var elem = el[0]
 		var dropdownList = el.find('.ns-dropdown-list')
@@ -11,12 +12,16 @@ angular.module('app.directives')
 
 		function checkHeight() {
 			window.elem = elem
-			var cb = elem.getBoundingClientRect()
+			var offset = $(elem).offset()
 			
 			dropdownList.removeClass('ns-dropdown-hide')
 			var listHeight = dropdownList.height()
 
-			if(window.innerHeight > cb.bottom + listHeight) {
+			console.log('el.height()', el.height())
+
+			console.log(window.innerHeight, offset.top + el.height() + listHeight, window.innerHeight > offset.top + el.height() + listHeight)
+
+			if(window.innerHeight > offset.top + el.height() + listHeight) {
 				dropdownList.removeClass('ns-dropdown-list-up')
 			} else {
 				dropdownList.addClass('ns-dropdown-list-up')
@@ -39,11 +44,16 @@ angular.module('app.directives')
 			}
 		}
 
-		scope.select = function(item) {
+		scope.select = function(event, item) {
 			scope.ngModel = item
 
 			scope.filter_text = scope.text(item)
 			dropdownList.addClass('ns-dropdown-hide')
+
+			var target = $(event.target).closest('li')
+
+			el.find('.ns-dropdown-item.focused').removeClass('focused')
+			target.addClass('focused')
 		}
 
 		scope.clear = function() {
@@ -88,6 +98,8 @@ angular.module('app.directives')
 					
 					dropdownList.addClass('ns-dropdown-hide')
 				})
+
+				scope.filter_val = ''
 			}
 		})
 		.on('keydown', 'input', function(e) {
@@ -95,6 +107,8 @@ angular.module('app.directives')
 			var index = focused.index()
 
 			$timeout(function() {
+				scope.filter_val = scope.filter_text
+
 				if(el.find('.ns-dropdown-item.focused').length === 0) {
 					el.find('.ns-dropdown-item').first().addClass('focused')
 				}
@@ -111,6 +125,7 @@ angular.module('app.directives')
 			if(e.which == 27) { // esc
 				e.preventDefault()
 				$(this).trigger('blur')
+				scope.filter_text = ''
 			}
 
 			if(e.which == 38) { // up

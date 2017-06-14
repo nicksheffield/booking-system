@@ -9,6 +9,78 @@
 	</div>
 
 	<form ng-submit="save()">
+		<div class="fake-table data-table">
+			<div class="tr">
+				<div class="td row-property center">Name</div>
+				<div class="td row-value">
+					<input type="text" id="name" ng-model="name" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">Email Address</div>
+				<div class="td row-value">
+					<input type="text" id="email" ng-model="email" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">Phone Number</div>
+				<div class="td row-value">
+					<input type="text" id="phone" ng-model="phone" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">DOB</div>
+				<div class="td row-value">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">
+							<i class="fa fa-calendar"></i>
+						</span>
+						<input type="date" ng-model="dob" class="form-control">
+					</div>
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">Password</div>
+				<div class="td row-value">
+					<input type="password" id="password" ng-model="password" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">Password repeat</div>
+				<div class="td row-value">
+					<input type="password" id="confirm_password" ng-model="confirm_password" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">Role</div>
+				<div class="td row-value">
+					<dropdown ng-model="role" data="roles" display="{text: 'text'}"></dropdown>
+				</div>
+			</div>
+
+			<div class="tr" ng-show="role.level === 0">
+				<div class="td row-property center">Student ID</div>
+				<div class="td row-value">
+					<input type="text" id="id_number" ng-model="id_number" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr" ng-show="role.level === 0">
+				<div class="td row-property center">Class</div>
+				<div class="td row-value">
+					<dropdown ng-model="group" data="groups" display="{text: 'code'}"></dropdown>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<!-- <form ng-submit="save()">
 		<div layout="row sm-col" class="spaced-row">
 			<div class="form-group" ratio="1">
 				<label for="name">Name</label>
@@ -41,7 +113,7 @@
 			</div>
 
 			<div class="form-group" ratio="1">
-				<label for="confirm_password">Confirm Password</label>
+				<label for="confirm_password">Password again</label>
 				<input type="password" id="confirm_password" ng-model="confirm_password" class="form-control">
 			</div>
 		</div>
@@ -76,6 +148,6 @@
 				</ui-select>
 			</div>
 		</div>
-	</form>
+	</form> -->
 
 </div>

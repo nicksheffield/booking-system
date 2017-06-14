@@ -32,7 +32,7 @@ angular.module('app.controllers')
 		$scope.group.tutors = []
 		
 		_.forEach($scope.tutors, function(tutor) {
-			if(tutor.id) {
+			if(tutor !== null && tutor.id) {
 				$scope.group.tutors.push(tutor.id)
 			}
 		})

@@ -16,17 +16,10 @@ angular.module('app.controllers')
 	if($store.user.admin === 1) {
 		$scope.groups = $store.user.tutors_groups
 	}
-	
-	$scope.selected = {
-		group: $scope.groups,
-		role: $scope.roles[0],
-	}
-	
-	if(group) {
-		$scope.selected.group = $store.get('groups', {code: group})
-	}
-	
 
+	$scope.group = $stateParams['class'] ? $store.get('groups', {code: group}) : null
+	$scope.role = $scope.roles[0]
+	
 	$scope.save = function() {
 		if($scope.password !== $scope.confirm_password) {
 			$scope.errors.push({
@@ -48,13 +41,13 @@ angular.module('app.controllers')
 		u.name       = $scope.name
 		u.email      = $scope.email
 		u.phone      = $scope.phone
-		u.group_id   = $scope.selected.group.id
+		u.group_id   = $scope.group ? $scope.group.id : ''
 		u.password   = $scope.password
 		u.id_number  = $scope.id_number
-		u.admin      = $scope.selected.role.level
+		u.admin      = $scope.role ? $scope.role.level : 0
 		
 		u.$save().then(function(res) {
-			$invalidate.add('groups')
+			$invalidate.add('groups', 'users')
 			
 			$location.path('/manage/user')
 		}).catch(function(res) {

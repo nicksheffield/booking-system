@@ -6,7 +6,7 @@ angular.module('app.controllers')
 
 	$scope.users  = $store.users
 	$scope.types  = $store.group_types
-	$scope.type   = {}
+	$scope.type   = null
 	$scope.tutors = [null]
 	$scope.staff  = $scope.users.filter(u => u.admin > 0)
 	
@@ -45,7 +45,7 @@ angular.module('app.controllers')
 		g.tutors = []
 		
 		_.forEach($scope.tutors, function(tutor) {
-			if(tutor.id) {
+			if(tutor !== null && tutor.id) {
 				g.tutors.push(tutor.id)
 			}
 		})

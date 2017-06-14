@@ -5,6 +5,38 @@
 <div class="page-content">
 
 	<form ng-submit="save()">
+		<div class="fake-table data-table">
+			<div class="tr">
+				<div class="td row-property center">Code</div>
+				<div class="td row-value">
+					<input type="text" id="code" ng-model="group.code" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">Type</div>
+				<div class="td row-value">
+					<dropdown ng-model="group.type" data="types" display="{text: 'name', subtext: 'code'}" nullable></dropdown>
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property">Tutors</div>
+				<div class="td row-value">
+					<ul class="no-bullets">
+						<li layout="row" class="spaced-row pad-down" ng-repeat="tutor in tutors">
+							<dropdown ng-model="tutors[$index]" data="staff" display="{text: 'name'}" nullable></dropdown>
+							<btn type="danger" icon="times" ng-click="removeTutor($index)"></btn>
+						</li>
+					</ul>
+
+					<btn type="info" icon="plus" ng-click="addTutor()">Add Tutor</btn>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<!-- <form ng-submit="save()">
 		<div class="form-group">
 			<label for="code">Code</label>
 			<input type="text" id="code" ng-model="group.code" class="form-control">
@@ -29,6 +61,6 @@
 				<btn type="info" icon="plus" ng-click="addTutor()">Add Tutor</btn>
 			</div>
 		</section>
-	</form>
+	</form> -->
 
 </div>
