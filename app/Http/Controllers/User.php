@@ -38,7 +38,12 @@ class User extends Controller
 
 		$model->password = bcrypt($request->password);
 		$model->group_id = $request->group_id;
-		$model->dob = date('Y-m-d H:i:s', strtotime($request->dob));
+
+		if($request->dob) {
+			$model->dob = date('Y-m-d H:i:s', strtotime($request->dob));
+		} else {
+			$model->dob = null;
+		}
 
 		$model->save();
 
@@ -92,6 +97,11 @@ class User extends Controller
 
 		if($request->password) {
 			$model->password = bcrypt($request->password);
+		}
+
+		// dd($request->all());
+		if(!$request->dob) {
+			$model->dob = null;
 		}
 		
 		$v = Validator::make($request->all(), [

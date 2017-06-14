@@ -19,6 +19,8 @@ angular.module('app.controllers')
 	}
 
 	$scope.curUser = $store.user
+
+	if(!$scope.user.dob) $scope.user.dob = ''
 	
 	if($scope.user.admin == 1 && $scope.user.group && !$scope.user.group._isTutor($store.user.id)) {
 		$location.path('/manage/user')
@@ -46,6 +48,8 @@ angular.module('app.controllers')
 
 		$scope.user.group_id = $scope.group ? $scope.group.id : ''
 		$scope.user.admin = $scope.role.level
+
+		if(!$scope.user.dob) $scope.user.dob = ''
 		
 		User.update({id: $scope.user.id}, $scope.user).$promise.then(function(res) {
 			if($store.user.admin) {
@@ -61,5 +65,4 @@ angular.module('app.controllers')
 			})
 		})
 	}
-	
 })

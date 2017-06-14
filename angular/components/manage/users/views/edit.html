@@ -9,6 +9,95 @@
 	</div>
 
 	<form ng-submit="save()">
+		<div class="fake-table data-table">
+			<div class="tr">
+				<div class="td row-property center">Name</div>
+				<div class="td row-value">
+					<input type="text" id="name" ng-model="user.name" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">Email Address</div>
+				<div class="td row-value">
+					<input type="text" id="email" ng-model="user.email" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">Phone Number</div>
+				<div class="td row-value">
+					<input type="text" id="phone" ng-model="user.phone" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">DOB</div>
+				<div class="td row-value">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">
+							<i class="fa fa-calendar"></i>
+						</span>
+						<input type="date" ng-model="user.dob" class="form-control">
+					</div>
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">Password</div>
+				<div class="td row-value">
+					<input type="password" id="password" ng-model="password" class="form-control" placeholder="••••••••">
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">Password repeat</div>
+				<div class="td row-value">
+					<input type="password" id="confirm_password" ng-model="confirm_password" class="form-control" placeholder="••••••••">
+				</div>
+			</div>
+
+			<div class="tr" ng-hide="profileMode || you.id == user.id">
+				<div class="td row-property center">Role</div>
+				<div class="td row-value">
+					<dropdown ng-model="role" data="roles" display="{text: 'text'}"></dropdown>
+				</div>
+			</div>
+
+			<div class="tr" ng-show="role.level === 0 && !profileMode">
+				<div class="td row-property center">Student ID</div>
+				<div class="td row-value">
+					<input type="text" id="id_number" ng-model="user.id_number" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr" ng-show="role.level === 0 && !profileMode">
+				<div class="td row-property center">Class</div>
+				<div class="td row-value">
+					<dropdown ng-model="group" data="groups" display="{text: 'code'}"></dropdown>
+				</div>
+			</div>
+
+			<div class="tr" ng-show="role.level === 0 && !profileMode">
+				<div class="td row-property center">Can Book</div>
+				<div class="td row-value">
+					<label>
+						<input type="checkbox" ng-model="user.can_book" ng-change="syncUser()" ng-true-value="1" class="push-right">
+						 {{ user.can_book ? 'Yes' : 'No' }}
+					</label>
+				</div>
+			</div>
+
+			<div class="tr" ng-show="role.level === 0 && !profileMode && !user.can_book">
+				<div class="td row-property center">Reason</div>
+				<div class="td row-value">
+					<input type="text" ng-model="user.can_book_reason" class="form-control" id="can_book_reason">
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<!-- <form ng-submit="save()">
 		<div layout="row sm-col" class="spaced-row">
 			<div class="form-group" ratio="1">
 				<label for="name">Name</label>
@@ -76,6 +165,6 @@
 				<input type="text" ng-model="user.can_book_reason" class="form-control" id="can_book_reason">
 			</div>
 		</div>
-	</form>
+	</form> -->
 
 </div>
