@@ -71,7 +71,6 @@ class User extends Controller
 		}
 
 		return $model->first();
-		
 	}
 
 	/**
@@ -86,7 +85,7 @@ class User extends Controller
 		if(Auth::user()->id !== (int)$id && Auth::user()->admin < 1) {
 			return (new Response(['error' => 'Not allowed'], 500));
 		}
-
+		
 		$model = Model::find($id);
 		
 		$model->fill($request->except('password'));

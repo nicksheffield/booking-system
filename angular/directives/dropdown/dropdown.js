@@ -17,9 +17,9 @@ angular.module('app.directives')
 			dropdownList.removeClass('ns-dropdown-hide')
 			var listHeight = dropdownList.height()
 
-			console.log('el.height()', el.height())
+			// console.log('el.height()', el.height())
 
-			console.log(window.innerHeight, offset.top + el.height() + listHeight, window.innerHeight > offset.top + el.height() + listHeight)
+			// console.log(window.innerHeight, offset.top + el.height() + listHeight, window.innerHeight > offset.top + el.height() + listHeight)
 
 			if(window.innerHeight > offset.top + el.height() + listHeight) {
 				dropdownList.removeClass('ns-dropdown-list-up')
@@ -44,16 +44,20 @@ angular.module('app.directives')
 			}
 		}
 
-		scope.select = function(event, item) {
-			scope.ngModel = item
-
-			scope.filter_text = scope.text(item)
+		scope.select = function(item) {
 			dropdownList.addClass('ns-dropdown-hide')
 
-			var target = $(event.target).closest('li')
+			var target = $('[data-id=' + item.id + ']')
 
 			el.find('.ns-dropdown-item.focused').removeClass('focused')
 			target.addClass('focused')
+
+			$timeout(function() {
+				scope.ngModel = item
+
+				scope.filter_text = scope.text(item)
+				scope.filter_val = ''
+			})
 		}
 
 		scope.clear = function() {
