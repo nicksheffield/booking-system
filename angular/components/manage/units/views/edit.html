@@ -5,29 +5,41 @@
 <div class="page-content">
 
 	<form ng-submit="save()">
-		<div class="form-group">
-			<label for="unit_number">Unit No</label>
-			<input type="text" id="unit_number" ng-model="unit.unit_number" class="form-control">
-		</div>
-		
-		<div class="form-group">
-			<label for="serial_number">Serial No</label>
-			<input type="text" id="serial_number" ng-model="unit.serial_number" class="form-control">
-		</div>
-		
-		<div class="form-group">
-			<label for="asset_number">Asset No</label>
-			<input type="text" id="asset_number" ng-model="unit.asset_number" class="form-control">
-		</div>
+		<div class="fake-table data-table">
+			<div class="tr">
+				<div class="td row-property center">Unit No</div>
+				<div class="td row-value">
+					<input type="text" id="unit_number" ng-model="unit.unit_number" class="form-control">
+				</div>
+			</div>
 
-		<div class="form-group">
-			<label for="product">Product</label>
-			<dropdown ng-model="product" data="products" display="{text: 'name', subtext: product_type}" nullable></dropdown>
-		</div>
-		
-		<div class="form-group">
-			<label for="notes">Notes</label>
-			<textarea id="notes" ng-model="unit.notes" class="form-control"></textarea>
+			<div class="tr">
+				<div class="td row-property center">Serial No</div>
+				<div class="td row-value">
+					<input type="text" id="serial_number" ng-model="unit.serial_number" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">Asset No</div>
+				<div class="td row-value">
+					<input type="text" id="asset_number" ng-model="unit.asset_number" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property center">Product</div>
+				<div class="td row-value">
+					<dropdown ng-model="product" data="products" display="{text: 'name', subtext: product_type}" nullable></dropdown>
+				</div>
+			</div>
+
+			<div class="tr">
+				<div class="td row-property">Notes</div>
+				<div class="td row-value">
+					<textarea id="notes" ng-model="unit.notes" class="form-control"></textarea>
+				</div>
+			</div>
 		</div>
 	</form>
 

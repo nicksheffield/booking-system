@@ -5,21 +5,30 @@
 <div class="page-content">
 
 	<form ng-submit="save()">
-		<div class="form-group">
-			<label for="name">Name</label>
-			<input type="text" id="name" ng-model="name" class="form-control">
-		</div>
-		
-		<div class="form-group">
-			<label for="type">Type</label>
-			<dropdown ng-model="type" data="types" display="{text: 'name'}" nullable></dropdown>
-		</div>
-
-		<div class="form-group">
-			<label>
-				Limitless
-				<input type="checkbox" ng-model="product.limitless" ng-true-value="1" ng-false-value="0" class="push-left">
-			</label>
+		<div class="fake-table data-table">
+			<div class="tr">
+				<div class="td row-property center">Name</div>
+				<div class="td row-value">
+					<input type="text" id="name" ng-model="name" class="form-control">
+				</div>
+			</div>
+			
+			<div class="tr">
+				<div class="td row-property center">Type</div>
+				<div class="td row-value">
+					<dropdown ng-model="type" data="types" display="{text: 'name'}" nullable></dropdown>
+				</div>
+			</div>
+			
+			<div class="tr">
+				<div class="td row-property center">Limitless</div>
+				<div class="td row-value">
+					<label>
+						<input type="checkbox" ng-model="limitless" ng-true-value="1" ng-false-value="0" class="push-left push-right">
+						 {{ limitless ? 'Yes' : 'No' }}
+					</label>
+				</div>
+			</div>
 		</div>
 	</form>
 

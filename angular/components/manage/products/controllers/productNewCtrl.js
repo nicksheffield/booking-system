@@ -11,7 +11,8 @@ angular.module('app.controllers')
 		var p = new Product()
 
 		p.name = $scope.name
-		p.product_type_id = $scope.type.id
+		p.product_type_id = $scope.type ? $scope.type.id : ''
+		p.limitless = $scope.limitless
 
 		p.$save().then(function(res) {
 			$invalidate.add('products')
