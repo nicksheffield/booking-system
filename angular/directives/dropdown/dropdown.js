@@ -47,7 +47,7 @@ angular.module('app.directives')
 		scope.select = function(item) {
 			dropdownList.addClass('ns-dropdown-hide')
 
-			var target = $('[data-id=' + item.id + ']')
+			var target = el.find('[data-id=' + item.id + ']')
 
 			el.find('.ns-dropdown-item.focused').removeClass('focused')
 			target.addClass('focused')
