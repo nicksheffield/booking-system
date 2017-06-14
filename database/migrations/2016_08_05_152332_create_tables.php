@@ -15,7 +15,7 @@ class CreateTables extends Migration
 		Schema::create('users', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
-			$table->string('email')->unique();
+			$table->string('email');
 			$table->string('phone');
 			$table->string('id_number');
 			$table->date('dob')->nullable();
