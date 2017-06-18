@@ -2,7 +2,6 @@ angular.module('app.controllers')
 
 .controller('productEditCtrl', function($scope, $stateParams, $store, $location, $invalidate, Product) {
 	$scope.product = $store.get('products', $stateParams.id)
-	window.$scope = $scope
 	
 	$scope.types = $store.product_types
 	$scope.type = $scope.product.type ? $store.get('product_types', $scope.product.type.id) : null

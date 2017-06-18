@@ -1,7 +1,6 @@
 angular.module('app.controllers')
 
 .controller('unitImportCtrl', function($scope, $q, $invalidate, $store, $location, $csv, $xlsx, sweetAlert, Unit) {
-	window.$scope = $scope
 
 	$scope.units = []
 	$scope.errors = []

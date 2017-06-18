@@ -1,45 +1,52 @@
 angular.module('app.controllers')
 
-.controller('issueCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate, $load) {
+.controller('issueCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate, $load, $prepare) {
 	
-	$scope.booking = $store.get('bookings', $stateParams.id)
+	$scope.booking = _.clone($store.get('bookings', $stateParams.id))
 	$scope.errors = []
+	$scope.allUnits = []
+	$scope.units = []
 
 	if(!$scope.booking) {
 		$scope.booking = $load.booking($stateParams.id)
-		$scope.booking.$promise.then(p => {}, function(err) {
+		$scope.booking.$promise.then(b => {
+
+			// this is all to solve some weird issue with the dropdown and the units array
+			b._products.forEach(p => {
+				var arr = []
+
+				p.units.forEach(u => {
+					arr.push({
+						id: u.id,
+						unit_number: u.unit_number
+					})
+				})
+
+				$scope.allUnits.push(arr)
+				$scope.units.push(null)
+			})
+
+		}, function(err) {
 			$scope.errors.push({message: err.data.error})
 		})
 	}
 	
-	$scope.dateOptions = {
-		showWeeks: false,
-		format: 'd MMM yyyy',
-		minDate: new Date(),
-	}
-	
-	$scope.select2Options = {
-		selectOnClose: true
-	}
-	
-	$scope.openPickup = function() {
-		$scope.openPickupDate = $scope.openPickupDate ? false : true
-	}
-	
-	$scope.openDue = function() {
-		$scope.openDueDate = $scope.openDueDate ? false : true
-	}
-	
 	$scope.issue = function() {
 		
-		var allChosen = $scope.booking.products
+		var allChosen = $scope.units
 			.reduce(function(prev, cur) {
-				return prev && !!cur.unit
+				return prev && !!cur
 			}, true)
+
+		console.log('allChosen', allChosen)
 		
 		if(allChosen) {
 			$scope.booking.taken_at = new Date()
 			$scope.booking.issued_by_id = $store.user.id
+
+			$scope.booking.products.forEach((p, i) => {
+				p.unit = $scope.units[i]
+			})
 			
 			$http
 				.put('/api/booking/' + $scope.booking.id, $scope.booking)
@@ -51,7 +58,9 @@ angular.module('app.controllers')
 					$location.path('/booking/' + $scope.booking.id)
 				})
 		} else {
-			$scope.errors.push({message: 'You need to assign a unit for every product.'})
+			if(_.findIndex($scope.errors, {code: 1}) === -1) {
+				$scope.errors.push({code: 1, message: 'You need to assign a unit for every product.'})
+			}
 		}
 	}
 	

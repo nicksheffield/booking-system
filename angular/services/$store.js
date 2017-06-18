@@ -42,6 +42,12 @@ angular.module('app.services')
 
 		return item
 	}
+
+	service.filter = function(type, expression) {
+		var items = _.filter(service[type], typeof expression == 'object' && expression !== null ? expression : expression())
+
+		return items
+	}
 	
 	if(localStorage.booking) {
 		service.booking = JSON.parse(localStorage.booking)

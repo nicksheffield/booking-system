@@ -1,31 +1,37 @@
 <page-header text="Issue equipment">
-	<btn icon="check" ng-click="issue()" disable="errors.length">Done</btn>
+	<btn icon="check" ng-click="issue()">Done</btn>
 </page-header>
 
-<div class="page-dates" ng-show="!errors.length">
+<div class="page-dates">
 	<div layout="row sm-col" class="space-row">
 		<div ratio="1">
 			<label for="pickup_at">Pickup date</label>
-			<input type="text" id="pickup_at" ng-model="booking.pickup_at" ng-change="createBooking()" class="form-control form-control-sm" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openPickupDate" datepicker-options="dateOptions" ng-click="openPickup()">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">
+					<i class="fa fa-calendar"></i>
+				</span>
+				<input type="date" ng-model="booking.pickup_at" class="form-control" placeholder="yyyy-mm-dd">
+			</div>
 		</div>
 		<div ratio="1">
 			<label for="due_at">Return date</label>
-			<input type="text" id="due_at" ng-model="booking.due_at" ng-change="createBooking()" class="form-control form-control-sm" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openDueDate" datepicker-options="dateOptions" ng-click="openDue()">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">
+					<i class="fa fa-calendar"></i>
+				</span>
+				<input type="date" ng-model="booking.due_at" class="form-control" placeholder="yyyy-mm-dd">
+			</div>
 		</div>
 	</div>
 </div>
-
-<!-- <filter model="filter" filtered="filtered" ng-show="!errors.length"></filter> -->
 
 <div class="page-content">
 
 	<div class="alert alert-danger" ng-show="errors.length">
 		<p ng-repeat="error in errors">Error: <b>{{ error.message }}</b></p>
 	</div>
-
-	<!-- <alert ng-show="error" type="danger" icon="exclamation-triangle" text="{{ error }}"></alert> -->
 	
-	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length && !errors.length">
+	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length">
 		<thead>
 			<tr>
 				<th class="booking-heading-product">Product</th>
@@ -35,14 +41,7 @@
 		<tr ng-repeat="product in booking._products | filter: filter as filtered track by $index">
 			<td>{{ product.name }}</td>
 			<td>
-				<ui-select select-unit-on-close ng-model="booking._products[$index].unit" id="group">
-					<ui-select-match allow-clear="false" placeholder="​">
-						<span ng-bind="$select.selected.unit_number" class="setheight"></span>
-					</ui-select-match>
-					<ui-select-choices repeat="unit in (product.units | filter: isntSelected(booking._products[$index]) | filter: $select.search)">
-						<div ng-bind-html="unit.unit_number | highlight: $select.search"></div>
-					</ui-select-choices>
-				</ui-select>
+				<dropdown ng-model="units[$index]" data="allUnits[$index]" display="{text: 'unit_number'}"></dropdown>
 			</td>
 		</tr>
 	</table>

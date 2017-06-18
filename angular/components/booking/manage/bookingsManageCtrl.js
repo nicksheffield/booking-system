@@ -1,7 +1,6 @@
 angular.module('app.controllers')
 
 .controller('bookingsManageCtrl', function($scope, $store, $load, $stateParams, $timeout, Booking) {
-	window.$scope = $scope
 
 	$scope.users = $store.users
 	$scope.groups = $store.groups

@@ -2,24 +2,21 @@ angular.module('app.directives')
 
 .directive('dropdown', function($timeout) {
 	function link(scope, el, attrs) {
+
 		scope.nullable = attrs.nullable !== undefined
 		scope.listDown = true
 		scope.filter_val = ''
+		scope.filter_text = ''
 
 		var elem = el[0]
 		var dropdownList = el.find('.ns-dropdown-list')
 		var ignoreBlur = false
 
 		function checkHeight() {
-			window.elem = elem
 			var offset = $(elem).offset()
 			
 			dropdownList.removeClass('ns-dropdown-hide')
 			var listHeight = dropdownList.height()
-
-			// console.log('el.height()', el.height())
-
-			// console.log(window.innerHeight, offset.top + el.height() + listHeight, window.innerHeight > offset.top + el.height() + listHeight)
 
 			if(window.innerHeight > offset.top + el.height() + listHeight) {
 				dropdownList.removeClass('ns-dropdown-list-up')
@@ -29,6 +26,7 @@ angular.module('app.directives')
 		}
 
 		scope.text = function(item) {
+			if(!scope.display.text) return ''
 			if(typeof scope.display.text == 'function') {
 				return scope.display.text(item)
 			} else {
@@ -37,6 +35,7 @@ angular.module('app.directives')
 		}
 
 		scope.subtext = function(item) {
+			if(!scope.display.subtext) return ''
 			if(typeof scope.display.subtext == 'function') {
 				return scope.display.subtext(item)
 			} else {

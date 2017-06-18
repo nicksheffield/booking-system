@@ -1,8 +1,6 @@
 angular.module('app.controllers')
 
 .controller('homeCtrl', function($scope, $store, $load, $prepare, $stateParams, $timeout, Booking) {
-	window.$scope = $scope
-
 	$scope.user = $store.user
 	$scope.bookings = []
 	$scope.loading = true
