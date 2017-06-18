@@ -25,7 +25,7 @@
 				<td class="row-property">User</td>
 				<td class="row-value">{{ booking.user.name }}</td>
 			</tr>
-			<tr>
+			<tr class="print-hide">
 				<td class="row-property">Status</td>
 				<td class="row-value">{{ booking._status }}</td>
 			</tr>
@@ -33,18 +33,14 @@
 				<td class="row-property">Created</td>
 				<td class="row-value">{{ booking.created_at | date }}</td>
 			</tr>
-			<!-- <tr>
-				<td class="row-property">Created by</td>
-				<td class="row-value">{{ booking.created_by.name }}</td>
+			<tr class="print-date-row" ng-if="booking.taken_at">
+				<td class="row-property">Issued</td>
+				<td class="row-value">{{ booking.taken_at | date }}</td>
 			</tr>
-			<tr>
-				<td class="row-property">Issued by</td>
-				<td class="row-value">{{ booking.issued_by.name }}</td>
+			<tr class="print-date-row" ng-if="booking.closed_at">
+				<td class="row-property">Closed</td>
+				<td class="row-value">{{ booking.closed_at | date }}</td>
 			</tr>
-			<tr>
-				<td class="row-property">Closed by</td>
-				<td class="row-value">{{ booking.closed_by.name }}</td>
-			</tr> -->
 		</table>
 		
 		<div class="date-row" layout="row sm-col md-col">
@@ -92,7 +88,7 @@
 				<tr>
 					<th>Name</th>
 					<th>Unit</th>
-					<th>Notes</th>
+					<th class="col-notes">Notes</th>
 					<th>Returned</th>
 				</tr>
 				<tr ng-repeat="product in booking.products">
@@ -105,7 +101,7 @@
 							{{ unit(product.pivot.unit_id).unit_number }}
 						</span>
 					</td>
-					<td>{{ product.pivot.notes }}</td>
+					<td class="col-notes">{{ product.pivot.notes }}</td>
 					<td>{{ product.pivot.returned_at | date }}</td>
 				</tr>
 			</table>
