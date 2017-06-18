@@ -2,35 +2,36 @@ angular.module('app.controllers')
 
 .controller('issueCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate, $load, $prepare) {
 	
-	$scope.booking = _.clone($store.get('bookings', $stateParams.id))
+	$scope.booking = $store.get('bookings', $stateParams.id)
 	$scope.errors = []
 	$scope.allUnits = []
 	$scope.units = []
 
 	if(!$scope.booking) {
 		$scope.booking = $load.booking($stateParams.id)
-		$scope.booking.$promise.then(b => {
-
-			// this is all to solve some weird issue with the dropdown and the units array
-			b._products.forEach(p => {
-				var arr = []
-
-				p.units.forEach(u => {
-					arr.push({
-						id: u.id,
-						unit_number: u.unit_number
-					})
-				})
-
-				$scope.allUnits.push(arr)
-				$scope.units.push(null)
-			})
-
-		}, function(err) {
-			$scope.errors.push({message: err.data.error})
-		})
 	}
 	
+	$scope.booking.$promise.then(b => {
+
+		// this is all to solve some weird issue with the dropdown and the units array
+		b._products.forEach(p => {
+			var arr = []
+
+			p.units.forEach(u => {
+				arr.push({
+					id: u.id,
+					unit_number: u.unit_number
+				})
+			})
+
+			$scope.allUnits.push(arr)
+			$scope.units.push(null)
+		})
+
+	}, function(err) {
+		$scope.errors.push({message: err.data.error})
+	})
+
 	$scope.issue = function() {
 		
 		var allChosen = $scope.units
