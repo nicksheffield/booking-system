@@ -32,7 +32,7 @@
 			</td>
 			<td class="row-value">
 				<ul>
-					<li ng-repeat="unit in product.units | orderBy: 'unit_number' track by $index">
+					<li ng-repeat="unit in product.units | orderBy: orderByUnit track by $index">
 						<a href="manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a>
 					</li>
 				</ul>

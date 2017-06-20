@@ -2,6 +2,10 @@ angular.module('app.controllers')
 
 .controller('productViewCtrl', function($scope, $stateParams, $state, $store, $location, $invalidate, sweetAlert) {
 	$scope.product = $store.get('products', $stateParams.id)
+
+	$scope.orderByUnit = function(item) {
+		return parseInt(item.unit_number)
+	}
 	
 	$scope.delete = function() {
 		sweetAlert.swal({
