@@ -18,6 +18,13 @@
 			</div>
 
 			<div class="tr">
+				<div class="td row-property center">ID Number</div>
+				<div class="td row-value">
+					<input type="text" id="id_number" ng-model="id_number" class="form-control">
+				</div>
+			</div>
+
+			<div class="tr">
 				<div class="td row-property center">Email Address</div>
 				<div class="td row-value">
 					<input type="email" id="email" ng-model="email" class="form-control">
@@ -57,17 +64,10 @@
 				</div>
 			</div>
 
-			<div class="tr">
+			<div class="tr" ng-show="user.admin === 2">
 				<div class="td row-property center">Role</div>
 				<div class="td row-value">
 					<dropdown ng-model="role" data="roles" display="{text: 'text'}"></dropdown>
-				</div>
-			</div>
-
-			<div class="tr" ng-show="role.level === 0">
-				<div class="td row-property center">Student ID</div>
-				<div class="td row-value">
-					<input type="text" id="id_number" ng-model="id_number" class="form-control">
 				</div>
 			</div>
 

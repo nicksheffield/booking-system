@@ -6,8 +6,6 @@ angular.module('app.controllers')
 	$scope.errors = []
 	$scope.allUnits = []
 
-	window.$scope = $scope
-
 	$scope.unit_number = u => parseInt(u.unit_number)
 
 	if(!$scope.booking) {
