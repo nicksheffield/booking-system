@@ -58,9 +58,14 @@ class Booking extends Controller
 			$model->save();
 			
 			foreach($request->products as $product) {
-				for($i=0; $i<$product['quantity']; $i++) {
+				if(isset($product['quantity'])) {
+					for($i=0; $i<$product['quantity']; $i++) {
+						$model->products()->attach($product['id']);
+					}
+				} else {
 					$model->products()->attach($product['id']);
 				}
+				
 			}
 
 			return $model;

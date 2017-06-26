@@ -76,7 +76,7 @@ angular.module('app.controllers')
 				date = XLSX.SSF.parse_date_code(date)
 				user.dob = new Date([date.y, date.m, date.d].join('-'))
 			} else {
-				user.dob = new Date(date)
+				user.dob = moment(date, 'DD-MM-YYYY')._d
 			}
 
 			// group stuff

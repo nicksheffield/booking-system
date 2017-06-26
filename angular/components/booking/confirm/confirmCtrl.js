@@ -18,6 +18,13 @@ angular.module('app.controllers')
 
 		$scope.booking.pickup_at = moment($scope.booking.pickup_at).startOf('day')._d
 
+		console.log('product', product)
+
+		if(product.limitless) {
+			$scope.allowedProducts.push(product.id)
+			return
+		}
+
 		$http
 			.post('/api/product/' + product.id + '/check', {pickup_at: $scope.booking.pickup_at, due_at: $scope.booking.due_at})
 			.then(function(res) {

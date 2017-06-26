@@ -5,7 +5,8 @@ angular.module('app.controllers')
 	$scope.booking = $store.get('bookings', $stateParams.id)
 	$scope.errors = []
 	$scope.allUnits = []
-	$scope.units = []
+
+	window.$scope = $scope
 
 	if(!$scope.booking) {
 		$scope.booking = $load.booking($stateParams.id)
@@ -25,7 +26,6 @@ angular.module('app.controllers')
 			})
 
 			$scope.allUnits.push(arr)
-			$scope.units.push(null)
 		})
 
 	}, function(err) {
@@ -33,21 +33,21 @@ angular.module('app.controllers')
 	})
 
 	$scope.issue = function() {
-		
-		var allChosen = $scope.units
-			.reduce(function(prev, cur) {
-				return prev && !!cur
-			}, true)
+		let allChosen = true
 
-		console.log('allChosen', allChosen)
+		$scope.booking._products.forEach(p => {
+			if(!p._unit && !p._taken) allChosen = false
+		})
 		
 		if(allChosen) {
 			$scope.booking.taken_at = new Date()
 			$scope.booking.issued_by_id = $store.user.id
 
 			$scope.booking.products.forEach((p, i) => {
-				p.unit = $scope.units[i]
+				// if($scope.booking._products[i]._unit) p.unit = $scope.units[i]
 			})
+
+			console.log($scope.booking); return
 			
 			$http
 				.put('/api/booking/' + $scope.booking.id, $scope.booking)

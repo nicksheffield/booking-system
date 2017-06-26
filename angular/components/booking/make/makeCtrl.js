@@ -28,14 +28,6 @@ angular.module('app.controllers')
 	$scope.user_group = (user) => user.group ? user.group.code : ''
 	$scope.product_type = (product) => product.type ? product.type.name : ''
 	
-	$scope.openPickup = function() {
-		$scope.openPickupDate = $scope.openPickupDate ? false : true
-	}
-	
-	$scope.openDue = function() {
-		$scope.openDueDate = $scope.openDueDate ? false : true
-	}
-	
 	$scope.user = $store.user
 	
 	$scope.booking = $store.booking
@@ -83,10 +75,12 @@ angular.module('app.controllers')
 		var payload = []
 		
 		_.forEach($scope.selectedProducts, function(selected) {
-			if(parseInt(selected.quantity) > 0) {
+			console.log('selected', selected)
+			if(parseInt(selected.quantity) > 0 || selected.product.limitless) {
 				payload.push({
 					id: selected.product.id,
-					quantity: selected.quantity
+					quantity: selected.quantity,
+					limitless: selected.product.limitless
 				})
 			}
 		})

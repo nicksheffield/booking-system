@@ -41,7 +41,12 @@
 		<tr ng-repeat="product in booking._products | filter: filter as filtered track by $index">
 			<td>{{ product.name }}</td>
 			<td>
-				<dropdown ng-model="units[$index]" data="allUnits[$index]" display="{text: 'unit_number'}"></dropdown>
+				<div ng-show="!product.limitless">
+					<dropdown ng-model="product._unit" data="allUnits[$index]" display="{text: 'unit_number'}"></dropdown>
+				</div>
+				<div ng-show="product.limitless">
+					<input type="checkbox" ng-model="product._taken">
+				</div>
 			</td>
 		</tr>
 	</table>
