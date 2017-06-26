@@ -165,9 +165,13 @@ class Product extends Controller
 			$allowed = $matches < $thisProduct->units()->count();
 		}
 
-		return [
+		$response = [
 			'id' => $product_id,
 			'allowed' => $allowed
 		];
+
+		dd($response);
+
+		return $response;
 	}
 }
