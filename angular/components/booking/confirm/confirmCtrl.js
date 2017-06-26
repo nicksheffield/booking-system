@@ -19,7 +19,7 @@ angular.module('app.controllers')
 		$scope.booking.pickup_at = moment($scope.booking.pickup_at).startOf('day')._d
 
 		$http
-			.post('/api/product/' + product.id + '/check/', {pickup_at: $scope.booking.pickup_at, due_at: $scope.booking.due_at})
+			.post('/api/product/' + product.id + '/check', {pickup_at: $scope.booking.pickup_at, due_at: $scope.booking.due_at})
 			.then(function(res) {
 				if(res.data.allowed) {
 					$scope.allowedProducts.push(parseInt(res.data.id))
