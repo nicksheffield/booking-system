@@ -102,7 +102,7 @@ class Product extends Controller
 		$model = Model::find($product_id);
 		
 		$success = $model->groups_allowed()->attach($group_id, [
-			'quantity' => $request->quantity ?: 0,
+			'quantity' => $request->quantity ?: 1,
 			'days_allowed' => $request->days_allowed
 		]);
 		

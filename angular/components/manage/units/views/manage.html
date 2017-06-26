@@ -14,7 +14,7 @@
 
 <div class="page-content">
 
-	<a ng-repeat="unit in units | filter: filter | page: page : 10 : 30 as filtered" href="manage/unit/{{ unit.id }}" class="list-item">
+	<a ng-repeat="unit in units | filter: filter | orderBy: [product_id, unit_number] | page: page : 10 : 30 as filtered" href="manage/unit/{{ unit.id }}" class="list-item">
 		<div class="col" ratio="1">
 			<div class="title">Product</div>
 			<div class="content">{{ unit.product.name }}</div>

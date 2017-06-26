@@ -33,8 +33,10 @@ var boxChecker = {
 	setState: false
 }
 
-$(window)
-	.on('mouseup', () => boxChecker.mousedown = false)
+$(document)
+	.on('mouseup', function() {
+		boxChecker.mousedown = false
+	})
 	.on('keydown', (e) => {
 		if(e.which == 16) {
 			boxChecker.shift = true

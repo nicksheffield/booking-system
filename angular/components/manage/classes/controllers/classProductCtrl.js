@@ -24,6 +24,12 @@ angular.module('app.controllers')
 			}
 		})
 	})
+
+	$timeout(function() {
+		_.forEach($scope.products, function(product) {
+			console.log(product.id, product._quantity)
+		})
+	})
 	
 	$timeout(function() {
 		$scope.update = function(product) {
@@ -34,7 +40,6 @@ angular.module('app.controllers')
 					days_allowed: product._days_allowed
 				})
 					.then(function(res) {
-						// console.log('res3', res)
 						$scope.saved = true
 						
 						$invalidate.add(['groups', 'units'])
@@ -45,6 +50,9 @@ angular.module('app.controllers')
 	
 	$scope.allow = function(product) {
 		$scope.saved = false
+		
+		console.log(product)
+
 		if(product._allowed) {
 			$http.post('/api/product/'+product.id+'/allow/'+$scope.group.id, {
 				quantity: product._quantity,
