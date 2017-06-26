@@ -87,6 +87,11 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	Route::resource('product_type', 'ProductType');
 	
 	/**
+	*	Check if a product is available to be booked
+	*/
+	Route::post('/product/{product_id}/check', 'Product@check_availability');
+	
+	/**
 	*	Get all products
 	*	Get one product
 	*	Create a product
@@ -109,11 +114,6 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	*	Update permission for a product for a group
 	*/
 	Route::put('/product/{product_id}/allow/{group_id}', 'Product@update_allow_product');
-	
-	/**
-	*	Check if a product is available to be booked
-	*/
-	Route::post('/product/{product_id}/check', 'Product@check_availability');
 	
 	/**
 	*	Get all units

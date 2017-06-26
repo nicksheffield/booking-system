@@ -170,8 +170,6 @@ class Product extends Controller
 			'allowed' => $allowed
 		];
 
-		dd($response);
-
 		return $response;
 	}
 }
