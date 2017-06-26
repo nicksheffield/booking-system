@@ -7,7 +7,7 @@
 	</div>
 
 	<ul class="ns-dropdown-list ns-dropdown-hide">
-		<li ng-repeat="item in data | filter: filter_val as filtered" class="ns-dropdown-item" ng-class="{focused: ngModel ? (item == ngModel) : false}" ng-click="select(item)" data-id="{{ item.id }}">
+		<li ng-repeat="item in data | orderBy: orderFunc | filter: filter_val as filtered" class="ns-dropdown-item" ng-class="{focused: ngModel ? (item == ngModel) : false}" ng-click="select(item)" data-id="{{ item.id }}">
 			<span class="ns-dropdown-item-field text">{{ text(item) }}</span>
 			<span class="ns-dropdown-item-field subtext" ng-show="display.subtext">{{ subtext(item) }}</span>
 		</li>

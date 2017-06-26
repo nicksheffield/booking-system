@@ -25,6 +25,14 @@ angular.module('app.directives')
 			}
 		}
 
+		scope.orderFunc = function(i) {
+			if(scope.orderBy) {
+				return scope.orderBy(i)
+			} else {
+				return false
+			}
+		}
+
 		scope.text = function(item) {
 			if(!scope.display.text) return ''
 			if(typeof scope.display.text == 'function') {
@@ -175,6 +183,7 @@ angular.module('app.directives')
 			'data': '=',
 			'ngModel': '=',
 			'display': '=',
+			'orderBy': '=',
 			'icon': '@'
 		}
 	}

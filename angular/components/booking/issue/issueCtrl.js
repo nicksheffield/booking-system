@@ -8,6 +8,8 @@ angular.module('app.controllers')
 
 	window.$scope = $scope
 
+	$scope.unit_number = u => parseInt(u.unit_number)
+
 	if(!$scope.booking) {
 		$scope.booking = $load.booking($stateParams.id)
 	}
@@ -28,6 +30,8 @@ angular.module('app.controllers')
 			$scope.allUnits.push(arr)
 		})
 
+		$scope.products = _.clone(b.products)
+
 	}, function(err) {
 		$scope.errors.push({message: err.data.error})
 	})
@@ -35,7 +39,7 @@ angular.module('app.controllers')
 	$scope.issue = function() {
 		let allChosen = true
 
-		$scope.booking._products.forEach(p => {
+		$scope.products.forEach(p => {
 			if(!p._unit && !p._taken) allChosen = false
 		})
 		
@@ -44,7 +48,9 @@ angular.module('app.controllers')
 			$scope.booking.issued_by_id = $store.user.id
 
 			$scope.booking.products.forEach(function(p, i) {
-				if($scope.booking._products[i]._unit) p.unit = $store.get('units', $scope.booking._products[i]._unit.id)
+				if($scope.products[i]._unit) {
+					p.unit = $store.get('units', $scope.products[i]._unit.id)
+				}
 			})
 			
 			$http
