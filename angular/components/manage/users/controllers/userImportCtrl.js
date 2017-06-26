@@ -73,8 +73,13 @@ angular.module('app.controllers')
 			var date = row['Date of Birth - New (Student) (Contact)']
 
 			if(type == 'xlsx') {
-				date = XLSX.SSF.parse_date_code(date)
-				user.dob = new Date([date.y, date.m, date.d].join('-'))
+				console.log('date', date)
+				if(date.indexOf('/') !== -1) {
+					user.dob = moment(date, 'MM-DD-YYYY')._d
+				} else {
+					date = XLSX.SSF.parse_date_code(date)
+					user.dob = new Date([date.y, date.m, date.d].join('-'))
+				}
 			} else {
 				user.dob = moment(date, 'DD-MM-YYYY')._d
 			}

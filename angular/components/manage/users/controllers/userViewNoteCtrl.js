@@ -3,7 +3,6 @@ angular.module('app.controllers')
 .controller('userViewNoteCtrl', function($scope, $stateParams, $store, $invalidate, $location, Note, sweetAlert) {
 
 	$scope.user = _.clone($store.get('users', $stateParams.id))
-	// $scope.note = _.find($scope.user.notes, (note) => note.id == $stateParams.id2)
 	$scope.note = $store.get('notes', $stateParams.id2)
 
 	$scope.notes = $store.notes
