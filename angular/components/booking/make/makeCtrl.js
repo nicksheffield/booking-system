@@ -48,10 +48,7 @@ angular.module('app.controllers')
 		$scope.booking.pickup_at = new Date()
 		$scope.booking.due_at = undefined
 		$scope.booking._user = $store.user
-		
-		_.forEach($scope.products, function(product) {
-			product._quantity = undefined
-		})
+		$scope.selectedProducts = [{ quantity: 1 }]
 	}
 
 	$scope.addProduct = function() {
