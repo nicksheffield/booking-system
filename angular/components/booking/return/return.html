@@ -22,7 +22,10 @@
 		<tr ng-repeat="product in booking.products | filter: filter as filtered  track by $index">
 			<td><input type="checkbox" ng-model="product.returned" id="returned-{{ $index }}" ng-disabled="product.locked"></td>
 			<td><label for="returned-{{ $index }}">{{ product.name }}</label></td>
-			<td><label for="returned-{{ $index }}">{{ unit(product.pivot.unit_id).unit_number }}</label></td>
+			<td>
+				<label for="returned-{{ $index }}">{{ unit(product.pivot.unit_id).unit_number }}</label>
+				<span ng-show="product.limitless">N/A</span>
+			</td>
 			<td><input type="text" ng-model="product.pivot.notes" class="form-control"></td>
 		</tr>
 	</table>

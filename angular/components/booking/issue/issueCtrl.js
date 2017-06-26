@@ -43,11 +43,9 @@ angular.module('app.controllers')
 			$scope.booking.taken_at = new Date()
 			$scope.booking.issued_by_id = $store.user.id
 
-			$scope.booking.products.forEach((p, i) => {
-				// if($scope.booking._products[i]._unit) p.unit = $scope.units[i]
+			$scope.booking.products.forEach(function(p, i) {
+				if($scope.booking._products[i]._unit) p.unit = $store.get('units', $scope.booking._products[i]._unit.id)
 			})
-
-			console.log($scope.booking); return
 			
 			$http
 				.put('/api/booking/' + $scope.booking.id, $scope.booking)

@@ -5,6 +5,8 @@ angular.module('app.controllers')
 	$scope.user = $store.user
 	$scope.errors = []
 
+	window.$scope = $scope
+
 	$scope.unit = function(id) {
 		return $store.get('units', id)
 	}

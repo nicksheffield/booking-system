@@ -59,24 +59,11 @@
 					<h3>Misc</h3>
 					<div class="item has-select-clearer item-row" ratio="1">
 						<label>User</label>
-						<!-- <ui-select select-unit-on-close select-dark ng-model="advFilter.props.user">
-							<ui-select-match allow-clear="false" placeholder="​">
-								<span ng-bind="$select.selected.name" class="setheight"></span>
-							</ui-select-match>
-							<ui-select-choices repeat="user in (users | filter: $select.search)">
-								<div ng-bind-html="user.name | highlight: $select.search"></div>
-								<small ng-bind-html="user.group.code | highlight: $select.search"></small>
-							</ui-select-choices>
-						</ui-select> -->
-						<!-- <button class="close" ng-click="advFilter.clearUser()" ng-show="advFilter.props.user">
-							<i class="fa fa-times-circle"></i>
-						</button> -->
 						<dropdown ng-model="advFilter.props.user" data="users" display="{text: 'name', subtext: group_code}" nullable></dropdown>
 					</div>
 
 					<div class="item item-row" ratio="1">
 						<label>Limit</label>
-						<!-- <input type="number" ng-model="advFilter.props.limit" class="form-control"> -->
 						<div layout="row">
 							<div class="range" layout="row" align="center">
 								<input type="range" ng-model="advFilter.props.limit" step="15" min="10" max="100" ratio="1">
