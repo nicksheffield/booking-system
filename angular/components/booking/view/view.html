@@ -37,9 +37,17 @@
 				<td class="row-property">Issued</td>
 				<td class="row-value">{{ booking.taken_at | date }}</td>
 			</tr>
+			<tr>
+				<td class="row-property">Issued By</td>
+				<td class="row-value">{{ booking.issued_by.name }}</td>
+			</tr>
 			<tr class="print-date-row" ng-if="booking.closed_at">
 				<td class="row-property">Closed</td>
 				<td class="row-value">{{ booking.closed_at | date }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Closed By</td>
+				<td class="row-value">{{ booking.closed_by.name }}</td>
 			</tr>
 		</table>
 		

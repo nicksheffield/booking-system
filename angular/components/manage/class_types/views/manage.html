@@ -1,12 +1,12 @@
 <page-header text="All Class Types">
-	<btn icon="plus" url="manage/class_type/new">New</btn>
+	<btn icon="plus" url="manage/class-type/new">New</btn>
 </page-header>
 
 <filter model="filter" filtered="filtered"></filter>
 
 <div class="page-content">
 
-	<a ng-repeat="type in group_types | filter: filter | page : 10 : 30 as filtered" href="manage/class_type/{{ type.id }}" class="list-item">
+	<a ng-repeat="type in group_types | filter: filter | page : 10 : 30 as filtered" href="manage/class-type/{{ type.id }}" class="list-item">
 		<div class="col" ratio="1">
 			<div class="title">Name</div>
 			<div class="content">{{ type.name }}</div>
@@ -21,23 +21,6 @@
 		</div>
 	</a>
 	
-	<!-- <table class="table table-hover table-filtered" ng-hide="!filtered.length">
-		<thead>
-			<tr>
-				<th class="table-col-code">Code</th>
-				<th class="table-col-name">Name</th>
-				<th class="table-col-name">No of Classes</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="type in group_types | filter: filter | page : 10 : 30 as filtered">
-				<td><a href="manage/class_type/{{ type.id }}">{{ type.code }}</a></td>
-				<td>{{ type.name }}</td>
-				<td>{{ type.groups.length }}</td>
-			</tr>
-		</tbody>
-	</table> -->
-
 	<pager current="page" limit="10" data="group_types" filtered="filtered" filter="filter" ng-show="!filter && group_types.length >= 30"></pager>
 
 </div>

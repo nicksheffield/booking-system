@@ -1,6 +1,6 @@
 angular.module('app.services')
 
-.factory('$load', function($prepare, $auth, $http, User, Group, Group_Type, Product_Type, Product, Unit, Booking, Note) {
+.factory('$load', function($prepare, $auth, $http, User, Group, Group_Type, Product_Type, Product, Unit, Booking, Note, Setting) {
 	var service = {}
 	var events = []
 	
@@ -87,7 +87,6 @@ angular.module('app.services')
 			.then($prepare.booking)
 			.then(service.notify('bookings'))
 		
-		console.log('loaded')
 		return resource
 	}
 	
@@ -116,6 +115,15 @@ angular.module('app.services')
 
 		resource.then(service.notify('booking_count'))
 
+		return resource
+	}
+
+	service.settings = function() {
+		var resource = Setting.query()
+		
+		resource.$promise
+			.then(service.notify('settings'))
+		
 		return resource
 	}
 	

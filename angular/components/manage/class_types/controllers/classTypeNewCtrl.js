@@ -10,7 +10,7 @@ angular.module('app.controllers')
 		gt.$save().then(function(res) {
 			$invalidate.add(['group_types', 'groups'])
 			
-			$location.path('/manage/class_type')
+			$location.path('/manage/class-type')
 		})
 	}
 })

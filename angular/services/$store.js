@@ -8,6 +8,7 @@ angular.module('app.services')
 		notes: [],
 		groups: [],
 		booking: {},
+		settings: [],
 		products: [],
 		bookings: [],
 		group_types: [],

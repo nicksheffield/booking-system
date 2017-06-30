@@ -17,21 +17,6 @@
 		</div>
 	</a>
 
-	<!-- <table class="table table-hover table-filtered" ng-hide="!filtered.length">
-		<thead>
-			<tr>
-				<th class="table-col-code">Code</th>
-				<th class="table-col-name">Type</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="group in groups | filter: filter | page : page : 10 : 30 as filtered">
-				<td><a href="manage/class/{{ group.id }}">{{ group.code }}</a></td>
-				<td><a href="manage/class_type/{{ group.type.id }}">{{ group.type.name }}</a></td>
-			</tr>
-		</tbody>
-	</table> -->
-
 	<pager current="page" limit="10" data="groups" filtered="filtered" filter="filter" ng-show="!filter && groups.length >= 30"></pager>
 	
 </div>

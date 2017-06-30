@@ -15,7 +15,7 @@ angular.module('app.routes')
 		
 		'home': {
 			url: '/',
-			templateUrl: 'components/home/home.html',
+			templateUrl: 'components/misc/home/home.html',
 			controller: 'homeCtrl',
 			data: {
 				conditions: ['auth'],
@@ -24,7 +24,7 @@ angular.module('app.routes')
 		},
 
 		'edit_profile': {
-			url: '/home/edit_profile',
+			url: '/home/edit-profile',
 			templateUrl: 'components/manage/users/views/edit.html',
 			controller: 'userEditCtrl',
 			data: {
@@ -50,7 +50,7 @@ angular.module('app.routes')
 		
 		'login': {
 			url: '/login',
-			templateUrl: 'components/guest/login/login.html',
+			templateUrl: 'components/misc/login/login.html',
 			controller: 'loginCtrl',
 			data: {
 				conditions: ['guest_only'],
@@ -73,11 +73,25 @@ angular.module('app.routes')
 		
 		'reset_password': {
 			url: '/reset_password',
-			templateUrl: 'components/guest/reset/reset.html',
+			templateUrl: 'components/misc/reset/reset.html',
 			controller: 'resetCtrl',
 			data: {
 				conditions: ['guest_only'],
 				title: 'Reset Password'
+			}
+		},
+
+		// ------------------------------------------------------------
+		// Manager only
+		// ------------------------------------------------------------
+
+		'site_settings': {
+			url: '/site-settings',
+			templateUrl: 'components/misc/site-settings/site-settings.html',
+			controller: 'siteSettingsCtrl',
+			data: {
+				conditions: ['manager_only'],
+				title: 'Site Settings'
 			}
 		},
 		
@@ -280,7 +294,7 @@ angular.module('app.routes')
 		// ------------------------------------------------------------
 		
 		'manage_class_types': {
-			url: '/manage/class_type',
+			url: '/manage/class-type',
 			templateUrl: 'components/manage/class_types/views/manage.html',
 			controller: 'classTypeManageCtrl',
 			data: {
@@ -290,7 +304,7 @@ angular.module('app.routes')
 		},
 		
 		'new_class_type': {
-			url: '/manage/class_type/new',
+			url: '/manage/class-type/new',
 			templateUrl: 'components/manage/class_types/views/new.html',
 			controller: 'classTypeNewCtrl',
 			data: {
@@ -301,7 +315,7 @@ angular.module('app.routes')
 		},
 		
 		'view_class_type': {
-			url: '/manage/class_type/:id',
+			url: '/manage/class-type/:id',
 			templateUrl: 'components/manage/class_types/views/view.html',
 			controller: 'classTypeViewCtrl',
 			data: {
@@ -312,7 +326,7 @@ angular.module('app.routes')
 		},
 		
 		'edit_class_type': {
-			url: '/manage/class_type/:id/edit',
+			url: '/manage/class-type/:id/edit',
 			templateUrl: 'components/manage/class_types/views/edit.html',
 			controller: 'classTypeEditCtrl',
 			data: {
@@ -385,7 +399,7 @@ angular.module('app.routes')
 		// ------------------------------------------------------------
 		
 		'manage_product_type': {
-			url: '/manage/product_type',
+			url: '/manage/product-type',
 			templateUrl: 'components/manage/product_types/views/manage.html',
 			controller: 'productTypeManageCtrl',
 			data: {
@@ -395,7 +409,7 @@ angular.module('app.routes')
 		},
 		
 		'new_product_type': {
-			url: '/manage/product_type/new',
+			url: '/manage/product-type/new',
 			templateUrl: 'components/manage/product_types/views/new.html',
 			controller: 'productTypeNewCtrl',
 			data: {
@@ -406,7 +420,7 @@ angular.module('app.routes')
 		},
 		
 		'view_product_type': {
-			url: '/manage/product_type/:id',
+			url: '/manage/product-type/:id',
 			templateUrl: 'components/manage/product_types/views/view.html',
 			controller: 'productTypeViewCtrl',
 			data: {
@@ -417,7 +431,7 @@ angular.module('app.routes')
 		},
 		
 		'edit_product_type': {
-			url: '/manage/product_type/:id/edit',
+			url: '/manage/product-type/:id/edit',
 			templateUrl: 'components/manage/product_types/views/edit.html',
 			controller: 'productTypeEditCtrl',
 			data: {

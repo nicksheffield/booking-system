@@ -43,6 +43,9 @@ angular.module('app.controllers')
 					if(booking.id == res.id) $store.bookings[i] = res
 				})
 
+
+				$load.booking_count()
+
 				$location.path('/booking/' + $scope.booking.id)
 			})
 	}

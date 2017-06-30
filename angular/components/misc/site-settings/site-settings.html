@@ -1,0 +1,21 @@
+<page-header text="Site Settings" breadcrumbs="false">
+	<!-- <btn type="primary" icon="floppy-o" ng-click="save()">Save</btn> -->
+	<button class="btn btn-icon btn-sm" ng-class="{'btn-primary': !saved, 'btn-success': saved}" ng-click="save()">
+		<i class="fa fa-fw fa-floppy-o" ng-show="!thinking && !saved"></i>
+		<i class="fa fa-fw fa-circle-o-notch fa-spin" ng-show="thinking"></i>
+		<i class="fa fa-fw fa-check" ng-show="!thinking && saved"></i>
+		Save
+	</button>
+</page-header>
+
+<div class="page-content">
+
+	<div ng-repeat="setting in settings" class="form-group">
+		<label for="input-{{ setting.key }}">{{ setting.label }}</label>
+		<textarea ng-if="setting.field === 'textarea'" id="input-{{ setting.key }}" ng-model="setting.val" class="form-control"></textarea>
+		<textarea ng-if="setting.field === 'wysiwyg'" id="input-{{ setting.key }}" ng-model="setting.val" class="form-control"></textarea>
+		<input type="text" ng-if="setting.field === 'text'" id="input-{{ setting.key }}" ng-model="setting.val" class="form-control">
+		<input type="number" ng-if="setting.field === 'number'" id="input-{{ setting.key }}" ng-model="setting.val" class="form-control">
+	</div>
+
+</div>

@@ -137,6 +137,14 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	*	Delete booking
 	*/
 	Route::resource('booking', 'Booking');
+
+	/**
+	*	Get all settings
+	*	Create a setting
+	*	Update setting
+	*	Delete setting
+	*/
+	Route::resource('setting', 'Setting', ['except' => 'show']);
 });
 
 /**

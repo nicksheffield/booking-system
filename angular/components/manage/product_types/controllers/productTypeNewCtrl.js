@@ -10,7 +10,7 @@ angular.module('app.controllers')
 		pt.$save().then(function(res) {
 			$invalidate.add('product_types')
 
-			$location.path('/manage/product_type')
+			$location.path('/manage/product-type')
 		})
 	}
 })
