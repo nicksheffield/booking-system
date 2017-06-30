@@ -10,8 +10,9 @@ angular.module('app.auth', [])
 angular.module('app', [
 	'ngResource',
 	'ngSanitize',
-	'satellizer',
 	'ui.router',
+	'ui.tinymce',
+	'satellizer',
 	'19degrees.ngSweetAlert2',
 
 	'app.controllers',

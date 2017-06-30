@@ -121,9 +121,6 @@ gulp.task('libs', function() {
 		'public/components/angular-resource/angular-resource.js',
 		'public/components/angular-ui-router/release/angular-ui-router.js',
 		'public/components/angular-sanitize/angular-sanitize.js',
-		'public/components/angular-ui-select/dist/select.js',
-		'public/components/angular-bootstrap/ui-bootstrap.js',
-		'public/components/angular-bootstrap/ui-bootstrap-tpls.js',
 		'public/components/lodash/lodash.js',
 		'public/components/mousetrap/mousetrap.js',
 		'public/components/mousetrap/plugins/global-bind/mousetrap-global-bind.js',
@@ -133,6 +130,8 @@ gulp.task('libs', function() {
 		'public/components/js-xlsx/dist/xlsx.js',
 		'public/components/sweetalert2/dist/sweetalert2.js',
 		'public/components/ngSweetAlert2/SweetAlert.js',
+		'public/components/tinymce/jquery.tinymce.js',
+		'public/components/angular-ui-tinymce/dist/tinymce.min.js',
 		'public/3rdparty/tether.min.js',
 		'public/3rdparty/bootstrap.min.js'
 	]
