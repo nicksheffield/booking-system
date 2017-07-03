@@ -2,6 +2,7 @@ angular.module('app.controllers')
 
 .controller('userViewCtrl', function($scope, $stateParams, $store, $invalidate, $location, Note, User, sweetAlert) {
 	$scope.user = $store.get('users', $stateParams.id)
+	$scope.you = $store.user
 	
 	if($scope.user.admin == 1 && $scope.user.group && !$scope.user.group._isTutor($store.user.id)) {
 		$location.path('/manage/user')

@@ -20,6 +20,10 @@ angular.module('app.controllers')
 
 	$scope.curUser = $store.user
 
+	if($scope.curUser.admin < 2 && $scope.user.admin > 0 && $scope.user.id !== $scope.curUser.id) {
+		$location.path('/manage/user')
+	}
+
 	if(!$scope.user.dob) $scope.user.dob = ''
 	
 	if($scope.user.admin == 1 && $scope.user.group && !$scope.user.group._isTutor($store.user.id)) {

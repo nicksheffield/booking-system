@@ -1,5 +1,5 @@
 <page-header text="{{ user.name }}">
-	<div class="btn-group">
+	<div class="btn-group" ng-show="you.admin === 2 || user.admin === 0 || user.id === you.id">
 		<a href="manage/user/{{ user.id }}/edit" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-pencil"></i>Edit</a>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
