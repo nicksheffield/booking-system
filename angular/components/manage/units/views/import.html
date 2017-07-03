@@ -15,11 +15,16 @@
 			
 			<p ng-repeat="error in errors" ratio="1" layout="row" justify="between" align="center">
 				<span>{{ error.message }}</span>
-				<a class="btn btn-primary btn-sm btn-icon" href="/manage/product/new?name={{ error.product_name }}" target="_blank">
+				<a class="btn btn-primary btn-sm btn-icon" href="/manage/product/new?name={{ encode(error.product_name) }}" target="_blank">
 					<i class="fa fa-plus"></i>Create {{ error.product_name }}
 				</a>
 			</p>
 		
+		</div>
+
+		<div ng-show="skips.length">
+			<hr>
+			{{ skips.length }} duplicate item{{ skips.length > 1 ? 's' : '' }} will be skipped
 		</div>
 	</div>
 

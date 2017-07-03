@@ -4,13 +4,12 @@ angular.module('app.controllers')
 
 	$scope.units = []
 	$scope.errors = []
+	$scope.skips = []
 	$scope.loader = {}
 	$scope.reloading = false
 
 	function getValue(cols, line, col) {
 		var index = _.indexOf(cols, col)
-
-		console.log(col, index)
 
 		return line[index]
 	}
@@ -24,6 +23,8 @@ angular.module('app.controllers')
 			$scope.reloading = false
 		})
 	}
+
+	$scope.encode = s => encodeURIComponent(s)
 
 	$scope.$watch('units', function(newVal, oldVal) {
 		$scope.calculateErrors()
@@ -58,7 +59,11 @@ angular.module('app.controllers')
 			data = $xlsx.parse(file)
 		}
 
+		// remove blank lines
+		data = data.filter(r => r.unit_number && r.product_name && r.asset_number && r.serial_number)
+
 		$scope.units = []
+		$scope.skips = []
 
 		data.forEach(row => {
 			var unit = new Unit()
@@ -75,6 +80,18 @@ angular.module('app.controllers')
 			if(product) {
 				unit._product = product
 				unit.product_id = unit._product.id
+
+				var unitExists = product.units.find(u => {
+					return 	u.unit_number == unit.unit_number &&
+							u.serial_number == unit.serial_number &&
+							u.asset_number == unit.asset_number
+				})
+
+				if(unitExists) {
+					$scope.skips.push(unit)
+
+					return
+				}
 			} else {
 				unit._noproduct = row.product_name
 			}
@@ -99,7 +116,7 @@ angular.module('app.controllers')
 		} else {
 			sweetAlert.swal({
 				titleText: 'Good to go',
-				html: 'You are about to import <b>' + $scope.units.filter(u => u._add).length + '</b> ' + ($scope.units.filter(u => u._add).length == 1 ? ' unit' : ' units'),
+				html: 'You are about to import <b>' + ($scope.units.filter(u => u._add).length) + '</b> ' + ($scope.units.filter(u => u._add).length == 1 ? ' unit' : ' units'),
 				showCancelButton: true,
 				cancelButtonText: "Not yet",
 				confirmButtonText: "Sweet let's do it"
