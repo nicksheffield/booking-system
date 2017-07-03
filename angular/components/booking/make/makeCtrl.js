@@ -66,13 +66,14 @@ angular.module('app.controllers')
 		var payload = []
 		
 		_.forEach($scope.selectedProducts, function(selected) {
-			console.log('selected', selected)
 			if(parseInt(selected.quantity) > 0 || selected.product.limitless) {
-				payload.push({
-					id: selected.product.id,
-					quantity: selected.quantity,
-					limitless: selected.product.limitless
-				})
+				if(selected.product) {
+					payload.push({
+						id: selected.product.id,
+						quantity: selected.quantity,
+						limitless: selected.product.limitless
+					})
+				}
 			}
 		})
 		
