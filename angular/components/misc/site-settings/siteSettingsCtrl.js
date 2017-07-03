@@ -1,6 +1,15 @@
 angular.module('app.controllers')
 
 .controller('siteSettingsCtrl', function($scope, $store, $q, Setting) {
+
+	$scope.tinymceOptions = {
+		baseURL: '/components/tinymce/',
+		menubar: false,
+		statusbar: false,
+		plugins: 'lists',
+		toolbar: 'formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist'
+	}
+
 	$scope.settings = $store.settings
 	$scope.thinking = false
 	$scope.saved = false

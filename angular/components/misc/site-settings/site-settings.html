@@ -11,11 +11,11 @@
 <div class="page-content">
 
 	<div ng-repeat="setting in settings" class="form-group">
-		<label for="input-{{ setting.key }}">{{ setting.label }}</label>
-		<textarea ng-if="setting.field === 'textarea'" id="input-{{ setting.key }}" ng-model="setting.val" class="form-control"></textarea>
-		<textarea ng-if="setting.field === 'wysiwyg'" id="input-{{ setting.key }}" ng-model="setting.val" class="form-control"></textarea>
-		<input type="text" ng-if="setting.field === 'text'" id="input-{{ setting.key }}" ng-model="setting.val" class="form-control">
-		<input type="number" ng-if="setting.field === 'number'" id="input-{{ setting.key }}" ng-model="setting.val" class="form-control">
+		<label>{{ setting.label }}</label>
+		<textarea ng-if="setting.field === 'textarea'" ng-model="setting.val" class="form-control"></textarea>
+		<textarea ng-if="setting.field === 'wysiwyg'" ui-tinymce="tinymceOptions" ng-model="setting.val" class="settings-wysiwyg"></textarea>
+		<input type="text" ng-if="setting.field === 'text'" ng-model="setting.val" class="form-control">
+		<input type="number" ng-if="setting.field === 'number'" ng-model="setting.val" class="form-control">
 	</div>
 
 </div>

@@ -4,13 +4,12 @@ angular.module('app.controllers')
 	if(!$store.booking.pickup_at) {
 		$location.path('/book')
 	}
-
-	window.scope = $scope
 	
 	$scope.user = $store.user
 	$scope.booking = $store.booking
 	$scope.allowedProducts = []
 	$scope.overallAllowed = true
+	$scope.terms = $store.get('settings', {key: 'terms'})
 	
 	$scope.product = (id) => $store.get('products', id)
 
@@ -57,6 +56,6 @@ angular.module('app.controllers')
 	}
 
 	$scope.disableSubmit = function() {
-		return !$scope.overallAllowed || !$scope.booking.due_at || !$scope.booking.pickup_at || !$scope.booking.products.length
+		return !$scope.overallAllowed || !$scope.booking.due_at || !$scope.booking.pickup_at || !$scope.booking.products.length || !$scope.readTerms
 	}
 })

@@ -2,11 +2,9 @@ angular.module('app.controllers')
 
 .controller('makeCtrl', function($scope, $store, $location) {
 
-	window.scope = $scope
-
 	$scope.selectedProducts = [{ quantity: 1 }]
-
-	console.log('$store.booking', $store.booking)
+	$scope.user = $store.user
+	$scope.booking = $store.booking
 
 	if($store.booking && $store.booking.products && $store.booking.products.length) {
 		$scope.selectedProducts = []
@@ -27,10 +25,6 @@ angular.module('app.controllers')
 
 	$scope.user_group = (user) => user.group ? user.group.code : ''
 	$scope.product_type = (product) => product.type ? product.type.name : ''
-	
-	$scope.user = $store.user
-	
-	$scope.booking = $store.booking
 
 	if(!$scope.booking._user) {
 		$scope.booking._user = $store.user

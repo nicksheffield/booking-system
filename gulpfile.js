@@ -130,7 +130,7 @@ gulp.task('libs', function() {
 		'public/components/js-xlsx/dist/xlsx.js',
 		'public/components/sweetalert2/dist/sweetalert2.js',
 		'public/components/ngSweetAlert2/SweetAlert.js',
-		'public/components/tinymce/jquery.tinymce.js',
+		'public/components/tinymce/tinymce.js',
 		'public/components/angular-ui-tinymce/dist/tinymce.min.js',
 		'public/3rdparty/tether.min.js',
 		'public/3rdparty/bootstrap.min.js'

@@ -43,6 +43,18 @@
 				<alert type="danger" text="You aren't booking any products" icon="exclamation-circle" ng-show="!booking.products.length"></alert>
 			</td>
 		</tr>
+
+		<tr>
+			<td class="row-property">Terms</td>
+			<td class="row-value">
+				<div class="settings-terms" ng-bind-html="terms.val"></div>
+
+				<label class="settings-terms-check">
+					<input type="checkbox" ng-model="readTerms">
+					I have read and agree to the <strong>terms and conditions</strong> above.
+				</label>
+			</td>
+		</tr>
 	</table>
 	
 	<btn type="success" icon="check" ng-click="confirm()" disable="disableSubmit()">Make Booking</btn>
