@@ -62,12 +62,21 @@ angular.module('app.controllers')
 			var user = new User()
 
 			// standard stuff
-			user.name      = row['Preferred Name (Student) (Contact)'] + ' ' + row['Last Name (Student) (Contact)']
+			if(row['Full Name']) {
+				user.name  = row['Full Name']
+			} else {
+				user.name  = row['Preferred Name (Student) (Contact)'] + ' ' + row['Last Name (Student) (Contact)']
+			}
+
 			user.email     = row['Email (Student) (Contact)']
 			user.phone     = row['Mobile Phone (Student) (Contact)']
 			user.id_number = row['Take2 ID (Student) (Contact)']
 			user.password  = 'Yoobee01'
 			user._add      = true
+
+			if(row.Admin) {
+				user.admin = row.Admin
+			}
 
 			// date stuff
 			var date = row['Date of Birth - New (Student) (Contact)']
@@ -81,6 +90,7 @@ angular.module('app.controllers')
 					user.dob = new Date([date.y, date.m, date.d].join('-'))
 				}
 			} else {
+				console.log('date', date)
 				user.dob = moment(date, 'DD-MM-YYYY')._d
 			}
 

@@ -98,7 +98,6 @@ class User extends Controller
 			$model->password = bcrypt($request->password);
 		}
 
-		// dd($request->all());
 		if(!$request->dob) {
 			$model->dob = null;
 		}

@@ -8,10 +8,12 @@ angular.module('app.controllers')
 		{ level: 2, text: 'Manager'},
 	]
 
+	window.$scope = $scope
+
 	$scope.errors = []
 
 	if($state.current.data.edit_profile) {
-		$scope.user = $store.user
+		$scope.user = _.clone($store.user)
 		$scope.profileMode = true
 	} else {
 		$scope.user = _.clone($store.get('users', $stateParams.id))
@@ -23,8 +25,6 @@ angular.module('app.controllers')
 	if($scope.curUser.admin < 2 && $scope.user.admin > 0 && $scope.user.id !== $scope.curUser.id) {
 		$location.path('/manage/user')
 	}
-
-	if(!$scope.user.dob) $scope.user.dob = ''
 	
 	if($scope.user.admin == 1 && $scope.user.group && !$scope.user.group._isTutor($store.user.id)) {
 		$location.path('/manage/user')
@@ -53,8 +53,8 @@ angular.module('app.controllers')
 		$scope.user.group_id = $scope.group ? $scope.group.id : ''
 		$scope.user.admin = $scope.role.level
 
-		if(!$scope.user.dob) $scope.user.dob = ''
-		
+		console.log(JSON.stringify($scope.user))
+
 		User.update({id: $scope.user.id}, $scope.user).$promise.then(function(res) {
 			if($store.user.admin) {
 				$invalidate.add(['users', 'groups'])

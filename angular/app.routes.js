@@ -234,6 +234,17 @@ angular.module('app.routes')
 			}
 		},
 		
+		'export_users': {
+			url: '/manage/user/export',
+			templateUrl: 'components/manage/users/views/export.html',
+			controller: 'userExportCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_parent: 'manage_users',
+				title: 'Export Users'
+			}
+		},
+		
 		'view_user': {
 			url: '/manage/user/:id',
 			templateUrl: 'components/manage/users/views/view.html',
@@ -521,6 +532,17 @@ angular.module('app.routes')
 				conditions: ['auth', 'staff_only'],
 				crumb_parent: 'manage_units',
 				title: 'Import Units'
+			}
+		},
+		
+		'export_units': {
+			url: '/manage/unit/export',
+			templateUrl: 'components/manage/units/views/export.html',
+			controller: 'unitExportCtrl',
+			data: {
+				conditions: ['auth', 'staff_only'],
+				crumb_parent: 'manage_units',
+				title: 'Export Units'
 			}
 		},
 		

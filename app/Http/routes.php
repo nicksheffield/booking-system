@@ -145,6 +145,13 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	*	Delete setting
 	*/
 	Route::resource('setting', 'Setting', ['except' => 'show']);
+
+
+	/**
+	*	Exports
+	*/
+	Route::get('/export/units', 'Export@units');
+	Route::get('/export/users', 'Export@users');
 });
 
 /**
