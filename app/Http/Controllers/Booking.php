@@ -25,7 +25,7 @@ class Booking extends Controller
 
 		if($request->with) $q = $q->with(explode('|', $request->with));
 
-		if($request->user) $q = $q->where('user_id', $request->user);
+		if($request->user_id) $q = $q->where('user_id', $request->user_id);
 
 		$q = $q->orderBy('created_at');
 
