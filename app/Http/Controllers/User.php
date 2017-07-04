@@ -107,7 +107,7 @@ class User extends Controller
 		]);
 
 		if($v->fails()) {
-			return response(['error' => 'Email already taken'], 500);
+			return response(['error' => 'Email error'], 500);
 		} else {
 			$model->save();
 
