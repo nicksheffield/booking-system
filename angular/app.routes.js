@@ -15,7 +15,7 @@ angular.module('app.routes')
 		
 		'home': {
 			url: '/',
-			templateUrl: 'components/misc/home/home.html',
+			templateUrl: 'pages/misc/home/home.html',
 			controller: 'homeCtrl',
 			data: {
 				conditions: ['auth'],
@@ -25,7 +25,7 @@ angular.module('app.routes')
 
 		'edit_profile': {
 			url: '/home/edit-profile',
-			templateUrl: 'components/manage/users/views/edit.html',
+			templateUrl: 'pages/manage/users/edit/edit.html',
 			controller: 'userEditCtrl',
 			data: {
 				conditions: ['auth'],
@@ -36,7 +36,7 @@ angular.module('app.routes')
 
 		'set_password': {
 			url: '/set_password',
-			templateUrl: 'components/manage/users/views/password.html',
+			templateUrl: 'pages/manage/users/password/password.html',
 			controller: 'userPasswordCtrl',
 			data: {
 				conditions: ['auth'],
@@ -50,7 +50,7 @@ angular.module('app.routes')
 		
 		'login': {
 			url: '/login',
-			templateUrl: 'components/misc/login/login.html',
+			templateUrl: 'pages/misc/login/login.html',
 			controller: 'loginCtrl',
 			data: {
 				conditions: ['guest_only'],
@@ -73,7 +73,7 @@ angular.module('app.routes')
 		
 		'reset_password': {
 			url: '/reset_password',
-			templateUrl: 'components/misc/reset/reset.html',
+			templateUrl: 'pages/misc/reset/reset.html',
 			controller: 'resetCtrl',
 			data: {
 				conditions: ['guest_only'],
@@ -87,7 +87,7 @@ angular.module('app.routes')
 
 		'site_settings': {
 			url: '/site-settings',
-			templateUrl: 'components/misc/site-settings/site-settings.html',
+			templateUrl: 'pages/misc/site-settings/site-settings.html',
 			controller: 'siteSettingsCtrl',
 			data: {
 				conditions: ['manager_only'],
@@ -101,7 +101,7 @@ angular.module('app.routes')
 		
 		'make_booking': {
 			url: '/book',
-			templateUrl: 'components/booking/make/make.html',
+			templateUrl: 'pages/booking/make/make.html',
 			controller: 'makeCtrl',
 			data: {
 				conditions: ['auth'],
@@ -111,7 +111,7 @@ angular.module('app.routes')
 		
 		'confirm_booking': {
 			url: '/book/confirm',
-			templateUrl: 'components/booking/confirm/confirm.html',
+			templateUrl: 'pages/booking/confirm/confirm.html',
 			controller: 'confirmCtrl',
 			data: {
 				conditions: ['auth'],
@@ -122,7 +122,7 @@ angular.module('app.routes')
 		
 		'success_booking': {
 			url: '/book/success',
-			templateUrl: 'components/booking/success/success.html',
+			templateUrl: 'pages/booking/success/success.html',
 			controller: 'successCtrl',
 			data: {
 				conditions: ['auth'],
@@ -132,7 +132,7 @@ angular.module('app.routes')
 		
 		'manage_bookings': {
 			url: '/bookings?user&group&after&before&closed&returned&booked&issued&overdue&limit&page',
-			templateUrl: 'components/booking/manage/manage.html',
+			templateUrl: 'pages/booking/manage/manage.html',
 			controller: 'bookingsManageCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -142,7 +142,7 @@ angular.module('app.routes')
 		
 		'view_booking': {
 			url: '/booking/:id',
-			templateUrl: 'components/booking/view/view.html',
+			templateUrl: 'pages/booking/view/view.html',
 			controller: 'viewBookingCtrl',
 			data: {
 				conditions: ['auth'],
@@ -153,7 +153,7 @@ angular.module('app.routes')
 		
 		'issue_booking': {
 			url: '/booking/:id/issue',
-			templateUrl: 'components/booking/issue/issue.html',
+			templateUrl: 'pages/booking/issue/issue.html',
 			controller: 'issueCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -164,7 +164,7 @@ angular.module('app.routes')
 		
 		'return_booking': {
 			url: '/booking/:id/return',
-			templateUrl: 'components/booking/return/return.html',
+			templateUrl: 'pages/booking/return/return.html',
 			controller: 'returnCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -175,7 +175,7 @@ angular.module('app.routes')
 		
 		'edit_booking': {
 			url: '/booking/:id/edit',
-			templateUrl: 'components/booking/edit/edit.html',
+			templateUrl: 'pages/booking/edit/edit.html',
 			controller: 'editBookingCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -190,7 +190,7 @@ angular.module('app.routes')
 		
 		'manage': {
 			url: '/manage',
-			templateUrl: 'components/manage/manage/manage.html',
+			templateUrl: 'pages/manage/manage/manage.html',
 			controller: 'manageCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -204,7 +204,7 @@ angular.module('app.routes')
 		
 		'manage_users': {
 			url: '/manage/user',
-			templateUrl: 'components/manage/users/views/manage.html',
+			templateUrl: 'pages/manage/users/manage/manage.html',
 			controller: 'userManageCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -214,7 +214,7 @@ angular.module('app.routes')
 		
 		'new_user': {
 			url: '/manage/user/new?class',
-			templateUrl: 'components/manage/users/views/new.html',
+			templateUrl: 'pages/manage/users/new/new.html',
 			controller: 'userNewCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -225,7 +225,7 @@ angular.module('app.routes')
 		
 		'import_users': {
 			url: '/manage/user/import',
-			templateUrl: 'components/manage/users/views/import.html',
+			templateUrl: 'pages/manage/users/import/import.html',
 			controller: 'userImportCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -236,7 +236,7 @@ angular.module('app.routes')
 		
 		'export_users': {
 			url: '/manage/user/export',
-			templateUrl: 'components/manage/users/views/export.html',
+			templateUrl: 'pages/manage/users/export/export.html',
 			controller: 'userExportCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -247,7 +247,7 @@ angular.module('app.routes')
 		
 		'view_user': {
 			url: '/manage/user/:id',
-			templateUrl: 'components/manage/users/views/view.html',
+			templateUrl: 'pages/manage/users/view/view.html',
 			controller: 'userViewCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -258,7 +258,7 @@ angular.module('app.routes')
 		
 		'edit_user': {
 			url: '/manage/user/:id/edit',
-			templateUrl: 'components/manage/users/views/edit.html',
+			templateUrl: 'pages/manage/users/edit/edit.html',
 			controller: 'userEditCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -269,7 +269,7 @@ angular.module('app.routes')
 		
 		'new_note': {
 			url: '/manage/user/:id/note/new',
-			templateUrl: 'components/manage/users/views/new_note.html',
+			templateUrl: 'pages/manage/users/new_note/new_note.html',
 			controller: 'userNewNoteCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -280,7 +280,7 @@ angular.module('app.routes')
 		
 		'view_note': {
 			url: '/manage/user/:id/note/:id2',
-			templateUrl: 'components/manage/users/views/view_note.html',
+			templateUrl: 'pages/manage/users/view_note/view_note.html',
 			controller: 'userViewNoteCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -291,7 +291,7 @@ angular.module('app.routes')
 		
 		'edit_note': {
 			url: '/manage/user/:id/note/:id2/edit',
-			templateUrl: 'components/manage/users/views/edit_note.html',
+			templateUrl: 'pages/manage/users/edit_note/edit_note.html',
 			controller: 'userEditNoteCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -306,7 +306,7 @@ angular.module('app.routes')
 		
 		'manage_class_types': {
 			url: '/manage/class-type',
-			templateUrl: 'components/manage/class_types/views/manage.html',
+			templateUrl: 'pages/manage/class-types/manage/manage.html',
 			controller: 'classTypeManageCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -316,7 +316,7 @@ angular.module('app.routes')
 		
 		'new_class_type': {
 			url: '/manage/class-type/new',
-			templateUrl: 'components/manage/class_types/views/new.html',
+			templateUrl: 'pages/manage/class-types/new/new.html',
 			controller: 'classTypeNewCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -327,7 +327,7 @@ angular.module('app.routes')
 		
 		'view_class_type': {
 			url: '/manage/class-type/:id',
-			templateUrl: 'components/manage/class_types/views/view.html',
+			templateUrl: 'pages/manage/class-types/view/view.html',
 			controller: 'classTypeViewCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -338,7 +338,7 @@ angular.module('app.routes')
 		
 		'edit_class_type': {
 			url: '/manage/class-type/:id/edit',
-			templateUrl: 'components/manage/class_types/views/edit.html',
+			templateUrl: 'pages/manage/class-types/edit/edit.html',
 			controller: 'classTypeEditCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -353,7 +353,7 @@ angular.module('app.routes')
 		
 		'manage_class': {
 			url: '/manage/class',
-			templateUrl: 'components/manage/classes/views/manage.html',
+			templateUrl: 'pages/manage/classes/manage/manage.html',
 			controller: 'classManageCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -363,7 +363,7 @@ angular.module('app.routes')
 		
 		'new_class': {
 			url: '/manage/class/new?type&code',
-			templateUrl: 'components/manage/classes/views/new.html',
+			templateUrl: 'pages/manage/classes/new/new.html',
 			controller: 'classNewCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -374,7 +374,7 @@ angular.module('app.routes')
 		
 		'view_class': {
 			url: '/manage/class/:id',
-			templateUrl: 'components/manage/classes/views/view.html',
+			templateUrl: 'pages/manage/classes/view/view.html',
 			controller: 'classViewCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -385,7 +385,7 @@ angular.module('app.routes')
 		
 		'edit_class': {
 			url: '/manage/class/:id/edit',
-			templateUrl: 'components/manage/classes/views/edit.html',
+			templateUrl: 'pages/manage/classes/edit/edit.html',
 			controller: 'classEditCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -396,7 +396,7 @@ angular.module('app.routes')
 		
 		'allow_products_for_class': {
 			url: '/manage/class/:id/allowed_products',
-			templateUrl: 'components/manage/classes/views/allowed_products.html',
+			templateUrl: 'pages/manage/classes/allowed_products/allowed_products.html',
 			controller: 'classProductCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -411,7 +411,7 @@ angular.module('app.routes')
 		
 		'manage_product_type': {
 			url: '/manage/product-type',
-			templateUrl: 'components/manage/product_types/views/manage.html',
+			templateUrl: 'pages/manage/product-types/manage/manage.html',
 			controller: 'productTypeManageCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -421,7 +421,7 @@ angular.module('app.routes')
 		
 		'new_product_type': {
 			url: '/manage/product-type/new',
-			templateUrl: 'components/manage/product_types/views/new.html',
+			templateUrl: 'pages/manage/product-types/new/new.html',
 			controller: 'productTypeNewCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -432,7 +432,7 @@ angular.module('app.routes')
 		
 		'view_product_type': {
 			url: '/manage/product-type/:id',
-			templateUrl: 'components/manage/product_types/views/view.html',
+			templateUrl: 'pages/manage/product-types/view/view.html',
 			controller: 'productTypeViewCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -443,7 +443,7 @@ angular.module('app.routes')
 		
 		'edit_product_type': {
 			url: '/manage/product-type/:id/edit',
-			templateUrl: 'components/manage/product_types/views/edit.html',
+			templateUrl: 'pages/manage/product-types/edit/edit.html',
 			controller: 'productTypeEditCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -458,7 +458,7 @@ angular.module('app.routes')
 		
 		'manage_product': {
 			url: '/manage/product',
-			templateUrl: 'components/manage/products/views/manage.html',
+			templateUrl: 'pages/manage/products/manage/manage.html',
 			controller: 'productManageCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -468,7 +468,7 @@ angular.module('app.routes')
 		
 		'new_product': {
 			url: '/manage/product/new?type&name',
-			templateUrl: 'components/manage/products/views/new.html',
+			templateUrl: 'pages/manage/products/new/new.html',
 			controller: 'productNewCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -479,7 +479,7 @@ angular.module('app.routes')
 		
 		'view_product': {
 			url: '/manage/product/:id',
-			templateUrl: 'components/manage/products/views/view.html',
+			templateUrl: 'pages/manage/products/view/view.html',
 			controller: 'productViewCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -490,7 +490,7 @@ angular.module('app.routes')
 		
 		'edit_product': {
 			url: '/manage/product/:id/edit',
-			templateUrl: 'components/manage/products/views/edit.html',
+			templateUrl: 'pages/manage/products/edit/edit.html',
 			controller: 'productEditCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -505,7 +505,7 @@ angular.module('app.routes')
 		
 		'manage_unit': {
 			url: '/manage/unit',
-			templateUrl: 'components/manage/units/views/manage.html',
+			templateUrl: 'pages/manage/units/manage/manage.html',
 			controller: 'unitManageCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -515,7 +515,7 @@ angular.module('app.routes')
 		
 		'new_unit': {
 			url: '/manage/unit/new?product',
-			templateUrl: 'components/manage/units/views/new.html',
+			templateUrl: 'pages/manage/units/new/new.html',
 			controller: 'unitNewCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -526,7 +526,7 @@ angular.module('app.routes')
 		
 		'import_units': {
 			url: '/manage/unit/import',
-			templateUrl: 'components/manage/units/views/import.html',
+			templateUrl: 'pages/manage/units/import/import.html',
 			controller: 'unitImportCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -537,7 +537,7 @@ angular.module('app.routes')
 		
 		'export_units': {
 			url: '/manage/unit/export',
-			templateUrl: 'components/manage/units/views/export.html',
+			templateUrl: 'pages/manage/units/export/export.html',
 			controller: 'unitExportCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -548,7 +548,7 @@ angular.module('app.routes')
 		
 		'view_unit': {
 			url: '/manage/unit/:id',
-			templateUrl: 'components/manage/units/views/view.html',
+			templateUrl: 'pages/manage/units/view/view.html',
 			controller: 'unitViewCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
@@ -559,7 +559,7 @@ angular.module('app.routes')
 		
 		'edit_unit': {
 			url: '/manage/unit/:id/edit',
-			templateUrl: 'components/manage/units/views/edit.html',
+			templateUrl: 'pages/manage/units/edit/edit.html',
 			controller: 'unitEditCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],

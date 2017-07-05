@@ -1,0 +1,77 @@
+<page-header text="Book equipment" breadcrumbs="false">
+	<div class="btn-group" ng-show="user.can_book">
+		<button class="btn btn-primary btn-icon btn-sm" ng-click="book()"><i class="fa fa-book"></i>Make Booking</button>
+		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<span class="sr-only">Toggle Dropdown</span>
+		</button>
+		<div class="dropdown-menu dropdown-menu-right">
+			<span class="dropdown-item btn-icon" ng-click="reset()">
+				<i class="fa fa-undo"></i>
+				Reset
+			</span>
+		</div>
+	</div>
+</page-header>
+
+<div class="page-content" ng-show="user.can_book">
+
+	<div class="fake-table data-table">
+		<div class="tr">
+			<div class="td row-property center">Name</div>
+			<div class="td row-value">
+				<div ng-show="user.admin">
+					<dropdown ng-model="booking._user" data="users" display="{text: 'name', subtext: user_group}"></dropdown>
+				</div>
+				<span ng-show="!user.admin">{{ user.name }}</span>
+			</div>
+		</div>
+
+		<div class="tr">
+			<div class="td row-property center">Pick Up</div>
+			<div class="td row-value">
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">
+						<i class="fa fa-calendar"></i>
+					</span>
+					<input type="date" ng-model="booking.pickup_at" class="form-control" placeholder="yyyy-mm-dd">
+				</div>
+			</div>
+		</div>
+		<div class="tr">
+			<div class="td row-property center">Due At</div>
+			<div class="td row-value">
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">
+						<i class="fa fa-calendar"></i>
+					</span>
+					<input type="date" ng-model="booking.due_at" class="form-control" placeholder="yyyy-mm-dd">
+				</div>
+			</div>
+		</div>
+		<div class="tr">
+			<div class="td row-property">Items</div>
+			<div class="td row-value">
+				<ul class="no-bullets">
+					<li layout="row" class="spaced-row pad-down" ng-repeat="product in selectedProducts">
+						<dropdown ng-model="selectedProducts[$index].product" data="products" hide="filterAdded" display="{text: 'name', subtext: product_type}"></dropdown>
+
+						<input type="number" class="form-control form-control-short" min="1" max="{{ max(product.product) }}" step="1" ng-model="product.quantity" ng-show="!product.product.limitless" />
+
+						<span class="product-quantity-na" ng-show="product.product.limitless">N/A</span>
+
+						<btn type="danger" icon="times" ng-click="removeProduct(product, $index)" class="nudge-down"></btn>
+					</li>
+				</ul>
+
+				<btn type="info" icon="plus" ng-click="addProduct()">Add Item</btn>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="page-content" ng-show="!user.can_book">
+	<alert type="danger" icon="exclamation-triangle" text="You are not allowed to make bookings"></alert>
+
+	<p>Reason: <strong>{{ user.can_book_reason }}</strong></p>
+	<p>Please talk to your tutor to resolve this issue.</p>
+</div>

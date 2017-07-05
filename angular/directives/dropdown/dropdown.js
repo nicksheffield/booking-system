@@ -33,6 +33,14 @@ angular.module('app.directives')
 			}
 		}
 
+		scope.hideFunc = function(item, index, array) {
+			if(scope.hide) {
+				return scope.hide(item, index, array)
+			} else {
+				return {}
+			}
+		}
+
 		scope.text = function(item) {
 			if(!scope.display.text) return ''
 			if(typeof scope.display.text == 'function') {
@@ -184,6 +192,7 @@ angular.module('app.directives')
 			'ngModel': '=',
 			'display': '=',
 			'orderBy': '=',
+			'hide': '=',
 			'icon': '@'
 		}
 	}
