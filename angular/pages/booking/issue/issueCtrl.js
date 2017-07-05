@@ -58,7 +58,8 @@ angular.module('app.controllers')
 						if(booking.id == res.id) $store.bookings[i] = res
 					})
 					
-					$location.path('/booking/' + $scope.booking.id)
+					// $location.path('/booking/' + $scope.booking.id)
+					$location.path('/bookings')
 				})
 		} else {
 			if(_.findIndex($scope.errors, {code: 1}) === -1) {
