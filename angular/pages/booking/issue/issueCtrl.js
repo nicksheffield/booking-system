@@ -54,9 +54,10 @@ angular.module('app.controllers')
 			$http
 				.put('/api/booking/' + $scope.booking.id, $scope.booking)
 				.then(function(res) {
-					$store.bookings = _.map($store.bookings, function(booking, i) {
-						if(booking.id == res.id) $store.bookings[i] = res
-					})
+					// console.log(res)
+					// $store.bookings = _.map($store.bookings, function(booking, i) {
+					// 	if(booking.id == res.id) $store.bookings[i] = res
+					// })
 					
 					// $location.path('/booking/' + $scope.booking.id)
 					$location.path('/bookings')
