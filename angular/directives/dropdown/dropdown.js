@@ -108,6 +108,15 @@ angular.module('app.directives')
 		})
 		.on('blur', 'input', function(e) {
 			if(!ignoreBlur) {
+				var highlighted = el.find('.focused')
+				var id = highlighted.data('id')
+
+				var item = scope.filtered.find(i => i.id == id)
+
+				if(!item) item = scope.filtered[0]
+
+				scope.select(item)
+
 				scope.$apply(function() {
 					if(scope.ngModel) {
 						scope.filter_text = scope.text(scope.ngModel)
