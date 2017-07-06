@@ -54,7 +54,9 @@ angular.module('app.controllers')
 			$http
 				.put('/api/booking/' + $scope.booking.id, $scope.booking)
 				.then(function(res) {
-					// console.log(res)
+					// this code was causing problems. I don't think I need it, but I might.
+					// I think the problem was with res.id, I think it needs to be res.data.id
+					// I never checked it
 					// $store.bookings = _.map($store.bookings, function(booking, i) {
 					// 	if(booking.id == res.id) $store.bookings[i] = res
 					// })
