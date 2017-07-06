@@ -60,7 +60,7 @@ angular.module('app.controllers')
 		}
 
 		// remove blank lines
-		data = data.filter(r => r.unit_number && r.product_name && r.asset_number && r.serial_number)
+		data = data.filter(r => r.unit_number !== '')
 
 		$scope.units = []
 		$scope.skips = []
@@ -82,12 +82,13 @@ angular.module('app.controllers')
 				unit.product_id = unit._product.id
 
 				var unitExists = product.units.find(u => {
-					return 	u.unit_number == unit.unit_number &&
-							u.serial_number == unit.serial_number &&
+					return 	u.unit_number == unit.unit_number ||
+							u.serial_number == unit.serial_number ||
 							u.asset_number == unit.asset_number
 				})
 
 				if(unitExists) {
+
 					$scope.skips.push(unit)
 
 					return

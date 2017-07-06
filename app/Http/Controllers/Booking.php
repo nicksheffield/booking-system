@@ -65,9 +65,8 @@ class Booking extends Controller
 				} else {
 					$model->products()->attach($product['id']);
 				}
-				
 			}
-
+			
 			return $model;
 		} else {
 			return response(['error' => 'not_allowed'], 400);

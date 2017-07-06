@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Carbon\Carbon;
+use Auth;
 
 use App\Models\Product as Model;
 use App\Models\Booking;
@@ -151,7 +152,18 @@ class Product extends Controller
 
 		$thisProduct = Model::find($product_id);
 
-		if($thisProduct->limitless) {
+		$prevBooking = false;
+
+		foreach($bookings as $booking) {
+			if($booking->user->id == Auth::user()->id) {
+				$prevBooking = $booking;
+			}
+		}
+
+		if($prevBooking) {
+			// foreach($prevBooking)
+			dd($prevBooking);
+		} else if($thisProduct->limitless) {
 			$allowed = true;
 		} else {
 			$matches = 0;
