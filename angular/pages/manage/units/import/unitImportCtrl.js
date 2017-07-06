@@ -88,7 +88,6 @@ angular.module('app.controllers')
 				})
 
 				if(unitExists) {
-
 					$scope.skips.push(unit)
 
 					return

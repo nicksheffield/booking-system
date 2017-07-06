@@ -108,15 +108,6 @@ angular.module('app.directives')
 		})
 		.on('blur', 'input', function(e) {
 			if(!ignoreBlur) {
-				var highlighted = el.find('.focused')
-				var id = highlighted.data('id')
-
-				var item = scope.filtered.find(i => i.id == id)
-
-				if(!item) item = scope.filtered[0]
-
-				scope.select(item)
-
 				scope.$apply(function() {
 					if(scope.ngModel) {
 						scope.filter_text = scope.text(scope.ngModel)
@@ -133,7 +124,7 @@ angular.module('app.directives')
 		.on('keydown', 'input', function(e) {
 			var focused = el.find('.ns-dropdown-item.focused')
 			var index = focused.index()
-
+			
 			$timeout(function() {
 				scope.filter_val = scope.filter_text
 
@@ -187,6 +178,17 @@ angular.module('app.directives')
 				} else if(target && target.offsetTop + target.clientHeight > list.clientHeight + list.scrollTop) { // below the bottom edge
 					list.scrollTop = target.offsetTop + target.clientHeight - list.clientHeight
 				}
+			}
+
+			if(e.which == 9) { // tab
+				var highlighted = el.find('.focused')
+				var id = highlighted.data('id')
+
+				var item = scope.filtered.find(i => i.id == id)
+
+				if(!item) item = scope.filtered[0]
+
+				scope.select(item)
 			}
 		})
 	}

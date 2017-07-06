@@ -4,6 +4,8 @@ angular.module('app.controllers')
 	if(!$store.booking.pickup_at) {
 		$location.path('/book')
 	}
+
+	window.$scope = $scope
 	
 	$scope.user = $store.user
 	$scope.booking = $store.booking
@@ -25,7 +27,11 @@ angular.module('app.controllers')
 		}
 
 		$http
-			.post('/api/product/' + product.id + '/check', {pickup_at: $scope.booking.pickup_at, due_at: $scope.booking.due_at})
+			.post('/api/product/' + product.id + '/check', {
+				pickup_at: $scope.booking.pickup_at,
+				due_at: $scope.booking.due_at,
+				quantity: product.quantity
+			})
 			.then(function(res) {
 				if(res.data.allowed) {
 					$scope.allowedProducts.push(parseInt(res.data.id))

@@ -142,6 +142,18 @@ class Product extends Controller
 
 
 	public function check_availability(Request $request, $product_id) {
+		function checkAvailable($bookings, $product, $product_id, $request) {
+			$matches = 0;
+
+			foreach($bookings as $booking) {
+				foreach($booking->products as $product) {
+					if($product->id == $product_id) $matches += $request->quantity;
+				}
+			}
+
+			return $matches < $product->units()->count();
+		}
+
 		$pickup = Carbon::parse($request->pickup_at);
 		$due = Carbon::parse($request->due_at);
 
@@ -152,29 +164,68 @@ class Product extends Controller
 
 		$thisProduct = Model::find($product_id);
 
-		$prevBooking = false;
+		$prevBookings = [];
 
+		// look at all relevant bookings
 		foreach($bookings as $booking) {
+			// if any of them are for this user
 			if($booking->user->id == Auth::user()->id) {
-				$prevBooking = $booking;
+				// add it to the list of prevBookings
+				$prevBookings[] = $booking;
 			}
 		}
 
-		if($prevBooking) {
-			// foreach($prevBooking)
-			dd($prevBooking);
-		} else if($thisProduct->limitless) {
-			$allowed = true;
-		} else {
-			$matches = 0;
+		// if there are any prevBookings
+		if(count($prevBookings)) {
 
-			foreach($bookings as $booking) {
-				foreach($booking->products as $product) {
-					if($product->id == $product_id) $matches++;
+			// make a list of products
+			$prods = [];
+
+			// for each of the previous bookings
+			foreach($prevBookings as $prevBooking) {
+				// look at every product in all of them
+				foreach($prevBooking->products as $product) {
+					// if the product is in the $prods array, then increase its count by 1
+					if(isset($prods[$product->id])) {
+						$prods[$product->id] += 1;
+					// if the product is not in the $prods array, then set its count as 1
+					} else {
+						$prods[$product->id] = 1;
+					}
 				}
 			}
 
-			$allowed = $matches < $thisProduct->units()->count();
+			// now that we have a list of all booked products, and how many..
+			// then lets check if each one is under or at the limit allowed by this users group
+
+			// if this user is in a group
+			if(Auth::user()->group) {
+				// then check every allowed product for the group
+				foreach(Auth::user()->group->allowed_products as $product) {
+					// if any of them match the product the user is trying to book...
+					if($product->id == $thisProduct->id) {
+						// if the amount that are currently booked (plus the amount they want to book)
+						// is less than the amount they are allowed
+						//echo $prods[$product->id] + $request->quantity .'/'. $product->pivot->quantity . '/'. ($prods[$product->id] + $request->quantity <= $product->pivot->quantity ? 'true' : 'false');
+						if($prods[$product->id] + $request->quantity <= $product->pivot->quantity) {
+							// then do the standard check
+							$allowed = checkAvailable($bookings, $thisProduct, $product_id, $request);
+						} else {
+							$allowed = false;
+						}
+					}
+				}
+			// if the user is not in a group (ie, staff or manager)
+			} else {
+				// then do the standard check
+				$allowed = checkAvailable($bookings, $thisProduct, $product_id, $request);
+			}
+
+
+		} else if($thisProduct->limitless) {
+			$allowed = true;
+		} else {
+			$allowed = checkAvailable($bookings, $thisProduct, $product_id, $request);
 		}
 
 		$response = [
