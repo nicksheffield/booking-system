@@ -6,6 +6,8 @@ angular.module('app.controllers')
 	$scope.user = $store.user
 	$scope.booking = $store.booking
 
+	window.$scope = $scope
+
 	if($store.booking && $store.booking.products && $store.booking.products.length) {
 		$scope.selectedProducts = []
 
@@ -97,20 +99,10 @@ angular.module('app.controllers')
 		})
 	}
 	
-	$scope.checkAgainstMax = function(product) {
-		var max = $scope.max(product)
-
-		if(product._quantity > product._max) {
-			product._quantity = 1
-		}
-		if(product._quantity === undefined) {
-			product._quantity = product._max
-		}
-	}
-	
 	// calculate the max quantity allowed for a product
 	$scope.max = function(product) {
 		if(!product) return 1
+
 		return product._max
 	}
 
@@ -122,6 +114,7 @@ angular.module('app.controllers')
 			$scope.products = $scope.group.allowed_products
 
 			_.forEach($scope.products, function(product) {
+				console.log('product', product)
 				product._max = product.pivot.quantity
 			})
 		}

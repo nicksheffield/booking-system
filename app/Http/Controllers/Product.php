@@ -195,6 +195,8 @@ class Product extends Controller
 				}
 			}
 
+			// dd($thisProduct->id);
+
 			// now that we have a list of all booked products, and how many..
 			// then lets check if each one is under or at the limit allowed by this users group
 
@@ -203,17 +205,26 @@ class Product extends Controller
 				// then check every allowed product for the group
 				foreach(Auth::user()->group->allowed_products as $product) {
 					// if any of them match the product the user is trying to book...
+					// echo $product->id.'/'.$thisProduct->id.'/'.($product->id == $thisProduct->id ? 'true' : 'false')."\n";
 					if($product->id == $thisProduct->id) {
 						// if the amount that are currently booked (plus the amount they want to book)
 						// is less than the amount they are allowed
 						//echo $prods[$product->id] + $request->quantity .'/'. $product->pivot->quantity . '/'. ($prods[$product->id] + $request->quantity <= $product->pivot->quantity ? 'true' : 'false');
-						if($prods[$product->id] + $request->quantity <= $product->pivot->quantity) {
+						if(!isset($prods[$product->id])) {
+
+							$allowed = checkAvailable($bookings, $thisProduct, $product_id, $request);
+
+						} else if($prods[$product->id] + $request->quantity <= $product->pivot->quantity) {
 							// then do the standard check
 							$allowed = checkAvailable($bookings, $thisProduct, $product_id, $request);
 						} else {
 							$allowed = false;
 						}
 					}
+				}
+
+				if(!isset($allowed)) {
+					$allowed = checkAvailable($bookings, $thisProduct, $product_id, $request);
 				}
 			// if the user is not in a group (ie, staff or manager)
 			} else {

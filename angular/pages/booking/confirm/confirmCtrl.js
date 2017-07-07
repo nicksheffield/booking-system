@@ -4,8 +4,6 @@ angular.module('app.controllers')
 	if(!$store.booking.pickup_at) {
 		$location.path('/book')
 	}
-
-	window.$scope = $scope
 	
 	$scope.user = $store.user
 	$scope.booking = $store.booking
@@ -18,8 +16,6 @@ angular.module('app.controllers')
 	_.forEach($scope.booking.products, function(product) {
 
 		$scope.booking.pickup_at = moment($scope.booking.pickup_at).startOf('day')._d
-
-		console.log('product', product)
 
 		if(product.limitless) {
 			$scope.allowedProducts.push(product.id)
