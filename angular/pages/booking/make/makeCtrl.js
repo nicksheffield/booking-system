@@ -29,6 +29,7 @@ angular.module('app.controllers')
 	$scope.product_type = (product) => product.type ? product.type.name : ''
 
 	$scope.filterAdded = (value, index, array) => {
+		if(value.limitless) return true
 		var found = false
 
 		$scope.selectedProducts.forEach(v => {
