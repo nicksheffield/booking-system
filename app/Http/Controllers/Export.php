@@ -20,7 +20,7 @@ class Export extends Controller
 
 		foreach($units as $unit) {
 			$arr = [
-				$unit->product->name,
+				$unit->product ? $unit->product->name : '',
 				$unit->unit_number,
 				$unit->serial_number,
 				$unit->asset_number
