@@ -12,8 +12,10 @@ angular.module('app.controllers')
 	}
 	
 	if($scope.booking) {
+		console.log('not loaded')
 		$scope.return_difference = moment().diff(new Date($scope.booking.closed_at), 'hours')
 	} else {
+		console.log('loaded')
 		$scope.booking = Booking.get({id: $stateParams.id, with: 'user|products', token: localStorage.satellizer_token})
 		
 		$scope.booking.$promise
@@ -21,7 +23,6 @@ angular.module('app.controllers')
 			.then(function(booking) {
 				$merge.bookings([booking])
 				$scope.return_difference = moment().diff(new Date($scope.booking.closed_at), 'hours')
-				console.log('loaded', booking.products)
 			}, function(err) {
 				$scope.errors.push({message: err.data.error})
 			})

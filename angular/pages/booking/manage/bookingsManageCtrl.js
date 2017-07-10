@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('bookingsManageCtrl', function($scope, $store, $load, $stateParams, $timeout, Booking) {
+.controller('bookingsManageCtrl', function($scope, $store, $load, $stateParams, $timeout, $prepare, Booking) {
 
 	$scope.users = $store.users
 	$scope.groups = $store.groups
@@ -11,22 +11,25 @@ angular.module('app.controllers')
 		$scope.loading = true
 		var bookings = $load.bookings(100, page)
 
-		bookings.$promise.then(function(res) {
-			_.forEach(res, (a) => $scope.bookings.push(a))
+		bookings.$promise
+			.then(function(res) {
+				_.forEach(res, (a) => $scope.bookings.push(a))
 
-			if(res.length == 100) {
-				loadBookings(page + 1)
-			} else {
-				simplifyBookings()
-				$scope.loading = false
-			}
-		})
+				if(res.length == 100) {
+					loadBookings(page + 1)
+				} else {
+					simplifyBookings()
+					$scope.loading = false
+				}
+			})
 	}
 
 	loadBookings(1)
 
 	function simplifyBookings() {
 		$scope.allBookings = $scope.bookings
+
+		// $scope.allBookings.map($prepare.booking)
 
 		$scope.bookings = []
 

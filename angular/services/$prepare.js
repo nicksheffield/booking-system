@@ -138,6 +138,8 @@ angular.module('app.services')
 
 	service.booking = function(booking) {
 		function transformDate(originalDate) {
+			if(!originalDate) return undefined
+			if(originalDate instanceof Date) return originalDate
 			// Transform date string into what looks like an ISO string
 			var iso = originalDate.replace(' ', 'T').concat('.000Z')
 			

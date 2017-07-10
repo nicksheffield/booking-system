@@ -35,6 +35,8 @@ angular.module('app.controllers')
 			if(product.returned) product.returned_at = new Date()
 		})
 
+		$scope.booking._req_type = 'return'
+
 		$http
 			.put('/api/booking/' + $scope.booking.id, $scope.booking)
 			.then(function(res) {

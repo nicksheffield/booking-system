@@ -24,3 +24,5 @@ angular.module('app', [
 	'app.views',
 	'app.auth'
 ])
+
+console.log('version:', 0.1)

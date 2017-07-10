@@ -103,15 +103,36 @@ class Booking extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		// dd($request->all());
 
 		$model = Model::find($id);
 		
 		$model->fill($request->all());
 
 
+		# Issuing
+		if($request->_req_type == 'issue') {
+			$model->products()->detach();
+			
+			foreach($request->products as $product) {
+
+				$data = [];
+
+				if(isset($product['_unit'])) {
+					$data['unit_id'] = $product['_unit']['id'];
+				}
+
+				$model->products()->attach($product['id'], $data);
+			}
+
+			// $model->products()
+			// 	->wherePivot('id', '=', $product['pivot']['id'])
+			// 	->updateExistingPivot($product['id'], [
+			// 		'unit_id' => $product['_unit']['id']
+			// 	]);
+
 		# Returning
-		if(isset($request->products[0]['created_at'])) {
+		} else if($request->_req_type == 'return') {
+
 			foreach($request->products as $product) {
 				$data = [];
 
@@ -127,15 +148,13 @@ class Booking extends Controller
 					$data['notes'] = $product['pivot']['notes'];
 				}
 
-				// dd($product, $data);
-
 				$model->products()
 					->wherePivot('id', '=', $product['pivot']['id'])
 					->updateExistingPivot($product['id'], $data);
 			}
 
 		# Editing
-		} else {
+		} else if($request->_req_type == 'edit') {
 			$model->products()->detach();
 			
 			foreach($request->products as $product) {
@@ -144,6 +163,8 @@ class Booking extends Controller
 				}
 			}
 		}
+
+		// dd($request->all);
 
 		$model->save();
 

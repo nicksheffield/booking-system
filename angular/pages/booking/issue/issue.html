@@ -30,25 +30,24 @@
 	<div class="alert alert-danger" ng-show="errors.length">
 		<p ng-repeat="error in errors">Error: <b>{{ error.message }}</b></p>
 	</div>
-	
-	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length">
-		<thead>
-			<tr>
-				<th class="booking-heading-product">Product</th>
-				<th class="table-col-select-medium">Unit</th>
-			</tr>
-		</thead>
-		<tr ng-repeat="product in products | filter: filter as filtered track by $index">
-			<td>{{ product.name }}</td>
-			<td>
-				<div ng-show="!product.limitless">
-					<dropdown ng-model="product._unit" data="allUnits[$index]" display="{text: 'unit_number'}" order-by="unit_number"></dropdown>
+
+
+	<div>
+		<ul class="no-bullets">
+			<li layout="row" class="spaced-row pad-down" ng-repeat="product in products track by $index">
+				<dropdown ng-model="products[$index]" data="allProducts" display="{text: 'name'}" clone change="setupAllUnits"></dropdown>
+
+				<div class="issue-subvalue">
+					<dropdown ng-model="product._unit" data="product._units" display="{text: 'unit_number'}" order-by="unit_number" ng-show="!product.limitless" placeholder="" short ></dropdown>
+
+					<input type="checkbox" ng-model="product._taken" ng-show="product.limitless">
 				</div>
-				<div ng-show="product.limitless">
-					<input type="checkbox" ng-model="product._taken">
-				</div>
-			</td>
-		</tr>
-	</table>
+
+				<btn type="danger" icon="times" ng-click="removeProduct(product, $index)" class="nudge-down"></btn>
+			</li>
+		</ul>
+
+		<btn type="info" icon="plus" ng-click="addProduct()">Add Item</btn>
+	</div>
 	
 </div>

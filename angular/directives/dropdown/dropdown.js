@@ -7,6 +7,8 @@ angular.module('app.directives')
 		scope.listDown = true
 		scope.filter_val = ''
 		scope.filter_text = ''
+		scope.short = attrs.short !== undefined
+		scope.placeholder = attrs.placeholder !== undefined ? attrs.placeholder : 'Search...'
 
 		var elem = el[0]
 		var dropdownList = el.find('.ns-dropdown-list')
@@ -68,7 +70,9 @@ angular.module('app.directives')
 			target.addClass('focused')
 
 			$timeout(function() {
-				scope.ngModel = item
+				scope.ngModel = attrs.clone !== undefined ? _.clone(item) : item
+
+				if(typeof scope.change == 'function') scope.change(item)
 
 				scope.filter_text = scope.text(item)
 				scope.filter_val = ''
@@ -102,7 +106,9 @@ angular.module('app.directives')
 						el.find('.ns-dropdown-item').first().addClass('focused')
 					}
 
-					el.find('.ns-dropdown-list')[0].scrollTop = el.find('.ns-dropdown-item.focused')[0].offsetTop
+					if(el.find('.ns-dropdown-item.focused')[0]) {
+						el.find('.ns-dropdown-list')[0].scrollTop = el.find('.ns-dropdown-item.focused')[0].offsetTop
+					}
 				})
 			})
 		})
@@ -204,6 +210,7 @@ angular.module('app.directives')
 			'display': '=',
 			'orderBy': '=',
 			'hide': '=',
+			'change': '=',
 			'icon': '@'
 		}
 	}
