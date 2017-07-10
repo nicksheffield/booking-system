@@ -146,8 +146,8 @@ class Product extends Controller
 			$matches = 0;
 
 			foreach($bookings as $booking) {
-				foreach($booking->products as $product) {
-					if($product->id == $product_id) $matches += $request->quantity;
+				foreach($booking->products as $productB) {
+					if($productB->id == $product_id) $matches += $request->quantity;
 				}
 			}
 
@@ -211,7 +211,6 @@ class Product extends Controller
 						// is less than the amount they are allowed
 						//echo $prods[$product->id] + $request->quantity .'/'. $product->pivot->quantity . '/'. ($prods[$product->id] + $request->quantity <= $product->pivot->quantity ? 'true' : 'false');
 						if(!isset($prods[$product->id])) {
-
 							$allowed = checkAvailable($bookings, $thisProduct, $product_id, $request);
 
 						} else if($prods[$product->id] + $request->quantity <= $product->pivot->quantity) {
