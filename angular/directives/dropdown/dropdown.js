@@ -10,6 +10,14 @@ angular.module('app.directives')
 		scope.short = attrs.short !== undefined
 		scope.placeholder = attrs.placeholder !== undefined ? attrs.placeholder : 'Search...'
 
+		scope.primaryFilter = function(value, index, array) {
+			if(scope.display.primary) {
+				if(value[scope.display.primary].indexOf(scope.filter_val) !== -1) return true
+			} else {
+				return true
+			}
+		}
+
 		var elem = el[0]
 		var dropdownList = el.find('.ns-dropdown-list')
 		var ignoreBlur = false

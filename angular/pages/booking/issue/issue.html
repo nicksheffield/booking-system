@@ -38,7 +38,7 @@
 				<dropdown ng-model="products[$index]" data="allProducts" display="{text: 'name'}" clone change="setupAllUnits"></dropdown>
 
 				<div class="issue-subvalue">
-					<dropdown ng-model="product._unit" data="product._units" display="{text: 'unit_number'}" order-by="unit_number" ng-show="!product.limitless" placeholder="" short ></dropdown>
+					<dropdown ng-model="product._unit" data="product._units" display="{text: 'unit_number', primary: 'unit_number'}" order-by="unit_number" ng-show="!product.limitless" placeholder="" short></dropdown>
 
 					<input type="checkbox" ng-model="product._taken" ng-show="product.limitless">
 				</div>
