@@ -1,42 +1,52 @@
 <page-header text="Edit Booking">
-	<btn icon="floppy-o" ng-click="save()">Save changes</btn>
+	<btn icon="check" ng-click="save()">Done</btn>
 </page-header>
 
 <div class="page-dates">
 	<div layout="row sm-col" class="space-row">
 		<div ratio="1">
 			<label for="pickup_at">Pickup date</label>
-			<input type="text" id="pickup_at" ng-model="booking.pickup_at" ng-change="createBooking()" class="form-control form-control-sm" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openPickupDate" datepicker-options="dateOptions" ng-click="openPickup()">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">
+					<i class="fa fa-calendar"></i>
+				</span>
+				<input type="date" ng-model="booking.pickup_at" class="form-control" placeholder="yyyy-mm-dd">
+			</div>
 		</div>
 		<div ratio="1">
 			<label for="due_at">Return date</label>
-			<input type="text" id="due_at" ng-model="booking.due_at" ng-change="createBooking()" class="form-control form-control-sm" uib-datepicker-popup="{{ dateOptions.format }}" is-open="openDueDate" datepicker-options="dateOptions" ng-click="openDue()">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">
+					<i class="fa fa-calendar"></i>
+				</span>
+				<input type="date" ng-model="booking.due_at" class="form-control" placeholder="yyyy-mm-dd">
+			</div>
 		</div>
 	</div>
 </div>
 
-<filter model="filter" filtered="filtered"></filter>
-
 <div class="page-content">
-	
-	<table class="table table-hover booking-table table-filtered" ng-show="filtered.length">
-		<thead>
-			<tr>
-				<th class="booking-heading-product">Product</th>
-				<th class="booking-heading-type sm-hide">Type</th>
-				<th class="booking-heading-quantity">Available</th>
-				<th class="booking-heading-quantity">Quantity</th>
-			</tr>
-		</thead>
-		<tr ng-repeat="product in products | filter: filter as filtered">
-			<td>{{ product.name }}</td>
-			<td class="sm-hide">{{ product.type.name }}</td>
-			<td>{{ max(product) }}</td>
-			
-			<td>
-				<input type="number" ng-model="product._quantity" class="form-control booking-quantity-input form-control-sm" max="{{ max(product) }}" ng-keyup="checkAgainstMax(product)" min="0" ng-change="createBooking()">
-			</td>
-		</tr>
-	</table>
-	
+
+	<div class="alert alert-danger" ng-show="errors.length">
+		<p ng-repeat="error in errors">Error: <b>{{ error.message }}</b></p>
+	</div>
+
+	<div>
+		<ul class="no-bullets">
+			<li layout="row" class="spaced-row pad-down" ng-repeat="product in products track by $index">
+				<dropdown ng-model="products[$index]" data="allProducts" display="{text: 'name'}" clone change="setupAllUnits"></dropdown>
+				
+				<div class="issue-subvalue" ng-show="!product.limitless && booking._priority > 1">
+					<dropdown ng-model="product._unit" data="product._units" display="{text: 'unit_number', primary: 'unit_number'}" order-by="unit_number" placeholder="" short></dropdown>
+				</div>
+
+				<div class="issue-subvalue" ng-show="product.limitless"></div>
+
+				<btn type="danger" icon="times" ng-click="removeProduct(product, $index)" class="nudge-down"></btn>
+			</li>
+		</ul>
+
+		<btn type="info" icon="plus" ng-click="addProduct()">Add Item</btn>
+	</div>
+
 </div>

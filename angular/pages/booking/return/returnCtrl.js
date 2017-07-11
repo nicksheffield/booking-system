@@ -2,17 +2,14 @@ angular.module('app.controllers')
 
 .controller('returnCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate, $load) {
 	$scope.errors = []
-	$scope.booking = $store.get('bookings', $stateParams.id)
+	$scope.booking = $load.booking($stateParams.id)
 
 	window.$scope = $scope
 
-	if(!$scope.booking) {
-		$scope.booking = $load.booking($stateParams.id)
-	}
-
-	$scope.booking.$promise.then(p => {
-			p.products
-				.map((p) => {
+	$scope.booking.$promise.then(b => {
+			b.products
+				.map(p => {
+					console.log(p)
 					p.returned = !!p.pivot.returned_at
 					p.locked = !!p.pivot.returned_at
 				})
@@ -38,6 +35,10 @@ angular.module('app.controllers')
 		// console.log($scope.booking.products); return;
 		$scope.booking._req_type = 'return'
 
+		// console.log('close?')
+		// console.log($scope.booking)
+		// return
+
 		$http
 			.put('/api/booking/' + $scope.booking.id, $scope.booking)
 			.then(function(res) {
@@ -45,7 +46,6 @@ angular.module('app.controllers')
 					if(!booking) return
 					if(booking.id == res.id) $store.bookings[i] = res
 				})
-
 
 				$load.booking_count()
 

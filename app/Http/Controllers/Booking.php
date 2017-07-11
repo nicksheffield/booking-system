@@ -103,11 +103,9 @@ class Booking extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-
 		$model = Model::find($id);
 		
 		$model->fill($request->all());
-
 
 		# Issuing
 		if($request->_req_type == 'issue') {
@@ -124,20 +122,11 @@ class Booking extends Controller
 				$model->products()->attach($product['id'], $data);
 			}
 
-			// $model->products()
-			// 	->wherePivot('id', '=', $product['pivot']['id'])
-			// 	->updateExistingPivot($product['id'], [
-			// 		'unit_id' => $product['_unit']['id']
-			// 	]);
-
 		# Returning
 		} else if($request->_req_type == 'return') {
 
 			foreach($request->products as $product) {
 				$data = [];
-
-				// echo 2;
-				// dd($product);
 
 				if(isset($product['unit'])) {
 					$data['unit_id'] = $product['unit']['id'];
@@ -156,18 +145,28 @@ class Booking extends Controller
 					->updateExistingPivot($product['id'], $data);
 			}
 
-		# Editing
-		} else if($request->_req_type == 'edit') {
+		# Editing a booked booking
+		} else if($request->_req_type == 'edit_booked') {
 			$model->products()->detach();
 			
 			foreach($request->products as $product) {
-				for($i=0; $i<$product['quantity']; $i++) {
-					$model->products()->attach($product['id']);
+				$model->products()->attach($product['id']);
+			}
+
+		# Editing an issued booking
+		} else if($request->_req_type == 'edit_issued') {
+			$model->products()->detach();
+			
+			foreach($request->products as $product) {
+				$data = [];
+
+				if(isset($product['_unit'])) {
+					$data['unit_id'] = $product['_unit']['id'];
 				}
+
+				$model->products()->attach($product['id'], $data);
 			}
 		}
-
-		// dd($request->all);
 
 		$model->save();
 

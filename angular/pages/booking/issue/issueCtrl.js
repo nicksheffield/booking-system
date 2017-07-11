@@ -69,7 +69,7 @@ angular.module('app.controllers')
 
 			$scope.booking.products = $scope.products
 
-			$scope.booking._req_type = 'issue';
+			$scope.booking._req_type = 'issue'
 
 			$http
 				.put('/api/booking/' + $scope.booking.id, $scope.booking)

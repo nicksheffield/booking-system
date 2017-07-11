@@ -1,5 +1,15 @@
 <page-header text="Booking: {{ booking.pickup_at | date }}" breadcrumbs="user.admin">
-	<btn url="booking/{{ booking.id }}/return" icon="arrow-left" ng-show="booking._priority == 2">Return</btn>
+	<div class="btn-group" ng-show="booking._priority == 2 && user.admin">
+		<a href="booking/{{ booking.id }}/return" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-arrow-left"></i>Return</a>
+		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true"
+		 aria-expanded="false">
+			<span class="sr-only">Toggle Dropdown</span>
+		</button>
+		<div class="dropdown-menu dropdown-menu-right">
+			<a href="booking/{{ booking.id }}/edit" class="dropdown-item btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+			<span class="dropdown-item btn-icon" ng-click="delete()"><i class="fa fa-trash"></i>Delete</span>
+		</div>
+	</div>
 
 	<div class="btn-group" ng-show="booking._priority == 1 && user.admin">
 		<a href="booking/{{ booking.id }}/issue" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-arrow-right"></i>Issue</a>
