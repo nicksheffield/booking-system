@@ -122,16 +122,24 @@ angular.module('app.services')
 		
 		return product_types
 	}
+
+	service.unit = function (unit) {
+		if(unit.bookings) {
+			unit.bookings = unit.bookings.map(b => {
+				if(b.pivot.returned_at) b.pivot.returned_at = new Date(b.pivot.returned_at)
+				return b
+			})
+		}
+
+		Object.defineProperty(unit, 'product', {
+			enumerable,
+			configurable,
+			get: () => _.find($store.products, { id: unit.product_id })
+		})
+	}
 	
 	service.units = function(units) {
-		_.forEach(units, function(unit) {
-			
-			Object.defineProperty(unit, 'product', {
-				enumerable,
-				configurable,
-				get: () => _.find($store.products, {id: unit.product_id})
-			})
-		})
+		_.forEach(units, service.unit)
 		
 		return units
 	}

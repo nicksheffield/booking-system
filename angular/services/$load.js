@@ -69,14 +69,25 @@ angular.module('app.services')
 		
 		return resource
 	}
-	
-	service.units = function() {
+
+	service.units = function () {
 		var resource = Unit.query()
-		
+
 		resource.$promise
 			.then($prepare.units)
 			.then(service.notify('units'))
-		
+
+		return resource
+	}
+
+
+	service.unit = function(id, extra) {
+		var resource = Unit.get({id: id, 'with': extra.with ? extra.with : undefined})
+
+		resource.$promise
+			.then($prepare.unit)
+			.then(service.notify('unit'))
+
 		return resource
 	}
 

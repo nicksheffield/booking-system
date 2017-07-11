@@ -35,7 +35,10 @@
 		<table class="table data-table">
 			<tr>
 				<td class="row-property">User</td>
-				<td class="row-value">{{ booking.user.name }}</td>
+				<td class="row-value">
+					<a href="manage/user/{{ booking.user.id }}" ng-if="user.admin">{{ booking.user.name }}</a>
+					<span ng-if="!user.admin">{{ booking.user.name }}</span>
+				</td>
 			</tr>
 			<tr class="print-hide">
 				<td class="row-property">Status</td>
@@ -51,7 +54,10 @@
 			</tr>
 			<tr ng-show="booking.issued_by">
 				<td class="row-property">Issued By</td>
-				<td class="row-value">{{ booking.issued_by.name }}</td>
+				<td class="row-value">
+					<a href="manage/user/{{ booking.issued_by.id }}" ng-if="user.admin">{{ booking.issued_by.name }}</a>
+					<span ng-if="!user.admin">{{ booking.issued_by.name }}</span>
+				</td>
 			</tr>
 			<tr class="print-date-row" ng-if="booking.closed_at">
 				<td class="row-property">Closed</td>
@@ -59,7 +65,10 @@
 			</tr>
 			<tr ng-show="booking.closed_by">
 				<td class="row-property">Closed By</td>
-				<td class="row-value">{{ booking.closed_by.name }}</td>
+				<td class="row-value">
+					<a href="manage/user/{{ booking.closed_by.id }}" ng-if="user.admin">{{ booking.closed_by.name }}</a>
+					<span ng-if="!user.admin">{{ booking.closed_by.name }}</span>
+				</td>
 			</tr>
 		</table>
 		

@@ -1,7 +1,13 @@
 angular.module('app.controllers')
 
-.controller('unitViewCtrl', function($scope, $stateParams, $state, $store, $invalidate, $location, sweetAlert) {
-	$scope.unit = $store.get('units', $stateParams.id)
+.controller('unitViewCtrl', function($scope, $stateParams, $state, $store, $load, $prepare, $invalidate, $location, sweetAlert) {
+	window.$scope = $scope
+
+	$scope.unit = $load.unit($stateParams.id, {with: 'bookings'})
+
+	$scope.unit.$promise.then(u => {
+		u._bookings = $prepare.bookings(u.bookings)
+	})
 	
 	$scope.delete = function() {
 		sweetAlert.swal({

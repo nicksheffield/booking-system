@@ -35,4 +35,27 @@
 		</tr>
 	</table>
 
+	<section>
+		<h2>History</h2>
+
+		<table class="table data-table">
+			<tr>
+				<th>User</th>
+				<th>Issued</th>
+				<th>Returned</th>
+				<th>Notes</th>
+			</tr>
+			<tr ng-repeat="booking in unit._bookings | orderBy: '-taken_at'">
+				<td>
+					<a href="manage/user/{{ booking.user.id }}">{{ booking.user.name }}</a>
+				</td>
+				<td>
+					<a href="booking/{{ booking.id }}">{{ booking.taken_at | date }}</a>
+				</td>
+				<td>{{ booking.pivot.returned_at | date }}</td>
+				<td>{{ booking.pivot.notes }}</td>
+			</tr>
+		</table>
+	</section>
+
 </div>
