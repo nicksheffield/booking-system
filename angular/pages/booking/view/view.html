@@ -21,6 +21,8 @@
 			<span class="dropdown-item btn-icon" ng-click="delete()"><i class="fa fa-trash"></i>Delete</span>
 		</div>
 	</div>
+
+	<btn icon="trash" type="danger" ng-click="delete()" ng-show="(booking._priority > 2 && user.admin) || (user.id == booking.user.id && booking._priority == 1)">Delete</btn>
 </page-header>
 
 <div class="page-content" ratio="1">
