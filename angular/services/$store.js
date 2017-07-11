@@ -3,6 +3,7 @@ angular.module('app.services')
 .factory('$store', function(Booking) {
 	var service = {
 		user: {},
+		kits: [],
 		units: [],
 		users: [],
 		notes: [],

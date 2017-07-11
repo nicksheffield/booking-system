@@ -146,6 +146,15 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	*/
 	Route::resource('setting', 'Setting', ['except' => 'show']);
 
+	/**
+	*	Get all kits
+	*	Get one kit
+	*	Create a kit
+	*	Update kit
+	*	Delete kit
+	*/
+	Route::resource('kit', 'Kit', ['except' => 'show']);
+
 
 	/**
 	*	Exports

@@ -30,7 +30,8 @@ angular.module('app.services')
 				'units',
 				'notes',
 				'booking_count',
-				'settings'
+				'settings',
+				'kits'
 			])
 		} else {
 			// if not logged in, or logged in as student
@@ -39,7 +40,8 @@ angular.module('app.services')
 				'groups',
 				'products',
 				'units',
-				'settings'
+				'settings',
+				'kits'
 			])
 		}
 	}
@@ -112,6 +114,11 @@ angular.module('app.services')
 				case 'settings':
 					thing = $load.settings()
 					$store.settings = thing
+					invalid.push(thing.$promise);
+				break;
+				case 'kits':
+					thing = $load.kits()
+					$store.kits = thing
 					invalid.push(thing.$promise);
 				break;
 			}

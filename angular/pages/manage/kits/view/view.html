@@ -1,0 +1,35 @@
+<page-header text="{{ kit.name }}">
+	<div class="btn-group">
+		<a href="manage/kit/{{ type.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<span class="sr-only">Toggle Dropdown</span>
+		</button>
+		<div class="dropdown-menu dropdown-menu-right">
+			<span class="dropdown-item btn-icon" ng-click="delete()"><i class="fa fa-trash"></i>Delete</span>
+		</div>
+	</div>
+</page-header>
+
+<div class="page-content">
+	
+	<table class="table data-table">
+		<tr>
+			<td class="row-property">Name</td>
+			<td class="row-value">{{ kit.name }}</td>
+		</tr>
+		<tr>
+			<td class="row-property">
+				Products ({{ kit.products.length }})
+			</td>
+			<td class="row-value">
+				<ul>
+					<li ng-repeat="product in kit.products">
+						<a href="manage/product/{{ product.id }}">{{ product.name }}</a>
+						 <strong>x{{ product.pivot.quantity }}</strong>
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+
+</div>

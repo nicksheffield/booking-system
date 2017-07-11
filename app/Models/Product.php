@@ -30,4 +30,8 @@ class Product extends Model
 	public function bookings() {
 		return $this->belongsToMany('App\Models\Booking', 'booking_product')->withPivot('unit_id', 'notes');
 	}
+	
+	public function kits() {
+		return $this->belongsToMany('App\Models\Kit', 'kit_product')->withPivot('id', 'quantity');
+	}
 }

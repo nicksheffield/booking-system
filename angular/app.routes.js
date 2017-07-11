@@ -567,6 +567,53 @@ angular.module('app.routes')
 				title: 'Edit Unit'
 			}
 		},
+
+		// ------------------------------------------------------------
+		// Manage Units
+		// ------------------------------------------------------------
+		
+		'manage_kit': {
+			url: '/manage/kit',
+			templateUrl: 'pages/manage/kits/manage/manage.html',
+			controller: 'kitManageCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				title: 'All Kits'
+			}
+		},
+		
+		'new_kit': {
+			url: '/manage/kit/new?product',
+			templateUrl: 'pages/manage/kits/new/new.html',
+			controller: 'kitNewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_kit',
+				title: 'New Kit'
+			}
+		},
+		
+		'view_kit': {
+			url: '/manage/kit/:id',
+			templateUrl: 'pages/manage/kits/view/view.html',
+			controller: 'kitViewCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_kit',
+				title: 'View Kit'
+			}
+		},
+		
+		'edit_kit': {
+			url: '/manage/kit/:id/edit',
+			templateUrl: 'pages/manage/kits/edit/edit.html',
+			controller: 'kitEditCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'view_kit',
+				title: 'Edit Kit'
+			}
+		},
 	}
 	
 	for(var stateName in states) {

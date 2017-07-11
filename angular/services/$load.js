@@ -1,6 +1,6 @@
 angular.module('app.services')
 
-.factory('$load', function($prepare, $auth, $http, User, Group, Group_Type, Product_Type, Product, Unit, Booking, Note, Setting) {
+.factory('$load', function($prepare, $auth, $http, User, Group, Group_Type, Product_Type, Product, Unit, Booking, Note, Setting, Kit) {
 	var service = {}
 	var events = []
 	
@@ -134,6 +134,24 @@ angular.module('app.services')
 		
 		resource.$promise
 			.then(service.notify('settings'))
+		
+		return resource
+	}
+
+	service.kits = function() {
+		var resource = Kit.query()
+		
+		resource.$promise
+			.then(service.notify('kits'))
+		
+		return resource
+	}
+
+	service.kit = function(id) {
+		var resource = Kit.get({id, 'with': 'products'})
+		
+		resource.$promise
+			.then(service.notify('kit'))
 		
 		return resource
 	}

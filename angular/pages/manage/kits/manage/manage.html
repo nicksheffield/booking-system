@@ -1,0 +1,22 @@
+<page-header text="All Kits">
+	<btn icon="plus" url="manage/kit/new">New</btn>
+</page-header>
+
+<filter model="filter" filtered="filtered"></filter>
+
+<div class="page-content">
+
+	<a ng-repeat="kit in kits | filter: filter | page : page : 10 : 30 as filtered" href="manage/kit/{{ kit.id }}" class="list-item">
+		<div class="col" ratio="1">
+			<div class="title">Name</div>
+			<div class="content">{{ kit.name }}</div>
+		</div>
+		<div class="col" ratio="1">
+			<div class="title">No. of Products</div>
+			<div class="content">{{ kit.products.length }}</div>
+		</div>
+	</a>
+	
+	<pager current="page" limit="10" data="kits" filtered="filtered" filter="filter" ng-show="!filter && product_types.length >= 30"></pager>
+
+</div>

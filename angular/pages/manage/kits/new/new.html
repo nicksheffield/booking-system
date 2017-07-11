@@ -1,0 +1,35 @@
+<page-header text="New Kit" breadcrumbs="false">
+	<btn type="primary" icon="floppy-o" ng-click="save()">Save</btn>
+</page-header>
+
+<div class="page-content">
+
+	<div class="fake-table data-table">
+		<div class="tr">
+			<div class="td row-property center">Name</div>
+			<div class="td row-value">
+				<input type="text" class="form-control" ng-model="kit.name">
+			</div>
+		</div>
+
+
+		<div class="tr">
+			<div class="td row-property">Items</div>
+			<div class="td row-value">
+				<ul class="no-bullets">
+					<li layout="row" class="spaced-row pad-down" ng-repeat="product in selectedProducts">
+						<dropdown ng-model="selectedProducts[$index].product" data="products" hide="filterAdded" display="{text: 'name', subtext: product_type}"></dropdown>
+
+						<input type="number" class="form-control form-control-short" min="1" max="{{ max(product.product) }}" step="1" ng-model="selectedProducts[$index].quantity" ng-show="!product.product.limitless" />
+
+						<span class="product-quantity-na" ng-show="product.product.limitless">N/A</span>
+
+						<btn type="danger" icon="times" ng-click="removeProduct(product, $index)" class="nudge-down"></btn>
+					</li>
+				</ul>
+
+				<btn type="info" icon="plus" ng-click="addProduct()">Add Item</btn>
+			</div>
+		</div>
+	</div>
+</div>

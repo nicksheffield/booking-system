@@ -273,5 +273,28 @@ angular.module('app.services')
 		return notes
 	}
 
+	service.kit = function(kit) {
+		
+		Object.defineProperty(kit, '_products', {
+			get: function() {
+				var products = []
+
+				_.forEach(kit.products, function(product) {
+					products.push(_.find($store.products, {id: product.id}))
+				})
+
+				return products
+			}
+		})
+
+		return kit
+	}
+
+	service.kits = function(kits) {
+		_.forEach(kits, service.kit)
+
+		return kits
+	}
+
 	return service
 })
