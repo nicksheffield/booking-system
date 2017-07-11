@@ -136,6 +136,9 @@ class Booking extends Controller
 			foreach($request->products as $product) {
 				$data = [];
 
+				// echo 2;
+				// dd($product);
+
 				if(isset($product['unit'])) {
 					$data['unit_id'] = $product['unit']['id'];
 				}

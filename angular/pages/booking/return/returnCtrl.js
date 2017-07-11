@@ -35,6 +35,7 @@ angular.module('app.controllers')
 			if(product.returned) product.returned_at = new Date()
 		})
 
+		// console.log($scope.booking.products); return;
 		$scope.booking._req_type = 'return'
 
 		$http
