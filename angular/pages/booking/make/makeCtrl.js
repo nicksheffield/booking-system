@@ -165,17 +165,21 @@ angular.module('app.controllers')
 	
 	// if the current user doesn't have a group, give them all the products
 	} else {
-		$scope.products = $store.products
+		if($scope.user.admin) {
+			$scope.products = $store.products
 		
-		_.forEach($scope.products, function(product) {
-			product._max = product.units.length
-			
-			if($scope.booking.products && $scope.booking.products.length) {
-				var booking = _.find($scope.booking.products, (p) => p.id == product.id)
+			_.forEach($scope.products, function(product) {
+				product._max = product.units.length
 				
-				if(booking) product._quantity = booking.quantity
-			}
-		})
+				if($scope.booking.products && $scope.booking.products.length) {
+					var booking = _.find($scope.booking.products, (p) => p.id == product.id)
+					
+					if(booking) product._quantity = booking.quantity
+				}
+			})
+		} else {
+			$scope.products = []
+		}
 	}
 
 })
