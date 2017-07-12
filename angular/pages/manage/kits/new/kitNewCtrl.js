@@ -6,7 +6,7 @@ angular.module('app.controllers')
 	$scope.products = $store.products
 	$scope.kit = new Kit()
 
-	window.$scope = $scope
+	
 
 	$scope.product_type = (product) => product.type ? product.type.name : ''
 

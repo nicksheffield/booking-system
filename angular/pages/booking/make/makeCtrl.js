@@ -6,7 +6,7 @@ angular.module('app.controllers')
 	$scope.user = $store.user
 	$scope.booking = $store.booking
 
-	window.$scope = $scope
+	
 
 	if($store.booking && $store.booking.products && $store.booking.products.length) {
 		$scope.selectedProducts = []

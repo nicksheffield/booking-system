@@ -8,7 +8,7 @@ angular.module('app.controllers')
 		{ level: 2, text: 'Manager'},
 	]
 
-	window.$scope = $scope
+	
 
 	$scope.errors = []
 

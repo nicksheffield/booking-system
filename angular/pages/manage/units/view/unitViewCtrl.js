@@ -1,7 +1,7 @@
 angular.module('app.controllers')
 
 .controller('unitViewCtrl', function($scope, $stateParams, $state, $store, $load, $prepare, $invalidate, $location, sweetAlert) {
-	window.$scope = $scope
+	
 
 	$scope.unit = $load.unit($stateParams.id, {with: 'bookings'})
 

@@ -1,7 +1,7 @@
 angular.module('app.controllers')
 
 .controller('editBookingCtrl', function ($scope, $stateParams, $store, $location, $http, $invalidate, $load, $prepare, $timeout, sweetAlert) {
-	window.$scope = $scope
+	
 
 	$scope.booking = $load.booking($stateParams.id)
 	$scope.allProducts = $store.products

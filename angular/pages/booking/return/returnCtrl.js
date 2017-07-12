@@ -4,7 +4,7 @@ angular.module('app.controllers')
 	$scope.errors = []
 	$scope.booking = $load.booking($stateParams.id)
 
-	window.$scope = $scope
+	
 
 	$scope.booking.$promise.then(b => {
 			b.products
