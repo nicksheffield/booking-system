@@ -345,6 +345,17 @@ angular.module('app.routes')
 				title: 'Edit Class Type'
 			}
 		},
+
+		'allow_products_for_class_type': {
+			url: '/manage/class-type/:id/products',
+			templateUrl: 'pages/manage/class-types/allowed_products/allowed_products.html',
+			controller: 'classTypeProductCtrl',
+			data: {
+				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'view_class_type',
+				title: 'Allow Products'
+			}
+		},
 		
 		// ------------------------------------------------------------
 		// Manage Classes
@@ -390,17 +401,6 @@ angular.module('app.routes')
 				conditions: ['auth', 'manager_only'],
 				crumb_parent: 'view_class',
 				title: 'Edit Class'
-			}
-		},
-		
-		'allow_products_for_class': {
-			url: '/manage/class/:id/allowed_products',
-			templateUrl: 'pages/manage/classes/allowed_products/allowed_products.html',
-			controller: 'classProductCtrl',
-			data: {
-				conditions: ['auth', 'manager_only'],
-				crumb_parent: 'view_class',
-				title: 'Allow Product'
 			}
 		},
 		

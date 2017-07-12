@@ -26,4 +26,4 @@ angular.module('app', [
 	'app.auth'
 ])
 
-console.log('version:', 0.4)
+console.log('version:', 0.5)

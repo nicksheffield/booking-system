@@ -8,17 +8,6 @@ angular.module('app.controllers')
 	$scope.kits = $store.kits
 
 	window.$scope = $scope
-
-	if($store.booking && $store.booking.products && $store.booking.products.length) {
-		$scope.selectedProducts = []
-
-		$store.booking.products.forEach(function(p) {
-			$scope.selectedProducts.push({
-				product: $store.get('products', p.id),
-				quantity: p.quantity
-			})
-		})
-	}
 	
 	if($store.user.admin) {
 		$scope.users = $store.users
@@ -105,7 +94,7 @@ angular.module('app.controllers')
 			})
 		} else {
 			kit._products.forEach((p, i) => {
-				// check if product belongs to group
+				// TODO: check if product belongs to group
 				$scope.importProduct(p, kit.products[i].pivot.quantity)
 			})
 		}
@@ -158,8 +147,9 @@ angular.module('app.controllers')
 	if($store.user.group_id) {
 		$scope.group = $store.get('groups', $store.user.group_id)
 
-		if($scope.group) {
-			$scope.products = $scope.group.allowed_products
+		// if the group exists, and has a type, then get all the products from the type
+		if($scope.group && $scope.group.type) {
+			$scope.products = $scope.group.type.products
 
 			_.forEach($scope.products, function(product) {
 				console.log('product', product)
@@ -167,8 +157,9 @@ angular.module('app.controllers')
 			})
 		}
 	
-	// if the current user doesn't have a group, give them all the products
+	// if the current user doesn't have a group, check if they are an admin
 	} else {
+		// if they are one, then give them all the products
 		if($scope.user.admin) {
 			$scope.products = $store.products
 		
@@ -184,6 +175,18 @@ angular.module('app.controllers')
 		} else {
 			$scope.products = []
 		}
+	}
+
+	if($store.booking && $store.booking.products && $store.booking.products.length) {
+		$scope.selectedProducts = []
+
+		$store.booking.products.forEach(function(p) {
+			$scope.selectedProducts.push({
+				// product: $store.get('products', p.id),
+				product: $scope.products.find(prod => p.id == prod.id),
+				quantity: p.quantity
+			})
+		})
 	}
 
 })

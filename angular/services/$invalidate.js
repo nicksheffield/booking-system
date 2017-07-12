@@ -38,6 +38,7 @@ angular.module('app.services')
 			service.add([
 				'user',
 				'groups',
+				'group_types',
 				'products',
 				'units',
 				'settings',

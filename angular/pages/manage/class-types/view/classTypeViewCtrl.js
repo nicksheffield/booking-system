@@ -3,7 +3,7 @@ angular.module('app.controllers')
 .controller('classTypeViewCtrl', function($scope, $stateParams, $store, $location, $invalidate, sweetAlert) {
 	$scope.type = $store.get('group_types', $stateParams.id)
 	
-	window.scope = $scope
+	window.$scope = $scope
 	
 	$scope.delete = function() {
 		sweetAlert.swal({

@@ -23,8 +23,8 @@ class Product extends Model
 		return $this->belongsTo('App\Models\Product_Type', 'product_type_id');
 	}
 	
-	public function groups_allowed() {
-		return $this->belongsToMany('App\Models\Group', 'permissions')->withPivot('quantity', 'days_allowed');
+	public function group_types() {
+		return $this->belongsToMany('App\Models\Group_Type', 'group_type_product', 'product_id', 'group_type_id')->withPivot('quantity', 'days_allowed');
 	}
 	
 	public function bookings() {

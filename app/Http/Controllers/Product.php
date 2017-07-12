@@ -159,7 +159,7 @@ class Product extends Controller
 			// if this user is in a group
 			if(Auth::user()->group) {
 				// then check every allowed product for the group
-				foreach(Auth::user()->group->allowed_products as $product) {
+				foreach(Auth::user()->group->type->products as $product) {
 					// if any of them match the product the user is trying to book...
 					// echo $product->id.'/'.$thisProduct->id.'/'.($product->id == $thisProduct->id ? 'true' : 'false')."\n";
 					if($product->id == $thisProduct->id) {

@@ -25,7 +25,7 @@ angular.module('app.services')
 	}
 	
 	service.group_types = function() {
-		var resource = Group_Type.query()
+		var resource = Group_Type.query({with: 'products'})
 		
 		resource.$promise
 			.then($prepare.group_types)
@@ -33,12 +33,22 @@ angular.module('app.services')
 		
 		return resource
 	}
+
+	service.group_type = function(id) {
+		var resource = Group_Type.get({id, with: 'products'})
+		
+		resource.$promise
+			.then($prepare.group_type)
+			.then(service.notify('group_type'))
+		
+		return resource
+	}
 	
 	service.group = function(id) {
-		var query = {'with': 'allowed_products.type'}
+		var query = {'with': 'type'}
 		
 		if($auth.getPayload() && $auth.getPayload().admin) {
-			query.with = 'allowed_products|tutors'
+			query.with = 'tutors'
 		}
 
 		query.id = id
@@ -53,10 +63,10 @@ angular.module('app.services')
 	}
 
 	service.groups = function() {
-		var query = {'with': 'allowed_products.type'}
+		var query = {'with': 'type'}
 		
 		if($auth.getPayload() && $auth.getPayload().admin) {
-			query.with = 'allowed_products|tutors'
+			query.with = 'tutors'
 		}
 		
 		var resource = Group.query(query)
@@ -79,7 +89,7 @@ angular.module('app.services')
 	}
 	
 	service.products = function() {
-		var resource = Product.query({'with': 'groups_allowed|kits'})
+		var resource = Product.query({'with': 'group_types|kits'})
 		
 		resource.$promise
 			.then($prepare.products)

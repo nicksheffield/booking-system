@@ -111,28 +111,4 @@ class Group extends Controller
 
 		return $model;
 	}
-
-
-	/**
-	 * Allow a product for a group.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function allowed_products(Request $request, $group_id) {
-		$model = Model::find($group_id);
-
-		// dd($request->all());
-
-		$model->allowed_products()->detach();
-
-		foreach($request->all() as $item) {
-			$model->allowed_products()->attach($item['product']['id'], [
-				'quantity' => isset($item['quantity']) ? $item['quantity'] : 1,
-				'days_allowed' => isset($item['days_allowed']) ? $item['days_allowed'] : 1
-			]);
-		}
-
-		return $model;
-	}
 }

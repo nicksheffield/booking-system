@@ -57,7 +57,7 @@
 					<li layout="row" class="spaced-row pad-down" ng-repeat="product in selectedProducts">
 						<dropdown ng-model="selectedProducts[$index].product" data="products" hide="filterAdded" display="{text: 'name', subtext: product_type}"></dropdown>
 
-						<input type="number" class="form-control form-control-short" min="1" max="{{ max(product.product) }}" step="1" ng-model="selectedProducts[$index].quantity" ng-show="!product.product.limitless" />
+						<input type="number" class="form-control form-control-short" min="1" max="{{ product.product._max }}" step="1" ng-model="selectedProducts[$index].quantity" ng-show="!product.product.limitless" />
 
 						<span class="product-quantity-na" ng-show="product.product.limitless">N/A</span>
 
@@ -67,7 +67,7 @@
 
 				<div class="button-row">
 					<btn type="info" icon="plus" ng-click="addProduct()">Add Item</btn>
-					<btn type="info" icon="plus" ng-click="addKit()">Add Kit</btn>
+					<btn type="info" icon="plus" ng-click="addKit()" disable="!user.admin">Add Kit</btn>
 				</div>
 			</div>
 		</div>

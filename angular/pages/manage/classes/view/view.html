@@ -5,7 +5,6 @@
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
 		<div class="dropdown-menu dropdown-menu-right">
-			<a href="manage/class/{{ group.id }}/allowed_products" class="dropdown-item btn-icon"><i class="fa fa-camera"></i>Allowed Products</a>
 			<span class="dropdown-item btn-icon" ng-click="delete()"><i class="fa fa-trash"></i>Delete</span>
 		</div>
 	</div>
@@ -50,23 +49,6 @@
 				<alert type="info" text="No students in this class" icon="exclamation-circle" ng-if="!group.users.length">
 					<btn url="manage/user/new?class={{ group.code }}" small icon="plus">Create one</btn>
 				</alert>
-			</td>
-		</tr>
-		<tr>
-			<td class="row-property">
-				Allowed Prods ({{ group.allowed_products.length }})<br>
-				<a href="manage/class/{{ group.id }}/allowed_products" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-			</td>
-			<td class="row-value">
-				<div ng-show="group.allowed_products.length" layout="row" align="start" justify="between">
-					<ul>
-						<li ng-repeat="product in group.allowed_products">
-							<a href="manage/product/{{ product.id }}">{{ product.name }}</a>
-						</li>
-					</ul>
-				</div>
-				
-				<alert type="info" text="This class is not allowed to book anything" icon="exclamation-circle" ng-if="!group.allowed_products.length"></alert>
 			</td>
 		</tr>
 	</table>
