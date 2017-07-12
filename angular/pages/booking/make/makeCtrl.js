@@ -1,12 +1,13 @@
 angular.module('app.controllers')
 
-.controller('makeCtrl', function($scope, $store, $location) {
+.controller('makeCtrl', function($scope, $store, $location, sweetAlert) {
 
 	$scope.selectedProducts = [{ quantity: 1 }]
 	$scope.user = $store.user
 	$scope.booking = $store.booking
+	$scope.kits = $store.kits
 
-	
+	window.$scope = $scope
 
 	if($store.booking && $store.booking.products && $store.booking.products.length) {
 		$scope.selectedProducts = []
@@ -70,6 +71,48 @@ angular.module('app.controllers')
 		if(!$scope.selectedProducts.length) {
 			$scope.addProduct()
 		}
+	}
+
+	$scope.trimProducts = function() {
+		$scope.selectedProducts = $scope.selectedProducts.filter(p => !!p.product)
+	}
+
+	$scope.addKit = function() {
+
+		const kitsList = {}
+
+		$scope.kits.forEach(k => {
+			kitsList[k.id] = k.name
+		})
+
+		sweetAlert.swal({
+			title: 'Which kit?',
+			showCancelButton: true,
+			input: 'select',
+			inputOptions: kitsList,
+			inputPlaceholder: 'Please select a kit'
+		})
+		.then(function(kit) {
+			$scope.$apply(function() {
+				$scope.importKit($scope.kits.find(k => k.id === parseInt(kit)))
+			})
+		})
+	}
+
+	$scope.importKit = function(kit) {
+		if($scope.user.admin) {
+			kit._products.forEach((p, i) => {
+				$scope.importProduct(p, kit.products[i].pivot.quantity)
+			})
+		}
+
+		$scope.trimProducts()
+	}
+
+	$scope.importProduct = function(product, quantity) {
+		$scope.selectedProducts.push({
+			quantity, product
+		})
 	}
 	
 	$scope.book = function() {

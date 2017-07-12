@@ -142,6 +142,7 @@ angular.module('app.services')
 		var resource = Kit.query()
 		
 		resource.$promise
+			.then($prepare.kits)
 			.then(service.notify('kits'))
 		
 		return resource
@@ -151,6 +152,7 @@ angular.module('app.services')
 		var resource = Kit.get({id, 'with': 'products'})
 		
 		resource.$promise
+			.then($prepare.kit)
 			.then(service.notify('kit'))
 		
 		return resource

@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('viewBookingCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate, Booking, $prepare, $merge) {
+.controller('viewBookingCtrl', function($scope, $stateParams, $store, $location, $http, $invalidate, Booking, $prepare, $merge, sweetalert) {
 	$scope.user = $store.user
 	$scope.errors = []
 
