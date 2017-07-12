@@ -62,22 +62,24 @@ angular.module('app.services')
 		return user
 	}
 
-	service.groups = function(groups) {
-		_.forEach(groups, function(group) {
-			
-			Object.defineProperty(group, 'type', {
-				enumerable,
-				configurable,
-				get: () => _.find($store.group_types, {id: group.group_type_id})
-			})
-			
-			Object.defineProperty(group, 'users', {
-				get: () => _.filter($store.users, {group_id: group.id})
-			})
-			
-			group._isTutor = (id) => !!_.find(group.tutors, {id: $store.user.id})
-			
+	service.group = function(group) {
+		group._isTutor = (id) => !!_.find(group.tutors, {id: $store.user.id})
+
+		Object.defineProperty(group, 'type', {
+			enumerable,
+			configurable,
+			get: () => _.find($store.group_types, {id: group.group_type_id})
 		})
+		
+		Object.defineProperty(group, 'users', {
+			get: () => _.filter($store.users, {group_id: group.id})
+		})
+
+		return group
+	}
+
+	service.groups = function(groups) {
+		_.forEach(groups, service.group)
 		
 		return groups
 	}

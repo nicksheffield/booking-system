@@ -1,36 +1,34 @@
 <page-header text="{{ group.code }}">
-	<div>
-		<btn type="info" icon="floppy-o" ng-show="saved === undefined">Autosave on</btn>
-		<btn type="info" icon="cog" ng-show="!saved && saved !== undefined" spinning>Saving</btn>
-		<btn type="success" icon="check" ng-show="saved">Saved</btn>
-	</div>
+	<btn type="primary" icon="floppy-o" ng-click="save()">Save</btn>
 </page-header>
 
-<filter model="filter" filtered="filtered"></filter>
-
 <div class="page-content">
-	
-	<table class="table table-hover table-striped middle-table" ng-hide="!filtered.length">
-		<thead>
-			<tr>
-				<th class="table-col-checkbox"></th>
-				<th class="table-col-code">Name</th>
-				<th class="table-col-code">Type</th>
-				<th class="table-col-code">Units</th>
-				<th class="table-col-short-input">Quantity</th>
-				<th class="table-col-short-input">Days</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="product in products | filter: filter as filtered">
-				<td><input type="checkbox" ng-model="product._allowed" ng-change="allow(product)"></td>
-				<td><a href="manage/product/{{ product.id }}">{{ product.name }}</a></td>
-				<td><a href="manage/product_type/{{ product.type.id }}">{{ product.type.name }}</a></td>
-				<td>{{ product.units.length }}</td>
-				<td><input type="number" ng-model="product._quantity" ng-change="update(product)" max="{{ product.units.length }}" min="1" class="form-control form-control-sm"></td>
-				<td><input type="number" ng-model="product._days_allowed" ng-change="update(product)" min="1" class="form-control form-control-sm"></td>
-			</tr>
-		</tbody>
+	<table class="table data-table">
+		<tr>
+			<th>Product</th>
+			<th>Quantity</th>
+			<th>Days</th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="product in selectedProducts">
+			<td class="table-col-widest">
+				<dropdown ng-model="selectedProducts[$index].product" data="products" hide="filterAdded" display="{text: 'name', subtext: product_type}"></dropdown>
+			</td>
+			<td>
+				<input type="number" class="form-control form-control-short" min="1" max="{{ max(product.product) }}" step="1" ng-model="selectedProducts[$index].quantity" ng-show="!product.product.limitless" />
+				<span class="product-quantity-na" ng-show="product.product.limitless">N/A</span>
+			</td>
+			<td>
+				<input type="number" class="form-control form-control-short" min="1" step="1" ng-model="selectedProducts[$index].days_allowed" />
+			</td>
+			<td>
+				<btn type="danger" icon="times" ng-click="removeProduct(product, $index)" class="nudge-down"></btn>
+			</td>
+		</tr>
+			
 	</table>
-
+	<div class="button-row">
+		<btn type="info" icon="plus" ng-click="addProduct()">Add Item</btn>
+		<btn type="info" icon="plus" ng-click="addKit()">Add Kit</btn>
+	</div>
 </div>

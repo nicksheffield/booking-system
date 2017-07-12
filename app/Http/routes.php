@@ -94,21 +94,27 @@ Route::group(['prefix' => '/api', 'middleware' => 'jwt.auth'], function() {
 	*	Delete product
 	*/
 	Route::resource('product', 'Product');
+
+
+	/**
+	*	Set allowed products for a group
+	*/
+	Route::post('/group/{group_id}/products', 'Group@allowed_products');
 	
 	/**
 	*	Give permission for a product to a group
 	*/
-	Route::post('/product/{product_id}/allow/{group_id}', 'Product@allow_product');
+	// Route::post('/product/{product_id}/allow/{group_id}', 'Product@allow_product');
 	
 	/**
 	*	Revoke permission for a product to a group
 	*/
-	Route::post('/product/{product_id}/disallow/{group_id}', 'Product@disallow_product');
+	// Route::post('/product/{product_id}/disallow/{group_id}', 'Product@disallow_product');
 	
 	/**
 	*	Update permission for a product for a group
 	*/
-	Route::put('/product/{product_id}/allow/{group_id}', 'Product@update_allow_product');
+	// Route::put('/product/{product_id}/allow/{group_id}', 'Product@update_allow_product');
 	
 	/**
 	*	Check if a product is available to be booked

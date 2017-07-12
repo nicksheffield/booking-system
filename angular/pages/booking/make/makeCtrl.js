@@ -78,7 +78,6 @@ angular.module('app.controllers')
 	}
 
 	$scope.addKit = function() {
-
 		const kitsList = {}
 
 		$scope.kits.forEach(k => {
@@ -102,6 +101,11 @@ angular.module('app.controllers')
 	$scope.importKit = function(kit) {
 		if($scope.user.admin) {
 			kit._products.forEach((p, i) => {
+				$scope.importProduct(p, kit.products[i].pivot.quantity)
+			})
+		} else {
+			kit._products.forEach((p, i) => {
+				// check if product belongs to group
 				$scope.importProduct(p, kit.products[i].pivot.quantity)
 			})
 		}

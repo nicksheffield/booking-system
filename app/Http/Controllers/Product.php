@@ -96,50 +96,6 @@ class Product extends Controller
 
 		return $model;
 	}
-	
-	
-	
-	public function allow_product(Request $request, $product_id, $group_id) {
-		$model = Model::find($product_id);
-		
-		$success = $model->groups_allowed()->attach($group_id, [
-			'quantity' => $request->quantity ?: 1,
-			'days_allowed' => $request->days_allowed
-		]);
-		
-		return [
-			'message' => 'success'
-		];
-	}
-	
-	
-	
-	public function disallow_product(Request $request, $product_id, $group_id) {
-		$model = Model::find($product_id);
-		
-		$success = $model->groups_allowed()->detach($group_id);
-		
-		return [
-			'message' => 'success'
-		];
-	}
-	
-	
-	
-	public function update_allow_product(Request $request, $product_id, $group_id) {
-		$model = Model::find($product_id);
-		
-		$success = $model->groups_allowed()->updateExistingPivot($group_id, [
-			'quantity' => $request->quantity,
-			'days_allowed' => $request->days_allowed
-		]);
-		
-		return [
-			'message' => 'success'
-		];
-	}
-
-
 
 	public function check_availability(Request $request, $product_id) {
 		function checkAvailable($bookings, $product, $product_id, $request) {

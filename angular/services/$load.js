@@ -34,6 +34,24 @@ angular.module('app.services')
 		return resource
 	}
 	
+	service.group = function(id) {
+		var query = {'with': 'allowed_products.type'}
+		
+		if($auth.getPayload() && $auth.getPayload().admin) {
+			query.with = 'allowed_products|tutors'
+		}
+
+		query.id = id
+		
+		var resource = Group.get(query)
+		
+		resource.$promise
+			.then($prepare.group)
+			.then(service.notify('group'))
+		
+		return resource
+	}
+
 	service.groups = function() {
 		var query = {'with': 'allowed_products.type'}
 		
