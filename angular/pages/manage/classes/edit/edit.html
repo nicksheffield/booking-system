@@ -25,7 +25,7 @@
 				<div class="td row-value">
 					<ul class="no-bullets">
 						<li layout="row" class="spaced-row pad-down" ng-repeat="tutor in tutors">
-							<dropdown ng-model="tutors[$index]" data="staff" display="{text: 'name'}" nullable></dropdown>
+							<dropdown ng-model="tutors[$index]" data="staff" display="{text: 'name'}"></dropdown>
 							<btn type="danger" icon="times" ng-click="removeTutor($index)"></btn>
 						</li>
 					</ul>

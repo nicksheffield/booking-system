@@ -64,6 +64,10 @@ angular.module('app.controllers')
 
 	$scope.trimProducts = function() {
 		$scope.selectedProducts = $scope.selectedProducts.filter(p => !!p.product)
+
+		if(!$scope.selectedProducts.length) {
+			$scope.selectedProducts.push({ quantity: 1 })
+		}
 	}
 
 	$scope.addKit = function() {
@@ -75,6 +79,7 @@ angular.module('app.controllers')
 
 		sweetAlert.swal({
 			title: 'Which kit?',
+			text: 'Any products in a kit that you aren\'t allowed will be ignored',
 			showCancelButton: true,
 			input: 'select',
 			inputOptions: kitsList,
@@ -94,8 +99,15 @@ angular.module('app.controllers')
 			})
 		} else {
 			kit._products.forEach((p, i) => {
-				// TODO: check if product belongs to group
-				$scope.importProduct(p, kit.products[i].pivot.quantity)
+				if($scope.user.group && $scope.user.group.type) {
+					var found = $scope.user.group.type.products.find(prod => p.id == prod.id)
+					
+					var alreadyAdded = $scope.selectedProducts.find(sp => sp.product ? sp.product.id == p.id : false)
+
+					if(found && !alreadyAdded) {
+						$scope.importProduct(p, kit.products[i].pivot.quantity)
+					}
+				}
 			})
 		}
 
@@ -104,7 +116,7 @@ angular.module('app.controllers')
 
 	$scope.importProduct = function(product, quantity) {
 		$scope.selectedProducts.push({
-			quantity, product
+			quantity, product: $scope.products.find(p => p.id == product.id)
 		})
 	}
 	

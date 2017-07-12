@@ -151,8 +151,6 @@ class Product extends Controller
 				}
 			}
 
-			// dd($thisProduct->id);
-
 			// now that we have a list of all booked products, and how many..
 			// then lets check if each one is under or at the limit allowed by this users group
 
