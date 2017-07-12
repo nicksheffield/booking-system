@@ -71,7 +71,7 @@ angular.module('app.routes')
 		},
 		
 		'reset_password': {
-			url: '/reset_password',
+			url: '/reset-password',
 			templateUrl: 'pages/misc/reset/reset.html',
 			controller: 'resetCtrl',
 			data: {
@@ -89,7 +89,7 @@ angular.module('app.routes')
 			templateUrl: 'pages/misc/site-settings/site-settings.html',
 			controller: 'siteSettingsCtrl',
 			data: {
-				conditions: ['manager_only'],
+				conditions: ['auth', 'manager_only'],
 				title: 'Site Settings'
 			}
 		},

@@ -19,7 +19,17 @@ angular.module('app.controllers')
 	}
 })
 
-.controller('idleCtrl', function($scope, $location, $http, $store, $auth, Idle) {
+.controller('idleCtrl', function($scope, $location, $state, $http, $store, $auth, Idle) {
+
+	window.$state = $state
+
+	setInterval(function() {
+		if(!$state.$current.self.data) return
+		if(!$auth.isAuthenticated() && $state.$current.self.data.conditions.indexOf('auth') !== -1) {
+			$location.path('login')
+		}
+	}, 1000)
+
 	$scope.$on('IdleStart', function() {
 		// the user appears to have gone idle
 		// console.log('IdleStart')
