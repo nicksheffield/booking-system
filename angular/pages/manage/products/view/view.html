@@ -26,6 +26,34 @@
 			<td class="row-value">{{ product.limitless ? 'Yes' : 'No' }}</td>
 		</tr>
 		<tr>
+			<td class="row-property">Classes ({{ product.groups_allowed.length }})</td>
+			<td class="row-value">
+				<div layout="row" align="start" justify="between" ng-show="product.groups_allowed.length">
+					<ul>
+						<li ng-repeat="group in product.groups_allowed">
+							<a href="manage/class/{{ group.id }}">{{ group.code }}</a>
+						</li>
+					</ul>
+				</div>
+				
+				<alert type="info" text="No classes are allowed to book this product. Edit a class to allow this product." icon="exclamation-circle" ng-if="!product.groups_allowed.length"></alert>
+			</td>
+		</tr>
+		<tr>
+			<td class="row-property">
+				Kits ({{ product.kits.length }})
+			</td>
+			<td class="row-value">
+				<ul>
+					<li ng-repeat="kit in product.kits track by $index">
+						<a href="manage/kit/{{ kit.id }}">{{kit.name }}</a>
+					</li>
+				</ul>
+				
+				<alert type="info" text="No kits for this product" icon="exclamation-circle" ng-if="!product.kits.length"></alert>
+			</td>
+		</tr>
+		<tr ng-show="!product.limitless">
 			<td class="row-property">
 				Units ({{ product.units.length }})<br>
 				<a href="manage/unit/new?product={{ product.id }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
@@ -40,20 +68,6 @@
 				<alert type="info" text="No units for this product" icon="exclamation-circle" ng-if="!product.units.length">
 					<btn url="manage/unit/new?product={{ product.id }}" small icon="plus">Create one</btn>
 				</alert>
-			</td>
-		</tr>
-		<tr>
-			<td class="row-property">Classes ({{ product.groups_allowed.length }})</td>
-			<td class="row-value">
-				<div layout="row" align="start" justify="between" ng-show="product.groups_allowed.length">
-					<ul>
-						<li ng-repeat="group in product.groups_allowed">
-							<a href="manage/class/{{ group.id }}">{{ group.code }}</a>
-						</li>
-					</ul>
-				</div>
-				
-				<alert type="info" text="No classes are allowed to book this product. Edit a class to allow this product." icon="exclamation-circle" ng-if="!product.groups_allowed.length"></alert>
 			</td>
 		</tr>
 	</table>

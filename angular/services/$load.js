@@ -61,7 +61,7 @@ angular.module('app.services')
 	}
 	
 	service.products = function() {
-		var resource = Product.query({'with': 'groups_allowed'})
+		var resource = Product.query({'with': 'groups_allowed|kits'})
 		
 		resource.$promise
 			.then($prepare.products)
