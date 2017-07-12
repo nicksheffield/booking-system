@@ -19,7 +19,7 @@ class Kit extends Controller
 
 
 	public function show(Request $request, $id) {
-		$q = Model::query()->where('id', $id)->with('products');
+		$q = Model::query()->where('id', $id)->with('products')->first();
 
 		return $q;
 	}
@@ -54,21 +54,23 @@ class Kit extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Model $model, Request $request)
+	public function update(Request $request, $id)
 	{
+		$model = Model::find($id);
+
 		$model->fill($request->all());
+
+		$model->save();
 
 		$model->products()->detach();
 
-		foreach($request->products as $product) {
+		foreach($request->items as $item) {
 			$data = [
-				'quantity' => ($product->quantity ? $product->quantity : 1)
+				'quantity' => ($item['quantity'] ? $item['quantity'] : 1)
 			];
 
-			$model->products()->attach($product->id, $data);
+			$model->products()->attach($item['product']['id'], $data);
 		}
-
-		$model->save();
 
 		return $model;
 	}
