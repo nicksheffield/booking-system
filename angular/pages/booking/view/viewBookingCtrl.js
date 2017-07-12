@@ -23,14 +23,17 @@ angular.module('app.controllers')
 
 
 	$scope.delete = function() {
-		var confirmed = confirm('Are you sure you want to delete this?')
-		
-		if(confirmed) {
+		sweetAlert.swal({
+			text: 'Are you sure you want to delete this?',
+			showCancelButton: true,
+			type: 'warning'
+		})
+		.then(function() {
 			$http.delete('/api/booking/' + $scope.booking.id).then(function() {
 				$invalidate.add('booking_count')
 				$location.path('/bookings')
 			})
-		}
+		})
 	}
 	
 })
