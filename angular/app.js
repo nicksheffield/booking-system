@@ -10,6 +10,7 @@ angular.module('app.auth', [])
 angular.module('app', [
 	'ngResource',
 	'ngSanitize',
+	'ngIdle',
 	'ui.router',
 	'ui.tinymce',
 	'satellizer',
@@ -25,4 +26,4 @@ angular.module('app', [
 	'app.auth'
 ])
 
-console.log('version:', 0.3)
+console.log('version:', 0.4)

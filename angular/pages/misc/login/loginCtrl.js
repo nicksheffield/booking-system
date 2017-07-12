@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('loginCtrl', function($scope, $auth, $store, $state, $location, $invalidate, $load, User) {
+.controller('loginCtrl', function($scope, $auth, $store, $state, $location, $invalidate, $load, User, Idle) {
 	$scope.$watch('email', reset)
 	$scope.$watch('password', reset)
 	
@@ -26,6 +26,8 @@ angular.module('app.controllers')
 				$load.trigger('user', $store.user)
 				
 				$invalidate.all()
+
+				Idle.watch()
 
 				$location.path('/home')
 			})

@@ -132,6 +132,7 @@ gulp.task('libs', function() {
 		'public/components/ngSweetAlert2/SweetAlert.js',
 		'public/components/tinymce/tinymce.js',
 		'public/components/angular-ui-tinymce/dist/tinymce.min.js',
+		'public/components/ng-idle/angular-idle.js',
 		'public/3rdparty/tether.min.js',
 		'public/3rdparty/bootstrap.min.js'
 	]

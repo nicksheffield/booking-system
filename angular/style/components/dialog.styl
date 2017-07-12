@@ -1,0 +1,30 @@
+.dialog
+	position absolute
+	top 0
+	left 0
+	width 100vw
+	height 100vh
+	background color-dialog-backdrop
+	display flex
+	align-items center
+	justify-content center
+
+	.content
+		background color-dialog-content-bg
+		color color-dialog-text
+		border-radius border-rad
+		padding 1em
+		text-align center
+		min-width 500px
+
+	.progress-bar
+		width 100%
+		border-radius border-rad
+		border 1px solid #eee
+		overflow hidden
+
+		.progress-bar-bar
+			height 20px
+			background color-primary
+
+			transition width 0.2s linear

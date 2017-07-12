@@ -62,7 +62,6 @@ angular.module('app.routes')
 			url: '/logout',
 			controller: ['$auth', '$location', '$store', '$http', function($auth, $location, $store, $http) {
 				$auth.logout().then(function() {
-					console.log('$http', $http)
 					$store.user = {}
 					$store.resetBooking()
 					$http.get('/api/logout')
