@@ -10,6 +10,7 @@ angular.module('app.controllers')
 	IdleProvider.timeout(idleTimeout)
 	KeepaliveProvider.interval(2) // in seconds (2 seconds)
 })
+
 .run(function($auth, Idle){
 	// start watching when the app runs. also starts the Keepalive service by default.
 

@@ -1,11 +1,12 @@
 <page-header text="{{ group.code }}">
 	<div class="btn-group">
-		<a href="manage/class/{{ group.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+		<a href="manage/class/{{ group.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil fa-fw"></i>Edit</a>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
 		<div class="dropdown-menu dropdown-menu-right">
-			<span class="dropdown-item btn-icon" ng-click="delete()"><i class="fa fa-trash"></i>Delete</span>
+			<span class="dropdown-item btn-icon" ng-click="retire()"><i class="fa fa-user-times fa-fw"></i>Retire Group</span>
+			<span class="dropdown-item btn-icon" ng-click="delete()"><i class="fa fa-trash fa-fw"></i>Delete</span>
 		</div>
 	</div>
 </page-header>

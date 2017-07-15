@@ -4,8 +4,6 @@ angular.module('app.controllers')
 	$scope.errors = []
 	$scope.booking = $load.booking($stateParams.id)
 
-	
-
 	$scope.booking.$promise.then(b => {
 			b.products
 				.map(p => {
@@ -49,7 +47,7 @@ angular.module('app.controllers')
 
 				$load.booking_count()
 
-				$location.path('/booking/' + $scope.booking.id)
+				$location.path('/bookings')
 			})
 	}
 	

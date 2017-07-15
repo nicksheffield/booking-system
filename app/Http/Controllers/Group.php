@@ -77,22 +77,14 @@ class Group extends Controller
 	public function update(Request $request, $id)
 	{
 		$model = Model::find($id);
-		
 		$model->fill($request->all());
-		
 		$model->save();
 		
-		// dd($model);
-		
-		foreach($model->tutors as $tutor) {
-			$model->tutors()->detach($tutor->id);
-		}
+		$model->tutors()->detach();
 		
 		foreach($request->tutors as $tutor) {
 			$model->tutors()->attach($tutor);
 		}
-		
-		// dd($request->tutors);
 
 		return $model;
 	}

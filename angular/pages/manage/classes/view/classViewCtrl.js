@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('classViewCtrl', function($scope, $stateParams, $store, $location, $invalidate, sweetAlert) {
+.controller('classViewCtrl', function($scope, $stateParams, $store, $location, $invalidate, $prepare, Group, User, sweetAlert) {
 	$scope.group = $store.get('groups', $stateParams.id)
 	
 	$scope.delete = function() {
@@ -16,5 +16,16 @@ angular.module('app.controllers')
 				$location.path('/manage/class')
 			})
 		})
+	}
+
+	$scope.retire = function() {
+		$scope.group.active = false
+
+		Group.update({id: $scope.group.id}, $scope.group).$promise
+			.then($prepare.group)
+			.then(function(res) {
+				$invalidate.add('users', 'groups', 'group_types')
+				console.log(res)
+			})
 	}
 })

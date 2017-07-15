@@ -41,7 +41,7 @@ angular.module('app.controllers')
 	}
 
 	$scope.addProduct = function() {
-		$scope.selectedProducts.push({ quantity: 1 })
+		$scope.selectedProducts.push({ quantity: 1, days_allowedI: 1 })
 	}
 	
 	$scope.removeProduct = function(product, index) {

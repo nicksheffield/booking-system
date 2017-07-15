@@ -53,6 +53,12 @@ class Logins extends Controller
 		
 		$user = Auth::user();
 
+		if($user && !$user->active) {
+			Auth::logout();
+			
+			return response()->json(['error' => 'user_is_inactive'], 401);
+		}
+
 		try {
 			// verify the credentials and create a token for the user
 			if (!$user || !$token = JWTAuth::attempt($credentials, ['admin' => $user->admin])) {

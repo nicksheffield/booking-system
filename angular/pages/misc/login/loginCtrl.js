@@ -35,6 +35,8 @@ angular.module('app.controllers')
 				console.log(res.data)
 				if(res.data.error == 'invalid_credentials') {
 					$scope.error = 'Email or password is invalid.'
+				} else if(res.data.error == 'user_is_inactive') {
+					$scope.error = 'Your user account is marked as closed.'
 				} else {
 					$scope.error = 'Unknown error'
 				}
