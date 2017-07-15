@@ -33,7 +33,7 @@ angular.module('app.controllers')
 		
 		_.forEach($scope.tutors, function(tutor) {
 			if(tutor !== null && tutor.id) {
-				$scope.group.tutors.push(tutor.id)
+				$scope.group.tutors.push({id: tutor.id})
 			}
 		})
 		

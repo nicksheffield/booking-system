@@ -5,13 +5,14 @@
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
 		<div class="dropdown-menu dropdown-menu-right">
-			<span class="dropdown-item btn-icon" ng-click="retire()"><i class="fa fa-user-times fa-fw"></i>Retire Group</span>
+			<span class="dropdown-item btn-icon" ng-click="retire()" ng-show="group.active"><i class="fa fa-user-times fa-fw"></i>Retire Group</span>
+			<span class="dropdown-item btn-icon" ng-click="reactivate()" ng-show="!group.active"><i class="fa fa-user-plus fa-fw"></i>Reactivate Group</span>
 			<span class="dropdown-item btn-icon" ng-click="delete()"><i class="fa fa-trash fa-fw"></i>Delete</span>
 		</div>
 	</div>
 </page-header>
 
-<div class="page-content">
+<div class="page-content" ng-show="!loading">
 
 	<table class="table data-table">
 		<tr>
@@ -21,6 +22,10 @@
 		<tr>
 			<td class="row-property">Type</td>
 			<td class="row-value"><a href="manage/class-type/{{ group.type.id }}">{{ group.type.name }}</a></td>
+		</tr>
+		<tr>
+			<td class="row-property">Status</td>
+			<td class="row-value">{{ group.active ? 'Active' : 'Inactive' }}</td>
 		</tr>
 		<tr>
 			<td class="row-property">Tutor<span ng-show="group.tutors.length > 1">s</span></td>
@@ -54,4 +59,10 @@
 		</tr>
 	</table>
 
+</div>
+
+<div ng-show="loading">
+	<div class="loading" ng-show="loading" layout="col" justify="center" align="center">
+		<img src="/images/LoadingWheel.svg" alt="" class="loader-img loader-spin">
+	</div>
 </div>

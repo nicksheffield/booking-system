@@ -80,10 +80,12 @@ class Group extends Controller
 		$model->fill($request->all());
 		$model->save();
 		
-		$model->tutors()->detach();
-		
-		foreach($request->tutors as $tutor) {
-			$model->tutors()->attach($tutor);
+		if($request->tutors) {
+			$model->tutors()->detach();
+			
+			foreach($request->tutors as $tutor) {
+				$model->tutors()->attach($tutor['id']);
+			}
 		}
 
 		return $model;

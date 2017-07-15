@@ -35,6 +35,10 @@
 			<td class="row-property">DOB</td>
 			<td class="row-value">{{ user.dob | date }} ({{ user._age }} years old)</td>
 		</tr>
+		<tr ng-show="user.dob">
+			<td class="row-property">Status</td>
+			<td class="row-value">{{ user.active ? 'Active' : 'Inactive' }}</td>
+		</tr>
 		<tr>
 			<td class="row-property">Role</td>
 			<td class="row-value">{{ user._role }}</td>
