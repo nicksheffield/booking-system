@@ -4,6 +4,7 @@ angular.module('app.controllers')
 
 	$scope.users = []
 	$scope.errors = []
+	$scope.skips = []
 	$scope.loader = {}
 	$scope.reloading = false
 
@@ -57,6 +58,7 @@ angular.module('app.controllers')
 		}
 
 		$scope.users = []
+		$scope.skips = []
 
 		data.forEach(row => {
 			var user = new User()
@@ -82,7 +84,6 @@ angular.module('app.controllers')
 			var date = row['Date of Birth - New (Student) (Contact)']
 
 			if(type == 'xlsx') {
-				console.log('date', date)
 				if(date.indexOf('/') !== -1) {
 					user.dob = moment(date, 'MM-DD-YYYY')._d
 				} else {
@@ -90,7 +91,6 @@ angular.module('app.controllers')
 					user.dob = new Date([date.y, date.m, date.d].join('-'))
 				}
 			} else {
-				console.log('date', date)
 				user.dob = moment(date, 'DD-MM-YYYY')._d
 			}
 
@@ -102,6 +102,16 @@ angular.module('app.controllers')
 				user.group_id = user._group.id
 			} else {
 				user._nogroup = row.Intake
+			}
+
+
+			// skip stuff
+			var userExists = $store.users.find(u => u.id_number == user.id_number)
+			
+			if(userExists) {
+				$scope.skips.push(user)
+
+				return
 			}
 
 			$scope.users.push(user)

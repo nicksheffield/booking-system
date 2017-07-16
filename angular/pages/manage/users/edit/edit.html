@@ -78,6 +78,16 @@
 					<input type="password" id="confirm_password" ng-model="confirm_password" class="form-control" placeholder="••••••••">
 				</div>
 			</div>
+			
+			<div class="tr" ng-hide="profileMode">
+				<div class="td row-property center">Status</div>
+				<div class="td row-value">
+					<label>
+						<input type="checkbox" ng-model="user.active" ng-true-value="1" ng-false-value="0" class="push-right">
+						 {{ user.active ? 'Active' : 'Inactive' }}
+					</label>
+				</div>
+			</div>
 
 			<div class="tr" ng-hide="profileMode || you.id == user.id || you.admin !== 2">
 				<div class="td row-property center">Role</div>

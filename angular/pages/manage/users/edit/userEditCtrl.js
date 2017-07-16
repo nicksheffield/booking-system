@@ -8,8 +8,6 @@ angular.module('app.controllers')
 		{ level: 2, text: 'Manager'},
 	]
 
-	
-
 	$scope.errors = []
 
 	if($state.current.data.edit_profile) {
@@ -30,7 +28,7 @@ angular.module('app.controllers')
 		$location.path('/manage/user')
 	}
 	
-	$scope.groups = $store.groups
+	$scope.groups = $store.groups.filter(g => g.active)
 	
 	if($store.user.admin === 1) {
 		$scope.groups = $store.user.tutors_groups
