@@ -309,6 +309,7 @@ angular.module('app.routes')
 			controller: 'classTypeManageCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_class',
 				title: 'All Class Types'
 			}
 		},
@@ -414,6 +415,7 @@ angular.module('app.routes')
 			controller: 'productTypeManageCtrl',
 			data: {
 				conditions: ['auth', 'manager_only'],
+				crumb_parent: 'manage_product',
 				title: 'All Product Types'
 			}
 		},
