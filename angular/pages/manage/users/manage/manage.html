@@ -11,9 +11,13 @@
 	</div>
 </page-header>
 
-<filter model="filter" filtered="filtered"></filter>
-
 <div class="page-content">
+	<pager current="page" limit="10" data="users" filtered="filtered" filter="filter" ng-show="!filter && users.length >= 30"></pager>
+
+	<my-table data="dataTable" page="page" filtered="filtered"></my-table>
+</div>
+
+<div class="page-content" ng-hide="true">
 
 	<div ng-hide="!filtered.length">
 		<a class="list-item" ng-repeat="user in users | filter: filter | orderBy: 'group.id' | orderBy: '-admin' | page: page : 10 : 30 as filtered" href="manage/user/{{ user.id }}">
@@ -39,6 +43,6 @@
 		</a>
 	</div>
 
-	<pager current="page" limit="10" data="users" filtered="filtered" filter="filter" ng-show="!filter && users.length >= 30"></pager>
+	
 
 </div>

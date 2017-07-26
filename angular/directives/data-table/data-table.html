@@ -1,0 +1,36 @@
+<div class="data-table">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th ng-click="sort()" ng-repeat="col in cols track by $index">
+					<span class="sorter" ng-class="{'sorter-active': col.sorter.dir}" ng-click="col.sorter.switch()">
+						{{ col.name }}
+						 <span class="sorter-icon">
+							<i class="fa fa-sort"      ng-if="!col.sorter.dir"></i>
+							<i class="fa fa-sort-desc" ng-if="col.sorter.dir == '-'"></i>
+							<i class="fa fa-sort-asc"  ng-if="col.sorter.dir == '+'"></i>
+						</span>
+					</span>
+					<span ng-if="col.dropdown">
+						<dropdown ng-model="col.filter" data="col.dropdown.items" display="col.dropdown.display" small nullable></dropdown>
+					</span>
+					<span ng-if="!col.dropdown">
+						<input type="text" class="form-control form-control-sm" ng-model="col.filter" placeholder="filter...">
+					</span>
+				</th>
+				<th class="button-col"></th>
+			</tr>
+		</thead>
+
+		<tr ng-repeat="item in items | filter: allFilters | orderBy: allSorts() | page: page : 10 : 30 as filtered track by $index">
+			<td ng-repeat="col in cols">
+				{{ col.getProp(item) }}
+			</td>
+			<td class="button-col">
+				<a href="/manage/user/{{ item.id }}" ng-if="buttons.view"><i class="fa fa-fw fa-eye"></i></a>
+				<a href="/manage/user/{{ item.id }}/edit" ng-if="buttons.edit"><i class="fa fa-fw fa-pencil"></i></a>
+				<button ng-click="delete()" class="btn-link" ng-if="buttons.delete"><i class="fa fa-fw fa-trash-o"></i></button>
+			</td>
+		</tr>
+	</table>
+</div>

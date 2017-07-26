@@ -4,6 +4,7 @@ angular.module('app.directives')
 	function link(scope, el, attrs) {
 
 		scope.nullable = attrs.nullable !== undefined
+		scope.small = attrs.small !== undefined
 		scope.listDown = true
 		scope.filter_val = ''
 		scope.filter_text = ''
