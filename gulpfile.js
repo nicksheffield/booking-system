@@ -33,7 +33,7 @@ var paths = {
 	},
 	views: ['angular/**/*.html'],
 	angular: ['angular/*.js', 'angular/**/*.js'],
-	output: 'public/dist/'
+	output: 'public_html/dist/'
 }
 
 var plumberOpts = {
