@@ -156,7 +156,7 @@ gulp.task('watch', ['angular', 'css'], function() {
 
 	if(argv.browserSync) {
 		php.server({
-			base: 'public',
+			base: 'public_html',
 			port: 8010,
 			keepalive: true,
 			stdio: 'ignore'
