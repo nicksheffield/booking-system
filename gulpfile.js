@@ -44,11 +44,11 @@ gulp.task('css', function() {
 
 	// prepare css code
 	var stream = gulp.src([
-		'public/components/angular-ui-select/dist/select.min.css',
-		'public/components/angular-bootstrap/ui-bootstrap-csp.css',
-		'public/components/normalize-css/normalize.css',
-		'public/components/flexy/flexy.min.css',
-		'public/components/sweetalert2/dist/sweetalert2.css',
+		'public_html/components/angular-ui-select/dist/select.min.css',
+		'public_html/components/angular-bootstrap/ui-bootstrap-csp.css',
+		'public_html/components/normalize-css/normalize.css',
+		'public_html/components/flexy/flexy.min.css',
+		'public_html/components/sweetalert2/dist/sweetalert2.css',
 		'angular/style/3rdparty/bootstrap-v4-alpha.min.css',
 		paths.stylus.main
 	])                                                // grab our stylus file
@@ -116,25 +116,25 @@ gulp.task('libs', function() {
 	// if you add more js bower components, add them to this list
 	// and they'll be included in libs.min.js
 	var libs = [
-		'public/components/jquery/dist/jquery.js',
-		'public/components/angular/angular.js',
-		'public/components/angular-resource/angular-resource.js',
-		'public/components/angular-ui-router/release/angular-ui-router.js',
-		'public/components/angular-sanitize/angular-sanitize.js',
-		'public/components/lodash/lodash.js',
-		'public/components/mousetrap/mousetrap.js',
-		'public/components/mousetrap/plugins/global-bind/mousetrap-global-bind.js',
-		'public/components/satellizer/dist/satellizer.js',
-		'public/components/moment/moment.js',
-		'public/components/js-xlsx/dist/jszip.js',
-		'public/components/js-xlsx/dist/xlsx.js',
-		'public/components/sweetalert2/dist/sweetalert2.js',
-		'public/components/ngSweetAlert2/SweetAlert.js',
-		'public/components/tinymce/tinymce.js',
-		'public/components/angular-ui-tinymce/dist/tinymce.min.js',
-		'public/components/ng-idle/angular-idle.js',
-		'public/3rdparty/tether.min.js',
-		'public/3rdparty/bootstrap.min.js'
+		'public_html/components/jquery/dist/jquery.js',
+		'public_html/components/angular/angular.js',
+		'public_html/components/angular-resource/angular-resource.js',
+		'public_html/components/angular-ui-router/release/angular-ui-router.js',
+		'public_html/components/angular-sanitize/angular-sanitize.js',
+		'public_html/components/lodash/lodash.js',
+		'public_html/components/mousetrap/mousetrap.js',
+		'public_html/components/mousetrap/plugins/global-bind/mousetrap-global-bind.js',
+		'public_html/components/satellizer/dist/satellizer.js',
+		'public_html/components/moment/moment.js',
+		'public_html/components/js-xlsx/dist/jszip.js',
+		'public_html/components/js-xlsx/dist/xlsx.js',
+		'public_html/components/sweetalert2/dist/sweetalert2.js',
+		'public_html/components/ngSweetAlert2/SweetAlert.js',
+		'public_html/components/tinymce/tinymce.js',
+		'public_html/components/angular-ui-tinymce/dist/tinymce.min.js',
+		'public_html/components/ng-idle/angular-idle.js',
+		'public_html/3rdparty/tether.min.js',
+		'public_html/3rdparty/bootstrap.min.js'
 	]
 
 	var stream = gulp.src(libs)                             // get all the lib files
