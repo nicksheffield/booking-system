@@ -26,17 +26,17 @@
 			<td class="row-value">{{ product.limitless ? 'Yes' : 'No' }}</td>
 		</tr>
 		<tr>
-			<td class="row-property">Classes ({{ product.groups_allowed.length }})</td>
+			<td class="row-property">Classe Types ({{ product.group_types.length }})</td>
 			<td class="row-value">
-				<div layout="row" align="start" justify="between" ng-show="product.groups_allowed.length">
+				<div layout="row" align="start" justify="between" ng-show="product.group_types.length">
 					<ul>
-						<li ng-repeat="group in product.groups_allowed">
-							<a href="manage/class/{{ group.id }}">{{ group.code }}</a>
+						<li ng-repeat="group_type in product.group_types">
+							<a href="manage/class-type/{{ group_type.id }}">{{ group_type.name }}</a>
 						</li>
 					</ul>
 				</div>
 				
-				<alert type="info" text="No classes are allowed to book this product. Edit a class to allow this product." icon="exclamation-circle" ng-if="!product.groups_allowed.length"></alert>
+				<alert type="info" text="No classe types are allowed to book this product. Edit a class type to allow this product." icon="exclamation-circle" ng-if="!product.group_types.length"></alert>
 			</td>
 		</tr>
 		<tr>

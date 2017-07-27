@@ -3,6 +3,8 @@ angular.module('app.controllers')
 .controller('productViewCtrl', function($scope, $stateParams, $state, $store, $location, $invalidate, sweetAlert) {
 	$scope.product = $store.get('products', $stateParams.id)
 
+	console.log($scope.product)
+
 	$scope.orderByUnit = function(item) {
 		return parseInt(item.unit_number)
 	}
