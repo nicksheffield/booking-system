@@ -6,7 +6,8 @@
 	
 	h1
 		margin 0
-		font-weight 300
+		font-weight 500
+		font-size 2em
 		
 	& > *
 		animation fade-in animation-fade-in-speed
@@ -14,16 +15,14 @@
 	.title-holder
 		padding 1em 2em
 		border-bottom 1px solid color-page-header-border
+
+	.page-header-transcluder
+		position absolute
+		top 1em
+		right 2em
 		
-	.breadcrumbs
-		order 2
-		
-	// .btn.btn-primary
-	// 	color color-page-header-background
-	// 	background color-dark
-		
-	// 	&:hover
-	// 		background darken(color-dark, 10%)
+	// .breadcrumbs
+		// order 2
 			
 	.count
 		background color-page-header-count-bg
@@ -40,7 +39,7 @@
 	flex 1
 	padding 2em
 	animation fade-in animation-fade-in-speed
-	background whitesmoke
+	background color-page-content-background
 
 .page-dates
 	background color-page-dates-background

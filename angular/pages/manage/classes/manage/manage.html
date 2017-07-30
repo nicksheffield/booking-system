@@ -5,11 +5,13 @@
 	</div>
 </page-header>
 
-<filter model="filter" filtered="filtered"></filter>
+<!-- <filter model="filter" filtered="filtered"></filter> -->
 
 <div class="page-content">
 
-	<a ng-repeat="group in groups | filter: filter | page : 10 : 30 as filtered" href="manage/class/{{ group.id }}" class="list-item">
+	<my-table data="dataTable"></my-table>
+
+	<!-- <a ng-repeat="group in groups | filter: filter | page : page : 10 as filtered" href="manage/class/{{ group.id }}" class="list-item">
 		<div class="col" ratio="1">
 			<div class="title">Code</div>
 			<div class="content">{{ group.code }}</div>
@@ -20,6 +22,6 @@
 		</div>
 	</a>
 
-	<pager current="page" limit="10" data="groups" filtered="filtered" filter="filter" ng-show="!filter && groups.length >= 30"></pager>
+	<pager current="page" limit="10" data="groups" filtered="filtered" filter="filter" ng-show="!filter && groups.length >= 30"></pager> -->
 	
 </div>

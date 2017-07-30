@@ -3,8 +3,14 @@ angular.module('app.directives')
 .directive('myTable', function($filter) {
 	function link(scope, el, attrs) {
 
-		window.scope = scope
+		window.dataTable = scope
 		scope.items = scope.data.items
+		scope.filtered = []
+
+		scope.page = 1
+
+		scope.limits = [{n: 10}, {n: 20}, {n: 50}, {n: 100}]
+		scope.limit = scope.limits[0]
 
 		scope.buttons = scope.data.buttons.reduce((s, name) => {
 			s[name] = true
@@ -14,11 +20,14 @@ angular.module('app.directives')
 		scope.cols = scope.data.cols.map(col => {
 			col.getProp = item => {
 				if(!item) return
-				return col.getter ? col.getter(item) : item[col.prop]
+				return String(col.getter ? col.getter(item) : item[col.prop])
 			}
 
 			col.sorter = {dir: null}
-			col.sorter.switch = () => col.sorter.dir = (!col.sorter.dir ? '+' : (col.sorter.dir === '+' ? '-' : null))
+			col.sorter.switch = () => {
+				scope.cols.filter(c => c !== col).forEach(c => c.sorter.dir = null)
+				col.sorter.dir = (!col.sorter.dir ? '+' : (col.sorter.dir === '+' ? '-' : null))
+			}
 			col.filter = ''
 
 			return col
@@ -38,7 +47,9 @@ angular.module('app.directives')
 				}
 			})
 
-			return orders
+			if(orders.length) return orders
+			if(scope.data.orderBys) return scope.data.orderBys
+			return []
 		}
 
 		scope.allFilters = (value, index, array) => {
@@ -56,6 +67,18 @@ angular.module('app.directives')
 
 			return filtered
 		}
+
+		const doFilter = () => {
+			// item in items | filter: allFilters | orderBy: allSorts()
+			scope.page = 1
+			const filter = $filter('filter')
+			const orderBy = $filter('orderBy')
+			scope.filtered = orderBy(filter(scope.data.items, scope.allFilters), scope.allSorts())
+			console.log(scope.filtered[0])
+		}
+
+		scope.$watch('data.items', doFilter)
+		scope.$watch('data.cols', doFilter, true)
 	}
 
 	return {
@@ -64,9 +87,7 @@ angular.module('app.directives')
 		replace: true,
 		templateUrl: 'directives/data-table/data-table.html',
 		scope: {
-			data: '=',
-			page: '=',
-			filtered: '='
+			data: '='
 		}
 	}
 })

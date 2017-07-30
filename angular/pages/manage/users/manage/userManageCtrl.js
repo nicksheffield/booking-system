@@ -1,16 +1,10 @@
 angular.module('app.controllers')
 
 .controller('userManageCtrl', function($scope, $store, $location) {
-	$scope.users = $store.users
-
-	$scope.dropdownObj = {
-		items: $store.groups,
-		display: { text: 'code' }
-	}
-
 	$scope.dataTable = {
-		items: $scope.users,
+		items: $store.users,
 		buttons: ['view', 'edit'],
+		slug: 'user',
 		cols: [
 			{
 				name: 'Name',
@@ -30,7 +24,8 @@ angular.module('app.controllers')
 			},
 			{
 				name: 'Class',
-				prop: 'group.code', getter: x => x.group ? x.group.code : '',
+				prop: 'group.code',
+				getter: x => x.group ? x.group.code : '',
 				dropdown: {
 					items: $store.groups,
 					display: { text: 'code' }

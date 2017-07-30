@@ -1,0 +1,45 @@
+.data-table-pagination-container
+	.data-table-pagination
+		display flex
+		user-select none
+		font-size 0.9em
+
+		.pagination-item
+			list-style none
+			min-width 35px
+			margin 0 0.2em
+		
+		.pagination-link
+			padding 0.5em
+			display block
+			text-align center
+			text-decoration none
+			color color-clickable
+			cursor default
+			border-radius border-rad
+			
+		.pagination-link[ng-click]
+			cursor pointer
+
+			&:hover
+				color color-clickable-hover
+				background #ddd
+				
+		.pagination-item.disabled .pagination-link
+			color #ccc
+			cursor default
+
+			&:hover
+				color #ccc
+				background none
+			
+		.pagination-item.active .pagination-link
+			background #ddd
+			color #000
+			
+	.page-picker
+		width 100px
+		margin 1em 0 1em 1em
+		
+	select.form-control:not([size]):not([multiple])
+		height 2.6em

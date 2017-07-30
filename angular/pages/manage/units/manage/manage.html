@@ -11,11 +11,12 @@
 	</div>
 </page-header>
 
-<filter model="filter" filtered="filtered"></filter>
+<!-- <filter model="filter" filtered="filtered"></filter> -->
 
 <div class="page-content">
+	<my-table data="dataTable"></my-table>
 
-	<a ng-repeat="unit in units | filter: filter | orderBy: [product_id, unit_number] | page: page : 10 : 30 as filtered" href="manage/unit/{{ unit.id }}" class="list-item">
+	<!-- <a ng-repeat="unit in units | filter: filter | orderBy: [product_id, unit_number] | page: page : 10 as filtered" href="manage/unit/{{ unit.id }}" class="list-item">
 		<div class="col" ratio="1">
 			<div class="title">Product</div>
 			<div class="content">{{ unit.product.name }}</div>
@@ -32,7 +33,7 @@
 			<div class="title">Asset No.</div>
 			<div class="content">{{ unit.asset_number }}</div>
 		</div>
-	</a>
+	</a> -->
 
 	<!-- <table class="table table-hover table-filtered" ng-hide="!filtered.length">
 		<thead>
@@ -44,7 +45,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="unit in units | filter: filter | page: page : 10 : 30 as filtered">
+			<tr ng-repeat="unit in units | filter: filter | page: page : 10 as filtered">
 				<td><a href="manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a></td>
 				<td>{{ unit.serial_number }}</td>
 				<td>{{ unit.asset_number }}</td>
@@ -53,6 +54,6 @@
 		</tbody>
 	</table> -->
 
-	<pager current="page" limit="10" data="units" filtered="filtered" filter="filter" ng-show="!filter && units.length >= 30"></pager>
+	<!-- <pager current="page" limit="10" data="units" filtered="filtered" filter="filter" ng-show="!filter && units.length >= 30"></pager> -->
 
 </div>

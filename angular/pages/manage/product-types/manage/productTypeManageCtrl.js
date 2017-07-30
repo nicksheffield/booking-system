@@ -1,5 +1,20 @@
 angular.module('app.controllers')
 
 .controller('productTypeManageCtrl', function($scope, $store) {
-	$scope.product_types = $store.product_types
+	$scope.dataTable = {
+		items: $store.product_types,
+		buttons: ['view', 'edit'],
+		slug: 'product-type',
+		cols: [
+			{
+				name: 'Name',
+				prop: 'name'
+			},
+			{
+				name: 'Number of products',
+				prop: 'products.length',
+				getter: x => x.products ? x.products.length : 0
+			}
+		]
+	}
 })

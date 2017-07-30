@@ -37,7 +37,6 @@
 		width 200px
 		
 	.row-property
-		font-weight bold
 		width 150px
 		
 	.print-date-row
@@ -55,11 +54,15 @@
 			vertical-align middle
 		
 	&.info-table
-		tr:first-of-type td
-			border-top 0
-			
+		width auto
+
 		td
 			vertical-align top
+			border-top 0
+
+		td:first-of-type
+			// text-align right
+			color color-info-table-property
 			
 		ul:not(.ns-dropdown-list)
 			padding 0 0 0 1.2em
@@ -102,3 +105,8 @@
 	table td, table th
 		padding 0
 		border none
+
+.info-table-wrapper
+	padding 1em
+	background color-panel-background
+	border 1px solid color-panel-border

@@ -1,51 +1,66 @@
 angular.module('app.directives')
 
-.directive('pagination', function($state, $store, $auth, $queryString, $window) {
+.directive('pagination', function($state, $store, $auth, $queryString) {
 	function link(scope, el, attrs) {
-		function calculate() {
-			scope.pages = []
-			scope.allpages = []
-			var range = 2 // how many pages displayed either side of the current page
-			var max = range * 2 + 1
+		
+		window.pagination = scope
 
-			scope.last = Math.ceil(scope.total/scope.filter.limit)
+		scope.totalPages = []
+		scope.pages = []
 
-			var start = scope.filter.page - range > 1 ? scope.filter.page - range : 1
-			
-			if(start > scope.last - max + 1) {
-				start = scope.last - max + 1
+		const calculatePagesAmount = () => {
+			var arr = []
+			var n = Math.ceil(scope.data.length / scope.limit)
+
+			for(let i=0; i<n; i++) {
+				arr.push({number: i + 1})
 			}
 
-			start = start <= 1 ? 1 : start
+			return arr
+		}
 
-			for(var i=start; i<scope.last+1; i++) {
-				if(i > scope.filter.page - range && i < scope.filter.page + range || scope.pages.length < max) {
-					scope.pages.push(i)
+		const setPages = () => {
+			let displayedPages = []
+
+			scope.totalPages.forEach(p => {
+				let currentPage = scope.page
+
+				let pageToAdd = p.number
+
+				let distance = 1
+
+				if(currentPage === 1 || currentPage === scope.totalPages.length) {
+					distance = 2
 				}
-			}
 
-			for(var j=1; j<=scope.last; j++) {
-				scope.allpages.push(j)
-			}
+				if(pageToAdd >= currentPage - distance && pageToAdd <= currentPage + distance) {
+					displayedPages.push(p)
+				}
+			})
 
-			scope.current = scope.filter.page
-
-			scope.atStart = scope.filter.page !== 1
-			scope.atEnd = scope.filter.page + range <= (scope.total / scope.filter.limit)
+			return displayedPages
 		}
 
-		scope.$watch('total', calculate)
-
-		scope.$watch('filter', function(newVal) {
-			scope.query = '&' + $queryString(_.omit(scope.filter, ['page']))
-
-		}, true)
-
-		scope.goto = function() {
-			// bookings?page={{ last }}{{ query }}
-			console.log('bookings?page=' + scope.current + scope.query)
-			$window.location.href = 'bookings?page=' + scope.current + scope.query
+		const calculatePages = () => {
+			scope.totalPages = calculatePagesAmount()
+			scope.pages = setPages()
 		}
+
+		scope.$watch('data', calculatePages)
+		scope.$watch('limit', calculatePages)
+
+		scope.goto = p => {
+			if(!p) return
+			
+			scope.page = p.number
+			calculatePages()
+		}
+
+		scope.first = arr => arr[0]
+		scope.last  = arr => arr[arr.length - 1]
+
+		scope.next = p => scope.totalPages[scope.totalPages.indexOf(scope.totalPages.find(page => page.number === p)) + 1]
+		scope.prev = p => scope.totalPages[scope.totalPages.indexOf(scope.totalPages.find(page => page.number === p)) - 1]
 	}
 
 	return {
@@ -54,8 +69,9 @@ angular.module('app.directives')
 		link: link,
 		templateUrl: 'directives/pagination/pagination.html',
 		scope: {
-			total: '=',
-			filter: '='
+			page: '=',
+			limit: '=',
+			data: '='
 		}
 	}
 })

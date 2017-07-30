@@ -1,18 +1,39 @@
 .data-table
+	
+	table
+		table-layout fixed
+
+	thead th
+		border-bottom 1px solid color-data-table-border
+
+	td, th
+		border 1px solid color-data-table-border
+		background color-data-table-cell
+
+	th
+		padding 1em
+		background color-data-table-th-background
 
 	.sorter
 		cursor pointer
 
 		&:hover, &.sorter-active
 			color color-primary
+		
+		.sorter-icon
+			color #bbb
+
+		&.sorter-active .sorter-icon
+			color color-primary
 
 	input
 		font-weight normal
 
 	th.button-col, td.button-col
-		width 10%
-		padding 0
-		text-align right
+		width 80px
 
 		& > *
 			margin-right 0.5em
+
+			&:last-child
+				margin-right 0

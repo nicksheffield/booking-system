@@ -1,4 +1,4 @@
-<page-header text="{{ user.name }}">
+<page-header text="User: {{ user.name }}">
 	<div class="btn-group" ng-show="you.admin === 2 || user.admin === 0 || user.id === you.id">
 		<a href="manage/user/{{ user.id }}/edit" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-pencil"></i>Edit</a>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -11,87 +11,89 @@
 </page-header>
 
 <div class="page-content">
-	<table class="table info-table">
-		<tr>
-			<td class="row-property">Name</td>
-			<td class="row-value">{{ user.name }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">Phone</td>
-			<td class="row-value">{{ user.phone ? user.phone : '-' }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">Email</td>
-			<td class="row-value">
-				<a href="mailto:{{ user.email }}" ng-show="user.email">{{ user.email }}</a>
-				<span ng-if="!user.email">-</span>
-			</td>
-		</tr>
-		<tr>
-			<td class="row-property">ID Number</td>
-			<td class="row-value">{{ user.id_number }}</td>
-		</tr>
-		<tr ng-show="user.dob">
-			<td class="row-property">DOB</td>
-			<td class="row-value">{{ user.dob | date }} ({{ user._age }} years old)</td>
-		</tr>
-		<tr ng-show="user.dob">
-			<td class="row-property">Status</td>
-			<td class="row-value">{{ user.active ? 'Active' : 'Inactive' }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">Role</td>
-			<td class="row-value">{{ user._role }}</td>
-		</tr>
-		<tr ng-show="!user.admin" ng-class="{'bg-danger': !user.can_book}">
-			<td class="row-property">Can book</td>
-			<td class="row-value">
-				 {{ user.can_book ? 'Yes' : 'No' }}
-
-				<div class="bump-down" ng-show="!user.can_book">
-					<p>Reason: <strong>{{ user.can_book_reason }}</strong></p>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td class="row-property">Bookings</td>
-			<td class="row-value">
-				<a href="bookings?user={{ user.id }}">View all bookings by this user</a>
-			</td>
-		</tr>
-		<tr ng-show="!user.admin">
-			<td class="row-property">Class</td>
-			<td class="row-value"><a href="manage/class/{{ user.group.id }}">{{ user.group.code }}</a></td>
-		</tr>
-		<tr ng-show="user.admin && user.tutors_groups.length">
-			<td class="row-property">Tutor of</td>
-			<td class="row-value">
-				<ul>
-					<li ng-repeat="group in user.tutors_groups">
-						<a href="manage/class/{{ group.id }}">{{ group.code }}</a>
-					</li>
-				</ul>
-			</td>
-		</tr>
-		<tr ng-show="!user.admin">
-			<td class="row-property">
-				Notes<br>
-				<a href="manage/user/{{ user.id }}/note/new" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-			</td>
-			<td class="row-value">
-				<div class="list-group">
-					<div class="list-group-item user-note" ng-repeat="note in user.notes" layout="row" ng-hide="note.is_old">
-						<div class="user-note-content" ratio="1">
-							<a href="manage/user/{{ user.id }}/note/{{ note.id }}">{{ note.content }}</a>
-						</div>
-						<div class="user-note-controls">
-							<btn icon="pencil" type="info" small url="manage/user/{{ user.id }}/note/{{ note.id }}/edit">Edit</btn> 
-							<btn icon="trash" type="danger" small ng-click="deleteNote(note)"></btn>
+	<div class="info-table-wrapper">
+		<table class="info-table">
+			<tr>
+				<td class="row-property">Name</td>
+				<td class="row-value">{{ user.name }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Phone</td>
+				<td class="row-value">{{ user.phone ? user.phone : '-' }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Email</td>
+				<td class="row-value">
+					<a href="mailto:{{ user.email }}" ng-show="user.email">{{ user.email }}</a>
+					<span ng-if="!user.email">-</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="row-property">ID Number</td>
+				<td class="row-value">{{ user.id_number }}</td>
+			</tr>
+			<tr ng-show="user.dob">
+				<td class="row-property">DOB</td>
+				<td class="row-value">{{ user.dob | date }} ({{ user._age }} years old)</td>
+			</tr>
+			<tr ng-show="user.dob">
+				<td class="row-property">Status</td>
+				<td class="row-value">{{ user.active ? 'Active' : 'Inactive' }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Role</td>
+				<td class="row-value">{{ user._role }}</td>
+			</tr>
+			<tr ng-show="!user.admin" ng-class="{'bg-danger': !user.can_book}">
+				<td class="row-property">Can book</td>
+				<td class="row-value">
+					{{ user.can_book ? 'Yes' : 'No' }}
+		
+					<div class="bump-down" ng-show="!user.can_book">
+						<p>Reason: <strong>{{ user.can_book_reason }}</strong></p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="row-property">Bookings</td>
+				<td class="row-value">
+					<a href="bookings?user={{ user.id }}">View all bookings by this user</a>
+				</td>
+			</tr>
+			<tr ng-show="!user.admin">
+				<td class="row-property">Class</td>
+				<td class="row-value"><a href="manage/class/{{ user.group.id }}">{{ user.group.code }}</a></td>
+			</tr>
+			<tr ng-show="user.admin && user.tutors_groups.length">
+				<td class="row-property">Tutor of</td>
+				<td class="row-value">
+					<ul>
+						<li ng-repeat="group in user.tutors_groups">
+							<a href="manage/class/{{ group.id }}">{{ group.code }}</a>
+						</li>
+					</ul>
+				</td>
+			</tr>
+			<tr ng-show="!user.admin">
+				<td class="row-property">
+					Notes<br>
+					<a href="manage/user/{{ user.id }}/note/new" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+				</td>
+				<td class="row-value">
+					<div class="list-group">
+						<div class="list-group-item user-note" ng-repeat="note in user.notes" layout="row" ng-hide="note.is_old">
+							<div class="user-note-content" ratio="1">
+								<a href="manage/user/{{ user.id }}/note/{{ note.id }}">{{ note.content }}</a>
+							</div>
+							<div class="user-note-controls">
+								<btn icon="pencil" type="info" small url="manage/user/{{ user.id }}/note/{{ note.id }}/edit">Edit</btn> 
+								<btn icon="trash" type="danger" small ng-click="deleteNote(note)"></btn>
+							</div>
 						</div>
 					</div>
-				</div>
-			</td>
-		</tr>
-	</table>
+				</td>
+			</tr>
+		</table>
+	</div>
 
 </div>

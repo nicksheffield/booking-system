@@ -25,7 +25,7 @@ if(colorScheme == 'flat')
 	color-warning                     = #F39C12
 	color-info                        = #1ABC9C
 	color-success                     = #2ECC71
-	color-secondary                   = #ECF0F1
+	color-secondary                   = #DDDDDD
 	color-dark                        = #7F8C8D
 	
 if(colorScheme == 'fio')
@@ -45,24 +45,15 @@ color-clickable                   = color-primary//#007AFF
 color-clickable-hover             = lighten(color-clickable, 25%)
 color-tertiary                    = #19282d
 color-body-bg                     = #FFFFFF
-color-frame-bg                    = #FFFFFF
+color-frame-bg                    = whitesmoke
 
 // Sidebar colors
 color-sidebar-text                = #FFFFFF
 color-sidebar-background          = color-primary
 color-sidebar-button              = rgba(#fff, 0.1)
 color-sidebar-highlight           = rgba(#000, 0.3)
-color-sidebar-border              = #222
+color-sidebar-border              = #222222
 color-sidebar-hover               = rgba(#fff, 0.1)
-
-// Page header colors
-color-page-header-background      = #fff
-color-page-header-text            = #000
-color-page-header-border          = rgba(#000, 0.05)
-color-page-header-button          = rgba(#000, 0.5)
-color-page-header-button-hover    = rgba(#000, 0.2)
-color-page-header-count-bg        = #ccc
-color-page-header-count-text      = color-page-header-background
 
 // Breadcrumbs colors
 color-breadcrumbs-background      = color-page-header-background
@@ -70,13 +61,37 @@ color-breadcrumbs-text            = color-page-header-text
 color-breadcrumbs-delimiter       = #AAAAAA
 color-breadcrumbs-link            = color-clickable
 color-breadcrumbs-hover           = color-clickable-hover
-color-breadcrumbs-border          = color-page-header-border
+color-breadcrumbs-border          = whitesmoke //color-page-header-border
+
+// Page header colors
+color-page-header-background      = whitesmoke
+color-page-header-text            = #000000
+color-page-header-border          = rgba(#000, 0) //rgba(#000, 0.05)
+color-page-header-button          = rgba(#000, 0.5)
+color-page-header-button-hover    = rgba(#000, 0.2)
+color-page-header-count-bg        = #CCCCCC
+color-page-header-count-text      = color-page-header-background
+
+// Page content colors
+color-page-content-background     = whitesmoke
 
 // Page Section colors
 color-page-section-background     = #FFFFFF
 color-page-section-text           = #000000
 color-page-section-border         = #DDDDDD
 color-page-dates-background       = #EEEEEE
+
+// Info Table colors
+color-info-table-property         = #AAAAAA
+
+// Data Table colors
+color-data-table-th-background    = #EEEEEE
+color-data-table-border           = #DDDDDD
+color-data-table-cell             = #FFFFFF
+
+// Panel colors
+color-panel-background            = #FFFFFF
+color-panel-border                = color-panel-background//#ccc
 
 // Form colors
 color-form-border-highlight       = color-primary
@@ -99,7 +114,7 @@ color-filter-active-border        = transparent
 // Booking date colors
 color-pickup-bg                   = rgba(color-info, 0.7)
 color-due-bg                      = rgba(color-danger, 0.7)
-color-date-text                   = #fff
+color-date-text                   = #FFFFFF
 
 // ui.select colors
 color-select-background           = #FFFFFF
@@ -115,7 +130,7 @@ color-select-icon-highlight       = color-primary
 color-date-disabled               = color-danger
 
 // Loader colors
-color-loader-bg                   = rgba(#fff, 1)
+color-loader-bg                   = rgba(#FFFFFF, 1)
 color-loader-icon                 = #000
 
 // Advanced Filter colors
@@ -131,5 +146,5 @@ color-pagination-highlight        = color-tertiary
 
 // Dialog box (used for logout timer)
 color-dialog-backdrop             = rgba(#000, 0.2)
-color-dialog-content-bg           = #fff
-color-dialog-text                 = #000
+color-dialog-content-bg           = #FFFFFF
+color-dialog-text                 = #000000
