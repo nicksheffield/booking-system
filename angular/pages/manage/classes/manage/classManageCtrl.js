@@ -27,7 +27,7 @@ angular.module('app.controllers')
 					return s
 				}, []).join(', ') : '',
 				dropdown: {
-					items: $store.users.filter(u => u.admin),
+					items: $store.users.filter(u => u.admin).sort(u => u.name),
 					display: { text: 'name' }
 				}
 			},

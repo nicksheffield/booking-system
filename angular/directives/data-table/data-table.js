@@ -9,7 +9,7 @@ angular.module('app.directives')
 
 		scope.page = 1
 
-		scope.limits = [{n: 10}, {n: 20}, {n: 50}, {n: 100}]
+		scope.limits = [{n: 10}, {n: 25}, {n: 50}, {n: 100}]
 		scope.limit = scope.limits[0]
 
 		scope.buttons = scope.data.buttons.reduce((s, name) => {
@@ -33,9 +33,7 @@ angular.module('app.directives')
 			return col
 		})
 		
-		scope.filters = scope.cols.map(col => {
-			return col.getProp()
-		})
+		scope.filters = scope.cols.map(col => col.getProp())
 
 		scope.allSorts = () => {
 			const orders = []
@@ -69,12 +67,10 @@ angular.module('app.directives')
 		}
 
 		const doFilter = () => {
-			// item in items | filter: allFilters | orderBy: allSorts()
 			scope.page = 1
 			const filter = $filter('filter')
 			const orderBy = $filter('orderBy')
 			scope.filtered = orderBy(filter(scope.data.items, scope.allFilters), scope.allSorts())
-			console.log(scope.filtered[0])
 		}
 
 		scope.$watch('data.items', doFilter)
