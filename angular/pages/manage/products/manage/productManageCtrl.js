@@ -14,7 +14,8 @@ angular.module('app.controllers')
 				name: 'Type',
 				prop: 'type.name',
 				getter: x => x.type ? x.type.name : '',
-				dropdown: {
+				filter: {
+					type: 'dropdown',
 					items: $store.product_types,
 					display: { text: 'name' }
 				}

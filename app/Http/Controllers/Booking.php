@@ -17,21 +17,23 @@ class Booking extends Controller
 {
 	public function index(Request $request)
 	{
-		$limit = $request->limit && $request->limit !== '0' ? (int)$request->limit : 10;
-
-		$offset = $request->page ? (int)$request->page : 1;
-
 		$q = Model::query();
 
 		if($request->with) $q = $q->with(explode('|', $request->with));
 
 		if($request->user_id) $q = $q->where('user_id', $request->user_id);
 
-		$q = $q->orderBy('created_at');
+		if($request->after) $q = $q->where('created_at', '>', $request->after);
 
-		$q = $q->skip(($offset - 1) * $limit)->take($limit);
+		if($request->limit) {
+			$limit = $request->limit && $request->limit !== '0' ? (int)$request->limit : 10;
+
+			$offset = $request->page ? (int)$request->page : 1;
+
+			$q = $q->skip(($offset - 1) * $limit)->take($limit);
+		}
 		
-		return $q->get();
+		return $q->orderBy('created_at', 'DESC')->get();
 	}
 
 	/**

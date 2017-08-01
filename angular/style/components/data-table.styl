@@ -2,13 +2,13 @@
 	
 	table
 		table-layout fixed
+		background color-data-table-cell
 
 	thead th
 		border-bottom 1px solid color-data-table-border
 
 	td, th
 		border 1px solid color-data-table-border
-		background color-data-table-cell
 
 	th
 		padding 1em
@@ -37,3 +37,8 @@
 
 			&:last-child
 				margin-right 0
+	
+	.no-records
+		td
+			padding 2em
+			text-align center

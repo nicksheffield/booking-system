@@ -5,6 +5,7 @@ angular.module('app.directives')
 
 		scope.nullable = attrs.nullable !== undefined
 		scope.small = attrs.small !== undefined
+		scope.checkboxes = attrs.checkboxes !== undefined && attrs.checkboxes !== "false"
 		scope.listDown = true
 		scope.filter_val = ''
 		scope.filter_text = ''
@@ -22,6 +23,21 @@ angular.module('app.directives')
 		var elem = el[0]
 		var dropdownList = el.find('.ns-dropdown-list')
 		var ignoreBlur = false
+
+		$('html').on('click', function(e) {
+			if(!$(e.target).closest('.ns-dropdown').length) {
+
+				ignoreBlur = false
+
+				el.find('input').trigger('blur')
+
+				dropdownList.addClass('ns-dropdown-hide')
+				
+				$timeout(function() {
+					scope.filter_text = scope.makeCommaString(scope.data)
+				})
+			}
+		})
 
 		function checkHeight() {
 			var offset = $(elem).offset()
@@ -54,7 +70,7 @@ angular.module('app.directives')
 
 		scope.text = function(item) {
 			if(!scope.display.text) return ''
-			if(typeof scope.display.text == 'function') {
+			if(typeof scope.display.text === 'function') {
 				return scope.display.text(item)
 			} else {
 				return item[scope.display.text]
@@ -63,14 +79,36 @@ angular.module('app.directives')
 
 		scope.subtext = function(item) {
 			if(!scope.display.subtext) return ''
-			if(typeof scope.display.subtext == 'function') {
+			if(typeof scope.display.subtext === 'function') {
 				return scope.display.subtext(item)
 			} else {
 				return item[scope.display.subtext]
 			}
 		}
 
+		scope.makeCommaString = function(items) {
+			return items.reduce((s, i) => {
+				if(i.checked) s.push(scope.text(i))
+				return s
+			}, []).join(', ')
+		}
+
+		$timeout(function() {
+			if(scope.checkboxes) {
+				scope.ngModel = scope.data
+				scope.filter_text = scope.makeCommaString(scope.data)
+			}
+		})
+
 		scope.select = function(item) {
+			if(scope.checkboxes) {
+				el.find('.ns-dropdown-item.focused').removeClass('focused')
+
+				item.checked = !item.checked
+
+				return
+			}
+
 			dropdownList.addClass('ns-dropdown-hide')
 
 			var target = el.find('[data-id=' + item.id + ']')
@@ -79,28 +117,39 @@ angular.module('app.directives')
 			target.addClass('focused')
 
 			$timeout(function() {
-				scope.ngModel = attrs.clone !== undefined ? _.clone(item) : item
+				if(!scope.checkboxes) scope.ngModel = attrs.clone !== undefined ? _.clone(item) : item
 
-				if(typeof scope.change == 'function') scope.change(item)
+				if(typeof scope.change === 'function') scope.change(item)
 
-				scope.filter_text = scope.text(item)
 				scope.filter_val = ''
+				scope.filter_text = scope.text(item)
 			})
 		}
 
 		scope.clear = function() {
-			scope.ngModel = null
+			if(!scope.checkboxes) scope.ngModel = null
+			scope.data.forEach(i => i.checked = false)
 			scope.filter_text = ''
 			dropdownList.addClass('ns-dropdown-hide')
 		}
 
 		scope.$watch('ngModel', function(newVal) {
-			if(newVal) scope.filter_text = scope.text(scope.ngModel)
-			else scope.filter_text = ''
+			if(newVal) {
+				if(!scope.checkboxes) scope.filter_text = scope.text(scope.ngModel)
+			} else {
+				if(scope.checkboxes) {
+					scope.filter_text = scope.makeCommaString(scope.data)
+				} else {
+					scope.filter_text = ''
+				}
+			}
 		})
 
 		el
 		.on('mousedown', '.ns-dropdown-list', function(e) {
+			ignoreBlur = true
+		})
+		.on('mouseup', '.ns-dropdown-checkbox', function(e) {
 			ignoreBlur = true
 		})
 		.on('focus', 'input', function(e) {
@@ -129,11 +178,15 @@ angular.module('app.directives')
 					} else {
 						scope.filter_text = ''
 					}
-					
+
+					if(scope.checkboxes) {
+						scope.filter_text = scope.makeCommaString(scope.data)
+					}
+
 					dropdownList.addClass('ns-dropdown-hide')
 				})
 
-				scope.filter_val = ''
+				if(!scope.checkboxes) scope.filter_val = ''
 			}
 		})
 		.on('keydown', 'input', function(e) {
@@ -148,7 +201,7 @@ angular.module('app.directives')
 				}
 			})
 
-			if(e.which == 13) { // enter
+			if(e.which === 13) { // enter
 				e.preventDefault()
 				if(scope.filtered.length) {
 					scope.select(scope.filtered[index])
@@ -156,13 +209,13 @@ angular.module('app.directives')
 				}
 			}
 
-			if(e.which == 27) { // esc
+			if(e.which === 27) { // esc
 				e.preventDefault()
 				$(this).trigger('blur')
-				scope.filter_text = ''
+				if(!scope.checkboxes) scope.filter_text = ''
 			}
 
-			if(e.which == 38) { // up
+			if(e.which === 38) { // up
 				e.preventDefault()
 				if(index >= 0) {
 					el
@@ -173,7 +226,7 @@ angular.module('app.directives')
 				}
 			}
 
-			if(e.which == 40) { // down
+			if(e.which === 40) { // down
 				e.preventDefault()
 				if(index < scope.filtered.length - 1) {
 					el
@@ -184,7 +237,7 @@ angular.module('app.directives')
 				}
 			}
 
-			if(e.which == 38 || e.which == 40) { // up or down
+			if(e.which === 38 || e.which === 40) { // up or down
 				var target = el.find('.ns-dropdown-item.focused')[0]
 				var list = el.find('.ns-dropdown-list')[0]
 
@@ -195,11 +248,11 @@ angular.module('app.directives')
 				}
 			}
 
-			if(e.which == 9) { // tab
+			if(e.which === 9) { // tab
 				var highlighted = el.find('.focused')
 				var id = highlighted.data('id')
 
-				var item = scope.filtered.find(i => i.id == id)
+				var item = scope.filtered.find(i => i.id === id)
 
 				if(!item) item = scope.filtered[0]
 

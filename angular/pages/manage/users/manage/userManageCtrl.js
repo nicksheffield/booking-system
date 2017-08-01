@@ -13,7 +13,8 @@ angular.module('app.controllers')
 			{
 				name: 'Role',
 				prop: '_role',
-				dropdown: {
+				filter: {
+					type: 'dropdown',
 					items: [
 						{ name: 'Manager' },
 						{ name: 'Staff' },
@@ -26,7 +27,8 @@ angular.module('app.controllers')
 				name: 'Class',
 				prop: 'group.code',
 				getter: x => x.group ? x.group.code : '',
-				dropdown: {
+				filter: {
+					type: 'dropdown',
 					items: $store.groups,
 					display: { text: 'code' }
 				}

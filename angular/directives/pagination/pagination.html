@@ -7,7 +7,9 @@
 			<span class="pagination-link" ng-click="goto(p)">{{ p.number }}</span>
 		</li>
 		<li class="pagination-item" ng-class="{disabled: page === last(totalPages).number}">
-			<span class="pagination-link" ng-click="goto(last(totalPages))">Last ({{ last(totalPages).number }})</span>
+			<span class="pagination-link" ng-click="goto(last(totalPages))">
+				Last <span ng-show="totalPages.length">({{ last(totalPages).number }})</span>
+			</span>
 		</li>
 		<li class="pagination-item" ng-class="{disabled: page === first(totalPages).number}">
 			<span class="pagination-link" ng-click="goto(prev(page))"><i class="fa fa-fw fa-chevron-left"></i></span>

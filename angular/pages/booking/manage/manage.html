@@ -1,8 +1,13 @@
 <page-header text="All Bookings">
-	<btn type="primary" ng-click="advFilter.toggleOpen()" icon="filter">{{ advFilter.open ? 'Close' : 'Open' }} Filter</btn>
+	<!-- <btn type="primary" ng-click="advFilter.toggleOpen()" icon="filter">{{ advFilter.open ? 'Close' : 'Open' }} Filter</btn> -->
 </page-header>
 
 <div class="page-content">
+	 <!-- <dropdown data="dropdown_test_data" ng-model="dropdown_value" display="dropdown_test_display" checkboxes></dropdown>  -->
+	  <my-table data="dataTable"></my-table>
+</div>
+
+<!-- <div class="page-content">
 
 	<div class="page-advanced-filter" ng-class="{'filter-open': advFilter.open}" ng-show="advFilter.open">
 
@@ -169,4 +174,4 @@
 		<img src="/images/LoadingWheel.svg" alt="" class="loader-img loader-spin">
 	</div>
 	
-</div>
+</div> -->

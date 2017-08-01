@@ -14,7 +14,8 @@ angular.module('app.controllers')
 				name: 'Type',
 				prop: 'type.code',
 				getter: x => x.type ? x.type.code : '',
-				dropdown: {
+				filter: {
+					type: 'dropdown',
 					items: $store.group_types,
 					display: { text: 'code' }
 				}
@@ -26,7 +27,8 @@ angular.module('app.controllers')
 					s.push(t.name)
 					return s
 				}, []).join(', ') : '',
-				dropdown: {
+				filter: {
+					type: 'dropdown',
 					items: $store.users.filter(u => u.admin).sort(u => u.name),
 					display: { text: 'name' }
 				}

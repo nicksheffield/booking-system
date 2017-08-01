@@ -7,10 +7,10 @@ angular.module('app.directives')
 		scope.items = scope.data.items
 		scope.filtered = []
 
-		scope.page = 1
+		scope.data.page = 1
 
-		scope.limits = [{n: 10}, {n: 25}, {n: 50}, {n: 100}]
-		scope.limit = scope.limits[0]
+		scope.limits = scope.data.limits || [10, 25, 50, 100]
+		scope.data.limit = scope.limits[0]
 
 		scope.buttons = scope.data.buttons.reduce((s, name) => {
 			s[name] = true
@@ -24,11 +24,14 @@ angular.module('app.directives')
 			}
 
 			col.sorter = {dir: null}
+
 			col.sorter.switch = () => {
 				scope.cols.filter(c => c !== col).forEach(c => c.sorter.dir = null)
 				col.sorter.dir = (!col.sorter.dir ? '+' : (col.sorter.dir === '+' ? '-' : null))
 			}
-			col.filter = ''
+
+			if(!col.filter) col.filter = { type: 'string' }
+			if(typeof col.filter.value === 'undefined') col.filter.value = ''
 
 			return col
 		})
@@ -54,26 +57,44 @@ angular.module('app.directives')
 			let filtered = true
 
 			scope.cols.forEach(col => {
-				let filterVal = (typeof col.filter === 'string' ? col.filter : (
-					col.filter !== null ? col.filter[col.dropdown.display.text] : ''
-				))
+				if(col.filter.type === 'checkbox-dropdown') {
+					if(col.filter.value) {
+						var filterVal = col.getProp(value)
 
-				if(col.getProp(value).toLowerCase().indexOf(filterVal.toLowerCase()) === -1) {
-					filtered = false
+						if(!col.filter.value.filter(x => x.checked && x[col.filter.display.text] === filterVal).length) {
+							filtered = false
+						}
+					}
+				} else {
+					let filterVal = (typeof col.filter.value === 'string' ? col.filter.value : (
+						col.filter.value !== null ? col.filter.value[col.filter.display.text] : ''
+					))
+
+					if(col.getProp(value).toLowerCase().indexOf(filterVal.toLowerCase()) === -1) {
+						filtered = false
+					}
 				}
+				
 			})
 
 			return filtered
 		}
 
 		const doFilter = () => {
-			scope.page = 1
+			scope.data.page = 1
 			const filter = $filter('filter')
 			const orderBy = $filter('orderBy')
 			scope.filtered = orderBy(filter(scope.data.items, scope.allFilters), scope.allSorts())
 		}
 
-		scope.$watch('data.items', doFilter)
+		scope.data.allSorts = scope.allSorts
+		scope.data.allFilters = scope.allFilters
+
+		if(scope.data.items.hasOwnProperty('$resolved')) {
+			scope.data.items.$promise.then(doFilter)
+		}
+
+		scope.$watch('data.items', doFilter, true)
 		scope.$watch('data.cols', doFilter, true)
 	}
 
