@@ -20,7 +20,7 @@ angular.module('app.controllers')
 		u.$save().then(function(res) {
 			$invalidate.add('units')
 
-			$location.path('/manage/unit')
+			$location.path('/unit')
 		})
 	}
 })

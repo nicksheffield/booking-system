@@ -35,6 +35,30 @@ angular.module('app.directives')
 
 			return col
 		})
+
+		scope.simplifyItems = () =>{
+			 scope.simplifiedItems = scope.data.items.map(x => {
+				const obj = {}
+
+				if(!x.id) return {'error': 'No id on item given to data-table', 'object': x}
+
+				obj.id = x.id
+
+				scope.data.cols.forEach(col => {
+					let propNames = col.prop.split('.')
+// TODO this thing
+					obj[col.prop] = col.getProp(x)
+				})
+
+				return obj
+			})
+
+			return scope.simplifiedItems
+		}
+
+		scope.getRealItem = (obj) => {
+			return scope.data.items.find(x => x.id === obj.id)
+		}
 		
 		scope.filters = scope.cols.map(col => col.getProp())
 
@@ -54,37 +78,60 @@ angular.module('app.directives')
 		}
 
 		scope.allFilters = (value, index, array) => {
-			let filtered = true
+			let passFilter = true
 
 			scope.cols.forEach(col => {
-				if(col.filter.type === 'checkbox-dropdown') {
-					if(col.filter.value) {
-						var filterVal = col.getProp(value)
+				let filterVal
+				const filter = col.filter
+				const config = filter.config
 
-						if(!col.filter.value.filter(x => x.checked && x[col.filter.display.text] === filterVal).length) {
-							filtered = false
+				if(!col.filter.value) return
+
+				if(filter.type === 'dropdown2') {
+					if(config.multiple) {
+						// If disableOnEmpty is turned on for this dropdown2
+						// then when nothing is chosen, everything is chosen, and we should even show items that don't necessarily even have a value for this col
+						// but if we have a different amount of items chosen than there are total, then the user is trying to do a meaningful filter
+						// so get rid of the rows with no value for this column
+						if(!col.getProp(value) && filter.value.length !== filter.items.length && config.disableOnEmpty) {
+							passFilter = false
+							return
+						}
+
+						filterVal = filter.value.reduce((s,x) => {
+							s.push(x[config.text])
+							return s	
+						}, []).join(', ')
+
+						if(filterVal.toLowerCase().indexOf(col.getProp(value).toLowerCase()) === -1) {
+							passFilter = false
+						}
+					} else {
+						filterVal = filter.value[config.text]
+						if(col.getProp(value).toLowerCase().indexOf(filterVal.toLowerCase()) === -1) {
+							passFilter = false
 						}
 					}
 				} else {
-					let filterVal = (typeof col.filter.value === 'string' ? col.filter.value : (
-						col.filter.value !== null ? col.filter.value[col.filter.display.text] : ''
-					))
-
+					filterVal = String(filter.value)
 					if(col.getProp(value).toLowerCase().indexOf(filterVal.toLowerCase()) === -1) {
-						filtered = false
+						passFilter = false
 					}
 				}
+
 				
 			})
 
-			return filtered
+			return passFilter
 		}
 
 		const doFilter = () => {
 			scope.data.page = 1
 			const filter = $filter('filter')
 			const orderBy = $filter('orderBy')
-			scope.filtered = orderBy(filter(scope.data.items, scope.allFilters), scope.allSorts())
+			scope.filtered = orderBy(filter(scope.simplifiedItems, scope.allFilters), scope.allSorts())
+			console.log('scope.simplifiedItems', scope.simplifiedItems)
+			console.log('scope.data.items', scope.data.items)
 		}
 
 		scope.data.allSorts = scope.allSorts
@@ -94,6 +141,7 @@ angular.module('app.directives')
 			scope.data.items.$promise.then(doFilter)
 		}
 
+		scope.$watch('data.items', scope.simplifyItems, true)
 		scope.$watch('data.items', doFilter, true)
 		scope.$watch('data.cols', doFilter, true)
 	}

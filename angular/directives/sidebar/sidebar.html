@@ -38,7 +38,7 @@
 			<li nav-link="All Bookings" url="/bookings"></li>
 
 			<li class="title">Manage</li>
-			<li nav-link="Users" url="/manage/user" number="{{ store.users.length }}"></li>
+			<li nav-link="Users" url="/user" number="{{ store.users.length }}"></li>
 
 			<li class="title">Settings</li>
 			<li nav-link="My Profile" url="home/edit-profile"></li>
@@ -54,13 +54,13 @@
 
 			<li class="title">Manage</li>
 			<li nav-link="Manage" url="/manage" show-only-sm></li>
-			<li nav-link="Users" url="/manage/user" number="{{ store.users.length }}" loading="!store.users.$resolved" class="sm-hide"></li>
-			<!-- <li nav-link="Class Types" url="/manage/class-type" number="{{ store.group_types.length }}" loading="!store.group_types.$resolved" class="sm-hide"></li> -->
-			<li nav-link="Classes" url="/manage/class" number="{{ store.groups.length }}" loading="!store.groups.$resolved" class="sm-hide"></li>
-			<!-- <li nav-link="Product Types" url="/manage/product-type" number="{{ store.product_types.length }}" loading="!store.product_types.$resolved" class="sm-hide"></li> -->
-			<li nav-link="Products" url="/manage/product" number="{{ store.products.length }}" loading="!store.products.$resolved" class="sm-hide"></li>
-			<li nav-link="Units" url="/manage/unit" number="{{ store.units.length }}" loading="!store.units.$resolved" class="sm-hide"></li>
-			<li nav-link="Kits" url="/manage/kit" number="{{ store.kits.length }}" loading="!store.kits.$resolved" class="sm-hide"></li>
+			<li nav-link="Users" url="/user" number="{{ store.users.length }}" loading="!store.users.$resolved" class="sm-hide"></li>
+			<!-- <li nav-link="Class Types" url="/class-type" number="{{ store.group_types.length }}" loading="!store.group_types.$resolved" class="sm-hide"></li> -->
+			<li nav-link="Classes" url="/class" number="{{ store.groups.length }}" loading="!store.groups.$resolved" class="sm-hide"></li>
+			<!-- <li nav-link="Product Types" url="/product-type" number="{{ store.product_types.length }}" loading="!store.product_types.$resolved" class="sm-hide"></li> -->
+			<li nav-link="Products" url="/product" number="{{ store.products.length }}" loading="!store.products.$resolved" class="sm-hide"></li>
+			<li nav-link="Units" url="/unit" number="{{ store.units.length }}" loading="!store.units.$resolved" class="sm-hide"></li>
+			<li nav-link="Kits" url="/kit" number="{{ store.kits.length }}" loading="!store.kits.$resolved" class="sm-hide"></li>
 
 			<li class="title">Settings</li>
 			<li nav-link="My Profile" url="home/edit-profile"></li>

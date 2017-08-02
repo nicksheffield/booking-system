@@ -15,7 +15,7 @@
 			
 			<p ng-repeat="error in errors" ratio="1" layout="row" justify="between" align="center">
 				<span>{{ error.message }}</span>
-				<a class="btn btn-primary btn-sm btn-icon" href="/manage/class/new?code={{ error.group_code }}" target="_blank">
+				<a class="btn btn-primary btn-sm btn-icon" href="/class/new?code={{ error.group_code }}" target="_blank">
 					<i class="fa fa-plus"></i>Create {{ error.group_code }}
 				</a>
 			</p>

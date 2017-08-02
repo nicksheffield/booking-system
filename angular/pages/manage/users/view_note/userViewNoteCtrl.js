@@ -20,7 +20,7 @@ angular.module('app.controllers')
 		.then(function() {
 			Note.delete({id: note.id}).$promise.then(function() {
 				$invalidate.add('notes')
-				$location.path('/manage/user/' + $scope.user.id)
+				$location.path('/user/' + $scope.user.id)
 			})
 		})
 	}

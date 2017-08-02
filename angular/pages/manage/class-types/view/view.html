@@ -1,11 +1,11 @@
 <page-header text="{{ type.code }} // {{ type.name }}">
 	<div class="btn-group">
-		<a href="manage/class-type/{{ type.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+		<a href="/class-type/{{ type.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
 		<div class="dropdown-menu dropdown-menu-right">
-			<a href="manage/class-type/{{ type.id }}/products" class="dropdown-item btn-icon"><i class="fa fa-camera"></i>Allowed Products</a>
+			<a href="/class-type/{{ type.id }}/products" class="dropdown-item btn-icon"><i class="fa fa-camera"></i>Allowed Products</a>
 			<span class="dropdown-item btn-icon" ng-click="delete()"><i class="fa fa-trash"></i>Delete</span>
 		</div>
 	</div>
@@ -26,17 +26,17 @@
 			<td class="row-property">
 				Classes ({{ type.groups.length }})<br>
 
-				<a href="manage/class/new?type={{ type.code }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+				<a href="/class/new?type={{ type.code }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
 			</td>
 			<td class="row-value">
 				<ul ng-show="type.groups.length">
 					<li ng-repeat="group in type.groups">
-						<a href="manage/class/{{ group.id }}">{{ group.code }}</a>
+						<a href="/class/{{ group.id }}">{{ group.code }}</a>
 					</li>
 				</ul>
 				
 				<alert type="info" text="No classes with this type" icon="exclamation-circle" ng-if="!type.groups.length">
-					<btn url="manage/class/new?type={{ type.code }}" small icon="plus">Create one</btn>
+					<btn url="/class/new?type={{ type.code }}" small icon="plus">Create one</btn>
 				</alert>
 			</td>
 		</tr>
@@ -45,7 +45,7 @@
 			<td class="row-value">
 				<ul ng-show="type.products.length">
 					<li ng-repeat="product in type.products">
-						<a href="manage/product/{{ product.id }}">{{ product.name }}</a>
+						<a href="/product/{{ product.id }}">{{ product.name }}</a>
 					</li>
 				</ul>
 			</td>

@@ -29,6 +29,10 @@
 					<span ng-if="col.filter.type === 'dropdown'">
 						<dropdown ng-model="col.filter.value" data="col.filter.items" display="col.filter.display" small nullable></dropdown>
 					</span>
+					<span ng-if="col.filter.type === 'dropdown2'">
+						<!-- <dropdown ng-model="col.filter.value" data="col.filter.items" display="col.filter.display" small nullable></dropdown> -->
+						<dropdown2 ng-model="col.filter.value" items="col.filter.items" config="col.filter.config"></dropdown2>
+					</span>
 					<span ng-if="col.filter.type === 'checkbox-dropdown'">
 						<dropdown ng-model="col.filter.value" data="col.filter.items" display="col.filter.display" small checkboxes></dropdown>
 					</span>

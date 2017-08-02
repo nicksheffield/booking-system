@@ -1,0 +1,66 @@
+.ns-dropdown2
+	max-width 300px
+	position relative
+
+
+.ns-dropdown2-icon
+	position absolute
+	top 6px
+	color #aaa
+	text-shadow 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff
+
+	&.ns-dropdown2-chevron
+		right 8px
+		pointer-events none
+
+	&.ns-dropdown2-clear
+		right 35px
+		cursor pointer
+
+		&:hover
+			color #d00
+
+
+.ns-dropdown2-input
+	&:hover + .ns-dropdown2-controls .ns-dropdown2-chevron
+		color #777
+
+	&:focus + .ns-dropdown2-controls .ns-dropdown2-chevron
+		color dodgerblue
+
+
+.form-control-sm + .ns-dropdown2-controls .ns-dropdown2-icon
+	top 1px
+
+
+.ns-dropdown2-list
+	position absolute
+	top 100%
+	left 0
+	z-index 99
+	width 100%
+	max-height 300px
+	overflow scroll
+	box-shadow 0 2px 28px rgba(0,0,0,0.16), 0 3px 8px rgba(0,0,0,0.23)
+	border-radius 3px
+	background #fff
+
+	ul
+		list-style none
+		padding 1em 0
+		margin 0
+
+
+.ns-dropdown2-item
+	cursor pointer
+
+	&:hover 
+		background #eee
+
+
+	.ns-dropdown2-item-clickable
+		display block
+		padding 0.5em
+
+	.ns-dropdown2-checkbox
+		margin-right 0.5em

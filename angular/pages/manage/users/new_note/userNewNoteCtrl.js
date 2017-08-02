@@ -14,7 +14,7 @@ angular.module('app.controllers')
 		n.$save().then(function(res) {
 			$invalidate.add('notes')
 			
-			$location.path('/manage/user/' + $scope.user.id)
+			$location.path('/user/' + $scope.user.id)
 		}).catch(function(res) {
 			console.log('save err', res)
 		})

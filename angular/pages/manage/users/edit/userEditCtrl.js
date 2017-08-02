@@ -21,11 +21,11 @@ angular.module('app.controllers')
 	$scope.curUser = $store.user
 
 	if($scope.curUser.admin < 2 && $scope.user.admin > 0 && $scope.user.id !== $scope.curUser.id) {
-		$location.path('/manage/user')
+		$location.path('/user')
 	}
 	
 	if($scope.user.admin == 1 && $scope.user.group && !$scope.user.group._isTutor($store.user.id)) {
-		$location.path('/manage/user')
+		$location.path('/user')
 	}
 	
 	$scope.groups = $store.groups.filter(g => g.active)
@@ -60,7 +60,7 @@ angular.module('app.controllers')
 				$invalidate.add(['groups'])
 			}
 			
-			$location.path('/manage/user/' + $scope.user.id)
+			$location.path('/user/' + $scope.user.id)
 		}, function(res) {
 			$scope.errors.push({
 				message: res.data.error

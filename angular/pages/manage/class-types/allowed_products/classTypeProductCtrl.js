@@ -106,7 +106,7 @@ angular.module('app.controllers')
 			.post('/api/group_type/' + $scope.group_type.id + '/products', $scope.selectedProducts)
 			.then(function(res) {
 				$invalidate.add('group_types')
-				$location.path('/manage/class-type/' + $scope.group_type.id)
+				$location.path('/class-type/' + $scope.group_type.id)
 			})
 	}
 })

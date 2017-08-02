@@ -19,7 +19,7 @@ angular.module('app.controllers')
 			$scope.product.$delete().then(function() {
 				$invalidate.add(['products', 'product_types', 'units'])
 				
-				$location.path('/manage/product')
+				$location.path('/product')
 			})
 		})
 	}

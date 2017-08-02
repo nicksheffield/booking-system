@@ -13,7 +13,7 @@ angular.module('app.controllers')
 		Product.update({id: $scope.product.id}, $scope.product).$promise.then(function(res) {
 			$invalidate.add('products')
 			
-			$location.path('/manage/product/' + $scope.product.id)
+			$location.path('/product/' + $scope.product.id)
 		})
 	}
 })

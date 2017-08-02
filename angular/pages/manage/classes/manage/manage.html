@@ -1,7 +1,7 @@
 <page-header text="All Classes">
 	<div class="button-row">
-		<btn icon="bars" url="manage/class-type" type="secondary">Class Types</btn>
-		<btn icon="plus" url="manage/class/new">New Class Type</btn>
+		<btn icon="bars" url="/class-type" type="secondary">Class Types</btn>
+		<btn icon="plus" url="/class/new">New Class Type</btn>
 	</div>
 </page-header>
 
@@ -11,7 +11,7 @@
 
 	<my-table data="dataTable"></my-table>
 
-	<!-- <a ng-repeat="group in groups | filter: filter | page : page : 10 as filtered" href="manage/class/{{ group.id }}" class="list-item">
+	<!-- <a ng-repeat="group in groups | filter: filter | page : page : 10 as filtered" href="/class/{{ group.id }}" class="list-item">
 		<div class="col" ratio="1">
 			<div class="title">Code</div>
 			<div class="content">{{ group.code }}</div>

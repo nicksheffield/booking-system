@@ -189,7 +189,7 @@ angular.module('app.routes')
 		
 		'manage': {
 			url: '/manage',
-			templateUrl: 'pages/manage/manage/manage.html',
+			templateUrl: 'pages//manage/manage.html',
 			controller: 'manageCtrl',
 			data: {
 				conditions: ['auth', 'staff_only'],
@@ -202,7 +202,7 @@ angular.module('app.routes')
 		// ------------------------------------------------------------
 		
 		'manage_users': {
-			url: '/manage/user',
+			url: '/user',
 			templateUrl: 'pages/manage/users/manage/manage.html',
 			controller: 'userManageCtrl',
 			data: {
@@ -212,7 +212,7 @@ angular.module('app.routes')
 		},
 		
 		'new_user': {
-			url: '/manage/user/new?class',
+			url: '/user/new?class',
 			templateUrl: 'pages/manage/users/new/new.html',
 			controller: 'userNewCtrl',
 			data: {
@@ -223,7 +223,7 @@ angular.module('app.routes')
 		},
 		
 		'import_users': {
-			url: '/manage/user/import',
+			url: '/user/import',
 			templateUrl: 'pages/manage/users/import/import.html',
 			controller: 'userImportCtrl',
 			data: {
@@ -234,7 +234,7 @@ angular.module('app.routes')
 		},
 		
 		'export_users': {
-			url: '/manage/user/export',
+			url: '/user/export',
 			templateUrl: 'pages/manage/users/export/export.html',
 			controller: 'userExportCtrl',
 			data: {
@@ -245,7 +245,7 @@ angular.module('app.routes')
 		},
 		
 		'view_user': {
-			url: '/manage/user/:id',
+			url: '/user/:id',
 			templateUrl: 'pages/manage/users/view/view.html',
 			controller: 'userViewCtrl',
 			data: {
@@ -256,7 +256,7 @@ angular.module('app.routes')
 		},
 		
 		'edit_user': {
-			url: '/manage/user/:id/edit',
+			url: '/user/:id/edit',
 			templateUrl: 'pages/manage/users/edit/edit.html',
 			controller: 'userEditCtrl',
 			data: {
@@ -267,7 +267,7 @@ angular.module('app.routes')
 		},
 		
 		'new_note': {
-			url: '/manage/user/:id/note/new',
+			url: '/user/:id/note/new',
 			templateUrl: 'pages/manage/users/new_note/new_note.html',
 			controller: 'userNewNoteCtrl',
 			data: {
@@ -278,7 +278,7 @@ angular.module('app.routes')
 		},
 		
 		'view_note': {
-			url: '/manage/user/:id/note/:id2',
+			url: '/user/:id/note/:id2',
 			templateUrl: 'pages/manage/users/view_note/view_note.html',
 			controller: 'userViewNoteCtrl',
 			data: {
@@ -289,7 +289,7 @@ angular.module('app.routes')
 		},
 		
 		'edit_note': {
-			url: '/manage/user/:id/note/:id2/edit',
+			url: '/user/:id/note/:id2/edit',
 			templateUrl: 'pages/manage/users/edit_note/edit_note.html',
 			controller: 'userEditNoteCtrl',
 			data: {
@@ -304,7 +304,7 @@ angular.module('app.routes')
 		// ------------------------------------------------------------
 		
 		'manage_class_types': {
-			url: '/manage/class-type',
+			url: '/class-type',
 			templateUrl: 'pages/manage/class-types/manage/manage.html',
 			controller: 'classTypeManageCtrl',
 			data: {
@@ -315,7 +315,7 @@ angular.module('app.routes')
 		},
 		
 		'new_class_type': {
-			url: '/manage/class-type/new',
+			url: '/class-type/new',
 			templateUrl: 'pages/manage/class-types/new/new.html',
 			controller: 'classTypeNewCtrl',
 			data: {
@@ -326,7 +326,7 @@ angular.module('app.routes')
 		},
 		
 		'view_class_type': {
-			url: '/manage/class-type/:id',
+			url: '/class-type/:id',
 			templateUrl: 'pages/manage/class-types/view/view.html',
 			controller: 'classTypeViewCtrl',
 			data: {
@@ -337,7 +337,7 @@ angular.module('app.routes')
 		},
 		
 		'edit_class_type': {
-			url: '/manage/class-type/:id/edit',
+			url: '/class-type/:id/edit',
 			templateUrl: 'pages/manage/class-types/edit/edit.html',
 			controller: 'classTypeEditCtrl',
 			data: {
@@ -348,7 +348,7 @@ angular.module('app.routes')
 		},
 
 		'allow_products_for_class_type': {
-			url: '/manage/class-type/:id/products',
+			url: '/class-type/:id/products',
 			templateUrl: 'pages/manage/class-types/allowed_products/allowed_products.html',
 			controller: 'classTypeProductCtrl',
 			data: {
@@ -363,7 +363,7 @@ angular.module('app.routes')
 		// ------------------------------------------------------------
 		
 		'manage_class': {
-			url: '/manage/class',
+			url: '/class',
 			templateUrl: 'pages/manage/classes/manage/manage.html',
 			controller: 'classManageCtrl',
 			data: {
@@ -373,7 +373,7 @@ angular.module('app.routes')
 		},
 		
 		'new_class': {
-			url: '/manage/class/new?type&code',
+			url: '/class/new?type&code',
 			templateUrl: 'pages/manage/classes/new/new.html',
 			controller: 'classNewCtrl',
 			data: {
@@ -384,7 +384,7 @@ angular.module('app.routes')
 		},
 		
 		'view_class': {
-			url: '/manage/class/:id',
+			url: '/class/:id',
 			templateUrl: 'pages/manage/classes/view/view.html',
 			controller: 'classViewCtrl',
 			data: {
@@ -395,7 +395,7 @@ angular.module('app.routes')
 		},
 		
 		'edit_class': {
-			url: '/manage/class/:id/edit',
+			url: '/class/:id/edit',
 			templateUrl: 'pages/manage/classes/edit/edit.html',
 			controller: 'classEditCtrl',
 			data: {
@@ -410,7 +410,7 @@ angular.module('app.routes')
 		// ------------------------------------------------------------
 		
 		'manage_product_type': {
-			url: '/manage/product-type',
+			url: '/product-type',
 			templateUrl: 'pages/manage/product-types/manage/manage.html',
 			controller: 'productTypeManageCtrl',
 			data: {
@@ -421,7 +421,7 @@ angular.module('app.routes')
 		},
 		
 		'new_product_type': {
-			url: '/manage/product-type/new',
+			url: '/product-type/new',
 			templateUrl: 'pages/manage/product-types/new/new.html',
 			controller: 'productTypeNewCtrl',
 			data: {
@@ -432,7 +432,7 @@ angular.module('app.routes')
 		},
 		
 		'view_product_type': {
-			url: '/manage/product-type/:id',
+			url: '/product-type/:id',
 			templateUrl: 'pages/manage/product-types/view/view.html',
 			controller: 'productTypeViewCtrl',
 			data: {
@@ -443,7 +443,7 @@ angular.module('app.routes')
 		},
 		
 		'edit_product_type': {
-			url: '/manage/product-type/:id/edit',
+			url: '/product-type/:id/edit',
 			templateUrl: 'pages/manage/product-types/edit/edit.html',
 			controller: 'productTypeEditCtrl',
 			data: {
@@ -458,7 +458,7 @@ angular.module('app.routes')
 		// ------------------------------------------------------------
 		
 		'manage_product': {
-			url: '/manage/product',
+			url: '/product',
 			templateUrl: 'pages/manage/products/manage/manage.html',
 			controller: 'productManageCtrl',
 			data: {
@@ -468,7 +468,7 @@ angular.module('app.routes')
 		},
 		
 		'new_product': {
-			url: '/manage/product/new?type&name',
+			url: '/product/new?type&name',
 			templateUrl: 'pages/manage/products/new/new.html',
 			controller: 'productNewCtrl',
 			data: {
@@ -479,7 +479,7 @@ angular.module('app.routes')
 		},
 		
 		'view_product': {
-			url: '/manage/product/:id',
+			url: '/product/:id',
 			templateUrl: 'pages/manage/products/view/view.html',
 			controller: 'productViewCtrl',
 			data: {
@@ -490,7 +490,7 @@ angular.module('app.routes')
 		},
 		
 		'edit_product': {
-			url: '/manage/product/:id/edit',
+			url: '/product/:id/edit',
 			templateUrl: 'pages/manage/products/edit/edit.html',
 			controller: 'productEditCtrl',
 			data: {
@@ -505,7 +505,7 @@ angular.module('app.routes')
 		// ------------------------------------------------------------
 		
 		'manage_unit': {
-			url: '/manage/unit',
+			url: '/unit',
 			templateUrl: 'pages/manage/units/manage/manage.html',
 			controller: 'unitManageCtrl',
 			data: {
@@ -515,7 +515,7 @@ angular.module('app.routes')
 		},
 		
 		'new_unit': {
-			url: '/manage/unit/new?product',
+			url: '/unit/new?product',
 			templateUrl: 'pages/manage/units/new/new.html',
 			controller: 'unitNewCtrl',
 			data: {
@@ -526,7 +526,7 @@ angular.module('app.routes')
 		},
 		
 		'import_units': {
-			url: '/manage/unit/import',
+			url: '/unit/import',
 			templateUrl: 'pages/manage/units/import/import.html',
 			controller: 'unitImportCtrl',
 			data: {
@@ -537,7 +537,7 @@ angular.module('app.routes')
 		},
 		
 		'export_units': {
-			url: '/manage/unit/export',
+			url: '/unit/export',
 			templateUrl: 'pages/manage/units/export/export.html',
 			controller: 'unitExportCtrl',
 			data: {
@@ -548,7 +548,7 @@ angular.module('app.routes')
 		},
 		
 		'view_unit': {
-			url: '/manage/unit/:id',
+			url: '/unit/:id',
 			templateUrl: 'pages/manage/units/view/view.html',
 			controller: 'unitViewCtrl',
 			data: {
@@ -559,7 +559,7 @@ angular.module('app.routes')
 		},
 		
 		'edit_unit': {
-			url: '/manage/unit/:id/edit',
+			url: '/unit/:id/edit',
 			templateUrl: 'pages/manage/units/edit/edit.html',
 			controller: 'unitEditCtrl',
 			data: {
@@ -574,7 +574,7 @@ angular.module('app.routes')
 		// ------------------------------------------------------------
 		
 		'manage_kit': {
-			url: '/manage/kit',
+			url: '/kit',
 			templateUrl: 'pages/manage/kits/manage/manage.html',
 			controller: 'kitManageCtrl',
 			data: {
@@ -584,7 +584,7 @@ angular.module('app.routes')
 		},
 		
 		'new_kit': {
-			url: '/manage/kit/new?product',
+			url: '/kit/new?product',
 			templateUrl: 'pages/manage/kits/new/new.html',
 			controller: 'kitNewCtrl',
 			data: {
@@ -595,7 +595,7 @@ angular.module('app.routes')
 		},
 		
 		'view_kit': {
-			url: '/manage/kit/:id',
+			url: '/kit/:id',
 			templateUrl: 'pages/manage/kits/view/view.html',
 			controller: 'kitViewCtrl',
 			data: {
@@ -606,7 +606,7 @@ angular.module('app.routes')
 		},
 		
 		'edit_kit': {
-			url: '/manage/kit/:id/edit',
+			url: '/kit/:id/edit',
 			templateUrl: 'pages/manage/kits/edit/edit.html',
 			controller: 'kitEditCtrl',
 			data: {

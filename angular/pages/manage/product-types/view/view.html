@@ -1,6 +1,6 @@
 <page-header text="{{ type.name }}">
 	<div class="btn-group">
-		<a href="manage/product-type/{{ type.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+		<a href="/product-type/{{ type.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
@@ -20,17 +20,17 @@
 		<tr>
 			<td class="row-property">
 				Products ({{ type.products.length }})<br>
-				<a href="manage/product/new?type={{ type.name }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+				<a href="/product/new?type={{ type.name }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
 			</td>
 			<td class="row-value">
 				<ul>
 					<li ng-repeat="product in type.products">
-						<a href="manage/product/{{ product.id }}">{{ product.name }}</a>
+						<a href="/product/{{ product.id }}">{{ product.name }}</a>
 					</li>
 				</ul>
 				
 				<alert type="info" text="No products with this type" icon="exclamation-circle" ng-if="!type.products.length">
-					<btn url="manage/product/new?type={{ type.name }}" small icon="plus">Create one</btn>
+					<btn url="/product/new?type={{ type.name }}" small icon="plus">Create one</btn>
 				</alert>
 			</td>
 		</tr>

@@ -131,7 +131,7 @@ angular.module('app.controllers')
 
 			$q.all(promises).then(function(values) {
 				$invalidate.add('units')
-				$location.path('/manage/unit')
+				$location.path('/unit')
 			})
 		}
 	}

@@ -1,6 +1,6 @@
 <page-header text="User: {{ user.name }}">
 	<div class="btn-group" ng-show="you.admin === 2 || user.admin === 0 || user.id === you.id">
-		<a href="manage/user/{{ user.id }}/edit" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-pencil"></i>Edit</a>
+		<a href="/user/{{ user.id }}/edit" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-pencil"></i>Edit</a>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
@@ -62,14 +62,14 @@
 			</tr>
 			<tr ng-show="!user.admin">
 				<td class="row-property">Class</td>
-				<td class="row-value"><a href="manage/class/{{ user.group.id }}">{{ user.group.code }}</a></td>
+				<td class="row-value"><a href="/class/{{ user.group.id }}">{{ user.group.code }}</a></td>
 			</tr>
 			<tr ng-show="user.admin && user.tutors_groups.length">
 				<td class="row-property">Tutor of</td>
 				<td class="row-value">
 					<ul>
 						<li ng-repeat="group in user.tutors_groups">
-							<a href="manage/class/{{ group.id }}">{{ group.code }}</a>
+							<a href="/class/{{ group.id }}">{{ group.code }}</a>
 						</li>
 					</ul>
 				</td>
@@ -77,16 +77,16 @@
 			<tr ng-show="!user.admin">
 				<td class="row-property">
 					Notes<br>
-					<a href="manage/user/{{ user.id }}/note/new" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+					<a href="/user/{{ user.id }}/note/new" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
 				</td>
 				<td class="row-value">
 					<div class="list-group">
 						<div class="list-group-item user-note" ng-repeat="note in user.notes" layout="row" ng-hide="note.is_old">
 							<div class="user-note-content" ratio="1">
-								<a href="manage/user/{{ user.id }}/note/{{ note.id }}">{{ note.content }}</a>
+								<a href="/user/{{ user.id }}/note/{{ note.id }}">{{ note.content }}</a>
 							</div>
 							<div class="user-note-controls">
-								<btn icon="pencil" type="info" small url="manage/user/{{ user.id }}/note/{{ note.id }}/edit">Edit</btn> 
+								<btn icon="pencil" type="info" small url="/user/{{ user.id }}/note/{{ note.id }}/edit">Edit</btn> 
 								<btn icon="trash" type="danger" small ng-click="deleteNote(note)"></btn>
 							</div>
 						</div>

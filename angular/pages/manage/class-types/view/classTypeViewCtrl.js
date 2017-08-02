@@ -15,7 +15,7 @@ angular.module('app.controllers')
 			$scope.type.$delete().then(function() {
 				$invalidate.add('group_types')
 				
-				$location.path('/manage/class-type')
+				$location.path('/class-type')
 			})
 		})
 	}

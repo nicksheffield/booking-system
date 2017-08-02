@@ -14,13 +14,21 @@ angular.module('app.controllers')
 				name: 'Role',
 				prop: '_role',
 				filter: {
-					type: 'dropdown',
+					type: 'dropdown2',
 					items: [
 						{ name: 'Manager' },
 						{ name: 'Staff' },
 						{ name: 'Student' },
 					],
-					display: { text: 'name' }
+					config: {
+						text: 'name',
+						id: 'name',
+						multiple: true,
+						placeholder: 'Search...',
+						small: true,
+						clearable: true,
+						disableOnEmpty: true
+					}
 				}
 			},
 			{
@@ -28,9 +36,17 @@ angular.module('app.controllers')
 				prop: 'group.code',
 				getter: x => x.group ? x.group.code : '',
 				filter: {
-					type: 'dropdown',
+					type: 'dropdown2',
 					items: $store.groups,
-					display: { text: 'code' }
+					config: {
+						text: 'code',
+						id: 'code',
+						multiple: true,
+						placeholder: 'Search...',
+						small: true,
+						clearable: true,
+						disableOnEmpty: true
+					}
 				}
 			},
 		]

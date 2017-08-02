@@ -1,6 +1,6 @@
 <page-header text="View Note">
 	<div class="btn-group">
-		<a href="manage/user/{{ user.id }}/note/{{ note.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+		<a href="/user/{{ user.id }}/note/{{ note.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
@@ -18,7 +18,7 @@
 		<table class="table info-table">
 			<tr>
 				<td class="row-property">Written by</td>
-				<td class="row-value"><a href="manage/user/{{ note.writer.id }}">{{ note.writer.name }}</a></td>
+				<td class="row-value"><a href="/user/{{ note.writer.id }}">{{ note.writer.name }}</a></td>
 			</tr>
 			<tr>
 				<td class="row-property">Date</td>
@@ -34,7 +34,7 @@
 			<li ng-repeat="version in note.history" class="list-group-item">
 				<div layout="row" justify="between">
 					<span>{{ version.content }}</span>
-					<span><a href="manage/user/{{ version.writer.id }}">{{ version.writer.name }}</a> ({{ dateify(version.created_at) | date: 'd/M/yy h:mm a' }})</span>
+					<span><a href="/user/{{ version.writer.id }}">{{ version.writer.name }}</a> ({{ dateify(version.created_at) | date: 'd/M/yy h:mm a' }})</span>
 				</div>
 			</li>
 		</ul>

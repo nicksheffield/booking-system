@@ -17,7 +17,7 @@ angular.module('app.controllers')
 		p.$save().then(function(res) {
 			$invalidate.add('products')
 
-			$location.path('/manage/product')
+			$location.path('/product')
 		})
 	}
 })

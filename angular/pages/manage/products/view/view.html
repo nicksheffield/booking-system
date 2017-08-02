@@ -1,6 +1,6 @@
 <page-header text="{{ product.name }}">
 	<div class="btn-group">
-		<a href="manage/product/{{ product.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+		<a href="/product/{{ product.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
@@ -19,7 +19,7 @@
 		</tr>
 		<tr>
 			<td class="row-property">Type</td>
-			<td class="row-value"><a href="manage/product-type/{{ product.type.id }}">{{ product.type.name }}</a></td>
+			<td class="row-value"><a href="/product-type/{{ product.type.id }}">{{ product.type.name }}</a></td>
 		</tr>
 		<tr>
 			<td class="row-property">Limitless</td>
@@ -31,7 +31,7 @@
 				<div layout="row" align="start" justify="between" ng-show="product.group_types.length">
 					<ul>
 						<li ng-repeat="group_type in product.group_types">
-							<a href="manage/class-type/{{ group_type.id }}">{{ group_type.name }}</a>
+							<a href="/class-type/{{ group_type.id }}">{{ group_type.name }}</a>
 						</li>
 					</ul>
 				</div>
@@ -46,7 +46,7 @@
 			<td class="row-value">
 				<ul>
 					<li ng-repeat="kit in product.kits track by $index">
-						<a href="manage/kit/{{ kit.id }}">{{kit.name }}</a>
+						<a href="/kit/{{ kit.id }}">{{kit.name }}</a>
 					</li>
 				</ul>
 				
@@ -56,17 +56,17 @@
 		<tr ng-show="!product.limitless">
 			<td class="row-property">
 				Units ({{ product.units.length }})<br>
-				<a href="manage/unit/new?product={{ product.id }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+				<a href="/unit/new?product={{ product.id }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
 			</td>
 			<td class="row-value">
 				<ul>
 					<li ng-repeat="unit in product.units | orderBy: orderByUnit track by $index">
-						<a href="manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a>
+						<a href="/unit/{{ unit.id }}">{{ unit.unit_number }}</a>
 					</li>
 				</ul>
 				
 				<alert type="info" text="No units for this product" icon="exclamation-circle" ng-if="!product.units.length">
-					<btn url="manage/unit/new?product={{ product.id }}" small icon="plus">Create one</btn>
+					<btn url="/unit/new?product={{ product.id }}" small icon="plus">Create one</btn>
 				</alert>
 			</td>
 		</tr>

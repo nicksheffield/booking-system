@@ -5,34 +5,34 @@
 	<p>Here you can manage aspects of the booking system.</p>
 	
 	<div ng-show="user.admin === 2" style="list-group">
-		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="manage/user">
+		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="/user">
 			<span><i class="fa fa-wrench push-right"></i> Users</span>
 			<span class="label label-dark label-pill">{{ store.users.length }}</span>
 		</a>
-		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="manage/class-type">
+		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="/class-type">
 			<span><i class="fa fa-wrench push-right"></i> Class Types</span>
 			<span class="label label-dark label-pill">{{ store.group_types.length }}</span>
 		</a>
-		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="manage/class">
+		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="/class">
 			<span><i class="fa fa-wrench push-right"></i> Classes</span>
 			<span class="label label-dark label-pill">{{ store.groups.length }}</span>
 		</a>
-		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="manage/product-type">
+		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="/product-type">
 			<span><i class="fa fa-wrench push-right"></i> Product Types</span>
 			<span class="label label-dark label-pill">{{ store.product_types.length }}</span>
 		</a>
-		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="manage/product">
+		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="/product">
 			<span><i class="fa fa-wrench push-right"></i> Products</span>
 			<span class="label label-dark label-pill">{{ store.products.length }}</span>
 		</a>
-		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="manage/unit">
+		<a class="list-group-item list-group-item-action" layout="row" justify="between" href="/unit">
 			<span><i class="fa fa-wrench push-right"></i> Units</span>
 			<span class="label label-dark label-pill">{{ store.units.length }}</span>
 		</a>
 	</div>
 	
 	<div ng-show="user.admin === 1" style="list-group">
-		<li class="list-group-item"><a href="manage/user">Manage Users</a></li>
+		<li class="list-group-item"><a href="/user">Manage Users</a></li>
 	</div>
 
 </div>

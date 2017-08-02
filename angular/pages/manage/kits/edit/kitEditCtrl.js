@@ -37,7 +37,7 @@ angular.module('app.controllers')
 		
 		$scope.kit.$update(function(res) {
 			$invalidate.add('kits')
-			$location.path('/manage/kit')
+			$location.path('/kit')
 		})
 	}
 })

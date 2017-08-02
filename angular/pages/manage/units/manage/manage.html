@@ -1,12 +1,12 @@
 <page-header text="All Units">
 	<div class="btn-group">
-		<a href="manage/unit/new" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New Unit</a>
+		<a href="/unit/new" class="btn btn-primary btn-icon btn-sm"><i class="fa fa-plus"></i>New Unit</a>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
 		<div class="dropdown-menu dropdown-menu-right">
-			<a class="dropdown-item btn-icon" href="manage/unit/import"><i class="fa fa-cloud-upload"></i>Import Units</a>
-			<a class="dropdown-item btn-icon" href="manage/unit/export"><i class="fa fa-cloud-download"></i>Export Units</a>
+			<a class="dropdown-item btn-icon" href="/unit/import"><i class="fa fa-cloud-upload"></i>Import Units</a>
+			<a class="dropdown-item btn-icon" href="/unit/export"><i class="fa fa-cloud-download"></i>Export Units</a>
 		</div>
 	</div>
 </page-header>
@@ -16,7 +16,7 @@
 <div class="page-content">
 	<my-table data="dataTable"></my-table>
 
-	<!-- <a ng-repeat="unit in units | filter: filter | orderBy: [product_id, unit_number] | page: page : 10 as filtered" href="manage/unit/{{ unit.id }}" class="list-item">
+	<!-- <a ng-repeat="unit in units | filter: filter | orderBy: [product_id, unit_number] | page: page : 10 as filtered" href="/unit/{{ unit.id }}" class="list-item">
 		<div class="col" ratio="1">
 			<div class="title">Product</div>
 			<div class="content">{{ unit.product.name }}</div>
@@ -46,10 +46,10 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="unit in units | filter: filter | page: page : 10 as filtered">
-				<td><a href="manage/unit/{{ unit.id }}">{{ unit.unit_number }}</a></td>
+				<td><a href="/unit/{{ unit.id }}">{{ unit.unit_number }}</a></td>
 				<td>{{ unit.serial_number }}</td>
 				<td>{{ unit.asset_number }}</td>
-				<td><a href="manage/product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
+				<td><a href="/product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
 			</tr>
 		</tbody>
 	</table> -->

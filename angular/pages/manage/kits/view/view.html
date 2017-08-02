@@ -1,6 +1,6 @@
 <page-header text="{{ kit.name }}">
 	<div class="btn-group">
-		<a href="manage/kit/{{ kit.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+		<a href="/kit/{{ kit.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
@@ -24,7 +24,7 @@
 			<td class="row-value">
 				<ul>
 					<li ng-repeat="product in kit.products">
-						<a href="manage/product/{{ product.id }}">{{ product.name }}</a>
+						<a href="/product/{{ product.id }}">{{ product.name }}</a>
 						 <strong>x{{ product.pivot.quantity }}</strong>
 					</li>
 				</ul>

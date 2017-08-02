@@ -6,7 +6,11 @@ angular.module('app.controllers')
 
 	$scope.users = $store.users
 	$scope.groups = $store.groups
-
+	$scope.statuses = [
+		{ text: 'Closed' },
+		{ text: 'Issued' },
+		{ text: 'Booked' }	
+	]
 
 	$scope.dropdown_test_data = [
 		{ text: 'Option A', checked: false },
@@ -55,56 +59,81 @@ angular.module('app.controllers')
 				prop: 'user.name',
 				getter: x => x.user ? x.user.name : '',
 				filter: {
-					type: 'dropdown',
+					type: 'dropdown2',
 					items: $store.users,
-					display: { text: 'name' },
-					value: $store.get('users', $stateParams.user)
+					value: $store.get('users', $stateParams.user) || null,
+					config: {
+						text: 'name',
+						id: 'id',
+						multiple: false,
+						clearable: true,
+						placeholder: 'Search...',
+						small: true
+					}
 				}
+				// filter: {
+				// 	type: 'dropdown',
+				// 	items: $store.users,
+				// 	display: { text: 'name' },
+				// 	value: $store.get('users', $stateParams.user)
+				// }
 			},
 			{
-				name: 'Booked',
-				prop: 'created_at',
-				getter: x => x.created_at ? moment(x.created_at).format('MMM Do') : '',
-				filter: {
-					type: 'date'
-				}
+				name: 'Pickup',
+				prop: 'pickup_at',
+				getter: x => x.pickup_at ? moment(x.pickup_at).format('MMM Do') : '',
+				// filter: {
+				// 	type: 'date'
+				// }
 			},
 			{
 				name: 'Issued',
 				prop: 'issued_at',
 				getter: x => x.taken_at ? moment(x.taken_at).format('MMM Do') : '',
-				filter: {
-					type: 'date'
-				}
+				// filter: {
+				// 	type: 'date'
+				// }
 			},
 			{
 				name: 'Due',
 				prop: 'due_at',
 				getter: x => x.due_at ? moment(x.due_at).format('MMM Do') : '',
-				filter: {
-					type: 'date'
-				}
+				// filter: {
+				// 	type: 'date'
+				// }
 			},
 			{
 				name: 'Closed',
 				prop: 'closed_at',
 				getter: x => x.closed_at ? moment(x.closed_at).format('MMM Do') : '',
-				filter: {
-					type: 'date'
-				}
+				// filter: {
+				// 	type: 'date'
+				// }
 			},
 			{
 				name: 'Status',
 				prop: '_status',
 				filter: {
-					type: 'checkbox-dropdown',
-					items: [
-						{ text: 'Closed', checked: false },
-						{ text: 'Issued', checked: true },
-						{ text: 'Booked', checked: true },
-					],
-					display: { text: 'text' }
+					type: 'dropdown2',
+					items: $scope.statuses,
+					value: [$scope.statuses[1], $scope.statuses[2]],
+					config: {
+						text: 'text',
+						id: 'text',
+						multiple: true,
+						placeholder: 'Search...',
+						small: true
+					}
 				}
+				// filter: {
+				// 	type: 'checkbox-dropdown',
+				// 	items: [
+				// 		{ text: 'Closed', checked: false },
+				// 		{ text: 'Issued', checked: true },
+				// 		{ text: 'Booked', checked: true },
+				// 	],
+				// 	display: { text: 'text' }
+				// }
 			}
 		]
 	}

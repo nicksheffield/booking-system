@@ -36,7 +36,7 @@
 			<tr>
 				<td class="row-property">User</td>
 				<td class="row-value">
-					<a href="manage/user/{{ booking.user.id }}" ng-if="user.admin">{{ booking.user.name }}</a>
+					<a href="/user/{{ booking.user.id }}" ng-if="user.admin">{{ booking.user.name }}</a>
 					<span ng-if="!user.admin">{{ booking.user.name }}</span>
 				</td>
 			</tr>
@@ -55,7 +55,7 @@
 			<tr ng-show="booking.issued_by">
 				<td class="row-property">Issued By</td>
 				<td class="row-value">
-					<a href="manage/user/{{ booking.issued_by.id }}" ng-if="user.admin">{{ booking.issued_by.name }}</a>
+					<a href="/user/{{ booking.issued_by.id }}" ng-if="user.admin">{{ booking.issued_by.name }}</a>
 					<span ng-if="!user.admin">{{ booking.issued_by.name }}</span>
 				</td>
 			</tr>
@@ -66,7 +66,7 @@
 			<tr ng-show="booking.closed_by">
 				<td class="row-property">Closed By</td>
 				<td class="row-value">
-					<a href="manage/user/{{ booking.closed_by.id }}" ng-if="user.admin">{{ booking.closed_by.name }}</a>
+					<a href="/user/{{ booking.closed_by.id }}" ng-if="user.admin">{{ booking.closed_by.name }}</a>
 					<span ng-if="!user.admin">{{ booking.closed_by.name }}</span>
 				</td>
 			</tr>
@@ -123,7 +123,7 @@
 				<tr ng-repeat="product in booking.products">
 					<td>{{ product.name }}</td>
 					<td>
-						<a href="manage/unit/{{ product.pivot.unit_id }}" ng-show="product.pivot.unit_id && user.admin">
+						<a href="/unit/{{ product.pivot.unit_id }}" ng-show="product.pivot.unit_id && user.admin">
 							{{ unit(product.pivot.unit_id).unit_number }}
 						</a>
 						<span ng-show="product.pivot.unit_id && !user.admin">

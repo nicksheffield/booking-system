@@ -1,6 +1,6 @@
 <page-header text="{{ group.code }}">
 	<div class="btn-group">
-		<a href="manage/class/{{ group.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil fa-fw"></i>Edit</a>
+		<a href="/class/{{ group.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil fa-fw"></i>Edit</a>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
@@ -21,7 +21,7 @@
 		</tr>
 		<tr>
 			<td class="row-property">Type</td>
-			<td class="row-value"><a href="manage/class-type/{{ group.type.id }}">{{ group.type.name }}</a></td>
+			<td class="row-value"><a href="/class-type/{{ group.type.id }}">{{ group.type.name }}</a></td>
 		</tr>
 		<tr>
 			<td class="row-property">Status</td>
@@ -32,10 +32,10 @@
 			<td class="row-value">
 				<ul ng-show="group.tutors.length > 1">
 					<li ng-repeat="user in group.tutors">
-						<a href="manage/user/{{ user.id }}">{{ user.name }}</a>
+						<a href="/user/{{ user.id }}">{{ user.name }}</a>
 					</li>
 				</ul>
-				<a href="manage/user/{{ group.tutors[0].id }}" ng-show="group.tutors.length == 1">
+				<a href="/user/{{ group.tutors[0].id }}" ng-show="group.tutors.length == 1">
 					{{ group.tutors[0].name }}
 				</a>
 			</td>
@@ -43,17 +43,17 @@
 		<tr>
 			<td class="row-property">
 				Students ({{ group.users.length }})<br>
-				<a href="manage/user/new?class={{ group.code }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+				<a href="/user/new?class={{ group.code }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
 			</td>
 			<td class="row-value">
 				<ul>
 					<li ng-repeat="user in group.users">
-						<a href="manage/user/{{ user.id }}">{{ user.name }}</a>
+						<a href="/user/{{ user.id }}">{{ user.name }}</a>
 					</li>
 				</ul>
 			
 				<alert type="info" text="No students in this class" icon="exclamation-circle" ng-if="!group.users.length">
-					<btn url="manage/user/new?class={{ group.code }}" small icon="plus">Create one</btn>
+					<btn url="/user/new?class={{ group.code }}" small icon="plus">Create one</btn>
 				</alert>
 			</td>
 		</tr>

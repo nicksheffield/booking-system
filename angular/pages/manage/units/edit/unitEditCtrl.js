@@ -14,7 +14,7 @@ angular.module('app.controllers')
 		Unit.update({id: $scope.unit.id}, $scope.unit).$promise.then(function(res) {
 			$invalidate.add('units')
 			
-			$location.path('/manage/unit/' + $scope.unit.id)
+			$location.path('/unit/' + $scope.unit.id)
 		})
 	}
 })

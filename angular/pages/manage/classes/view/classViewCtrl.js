@@ -13,7 +13,7 @@ angular.module('app.controllers')
 			$scope.group.$delete().then(function() {
 				$invalidate.add('groups')
 
-				$location.path('/manage/class')
+				$location.path('/class')
 			})
 		})
 	}
@@ -43,7 +43,7 @@ angular.module('app.controllers')
 			$q.all(promises)
 				.then(function(res) {
 					$invalidate.add('users', 'groups', 'group_types')
-					$location.path('/manage/class')
+					$location.path('/class')
 				})
 		})
 		
@@ -74,7 +74,7 @@ angular.module('app.controllers')
 			$q.all(promises)
 				.then(function(res) {
 					$invalidate.add('users', 'groups', 'group_types')
-					$location.path('/manage/class')
+					$location.path('/class')
 				})
 		})
 		

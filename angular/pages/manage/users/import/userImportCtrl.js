@@ -149,7 +149,7 @@ angular.module('app.controllers')
 
 			$q.all(promises).then(function(values) {
 				$invalidate.add('users')
-				$location.path('/manage/user')
+				$location.path('/user')
 			})
 		}
 	}

@@ -5,7 +5,7 @@ angular.module('app.controllers')
 	$scope.you = $store.user
 	
 	if($scope.user.admin == 1 && $scope.user.group && !$scope.user.group._isTutor($store.user.id)) {
-		$location.path('/manage/user')
+		$location.path('/user')
 	}
 
 	$scope.filterOutRevisions = function(note) {
@@ -28,7 +28,7 @@ angular.module('app.controllers')
 			$scope.user.$delete().then(function() {
 				$invalidate.add(['users', 'groups', 'bookings'])
 				
-				$location.path('/manage/user')
+				$location.path('/user')
 			})
 		})
 	}

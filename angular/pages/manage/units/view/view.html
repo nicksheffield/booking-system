@@ -1,6 +1,6 @@
 <page-header text="{{ unit.product.name }}: {{ unit.unit_number }}">
 	<div class="btn-group">
-		<a href="manage/unit/{{ unit.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
+		<a href="/unit/{{ unit.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
@@ -27,7 +27,7 @@
 		</tr>
 		<tr>
 			<td class="row-property">Product</td>
-			<td class="row-value"><a href="manage/product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
+			<td class="row-value"><a href="/product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
 		</tr>
 		<tr>
 			<td class="row-property">Notes</td>
@@ -47,7 +47,7 @@
 			</tr>
 			<tr ng-repeat="booking in unit._bookings | orderBy: '-taken_at'">
 				<td>
-					<a href="manage/user/{{ booking.user.id }}">{{ booking.user.name }}</a>
+					<a href="/user/{{ booking.user.id }}">{{ booking.user.name }}</a>
 				</td>
 				<td>
 					<a href="booking/{{ booking.id }}">{{ booking.taken_at | date }}</a>

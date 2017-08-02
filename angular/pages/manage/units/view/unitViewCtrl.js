@@ -19,7 +19,7 @@ angular.module('app.controllers')
 			$scope.unit.$delete().then(function() {
 				$invalidate.add(['units', 'products'])
 				
-				$location.path('/manage/unit')
+				$location.path('/unit')
 			})
 		})
 	}

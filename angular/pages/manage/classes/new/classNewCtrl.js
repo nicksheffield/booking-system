@@ -53,7 +53,7 @@ angular.module('app.controllers')
 		g.$save().then(function(res) {
 			$invalidate.add(['groups', 'users'])
 
-			$location.path('/manage/class')
+			$location.path('/class')
 		})
 	}
 })

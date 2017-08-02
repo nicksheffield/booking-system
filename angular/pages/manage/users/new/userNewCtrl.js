@@ -49,7 +49,7 @@ angular.module('app.controllers')
 		u.$save().then(function(res) {
 			$invalidate.add(['groups', 'users'])
 			
-			$location.path('/manage/user')
+			$location.path('/user')
 		}).catch(function(res) {
 			console.log('save err', res)
 		})

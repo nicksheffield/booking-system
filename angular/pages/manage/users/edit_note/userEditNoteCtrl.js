@@ -6,13 +6,13 @@ angular.module('app.controllers')
 	// $scope.note = _.find($scope.user.notes, (note) => note.id == $stateParams.id2)
 	$scope.note = $store.get('notes', $stateParams.id2)
 
-	if(!$scope.note) $location.path('/manage/user/' + $scope.user.id)
+	if(!$scope.note) $location.path('/user/' + $scope.user.id)
 	
 	$scope.save = function() {
 		Note.update({id: $scope.note.id}, $scope.note).$promise.then(function() {
 			$invalidate.add('notes')
 			
-			$location.path('/manage/user/' + $scope.user.id)
+			$location.path('/user/' + $scope.user.id)
 		})
 	}
 	
