@@ -77,6 +77,41 @@ angular.module('app.controllers')
 					$location.path('/class')
 				})
 		})
-		
+	}
+
+	$scope.dataTable = {
+		items: $scope.group.users,
+		buttons: ['view', 'edit'],
+		slug: 'user',
+		cols: [
+			{
+				name: 'ID Number',
+				prop: 'id_number'
+			},
+			{
+				name: 'Name',
+				prop: 'name'
+			},
+			{
+				name: 'Email',
+				prop: 'email'
+			},
+			{
+				name: 'Phone',
+				prop: 'phone'
+			},
+			{
+				name: 'DOB',
+				prop: x => {
+					return x.dob ? moment(x.dob).format('YYYY-MM-DD') + (
+						isNaN(x._age) ? '' : ' (' + parseInt(x._age) + ')'
+					) : ''
+				}
+			},
+			{
+				name: 'Can Book',
+				prop: x => x.can_book ? 'Yes' : 'No'
+			}
+		]
 	}
 })

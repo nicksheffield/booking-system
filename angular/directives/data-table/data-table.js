@@ -10,7 +10,8 @@ angular.module('app.directives')
 		scope.data.page = 1
 
 		scope.limits = scope.data.limits || [10, 25, 50, 100]
-		scope.data.limit = scope.limits[0]
+		scope.data.limit = scope.data.limit || scope.limits[0]
+		scope.data.buttons = scope.data.buttons ? scope.data.buttons : []
 
 		scope.buttons = scope.data.buttons.reduce((s, name) => {
 			s[name] = true
@@ -18,9 +19,11 @@ angular.module('app.directives')
 		},{})
 
 		scope.cols = scope.data.cols.map(col => {
-			col.getProp = item => {
+			col.getProp = item => { //goto
 				if(!item) return
-				return String(col.getter ? col.getter(item) : item[col.prop])
+				// return String(col.getter ? col.getter(item) : item[col.prop])
+				var val = typeof col.prop === 'function' ? col.prop(item) : item[col.prop]
+				return String(val)
 			}
 
 			col.sorter = {dir: null}
@@ -45,11 +48,19 @@ angular.module('app.directives')
 				obj.id = x.id
 
 				scope.data.cols.forEach(col => {
-					let propNames = col.prop.split('.')
-// TODO this thing
-					obj[col.prop] = col.getProp(x)
+					let val = col.getProp(x)
+					
+					obj[col.name] = val ? (isNaN(val) ? val : parseFloat(val)) : ''
 				})
 
+				if(scope.data.additionalProps) {
+					scope.data.additionalProps.forEach(col => {
+						let val = typeof col.prop === 'function' ? col.prop(x) : x[col.prop]
+
+						obj[col.name] = val ? (isNaN(val) ? val : parseFloat(val)) : ''
+					})
+				}
+				
 				return obj
 			})
 
@@ -63,81 +74,86 @@ angular.module('app.directives')
 		scope.filters = scope.cols.map(col => col.getProp())
 
 		scope.allSorts = () => {
-			const orders = []
-
-			scope.cols.forEach(col => {
-				let sorter = col.sorter
-				if(sorter.dir) {
-					orders.push(sorter.dir + col.prop)
-				}
-			})
-
-			if(orders.length) return orders
+			const col = scope.cols.find(col => !!col.sorter.dir)
+			if(col) return `${col.sorter.dir}'${col.name}'`
 			if(scope.data.orderBys) return scope.data.orderBys
 			return []
 		}
 
-		scope.allFilters = (value, index, array) => {
+		scope.allFilters = (item, index, array) => {
 			let passFilter = true
 
-			scope.cols.forEach(col => {
-				let filterVal
-				const filter = col.filter
-				const config = filter.config
+			// check everything about this item against all active filters
+			scope.cols
+				.filter(col => col.filter.value)
+				.forEach(col => {
+					// if this filter is a dropdown
+					if(col.filter.type === 'dropdown2') {
+						// if this filter is a multi-value dropdown
+						if(col.filter.config.multiple) {
+							// if this filter has been applied, and this item has no value
+							if(!item[col.name] && col.filter.value.length !== col.filter.items.length) {
+								// then the item doesn't pass the filter
+								passFilter = false
+							// if this filter has NOT been applied, and this item has no value
+							} else {
+								if(col.filter.value.length) {
+									// if none of the filter values contain this items value...
+									let pass
+									
+									if(col.filter.value.length !== col.filter.items.length) {
+										pass = col.filter.value.reduce((s, x) => {
+											return s || lookIn(item[col.name], x[col.filter.config.text])
+										}, false)
+									} else {
+										pass = true
+									}
 
-				if(!col.filter.value) return
-
-				if(filter.type === 'dropdown2') {
-					if(config.multiple) {
-						// If disableOnEmpty is turned on for this dropdown2
-						// then when nothing is chosen, everything is chosen, and we should even show items that don't necessarily even have a value for this col
-						// but if we have a different amount of items chosen than there are total, then the user is trying to do a meaningful filter
-						// so get rid of the rows with no value for this column
-						if(!col.getProp(value) && filter.value.length !== filter.items.length && config.disableOnEmpty) {
-							passFilter = false
-							return
+									// then the item doesn't pass the filter
+									if(!pass) passFilter = false
+								}
+							}
+						// if this filter is a single-value dropdown
+						} else {
+							// if the items value for this column doesn't contain the value chosen in the dropdown
+							if(!lookIn(item[col.name], col.filter.value[col.filter.config.text])) {
+								// then the item doesn't pass the filter
+								passFilter = false
+							}
 						}
-
-						filterVal = filter.value.reduce((s,x) => {
-							s.push(x[config.text])
-							return s	
-						}, []).join(', ')
-
-						if(filterVal.toLowerCase().indexOf(col.getProp(value).toLowerCase()) === -1) {
-							passFilter = false
-						}
+					// if this column's filter is a text input
 					} else {
-						filterVal = filter.value[config.text]
-						if(col.getProp(value).toLowerCase().indexOf(filterVal.toLowerCase()) === -1) {
+						// if this items property doesn't contain the filter value
+						if(!lookIn(item[col.name], col.filter.value)) {
+							// then the item doesn't pass the filter
 							passFilter = false
 						}
 					}
-				} else {
-					filterVal = String(filter.value)
-					if(col.getProp(value).toLowerCase().indexOf(filterVal.toLowerCase()) === -1) {
-						passFilter = false
-					}
-				}
-
-				
-			})
+				})
 
 			return passFilter
+		}
+
+		const lookIn = (haystack, needle) => {
+			haystack = String(haystack).toLowerCase()
+			needle   = String(needle).toLowerCase()
+
+			return haystack.indexOf(needle) !== -1
 		}
 
 		const doFilter = () => {
 			scope.data.page = 1
 			const filter = $filter('filter')
 			const orderBy = $filter('orderBy')
-			scope.filtered = orderBy(filter(scope.simplifiedItems, scope.allFilters), scope.allSorts())
-			console.log('scope.simplifiedItems', scope.simplifiedItems)
-			console.log('scope.data.items', scope.data.items)
+			scope.filtered = orderBy(
+				filter(scope.simplifiedItems, scope.allFilters),
+			scope.allSorts())
 		}
 
 		scope.data.allSorts = scope.allSorts
 		scope.data.allFilters = scope.allFilters
 
-		if(scope.data.items.hasOwnProperty('$resolved')) {
+		if(scope.data.items && scope.data.items.hasOwnProperty('$resolved')) {
 			scope.data.items.$promise.then(doFilter)
 		}
 

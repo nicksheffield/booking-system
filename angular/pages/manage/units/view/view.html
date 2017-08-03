@@ -12,50 +12,34 @@
 
 <div class="page-content">
 
-	<table class="table info-table">
-		<tr>
-			<td class="row-property">Unit No</td>
-			<td class="row-value">{{ unit.unit_number ? unit.unit_number : '-' }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">Serial No</td>
-			<td class="row-value">{{ unit.serial_number ? unit.serial_number : '-' }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">Asset No</td>
-			<td class="row-value">{{ unit.asset_number ? unit.asset_number : '-' }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">Product</td>
-			<td class="row-value"><a href="/product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
-		</tr>
-		<tr>
-			<td class="row-property">Notes</td>
-			<td class="row-value">{{ unit.notes ? unit.notes : '-' }}</td>
-		</tr>
-	</table>
-
-	<section>
-		<h2>History</h2>
-
+	<div class="info-table-wrapper">
 		<table class="table info-table">
 			<tr>
-				<th>User</th>
-				<th>Issued</th>
-				<th>Returned</th>
-				<th>Notes</th>
+				<td class="row-property">Unit No</td>
+				<td class="row-value">{{ unit.unit_number ? unit.unit_number : '-' }}</td>
 			</tr>
-			<tr ng-repeat="booking in unit._bookings | orderBy: '-taken_at'">
-				<td>
-					<a href="/user/{{ booking.user.id }}">{{ booking.user.name }}</a>
-				</td>
-				<td>
-					<a href="booking/{{ booking.id }}">{{ booking.taken_at | date }}</a>
-				</td>
-				<td>{{ booking.pivot.returned_at | date }}</td>
-				<td>{{ booking.pivot.notes }}</td>
+			<tr>
+				<td class="row-property">Serial No</td>
+				<td class="row-value">{{ unit.serial_number ? unit.serial_number : '-' }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Asset No</td>
+				<td class="row-value">{{ unit.asset_number ? unit.asset_number : '-' }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Product</td>
+				<td class="row-value"><a href="/product/{{ unit.product.id }}">{{ unit.product.name }}</a></td>
+			</tr>
+			<tr>
+				<td class="row-property">Notes</td>
+				<td class="row-value">{{ unit.notes ? unit.notes : '-' }}</td>
 			</tr>
 		</table>
-	</section>
+	</div>
+
+	<hr class="section-separator">
+
+	<h2>Booking history</h2>
+	<my-table data="dataTable" ng-if="unit.bookings"></my-table>
 
 </div>

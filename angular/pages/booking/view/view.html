@@ -22,7 +22,7 @@
 		</div>
 	</div>
 
-	<btn icon="trash" type="danger" ng-click="delete()" ng-show="(booking._priority > 2 && user.admin) || (user.id == booking.user.id && booking._priority == 1)">Delete</btn>
+	<btn icon="trash" type="danger" ng-click="delete()" ng-show="(booking._status === 'Closed' && user.admin) || (user.id == booking.user.id && booking._priority == 1 && !user.admin)">Delete</btn>
 </page-header>
 
 <div class="page-content" ratio="1">
@@ -31,8 +31,8 @@
 		<p ng-repeat="error in errors">Error: <b>{{ error.message }}</b></p>
 	</div>
 
-	<div ng-show="!errors.length">
-		<table class="table info-table">
+	<div class="info-table-wrapper" ng-show="!errors.length">
+		<table class="info-table">
 			<tr>
 				<td class="row-property">User</td>
 				<td class="row-value">
@@ -111,33 +111,11 @@
 			</div>
 		
 		</div>
-		
-		<section>
-			<table class="table">
-				<tr>
-					<th>Name</th>
-					<th>Unit</th>
-					<th class="col-notes">Notes</th>
-					<th>Returned</th>
-				</tr>
-				<tr ng-repeat="product in booking.products">
-					<td>{{ product.name }}</td>
-					<td>
-						<a href="/unit/{{ product.pivot.unit_id }}" ng-show="product.pivot.unit_id && user.admin">
-							{{ unit(product.pivot.unit_id).unit_number }}
-						</a>
-						<span ng-show="product.pivot.unit_id && !user.admin">
-							{{ unit(product.pivot.unit_id).unit_number }}
-						</span>
-						<span ng-show="product.limitless && booking._priority >= 2">
-							N/A
-						</span>
-					</td>
-					<td class="col-notes">{{ product.pivot.notes }}</td>
-					<td>{{ product.pivot.returned_at | date }}</td>
-				</tr>
-			</table>
-		</section>
 	</div>
+
+	<hr class="section-separator">
+
+		<h2>Units</h2>
+		<my-table data="dataTable" ng-if="booking.$resolved"></my-table>
 	
 </div>

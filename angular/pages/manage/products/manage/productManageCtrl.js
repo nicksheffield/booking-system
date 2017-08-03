@@ -12,18 +12,22 @@ angular.module('app.controllers')
 			},
 			{
 				name: 'Type',
-				prop: 'type.name',
-				getter: x => x.type ? x.type.name : '',
+				prop: x => x.type ? x.type.name : '',
 				filter: {
-					type: 'dropdown',
+					type: 'dropdown2',
 					items: $store.product_types,
-					display: { text: 'name' }
+					config: {
+						text: 'name',
+						id: 'id',
+						multiple: true,
+						small: true,
+						clearable: true,
+					}
 				}
 			},
 			{
 				name: 'Number of units',
-				prop: 'units.length',
-				getter: x => x.units ? x.units.length : 0
+				prop: x => x.units ? x.units.length : 0
 			}
 		]
 	}

@@ -2,7 +2,7 @@
 	<div class="data-table-pagination" layout="row" justify="between" align="center">
 		<label>
 			Show 
-			<select ng-model="data.limit" ng-options="value for value in limits"></select>
+			<select ng-model="data.limit" ng-options="value for value in limits" class="data-table-limit-select"></select>
 			 Entries
 		</label>
 		<pagination page="data.page" data="filtered" limit="data.limit"></pagination>
@@ -11,7 +11,7 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th class="button-col"></th>
+				<th class="button-col" ng-if="data.buttons.length"></th>
 				<th ng-click="sort()" ng-repeat="col in cols track by $index">
 					<span class="sorter" ng-class="{'sorter-active': col.sorter.dir}" ng-click="col.sorter.switch()" layout="row" justify="between">
 						{{ col.name }}
@@ -24,13 +24,12 @@
 				</th>
 			</tr>
 			<tr>
-				<td></td>
+				<td ng-if="data.buttons.length"></td>
 				<td ng-repeat="col in cols track by $index">
 					<span ng-if="col.filter.type === 'dropdown'">
 						<dropdown ng-model="col.filter.value" data="col.filter.items" display="col.filter.display" small nullable></dropdown>
 					</span>
 					<span ng-if="col.filter.type === 'dropdown2'">
-						<!-- <dropdown ng-model="col.filter.value" data="col.filter.items" display="col.filter.display" small nullable></dropdown> -->
 						<dropdown2 ng-model="col.filter.value" items="col.filter.items" config="col.filter.config"></dropdown2>
 					</span>
 					<span ng-if="col.filter.type === 'checkbox-dropdown'">
@@ -47,27 +46,29 @@
 		</thead>
 
 		<tr ng-repeat="item in filtered | page: data.page : data.limit as paged">
-			<td class="button-col">
+			<td class="button-col" ng-if="data.buttons.length">
 				<a href="/{{ data.slug }}/{{ item.id }}" ng-if="buttons.view"><i class="fa fa-fw fa-eye"></i></a> 
 				<a href="/{{ data.slug }}/{{ item.id }}/edit" ng-if="buttons.edit"><i class="fa fa-fw fa-pencil"></i></a> 
 				<button ng-click="delete()" class="btn-link" ng-if="buttons.delete"><i class="fa fa-fw fa-trash-o"></i></button> 
 			</td>
 			<td ng-repeat="col in cols">
-				{{ col.getProp(item) }}
+				<span class="data-table-indicator" ng-if="col.indicator(item)" ng-style="{'background-color': col.indicator(item)}"></span>
+				 {{ item[col.name] }} 
 			</td>
 		</tr>
 
 		<tr ng-if="!paged.length" class="no-records">
-			<td colspan="{{ cols.length + 1}}">
+			<td colspan="{{ cols.length + (data.buttons.length ? 1 : 0)}}">
 				No records to show
 			</td>
 		</tr>
 	</table>
 
-	<div class="data-table-count" layout="row" justify="between" align="center">
-		<span>
-			Displaying {{ filtered.indexOf(paged[0]) + 1 }} - {{ filtered.indexOf(paged[paged.length - 1]) + 1 }} out of {{ filtered.length }} entries
-		</span>
+	<div class="data-table-count" layout="row" justify="between" align="start">
+		<div>
+			<p>Displaying <b>{{ filtered.indexOf(paged[0]) + 1 }}</b> - <b>{{ filtered.indexOf(paged[paged.length - 1]) + 1 }}</b> out of <b>{{ filtered.length }}</b> entries</p>
+			<p ng-if="filtered.length !== data.items.length">(<b>{{ data.items.length - filtered.length }}</b> {{ data.items.length - filtered.length === 1 ? 'entry' : 'entries' }} hidden by filters)</p>
+		</div>
 		<pagination page="data.page" data="filtered" limit="data.limit"></pagination>
 	</div>
 

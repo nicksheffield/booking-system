@@ -6,27 +6,44 @@ angular.module('app.controllers')
 
 	$scope.users = $store.users
 	$scope.groups = $store.groups
+
 	$scope.statuses = [
 		{ text: 'Closed' },
+		{ text: 'Overdue' },
 		{ text: 'Issued' },
-		{ text: 'Booked' }	
+		{ text: 'Booked' },
 	]
 
-	$scope.dropdown_test_data = [
-		{ text: 'Option A', checked: false },
-		{ text: 'Option 2', checked: true },
-		{ text: 'Option III', checked: false },
+	$scope.dayFilters = [
+		{ text: 'Tomorrow' },
+		{ text: 'Today' },
+		{ text: 'Yesterday' },
 	]
 
-	$scope.dropdown_test_display = { text: 'text' }
+	$scope.dayFormatter = date => {
+		if(!date) return ''
+		
+		let suffix = ''
+		let target = moment(date)
+		let today = moment()
+		let tomorrow = moment().add(1, 'd')
+		let yesterday = moment().subtract(1, 'd')
 
-	$scope.dropdown_value = null
+		if(target.isSame(tomorrow, 'day')) {
+			suffix = 'Tomorrow'
+		} else if(target.isSame(today, 'day')) {
+			suffix = 'Today'
+		} else if(target.isSame(yesterday, 'day')) {
+			suffix = 'Yesterday'
+		}
 
+		if(suffix) suffix = ` (${suffix})`
 
-
+		return target.format('YYYY-MM-DD') + suffix
+	}
 
 	$scope.bookings = Booking.query({
-		after: moment().subtract(3, 'months').format('YYYY-MM-DD'),
+		// after: moment().subtract(3, 'months').format('YYYY-MM-DD'),
 		with: 'user'
 	})
 
@@ -56,8 +73,7 @@ angular.module('app.controllers')
 		cols: [
 			{
 				name: 'User',
-				prop: 'user.name',
-				getter: x => x.user ? x.user.name : '',
+				prop: x => x.user ? x.user.name : '',
 				filter: {
 					type: 'dropdown2',
 					items: $store.users,
@@ -65,75 +81,95 @@ angular.module('app.controllers')
 					config: {
 						text: 'name',
 						id: 'id',
-						multiple: false,
+						multiple: true,
 						clearable: true,
-						placeholder: 'Search...',
-						small: true
+						small: true,
+						orders: [
+							x => x.text
+						]
 					}
 				}
-				// filter: {
-				// 	type: 'dropdown',
-				// 	items: $store.users,
-				// 	display: { text: 'name' },
-				// 	value: $store.get('users', $stateParams.user)
-				// }
 			},
 			{
 				name: 'Pickup',
-				prop: 'pickup_at',
-				getter: x => x.pickup_at ? moment(x.pickup_at).format('MMM Do') : '',
-				// filter: {
-				// 	type: 'date'
-				// }
-			},
-			{
-				name: 'Issued',
-				prop: 'issued_at',
-				getter: x => x.taken_at ? moment(x.taken_at).format('MMM Do') : '',
-				// filter: {
-				// 	type: 'date'
-				// }
-			},
-			{
-				name: 'Due',
-				prop: 'due_at',
-				getter: x => x.due_at ? moment(x.due_at).format('MMM Do') : '',
-				// filter: {
-				// 	type: 'date'
-				// }
-			},
-			{
-				name: 'Closed',
-				prop: 'closed_at',
-				getter: x => x.closed_at ? moment(x.closed_at).format('MMM Do') : '',
-				// filter: {
-				// 	type: 'date'
-				// }
-			},
-			{
-				name: 'Status',
-				prop: '_status',
+				// prop: x => x.pickup_at ? moment(x.pickup_at).format('MMM Do') : '',
+				prop: x => $scope.dayFormatter(x.pickup_at),
 				filter: {
 					type: 'dropdown2',
-					items: $scope.statuses,
-					value: [$scope.statuses[1], $scope.statuses[2]],
+					items: $scope.dayFilters,
 					config: {
 						text: 'text',
 						id: 'text',
 						multiple: true,
-						placeholder: 'Search...',
 						small: true
 					}
 				}
-				// filter: {
-				// 	type: 'checkbox-dropdown',
-				// 	items: [
-				// 		{ text: 'Closed', checked: false },
-				// 		{ text: 'Issued', checked: true },
-				// 		{ text: 'Booked', checked: true },
-				// 	],
-				// 	display: { text: 'text' }
-				// }
+			},
+			{
+				name: 'Issued',
+				// prop: x => x.taken_at ? moment(x.taken_at).format('MMM Do') : '',
+				prop: x => $scope.dayFormatter(x.taken_at),
+				filter: {
+					type: 'dropdown2',
+					items: $scope.dayFilters,
+					config: {
+						text: 'text',
+						id: 'text',
+						multiple: true,
+						small: true
+					}
+				}
+			},
+			{
+				name: 'Due',
+				// prop: x => x.due_at ? moment(x.due_at).format('MMM Do') : '',
+				prop: x => $scope.dayFormatter(x.due_at),
+				filter: {
+					type: 'dropdown2',
+					items: $scope.dayFilters,
+					config: {
+						text: 'text',
+						id: 'text',
+						multiple: true,
+						small: true
+					}
+				}
+			},
+			{
+				name: 'Closed',
+				// prop: x => x.closed_at ? moment(x.closed_at).format('MMM Do') : '',
+				prop: x => $scope.dayFormatter(x.closed_at),
+				filter: {
+					type: 'dropdown2',
+					items: $scope.dayFilters,
+					config: {
+						text: 'text',
+						id: 'text',
+						multiple: true,
+						small: true
+					}
+				}
+			},
+			{
+				name: 'Status',
+				prop: '_status',
+				indicator: x => {
+					if(x.Status === 'Booked') return '#2ECC71'
+					if(x.Status === 'Issued') return '#F39C12'
+					if(x.Status === 'Overdue') return '#E74C3C'
+					if(x.Status === 'Closed') return '#7F8C8D'
+				},
+				filter: {
+					type: 'dropdown2',
+					items: $scope.statuses,
+					value: [$scope.statuses[1], $scope.statuses[2], $scope.statuses[3]],
+					config: {
+						text: 'text',
+						id: 'text',
+						multiple: true,
+						small: true,
+					}
+				}
 			}
 		]
 	}

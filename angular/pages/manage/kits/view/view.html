@@ -12,24 +12,31 @@
 
 <div class="page-content">
 	
-	<table class="table info-table">
-		<tr>
-			<td class="row-property">Name</td>
-			<td class="row-value">{{ kit.name }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">
-				Products ({{ kit.products.length }})
-			</td>
-			<td class="row-value">
-				<ul>
-					<li ng-repeat="product in kit.products">
-						<a href="/product/{{ product.id }}">{{ product.name }}</a>
-						 <strong>x{{ product.pivot.quantity }}</strong>
-					</li>
-				</ul>
-			</td>
-		</tr>
-	</table>
+	<div class="info-table-wrapper">
+		<table class="info-table">
+			<tr>
+				<td class="row-property">Name</td>
+				<td class="row-value">{{ kit.name }}</td>
+			</tr>
+			<!-- <tr>
+				<td class="row-property">
+					Products ({{ kit.products.length }})
+				</td>
+				<td class="row-value">
+					<ul>
+						<li ng-repeat="product in kit.products">
+							<a href="/product/{{ product.id }}">{{ product.name }}</a>
+							 <strong>x{{ product.pivot.quantity }}</strong>
+						</li>
+					</ul>
+				</td>
+			</tr> -->
+		</table>
+	</div>
+
+	<hr class="section-separator">
+
+	<h2>Products</h2>
+	<my-table data="dataTable"></my-table>
 
 </div>

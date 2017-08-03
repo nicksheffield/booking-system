@@ -5,30 +5,26 @@ angular.module('app.directives')
 		const config = scope.config
 		const items = scope.items
 
+		window.dropdown = scope
+
 		scope.unique = parseInt(Math.random() * 99999)
 
 		scope.selected = config.multiple ? [] : null
+		
+		scope.config.orders = scope.config.orders ? scope.config.orders : []
 
 		scope.context = 'blurred'
 
-		scope.simpleItems = scope.items.map(item => {
+		scope.simplify = item => {
 			return {
 				id: item[config.id],
 				text: item[config.text]
 			}
-		})
+		}
+
+		scope.simpleItems = scope.items.map(item => scope.simplify(item))
 
 		scope.initialize = () => {
-			// if(scope.ngModel) {
-			// 	if(config.multiple) {
-			// 		scope.selected = scope.ngModel.map(realItem =>
-			// 			scope.simpleItems.find(simpleItem =>
-			// 				simpleItem.id === realItem[config.id]))
-			// 	} else {
-			// 		scope.selected = scope.ngModel
-			// 	}
-			// }
-
 			if(config.multiple) {
 				if(scope.ngModel) {
 					scope.selected = scope.ngModel.map(realItem =>
@@ -36,12 +32,12 @@ angular.module('app.directives')
 							simpleItem.id === realItem[config.id]))
 				}
 				
-				if(!scope.selected.length && config.disableOnEmpty) {
+				if(!scope.selected.length) {
 					scope.ngModel = scope.items
 				}
 			} else {
 				if(scope.ngModel) {
-					scope.selected = scope.ngModel
+				scope.selected = scope.simplify(scope.ngModel)
 				}
 			}
 
@@ -126,7 +122,7 @@ angular.module('app.directives')
 					scope.selected.push(item)
 				}
 
-				if(!scope.selected.length && config.disableOnEmpty) {
+				if(!scope.selected.length) {
 					scope.ngModel = scope.items
 				} else {
 					scope.ngModel = scope.selected.map(x => {
@@ -145,11 +141,7 @@ angular.module('app.directives')
 			if(config.multiple) {
 				scope.selected = []
 
-				if(config.disableOnEmpty) {
-					scope.ngModel = scope.items
-				} else {
-					scope.ngModel = []
-				}
+				scope.ngModel = scope.items
 			} else {
 				scope.selected = null
 				scope.ngModel = null

@@ -14,33 +14,3 @@
 <div class="page-content">
 	<my-table data="dataTable"></my-table>
 </div>
-
-<div class="page-content" ng-hide="true">
-
-	<div ng-hide="!filtered.length">
-		<a class="list-item" ng-repeat="user in users | filter: filter | orderBy: 'group.id' | orderBy: '-admin' | page: page : 10 as filtered" href="/user/{{ user.id }}">
-			<div class="col" ratio="1">
-				<div class="title">Name</div>
-				<div class="content">
-					{{ user.name }}
-				</div>
-			</div>
-
-			<div class="col" ratio="1">
-				<div class="title">Role</div>
-				<div class="content">
-					{{ user._role }}
-				</div>
-			</div>
-			<div class="col" ratio="1">
-				<div class="title" ng-show="user.group">Class</div>
-				<div class="content">
-					{{ user.group.code }}
-				</div>
-			</div>
-		</a>
-	</div>
-
-	
-
-</div>

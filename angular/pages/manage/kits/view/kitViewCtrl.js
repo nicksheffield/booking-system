@@ -16,7 +16,21 @@ angular.module('app.controllers')
 				$location.path('/kit')
 			})
 		})
+	}
 
-
+	$scope.dataTable = {
+		items: $scope.kit.products,
+		buttons: ['view', 'edit'],
+		slug: 'product',
+		cols: [
+			{
+				name: 'Product',
+				prop: 'name'
+			},
+			{
+				name: 'Quantity',
+				prop: x => x.limitless ? 'N/A' : x.pivot.quantity
+			},
+		]
 	}
 })

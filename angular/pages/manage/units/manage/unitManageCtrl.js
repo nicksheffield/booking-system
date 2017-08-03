@@ -6,18 +6,29 @@ angular.module('app.controllers')
 		buttons: ['view', 'edit'],
 		slug: 'unit',
 		orderBys: [
-			u => u.product_id,
-			u => parseInt(u.unit_number)
+			x => x['product_id'],
+			x => parseInt(x['Unit No.']),
+		],
+		additionalProps: [
+			{
+				name: 'product_id',
+				prop: x => x.product ? x.product.id : ''
+			}
 		],
 		cols: [
 			{
 				name: 'Product',
-				prop: 'product.name',
-				getter: x => x.product ? x.product.name : '',
+				prop: x => x.product ? x.product.name : '',
 				filter: {
-					type: 'dropdown',
+					type: 'dropdown2',
 					items: $store.products,
-					display: { text: 'name' }
+					config: {
+						text: 'name',
+						id: 'name',
+						multiple: true,
+						small: true,
+						clearable: true,
+					}
 				}
 			},
 			{
@@ -34,4 +45,5 @@ angular.module('app.controllers')
 			}
 		]
 	}
+
 })

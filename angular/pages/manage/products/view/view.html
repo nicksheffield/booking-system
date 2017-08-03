@@ -12,64 +12,36 @@
 
 <div class="page-content">
 	
-	<table class="table info-table">
-		<tr>
-			<td class="row-property">Name</td>
-			<td class="row-value">{{ product.name }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">Type</td>
-			<td class="row-value"><a href="/product-type/{{ product.type.id }}">{{ product.type.name }}</a></td>
-		</tr>
-		<tr>
-			<td class="row-property">Limitless</td>
-			<td class="row-value">{{ product.limitless ? 'Yes' : 'No' }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">Classe Types ({{ product.group_types.length }})</td>
-			<td class="row-value">
-				<div layout="row" align="start" justify="between" ng-show="product.group_types.length">
-					<ul>
-						<li ng-repeat="group_type in product.group_types">
-							<a href="/class-type/{{ group_type.id }}">{{ group_type.name }}</a>
-						</li>
-					</ul>
-				</div>
-				
-				<alert type="info" text="No classe types are allowed to book this product. Edit a class type to allow this product." icon="exclamation-circle" ng-if="!product.group_types.length"></alert>
-			</td>
-		</tr>
-		<tr>
-			<td class="row-property">
-				Kits ({{ product.kits.length }})
-			</td>
-			<td class="row-value">
-				<ul>
-					<li ng-repeat="kit in product.kits track by $index">
-						<a href="/kit/{{ kit.id }}">{{kit.name }}</a>
-					</li>
-				</ul>
-				
-				<alert type="info" text="No kits for this product" icon="exclamation-circle" ng-if="!product.kits.length"></alert>
-			</td>
-		</tr>
-		<tr ng-show="!product.limitless">
-			<td class="row-property">
-				Units ({{ product.units.length }})<br>
-				<a href="/unit/new?product={{ product.id }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-			</td>
-			<td class="row-value">
-				<ul>
-					<li ng-repeat="unit in product.units | orderBy: orderByUnit track by $index">
-						<a href="/unit/{{ unit.id }}">{{ unit.unit_number }}</a>
-					</li>
-				</ul>
-				
-				<alert type="info" text="No units for this product" icon="exclamation-circle" ng-if="!product.units.length">
-					<btn url="/unit/new?product={{ product.id }}" small icon="plus">Create one</btn>
-				</alert>
-			</td>
-		</tr>
-	</table>
+	<div class="info-table-wrapper">
+		<table class="info-table">
+			<tr>
+				<td class="row-property">Name</td>
+				<td class="row-value">{{ product.name }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Type</td>
+				<td class="row-value"><a href="/product-type/{{ product.type.id }}">{{ product.type.name }}</a></td>
+			</tr>
+			<tr>
+				<td class="row-property">Limitless</td>
+				<td class="row-value">{{ product.limitless ? 'Yes' : 'No' }}</td>
+			</tr>
+		</table>
+	</div>
+
+	<hr class="section-separator">
+
+	<h2>Units</h2>
+	<my-table data="unitsDataTable"></my-table>
+
+	<hr class="section-separator">
+
+	<h2>Class Types</h2>
+	<my-table data="classTypesDataTable"></my-table>
+
+	<hr class="section-separator">
+
+	<h2>Kits</h2>
+	<my-table data="kitsDataTable"></my-table>
 
 </div>

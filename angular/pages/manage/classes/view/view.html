@@ -14,51 +14,40 @@
 
 <div class="page-content" ng-show="!loading">
 
-	<table class="table info-table">
-		<tr>
-			<td class="row-property">Code</td>
-			<td class="row-value">{{ group.code }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">Type</td>
-			<td class="row-value"><a href="/class-type/{{ group.type.id }}">{{ group.type.name }}</a></td>
-		</tr>
-		<tr>
-			<td class="row-property">Status</td>
-			<td class="row-value">{{ group.active ? 'Active' : 'Inactive' }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">Tutor<span ng-show="group.tutors.length > 1">s</span></td>
-			<td class="row-value">
-				<ul ng-show="group.tutors.length > 1">
-					<li ng-repeat="user in group.tutors">
-						<a href="/user/{{ user.id }}">{{ user.name }}</a>
-					</li>
-				</ul>
-				<a href="/user/{{ group.tutors[0].id }}" ng-show="group.tutors.length == 1">
-					{{ group.tutors[0].name }}
-				</a>
-			</td>
-		</tr>
-		<tr>
-			<td class="row-property">
-				Students ({{ group.users.length }})<br>
-				<a href="/user/new?class={{ group.code }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-			</td>
-			<td class="row-value">
-				<ul>
-					<li ng-repeat="user in group.users">
-						<a href="/user/{{ user.id }}">{{ user.name }}</a>
-					</li>
-				</ul>
-			
-				<alert type="info" text="No students in this class" icon="exclamation-circle" ng-if="!group.users.length">
-					<btn url="/user/new?class={{ group.code }}" small icon="plus">Create one</btn>
-				</alert>
-			</td>
-		</tr>
-	</table>
+	<div class="info-table-wrapper">
+		<table class="info-table">
+			<tr>
+				<td class="row-property">Code</td>
+				<td class="row-value">{{ group.code }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Type</td>
+				<td class="row-value"><a href="/class-type/{{ group.type.id }}">{{ group.type.name }}</a></td>
+			</tr>
+			<tr>
+				<td class="row-property">Status</td>
+				<td class="row-value">{{ group.active ? 'Active' : 'Inactive' }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Tutor<span ng-show="group.tutors.length > 1">s</span></td>
+				<td class="row-value">
+					<ul ng-show="group.tutors.length > 1">
+						<li ng-repeat="user in group.tutors">
+							<a href="/user/{{ user.id }}">{{ user.name }}</a>
+						</li>
+					</ul>
+					<a href="/user/{{ group.tutors[0].id }}" ng-show="group.tutors.length == 1">
+						{{ group.tutors[0].name }}
+					</a>
+				</td>
+			</tr>
+		</table>
+	</div>
 
+	<hr class="section-separator">
+
+	<h2>Students</h2>
+	<my-table data="dataTable"></my-table>
 </div>
 
 <div ng-show="loading">

@@ -8,7 +8,7 @@
 
 	<div class="ns-dropdown2-list" ng-if="isFocused()">
 		<ul>
-			<li ng-repeat="item in simpleItems | filter: input" class="ns-dropdown2-item">
+			<li ng-repeat="item in simpleItems | filter: input | orderBy: config.orders" class="ns-dropdown2-item">
 				<div ng-click="choose(item)" class="ns-dropdown2-item-clickable">
 					<input type="checkbox" ng-checked="isSelected(item)" ng-if="config.multiple" class="ns-dropdown2-checkbox">
 					{{ item.text }}

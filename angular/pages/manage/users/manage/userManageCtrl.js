@@ -24,17 +24,14 @@ angular.module('app.controllers')
 						text: 'name',
 						id: 'name',
 						multiple: true,
-						placeholder: 'Search...',
 						small: true,
 						clearable: true,
-						disableOnEmpty: true
 					}
 				}
 			},
 			{
 				name: 'Class',
-				prop: 'group.code',
-				getter: x => x.group ? x.group.code : '',
+				prop: x => x.group ? x.group.code : '',
 				filter: {
 					type: 'dropdown2',
 					items: $store.groups,
@@ -42,10 +39,8 @@ angular.module('app.controllers')
 						text: 'code',
 						id: 'code',
 						multiple: true,
-						placeholder: 'Search...',
 						small: true,
 						clearable: true,
-						disableOnEmpty: true
 					}
 				}
 			},

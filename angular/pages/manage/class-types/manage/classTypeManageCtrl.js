@@ -16,8 +16,7 @@ angular.module('app.controllers')
 			},
 			{
 				name: 'Number of classes',
-				prop: 'groups.length',
-				getter: x => x.groups ? x.groups.length : 0
+				prop: x => x.groups ? x.groups.length : 0
 			}
 		]
 	}

@@ -12,31 +12,41 @@ angular.module('app.controllers')
 			},
 			{
 				name: 'Type',
-				prop: 'type.code',
-				getter: x => x.type ? x.type.code : '',
+				prop: x => x.type ? x.type.code : '',
 				filter: {
-					type: 'dropdown',
+					type: 'dropdown2',
 					items: $store.group_types,
-					display: { text: 'code' }
+					config: {
+						text: 'code',
+						id: 'id',
+						multiple: true,
+						small: true,
+						clearable: true,
+					}
 				}
 			},
 			{
 				name: 'Tutors',
-				prop: 'tutors',
-				getter: x => x.tutors ? x.tutors.reduce((s,t) => {
+				prop: x => x.tutors ? x.tutors.reduce((s,t) => {
 					s.push(t.name)
 					return s
 				}, []).join(', ') : '',
 				filter: {
-					type: 'dropdown',
+					type: 'dropdown2',
 					items: $store.users.filter(u => u.admin).sort(u => u.name),
-					display: { text: 'name' }
+					config: {
+						text: 'name',
+						id: 'id',
+						multiple: true,
+						small: true,
+						clearable: true,
+						
+					}
 				}
 			},
 			{
 				name: 'Number of students',
-				prop: 'users.length',
-				getter: x => x.users ? x.users.length : 0
+				prop: x => x.users ? x.users.length : 0
 			}
 		]
 	}

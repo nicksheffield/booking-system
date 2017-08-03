@@ -1,4 +1,4 @@
-<page-header text="{{ type.code }} // {{ type.name }}">
+<page-header text="{{ type.code }} - {{ type.name }}">
 	<div class="btn-group">
 		<a href="/class-type/{{ type.id }}/edit" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-pencil"></i>Edit</a>
 		<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -13,43 +13,27 @@
 
 <div class="page-content">
 
-	<table class="table info-table">
-		<tr>
-			<td class="row-property">Code</td>
-			<td class="row-value">{{ type.code }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">Name</td>
-			<td class="row-value">{{ type.name }}</td>
-		</tr>
-		<tr>
-			<td class="row-property">
-				Classes ({{ type.groups.length }})<br>
+	<div class="info-table-wrapper">
+		<table class="info-table">
+			<tr>
+				<td class="row-property">Code</td>
+				<td class="row-value">{{ type.code }}</td>
+			</tr>
+			<tr>
+				<td class="row-property">Name</td>
+				<td class="row-value">{{ type.name }}</td>
+			</tr>
+		</table>
+	</div>
 
-				<a href="/class/new?type={{ type.code }}" class="btn push-down btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-			</td>
-			<td class="row-value">
-				<ul ng-show="type.groups.length">
-					<li ng-repeat="group in type.groups">
-						<a href="/class/{{ group.id }}">{{ group.code }}</a>
-					</li>
-				</ul>
-				
-				<alert type="info" text="No classes with this type" icon="exclamation-circle" ng-if="!type.groups.length">
-					<btn url="/class/new?type={{ type.code }}" small icon="plus">Create one</btn>
-				</alert>
-			</td>
-		</tr>
-		<tr>
-			<td class="row-property">Products ({{ type.products.length }})</td>
-			<td class="row-value">
-				<ul ng-show="type.products.length">
-					<li ng-repeat="product in type.products">
-						<a href="/product/{{ product.id }}">{{ product.name }}</a>
-					</li>
-				</ul>
-			</td>
-		</tr>
-	</table>
+	<hr class="section-separator">
+
+	<h2>Classes</h2>
+	<my-table data="classesDataTable"></my-table>
+
+	<hr class="section-separator">
+
+	<h2>Allowed Products</h2>
+	<my-table data="productsDataTable"></my-table>
 
 </div>

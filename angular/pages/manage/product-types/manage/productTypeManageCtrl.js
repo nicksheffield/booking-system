@@ -12,8 +12,7 @@ angular.module('app.controllers')
 			},
 			{
 				name: 'Number of products',
-				prop: 'products.length',
-				getter: x => x.products ? x.products.length : 0
+				prop: x => x.products ? x.products.length : 0
 			}
 		]
 	}
