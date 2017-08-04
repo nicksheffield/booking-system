@@ -27,15 +27,36 @@ angular.module('app.controllers')
 					},
 					{
 						name: 'Unit',
-						prop: x => x.limitless ? 'N/A' : $store.get('units', x.pivot.unit_id).unit_number
+						prop: x => {
+							if(x.limitless) return 'N/A'
+							
+							if(x.pivot) {
+								if(x.pivot.unit_id) {
+									return $store.get('units', x.pivot.unit_id).unit_number
+								}
+							}
+							return ''
+						}
 					},
 					{
 						name: 'Notes',
-						prop: x => x.pivot.notes
+						prop: x => {
+							if(x.pivot) {
+								return x.pivot.notes
+							}
+							return ''
+						}
 					},
 					{
 						name: 'Returned',
-						prop: x => x.pivot.returned_at ? moment(x.pivot.returned_at).format('YYYY-MM-DD') : ''
+						prop: x => {
+							if(x.pivot) {
+								if(x.pivot.returned_at) {
+									return moment(x.pivot.returned_at).format('YYYY-MM-DD')
+								}
+							}
+							return ''
+						}
 					},
 				]
 			}
