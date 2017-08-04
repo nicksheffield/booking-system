@@ -157,12 +157,18 @@ angular.module('app.controllers')
 					if(x.Status === 'Booked') return '#2ECC71'
 					if(x.Status === 'Issued') return '#F39C12'
 					if(x.Status === 'Overdue') return '#E74C3C'
-					if(x.Status === 'Closed') return '#7F8C8D'
+					if(x.Status === 'Closed') return '#ddd'
 				},
 				filter: {
 					type: 'dropdown2',
 					items: $scope.statuses,
-					value: [$scope.statuses[1], $scope.statuses[2], $scope.statuses[3]],
+					value: (() => {
+						let arr = [$scope.statuses[1], $scope.statuses[2], $scope.statuses[3]]
+						if($stateParams.closed) {
+							arr.push($scope.statuses[0])
+						}
+						return arr
+					})(),
 					config: {
 						text: 'text',
 						id: 'text',

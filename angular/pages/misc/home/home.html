@@ -1,6 +1,12 @@
-<page-header text="Welcome, {{ user.name }}" breadcrumbs="false"></page-header>
+<page-header text="Welcome, {{ user.name }}"></page-header>
 
 <div class="page-content">
+	<hr>
+	<h2>Your booking history</h2>
+	<my-table data="dataTable"></my-table>
+</div>
+
+<!-- <div class="page-content">
 
 	<div ng-show="bookings.length && !loading">
 		<h2>My Bookings</h2>
@@ -85,4 +91,4 @@
 		<img src="/images/LoadingWheel.svg" alt="" class="loader-img loader-spin">
 	</div>
 	
-</div>
+</div> -->

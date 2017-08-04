@@ -1,6 +1,6 @@
 angular.module('app.directives')
 
-.directive('sidebar', function($store, $state, $auth, $load, $location, $rootScope, $http) {
+.directive('sidebar', function($store, $state, $auth, $load, $location, $rootScope, $http, $timeout) {
 	function link(scope, el, attrs) {
 		scope.auth = $auth
 		scope.user = $store.user
@@ -20,6 +20,7 @@ angular.module('app.directives')
 			scope.bookings_count = parseInt(res.data.total)
 			scope.loading_bookings = false
 		})
+	
 	}
 
 	return {
