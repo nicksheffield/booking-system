@@ -124,7 +124,7 @@ class Product extends Controller
 				$response = [
 					'id' => $product_id,
 					'allowed' => false,
-					'reason' => "You are only allowed to book this item for $days_allowed days"
+					'reason' => "You are only allowed to book this item for $days_allowed days at a time or less"
 				];
 				return $response;
 			}
@@ -148,6 +148,8 @@ class Product extends Controller
 			}
 		}
 
+		$reason = '';
+
 		// if there are any prevBookings
 		if(count($prevBookings)) {
 
@@ -170,7 +172,7 @@ class Product extends Controller
 
 			// now that we have a list of all booked products, and how many..
 			// then lets check if each one is under or at the limit allowed by this users group
-			$reason = '';
+			
 
 			// if this user is in a group and that group has a type
 			if(Auth::user()->group && Auth::user()->group->type) {

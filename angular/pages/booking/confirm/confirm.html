@@ -6,7 +6,7 @@
 		<p>Does this look right?</p>
 		<p>If not, you can <a href="/book">go back</a> and modify it first.</p>
 
-		<alert type="danger" icon="exclamation-triangle" ng-show="!overallAllowed" text="Some of your chosen items are unavailable during your chosen time period"></alert>
+		<!-- <alert type="danger" icon="exclamation-triangle" ng-show="!overallAllowed" text="Some of your chosen items are unavailable during your chosen time period"></alert> -->
 		
 		<table class="info-table">
 			<tr>
@@ -59,7 +59,7 @@
 			</tr>
 		</table>
 
-		<btn type="success" icon="check" ng-click="confirm()" disable="disableSubmit()">Make Booking</btn>
+		<btn class="bump-down" type="success" icon="check" ng-click="confirm()" disable="disableSubmit()">Make Booking</btn>
 	</div>
 </div>
 
