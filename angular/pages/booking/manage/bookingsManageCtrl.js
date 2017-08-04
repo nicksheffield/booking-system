@@ -141,7 +141,7 @@ angular.module('app.controllers')
 				prop: x => $scope.dayFormatter(x.closed_at),
 				filter: {
 					type: 'dropdown2',
-					items: $scope.dayFilters,
+					items: $scope.dayFilters.filter(x => x.text !== 'Tomorrow'),
 					config: {
 						text: 'text',
 						id: 'text',
