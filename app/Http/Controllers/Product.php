@@ -113,6 +113,23 @@ class Product extends Controller
 		$pickup = Carbon::parse($request->pickup_at);
 		$due = Carbon::parse($request->due_at);
 
+		// Do a days_allowed check early, before we go through the effort of determining unit availability
+		if(Auth::user()->group && Auth::user()->group->type) {
+			$daysDiff = $pickup->diffInDays($due);
+
+			$groupTypeProduct = Auth::user()->group->type->products()->wherePivot('product_id', $product_id)->first();
+			$days_allowed = $groupTypeProduct->pivot->days_allowed;
+
+			if($days_allowed < $daysDiff) {
+				$response = [
+					'id' => $product_id,
+					'allowed' => false,
+					'reason' => "You are only allowed to book this item for $days_allowed days"
+				];
+				return $response;
+			}
+		}
+
 		$bookings = Booking::query()
 			->where('due_at', '>', $pickup)
 			->where('pickup_at', '<', $due)
@@ -153,10 +170,11 @@ class Product extends Controller
 
 			// now that we have a list of all booked products, and how many..
 			// then lets check if each one is under or at the limit allowed by this users group
+			$reason = '';
 
-			// if this user is in a group
-			if(Auth::user()->group) {
-				// then check every allowed product for the group
+			// if this user is in a group and that group has a type
+			if(Auth::user()->group && Auth::user()->group->type) {
+				// then check every allowed product for the group type
 				foreach(Auth::user()->group->type->products as $product) {
 					// if any of them match the product the user is trying to book...
 					// echo $product->id.'/'.$thisProduct->id.'/'.($product->id == $thisProduct->id ? 'true' : 'false')."\n";
@@ -166,23 +184,28 @@ class Product extends Controller
 						//echo $prods[$product->id] + $request->quantity .'/'. $product->pivot->quantity . '/'. ($prods[$product->id] + $request->quantity <= $product->pivot->quantity ? 'true' : 'false');
 						if(!isset($prods[$product->id])) {
 							$allowed = checkAvailable($bookings, $thisProduct, $product_id, $request);
+							if(!$allowed) $reason = 'There are not enough of this item available during your chosen time period';
 
 						} else if($prods[$product->id] + $request->quantity <= $product->pivot->quantity) {
 							// then do the standard check
 							$allowed = checkAvailable($bookings, $thisProduct, $product_id, $request);
+							if(!$allowed) $reason = 'There are not enough of this item available during your chosen time period';
 						} else {
 							$allowed = false;
+							$reason = 'You are only allowed to book out '.$product->pivot->quantity.' of this item at a time';
 						}
 					}
 				}
 
 				if(!isset($allowed)) {
 					$allowed = checkAvailable($bookings, $thisProduct, $product_id, $request);
+					if(!$allowed) $reason = 'There are not enough of this item available during your chosen time period';
 				}
 			// if the user is not in a group (ie, staff or manager)
 			} else {
 				// then do the standard check
 				$allowed = checkAvailable($bookings, $thisProduct, $product_id, $request);
+				if(!$allowed) $reason = 'There are not enough of this item available during your chosen time period';
 			}
 
 
@@ -190,11 +213,13 @@ class Product extends Controller
 			$allowed = true;
 		} else {
 			$allowed = checkAvailable($bookings, $thisProduct, $product_id, $request);
+			if(!$allowed) $reason = 'There are not enough of this item available during your chosen time period';
 		}
 
 		$response = [
 			'id' => $product_id,
-			'allowed' => $allowed
+			'allowed' => $allowed,
+			'reason' => $reason
 		];
 
 		return $response;

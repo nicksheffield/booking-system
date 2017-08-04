@@ -4,12 +4,15 @@ angular.module('app.controllers')
 	if(!$store.booking.pickup_at) {
 		$location.path('/book')
 	}
+
+	window.$scope = $scope
 	
 	$scope.user = $store.user
 	$scope.booking = $store.booking
 	$scope.allowedProducts = []
 	$scope.overallAllowed = true
 	$scope.terms = $store.get('settings', {key: 'terms'})
+	$scope.reasons = []
 	
 	$scope.product = (id) => $store.get('products', id)
 
@@ -33,12 +36,15 @@ angular.module('app.controllers')
 					$scope.allowedProducts.push(parseInt(res.data.id))
 				} else {
 					$scope.overallAllowed = false
+					$scope.reasons.push({id: parseInt(res.data.id), reason: res.data.reason})
 				}
 			})
 	})
 
-	$scope.allowed = function(id) {
-		return $scope.allowedProducts.indexOf(id) >= 0
+	$scope.allowed = id => $scope.allowedProducts.indexOf(id) >= 0
+	$scope.reason  = id => {
+		let reason = $scope.reasons.find(x => x.id === id)
+		return reason ? reason.reason : ''
 	}
 	
 	$scope.confirm = function() {
